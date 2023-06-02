@@ -3,16 +3,18 @@ package com.capstone.fitnessrx.Models;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 
+import java.util.Date;
+
 @Entity
 public class Messages {
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
-    private Users users;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "recipient_id")
-    private User user;
+    private User recipient;
 
     @Column(nullable = false)
     private String content;
@@ -27,18 +29,17 @@ public class Messages {
     public Messages() {
     }
 
-
-    public Messages(Users users, User user, String content, Date timeStamp, Long id) {
-        this.users = users;
+    public Messages(User user, User recipient, String content, Date timeStamp, Long id) {
         this.user = user;
+        this.recipient = recipient;
         this.content = content;
         this.timeStamp = timeStamp;
         this.id = id;
     }
 
-    public Messages(Users users, User user, String content, Date timeStamp) {
-        this.users = users;
+    public Messages(User user, User recipient, String content, Date timeStamp) {
         this.user = user;
+        this.recipient = recipient;
         this.content = content;
         this.timeStamp = timeStamp;
     }
@@ -51,20 +52,20 @@ public class Messages {
         return id;
     }
 
-    public Users getUsers() {
-        return users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public User getRecipient() {
+        return recipient;
+    }
+
+    public void setRecipient(User recipient) {
+        this.recipient = recipient;
     }
 
     public String getContent() {

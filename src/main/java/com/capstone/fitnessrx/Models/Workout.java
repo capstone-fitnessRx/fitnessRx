@@ -10,7 +10,7 @@ import java.util.Date;
 public class Workout {
     @Id
     @GeneratedValue
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToOne
@@ -28,20 +28,20 @@ public class Workout {
 
     @ManyToOne
     @JoinColumn(name = "wo_ex_id", nullable = false)
-    private Wo_Ex wo_ex;
+    private ExerciseDetails wo_ex;
 
     @Column()
     private double avgRating;
 
 
-//    what is the correct property below???
+    //    what is the correct property below???
     @Column()
-    private  String workoutImage;
+    private String workoutImage;
 
     public Workout() {
     }
 
-    public Workout(Long id, User user, String title, String description, Date created, Wo_Ex wo_ex, double avgRating, String workoutImage) {
+    public Workout(Long id, User user, String title, String description, Date created, ExerciseDetails wo_ex, double avgRating, String workoutImage) {
         this.id = id;
         this.user = user;
         this.title = title;
@@ -52,7 +52,7 @@ public class Workout {
         this.workoutImage = workoutImage;
     }
 
-    public Workout(User user, String title, String description, Date created, Wo_Ex wo_ex, double avgRating, String workoutImage) {
+    public Workout(User user, String title, String description, Date created, ExerciseDetails wo_ex, double avgRating, String workoutImage) {
         this.user = user;
         this.title = title;
         this.description = description;
@@ -60,14 +60,15 @@ public class Workout {
         this.wo_ex = wo_ex;
         this.avgRating = avgRating;
         this.workoutImage = workoutImage;
+    }
+
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public User getUser() {
@@ -102,11 +103,11 @@ public class Workout {
         this.created = created;
     }
 
-    public Wo_Ex getWo_ex() {
+    public ExerciseDetails getWo_ex() {
         return wo_ex;
     }
 
-    public void setWo_ex(Wo_Ex wo_ex) {
+    public void setWo_ex(ExerciseDetails wo_ex) {
         this.wo_ex = wo_ex;
     }
 

@@ -2,6 +2,8 @@ package com.capstone.fitnessrx.Models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="Favorite_workout")
 public class FavoriteWorkout {
@@ -13,10 +15,19 @@ public class FavoriteWorkout {
     private User user;
     @OneToMany
     @JoinColumn(name = "WO_id")
-    private long WO_id;
+    private List<Workout> WO_id;
 
-    public FavoriteWorkout(long id, User user, long WO_id) {
+
+    public FavoriteWorkout() {
+    }
+
+    public FavoriteWorkout(long id, User user, List<Workout> WO_id) {
         this.id = id;
+        this.user = user;
+        this.WO_id = WO_id;
+    }
+
+    public FavoriteWorkout(User user, List<Workout> WO_id) {
         this.user = user;
         this.WO_id = WO_id;
     }
@@ -37,11 +48,11 @@ public class FavoriteWorkout {
         this.user = user;
     }
 
-    public long getWO_id() {
+    public List<Workout> getWO_id() {
         return WO_id;
     }
 
-    public void setWO_id(long WO_id) {
+    public void setWO_id(List<Workout> WO_id) {
         this.WO_id = WO_id;
     }
 }

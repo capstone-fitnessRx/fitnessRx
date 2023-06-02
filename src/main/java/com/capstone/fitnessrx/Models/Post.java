@@ -15,8 +15,16 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
+
+
     public Post(long id, long likes, String content, User user) {
         this.id = id;
+        this.likes = likes;
+        this.content = content;
+        this.user = user;
+    }
+
+    public Post(long likes, String content, User user) {
         this.likes = likes;
         this.content = content;
         this.user = user;

@@ -1,5 +1,6 @@
 package com.capstone.fitnessrx.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,11 +11,15 @@ public class Friends {
 
     @ManyToOne
     @JoinColumn(name = "users_id_1")
+    @JsonManagedReference
     private User userMain;
+
 
     @ManyToOne
     @JoinColumn(name = "users_id_2")
+    @JsonManagedReference
     private User userFriend;
+
 
     public Friends() {
     }
