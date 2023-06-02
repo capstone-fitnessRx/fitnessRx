@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 public class Workout {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

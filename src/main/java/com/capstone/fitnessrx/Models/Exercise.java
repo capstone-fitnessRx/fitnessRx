@@ -30,6 +30,7 @@ public class Exercise {
     @Column(nullable = false, length = 100)
     private String bodypart;
 
+
     public String getTarget_muscle() {
         return target_muscle;
     }
