@@ -20,20 +20,20 @@ public class Comments {
 
     @ManyToOne
     @JoinColumn(name = "posts_id")
-    private Posts posts;
+    private Post posts;
 
 
     public Comments() {
     }
 
-    public Comments(String content, Long commentLikes, User user, Posts posts) {
+    public Comments(String content, Long commentLikes, User user, Post posts) {
         this.content = content;
         this.commentLikes = commentLikes;
         this.user = user;
         this.posts = posts;
     }
 
-    public Comments(Long id, String content, Long commentLikes, User user, Posts posts) {
+    public Comments(Long id, String content, Long commentLikes, User user, Post posts) {
         this.id = id;
         this.content = content;
         this.commentLikes = commentLikes;
@@ -73,11 +73,11 @@ public class Comments {
         this.user = user;
     }
 
-    public Posts getPosts() {
+    public Post getPosts() {
         return posts;
     }
 
-    public void setPosts(Posts posts) {
+    public void setPosts(Post posts) {
         this.posts = posts;
     }
 }
