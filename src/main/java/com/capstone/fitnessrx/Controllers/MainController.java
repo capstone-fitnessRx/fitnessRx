@@ -11,7 +11,7 @@ public class MainController {
 
     private final UserRepository userDao;
     private final CommentsRepository commentsDao;
-    private final FriendsRepository firendsDao;
+    private final FriendsRepository friendsDao;
     private final MessagesRepository messagesDao;
     private final RatingsRepository ratingsDao;
     private final CalenderRepository calenderDao;
@@ -22,7 +22,7 @@ public class MainController {
     public MainController(UserRepository userDao, CommentsRepository commentsDao, FriendsRepository firendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao) {
         this.userDao = userDao;
         this.commentsDao = commentsDao;
-        this.firendsDao = firendsDao;
+        this.friendsDao = firendsDao;
         this.messagesDao = messagesDao;
         this.ratingsDao = ratingsDao;
         this.calenderDao = calenderDao;

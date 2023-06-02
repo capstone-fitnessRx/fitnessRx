@@ -1,6 +1,6 @@
 package com.capstone.fitnessrx.Repositories;
 
-import com.codeup.codeupspringblog.models.User;
+import com.capstone.fitnessrx.Models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
