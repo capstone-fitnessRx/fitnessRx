@@ -10,7 +10,7 @@ public class Messages {
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
-    private User user;
+    private User sender;
 
     @ManyToOne
     @JoinColumn(name = "recipient_id")
@@ -29,35 +29,27 @@ public class Messages {
     public Messages() {
     }
 
-    public Messages(User user, User recipient, String content, Date timeStamp, Long id) {
-        this.user = user;
+    public Messages(User sender, User recipient, String content, Date timeStamp, Long id) {
+        this.sender = sender;
         this.recipient = recipient;
         this.content = content;
         this.timeStamp = timeStamp;
         this.id = id;
     }
 
-    public Messages(User user, User recipient, String content, Date timeStamp) {
-        this.user = user;
+    public Messages(User sender, User recipient, String content, Date timeStamp) {
+        this.sender = sender;
         this.recipient = recipient;
         this.content = content;
         this.timeStamp = timeStamp;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public User getSender() {
+        return sender;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setSender(User sender) {
+        this.sender = sender;
     }
 
     public User getRecipient() {
@@ -82,5 +74,13 @@ public class Messages {
 
     public void setTimeStamp(Date timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

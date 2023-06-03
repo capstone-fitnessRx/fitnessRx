@@ -3,8 +3,7 @@ package com.capstone.fitnessrx.Controllers;
 import com.capstone.fitnessrx.Repositories.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
@@ -28,6 +27,16 @@ public class MainController {
         this.calenderDao = calenderDao;
         this.workoutDao = workoutDao;
     }
+
+
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @ResponseBody
+    public String getHello(Model model) {
+        return "Hello partners";
+    }
+
+
 
 
 

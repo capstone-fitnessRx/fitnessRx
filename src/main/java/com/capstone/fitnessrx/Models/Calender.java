@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 
 @Entity
 public class Calender {
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

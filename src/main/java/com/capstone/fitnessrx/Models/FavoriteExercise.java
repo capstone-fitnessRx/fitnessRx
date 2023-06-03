@@ -13,22 +13,27 @@ public class FavoriteExercise {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "favorite_exercise")
-    private List<Exercise> ex_id;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "favorite_exercise_exercise",
+            joinColumns = {@JoinColumn(name = "favorite_exercise_id")},
+            inverseJoinColumns = {@JoinColumn(name = "exercise_id")}
+    )
+    private List<Exercise> exercises;
 
 
     public FavoriteExercise() {
     }
 
-    public FavoriteExercise(long id, User user, List<Exercise> ex_id) {
+    public FavoriteExercise(long id, User user, List<Exercise> exercises) {
         this.id = id;
         this.user = user;
-        this.ex_id = ex_id;
+        this.exercises = exercises;
     }
 
-    public FavoriteExercise(User user, List<Exercise> ex_id) {
+    public FavoriteExercise(User user, List<Exercise> exercises) {
         this.user = user;
-        this.ex_id = ex_id;
+        this.exercises = exercises;
     }
 
     public long getId() {
@@ -47,11 +52,11 @@ public class FavoriteExercise {
         this.user = user;
     }
 
-    public List<Exercise> getEx_id() {
-        return ex_id;
+    public List<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setEx_id(List<Exercise> ex_id) {
-        this.ex_id = ex_id;
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }

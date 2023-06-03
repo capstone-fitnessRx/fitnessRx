@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Workout {
@@ -28,7 +29,7 @@ public class Workout {
 
     @ManyToOne
     @JoinColumn(name = "wo_ex_id", nullable = false)
-    private ExerciseDetails wo_ex;
+    private ExerciseDetails exerciseDetails;
 
     @Column()
     private double avgRating;
@@ -38,30 +39,50 @@ public class Workout {
     @Column()
     private String workoutImage;
 
+    @OneToMany(mappedBy = "workout")
+    private List<Ratings> ratings;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "workout_categories",
+            joinColumns = @JoinColumn(name = "workout_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Categories> categories;
+
+
+    @ManyToOne
+    @JoinColumn(name = "favorite_workout_id")
+    private FavoriteWorkout WO_id;
+
     public Workout() {
     }
 
-    public Workout(Long id, User user, String title, String description, Date created, ExerciseDetails wo_ex, double avgRating, String workoutImage) {
+    public Workout(Long id, User user, String title, String description, Date created, ExerciseDetails exerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, FavoriteWorkout WO_id) {
         this.id = id;
         this.user = user;
         this.title = title;
         this.description = description;
         this.created = created;
-        this.wo_ex = wo_ex;
+        this.exerciseDetails = exerciseDetails;
         this.avgRating = avgRating;
         this.workoutImage = workoutImage;
+        this.ratings = ratings;
+        this.WO_id = WO_id;
     }
 
-    public Workout(User user, String title, String description, Date created, ExerciseDetails wo_ex, double avgRating, String workoutImage) {
+    public Workout(User user, String title, String description, Date created, ExerciseDetails exerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, FavoriteWorkout WO_id) {
         this.user = user;
         this.title = title;
         this.description = description;
         this.created = created;
-        this.wo_ex = wo_ex;
+        this.exerciseDetails = exerciseDetails;
         this.avgRating = avgRating;
         this.workoutImage = workoutImage;
+        this.ratings = ratings;
+        this.WO_id = WO_id;
     }
-
 
     public Long getId() {
         return id;
@@ -103,12 +124,12 @@ public class Workout {
         this.created = created;
     }
 
-    public ExerciseDetails getWo_ex() {
-        return wo_ex;
+    public ExerciseDetails getExerciseDetails() {
+        return exerciseDetails;
     }
 
-    public void setWo_ex(ExerciseDetails wo_ex) {
-        this.wo_ex = wo_ex;
+    public void setExerciseDetails(ExerciseDetails exerciseDetails) {
+        this.exerciseDetails = exerciseDetails;
     }
 
     public double getAvgRating() {
@@ -125,5 +146,21 @@ public class Workout {
 
     public void setWorkoutImage(String workoutImage) {
         this.workoutImage = workoutImage;
+    }
+
+    public List<Ratings> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Ratings> ratings) {
+        this.ratings = ratings;
+    }
+
+    public FavoriteWorkout getWO_id() {
+        return WO_id;
+    }
+
+    public void setWO_id(FavoriteWorkout WO_id) {
+        this.WO_id = WO_id;
     }
 }
