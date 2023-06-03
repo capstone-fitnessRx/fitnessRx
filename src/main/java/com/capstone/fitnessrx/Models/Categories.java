@@ -13,26 +13,26 @@ public class Categories {
     @Column(nullable = false)
     private String category_name;
 
-    @ManyToMany(mappedBy = "title")
-    private List<Workout> workout_id;
+    @ManyToMany(mappedBy = "categories")
+    private List<Workout> workouts;
 
-    @ManyToMany(mappedBy = "exercise_name")
-    private List<Exercise> exercise_id;
+    @ManyToMany(mappedBy = "categories")
+    private List<Exercise> exercises;
 
     public Categories() {
     }
 
-    public Categories(long id, String category_name, List<Workout> workout_id, List<Exercise> exercise_id) {
+    public Categories(long id, String category_name, List<Workout> workouts, List<Exercise> exercises) {
         this.id = id;
         this.category_name = category_name;
-        this.workout_id = workout_id;
-        this.exercise_id = exercise_id;
+        this.workouts = workouts;
+        this.exercises = exercises;
     }
 
-    public Categories(String category_name, List<Workout> workout_id, List<Exercise> exercise_id) {
+    public Categories(String category_name, List<Workout> workouts, List<Exercise> exercises) {
         this.category_name = category_name;
-        this.workout_id = workout_id;
-        this.exercise_id = exercise_id;
+        this.workouts = workouts;
+        this.exercises = exercises;
     }
 
     public long getId() {
@@ -51,19 +51,19 @@ public class Categories {
         this.category_name = category_name;
     }
 
-    public List<Workout> getWorkout_id() {
-        return workout_id;
+    public List<Workout> getWorkouts() {
+        return workouts;
     }
 
-    public void setWorkout_id(List<Workout> workout_id) {
-        this.workout_id = workout_id;
+    public void setWorkouts(List<Workout> workouts) {
+        this.workouts = workouts;
     }
 
-    public List<Exercise> getExercise_id() {
-        return exercise_id;
+    public List<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setExercise_id(List<Exercise> exercise_id) {
-        this.exercise_id = exercise_id;
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }

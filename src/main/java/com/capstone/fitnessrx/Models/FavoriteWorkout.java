@@ -14,7 +14,7 @@ public class FavoriteWorkout {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToMany
-    @JoinColumn(name = "WO_id")
+    @JoinColumn(name = "favorite_workout_id")
     private List<Workout> WO_id;
 
 
