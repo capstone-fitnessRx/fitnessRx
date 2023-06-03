@@ -1,0 +1,82 @@
+#bottomBar {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease-out;
+    transform: translateY(0);
+    z-index: 9999;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: black solid 2px;
+}
+
+#content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: 50px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+
+}
+
+#hiddenContent {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    z-index: 2;
+}
+
+#bottomBar.opened {
+    transform: translateY(-110%);
+    bottom: auto;
+}
+
+#bottomBar.opened #content {
+    max-height: 0;
+}
+
+#bottomBar.opened #hiddenContent {
+    max-height: 1000px;
+}
+.messages{
+    text-align: center;
+    margin: 0;
+    display: inline-block;
+}
+.message-wall {
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: end;
+}
+.message-bottom {
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.message-img{
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    margin-right: 40px;
+    display: inline-block;
+}
+.sec-message-img{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+.new_convo {
+    border-radius: 50px;
+    background-color: #6f6fc4;
+    color: white;
+}
