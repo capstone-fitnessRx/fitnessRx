@@ -3,11 +3,10 @@ body {
 }
 
 .jumbotron {
-    background-image: url('static/img/banner.png');
+    background-image: url('../img/banner.png');
     height: 400px;
     background-position: center;
     background-size: cover;
-    /*border: green 5px solid;*/
 }
 h1 {
     text-align: center;
