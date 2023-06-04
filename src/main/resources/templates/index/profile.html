@@ -17,7 +17,12 @@
 </head>
 <body>
 <div class="container">
-
+    <div th:if="${userId == userProfileId}">
+        <p>This is your profile.</p>
+    </div>
+    <div th:unless="${userId != userProfileId}">
+        <p>This is not your profile.</p>
+    </div>
 <!--    banner card-->
     <div class="card banner-card">
 <!--        <img class="main-banner" src="../../static/img/bannerMain.jpeg">-->
@@ -25,10 +30,12 @@
     </div>
 
     <div class="card main-card">
+
+
         <!--  <h3 th:text="*{username}"></h3>-->
 <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
-        <h3 class="main-name">Users Name</h3>
+        <h3 class="main-name">name here</h3>
         <h5 class="main-loc">Location</h5>
         <p class="main-friend">Friends (number)</p>
         <p class="main-workout">Workout Preference</p>

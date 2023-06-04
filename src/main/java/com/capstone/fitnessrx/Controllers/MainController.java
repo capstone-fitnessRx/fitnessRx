@@ -1,9 +1,12 @@
 package com.capstone.fitnessrx.Controllers;
 
 import com.capstone.fitnessrx.Repositories.*;
+import com.capstone.fitnessrx.Models.*;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 @Controller
 public class MainController {
@@ -53,11 +56,25 @@ public class MainController {
     }
 
     @GetMapping("/profile/{id}")
-    public String getProfile(@PathVariable Long id, Model model) {
+    public String getProfile(@PathVariable Long id, Model model, Authentication authentication) {
 
+        User userProfile = userDao.findById(id).orElse(null);
 
+        if (userProfile != null) {
+            // Retrieve the currently logged-in user's ID
+//            Long userId = ((YourUserDetailsClass) authentication.getPrincipal()).getUserId();
 
-        return "index/profile";
+            // Add the userProfile, userProfileId, and userId variables to the model
+            model.addAttribute("userProfile", userProfile);
+            model.addAttribute("userProfileId", id);
+//            model.addAttribute("userId", userId);
+
+            // Return the template name
+            return "index/profile";
+        } else {
+            // Handle the case when the user with the provided id is not found
+            return "error"; // or any other error handling mechanism
+        }
     }
 
     @GetMapping("/calender")
