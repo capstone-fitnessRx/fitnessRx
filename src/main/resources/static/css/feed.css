@@ -1,0 +1,89 @@
+.post-card {
+    background-color: #8a8acb;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 2em;
+}
+
+.side-card {
+    background-color: #8a8acb;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    margin-top: 2em;
+}
+.side-banner {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 100%;
+}
+.side-pic{
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    border: white 2px solid;
+    position: relative;
+    bottom: 30px;
+}
+.post-pic{
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    border: white 2px solid;
+    display: inline-block;
+}
+.post-input {
+    border-radius: 2em;
+    display: inline-block;
+}
+.submit-post {
+    background-color: grey;
+    width: 60px;
+    border-radius: 40px;
+    text-align: center;
+}
+.submit-div {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 4px;
+    float: right;
+}
+.img-link {
+    position: relative;
+}
+.image-import-div {
+    display: flex;
+    align-content: end;
+}
+.bottom-card {
+    margin-top: 5em;
+}
+
+.feed-pic{
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+}
+.post-loop {
+    background-color: #8a8acb;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 2em;
+}
+.comment-head {
+    background-color: #c9c6c6;
+    border-bottom: black solid 2px;
+
+}
+.comment-body{
+    background-color: #c9c6c6;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.comment-pic{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
