@@ -21,11 +21,13 @@ public class MainController {
     private final RatingsRepository ratingsDao;
     private final CalenderRepository calenderDao;
     private final WorkoutRepository workoutDao;
+//    private final FavoriteWorkoutRepository favworkDao;
+    private final FavoriteExerciseRepository favexerDao;
 
     private Model model;
 
 
-    public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao) {
+    public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, FavoriteExerciseRepository favexerDao) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.commentsDao = commentsDao;
@@ -34,9 +36,9 @@ public class MainController {
         this.ratingsDao = ratingsDao;
         this.calenderDao = calenderDao;
         this.workoutDao = workoutDao;
+        this.favexerDao = favexerDao;
+
     }
-
-
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
@@ -63,9 +65,18 @@ public class MainController {
     @GetMapping("/profile/{id}")
     public String getProfile(@PathVariable Long id, Model model) {
 
+//        List<FavoriteWorkout> favoriteWorkout = favworkDao.findAll();
+        List<FavoriteExercise> favoriteExercise = favexerDao.findAll();
+
         User userProfile = userDao.findById(id).orElse(null);
 
+
         if (userProfile != null) {
+            List<Workout> userFavorites = userProfile.getFavoriteWorkouts();
+
+            // Add the favoriteWorkouts list to the model
+            model.addAttribute("favoriteWorkouts", userFavorites);
+
             String username = userProfile.getUsername();
             String location = userProfile.getLocation();
             String workoutPreference = userProfile.getWorkoutPreference();
@@ -75,6 +86,8 @@ public class MainController {
 //            Long userId = ((YourUserDetailsClass) authentication.getPrincipal()).getUserId();
 //            User user = (User) authentication.getPrincipal();
             // Add the userProfile, userProfileId, and userId variables to the model
+
+
             model.addAttribute("userProfile", userProfile);
             model.addAttribute("userProfileId", id);
             model.addAttribute("username", username);
@@ -82,6 +95,8 @@ public class MainController {
             model.addAttribute("workoutPreference", workoutPreference);
             model.addAttribute("bio", bio);
             model.addAttribute("goal", goal);
+
+
 
 
 //            model.addAttribute("userId", userId);
@@ -93,6 +108,39 @@ public class MainController {
             return "error"; // or any other error handling mechanism
         }
     }
+
+
+    @GetMapping("/feed/{id}")
+    public String getFeed(@PathVariable Long id, Model model) {
+        List<Post> posts = postDao.findAll();
+        User userProfile = userDao.findById(id).orElse(null);
+
+        if (userProfile != null) {
+            String username = userProfile.getUsername();
+            String location = userProfile.getLocation();
+            String workoutPreference = userProfile.getWorkoutPreference();
+            String bio = userProfile.getBio();
+            String goal = userProfile.getGoal();
+
+
+
+
+            model.addAttribute("userProfile", userProfile);
+            model.addAttribute("userProfileId", id);
+            model.addAttribute("username", username);
+            model.addAttribute("location", location);
+            model.addAttribute("workoutPreference", workoutPreference);
+            model.addAttribute("bio", bio);
+            model.addAttribute("goal", goal);
+
+            model.addAttribute("posts", posts);
+
+            return "index/feed";
+        } else {
+            // Handle the case when the user with the provided id is not found
+            return "error"; // or any other error handling mechanism
+        }
+        }
 
     @GetMapping("/calender")
     public String getCalender() {
@@ -117,16 +165,6 @@ public class MainController {
 
 
         return "index/map";
-    }
-
-    @GetMapping("/feed")
-
-    public String getFeed(Model model) {
-        List<Post> posts = postDao.findAll();
-
-        model.addAttribute("posts", posts);
-
-        return "index/feed";
     }
 
     @GetMapping("/favorites")

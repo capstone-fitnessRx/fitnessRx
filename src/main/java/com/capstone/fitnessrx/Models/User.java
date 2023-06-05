@@ -44,15 +44,21 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userFriend")
     private List<Friends> friendsAsFriendUser;
-    @OneToMany(mappedBy = "user")
-    private List<FavoriteWorkout> favoriteWorkouts;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<FavoriteExercise> favoriteExercises;
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="users_favorite_workouts",
+    joinColumns={@JoinColumn(name="user_id")},
+    inverseJoinColumns = {@JoinColumn(name="workout_id")})
+    private List<Workout> favoriteWorkouts;
 
     public User() {
     }
 
-    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteWorkout> favoriteWorkouts, List<FavoriteExercise> favoriteExercises) {
+    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteExercise> favoriteExercises, List<Workout> favoriteWorkouts) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -70,11 +76,11 @@ public class User {
         this.receivedMessages = receivedMessages;
         this.friendsAsMainUser = friendsAsMainUser;
         this.friendsAsFriendUser = friendsAsFriendUser;
-        this.favoriteWorkouts = favoriteWorkouts;
         this.favoriteExercises = favoriteExercises;
+        this.favoriteWorkouts = favoriteWorkouts;
     }
 
-    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteWorkout> favoriteWorkouts, List<FavoriteExercise> favoriteExercises) {
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteExercise> favoriteExercises, List<Workout> favoriteWorkouts) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -91,8 +97,8 @@ public class User {
         this.receivedMessages = receivedMessages;
         this.friendsAsMainUser = friendsAsMainUser;
         this.friendsAsFriendUser = friendsAsFriendUser;
-        this.favoriteWorkouts = favoriteWorkouts;
         this.favoriteExercises = favoriteExercises;
+        this.favoriteWorkouts = favoriteWorkouts;
     }
 
     public int getId() {
@@ -231,13 +237,6 @@ public class User {
         this.friendsAsFriendUser = friendsAsFriendUser;
     }
 
-    public List<FavoriteWorkout> getFavoriteWorkouts() {
-        return favoriteWorkouts;
-    }
-
-    public void setFavoriteWorkouts(List<FavoriteWorkout> favoriteWorkouts) {
-        this.favoriteWorkouts = favoriteWorkouts;
-    }
 
     public List<FavoriteExercise> getFavoriteExercises() {
         return favoriteExercises;
@@ -245,5 +244,13 @@ public class User {
 
     public void setFavoriteExercises(List<FavoriteExercise> favoriteExercises) {
         this.favoriteExercises = favoriteExercises;
+    }
+
+    public List<Workout> getFavoriteWorkouts() {
+        return favoriteWorkouts;
+    }
+
+    public void setFavoriteWorkouts(List<Workout> favoriteWorkouts) {
+        this.favoriteWorkouts = favoriteWorkouts;
     }
 }

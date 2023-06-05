@@ -52,14 +52,14 @@ public class Workout {
     private List<Categories> categories;
 
 
-    @ManyToOne
-    @JoinColumn(name = "favorite_workout_id")
-    private FavoriteWorkout WO_id;
+    @ManyToMany(mappedBy = "favoriteWorkouts")
+    private List<User> usersFavorites;
+
 
     public Workout() {
     }
 
-    public Workout(Long id, User user, String title, String description, Date created, ExerciseDetails exerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, FavoriteWorkout WO_id) {
+    public Workout(Long id, User user, String title, String description, Date created, ExerciseDetails exerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, List<Categories> categories, List<User> usersFavorites) {
         this.id = id;
         this.user = user;
         this.title = title;
@@ -69,10 +69,11 @@ public class Workout {
         this.avgRating = avgRating;
         this.workoutImage = workoutImage;
         this.ratings = ratings;
-        this.WO_id = WO_id;
+        this.categories = categories;
+        this.usersFavorites = usersFavorites;
     }
 
-    public Workout(User user, String title, String description, Date created, ExerciseDetails exerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, FavoriteWorkout WO_id) {
+    public Workout(User user, String title, String description, Date created, ExerciseDetails exerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, List<Categories> categories, List<User> usersFavorites) {
         this.user = user;
         this.title = title;
         this.description = description;
@@ -81,7 +82,8 @@ public class Workout {
         this.avgRating = avgRating;
         this.workoutImage = workoutImage;
         this.ratings = ratings;
-        this.WO_id = WO_id;
+        this.categories = categories;
+        this.usersFavorites = usersFavorites;
     }
 
     public Long getId() {
@@ -156,11 +158,19 @@ public class Workout {
         this.ratings = ratings;
     }
 
-    public FavoriteWorkout getWO_id() {
-        return WO_id;
+    public List<Categories> getCategories() {
+        return categories;
     }
 
-    public void setWO_id(FavoriteWorkout WO_id) {
-        this.WO_id = WO_id;
+    public void setCategories(List<Categories> categories) {
+        this.categories = categories;
+    }
+
+    public List<User> getUsersFavorites() {
+        return usersFavorites;
+    }
+
+    public void setUsersFavorites(List<User> usersFavorites) {
+        this.usersFavorites = usersFavorites;
     }
 }
