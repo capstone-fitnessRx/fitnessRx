@@ -1,7 +1,7 @@
 "use strict"
 
 // //Fetch a list of available body parts
-$(document).ready(function() {
+$(document).ready(function () {
     $('#show').click(() => {
         $.ajax({
             async: true,
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 //Fetch all exercises
 //Lists out all of the exercises for each muscle group
-$(document).ready(function() {
+$(document).ready(function () {
     $('#showTwo').click(() => {
         $.ajax({
             async: true,
@@ -51,10 +51,10 @@ $(document).ready(function() {
                 let id = data[i].id;
                 let name = data[i].name;
                 // let target = data[i].target;
-                exercises += '<option id="'+ id + '" class="exercises" value="' + id + '">' +
+                exercises += '<option id="' + id + '" class="exercises" value="' + id + '">' +
                     "Name: " + name + " " + '</option>';
                 // need to replace the style with a css file ----------------------------------------------------------------------------------------------------
-                gif += '<img class="'+ id + '" src="'+ gifUrl +' " alt="animation" style="display: none">'
+                gif += '<img class="' + id + '" src="' + gifUrl + ' " alt="animation" style="display: none">'
             }
             $('.exercises').html(exercises);
             $('.gifOne').html(gif)
@@ -71,16 +71,15 @@ $(document).ready(function() {
             //         $('.gifOne').html(gif)
             //     }
             // }
-            })
-            })
         })
-
+    })
+})
 
 
 //Fetch exercises by body part
 //Required Parameters: String -> bodyPart (body part that user wishes to workout)
-$(document).ready(function(){
-    $('#submitBtn').click( () => {
+$(document).ready(function () {
+    $('#submitBtn').click(() => {
         $.ajax({
             async: true,
             crossDomain: true,
@@ -91,36 +90,36 @@ $(document).ready(function(){
                 'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
             }
         }).done(function (data) {
-                    let bodyParts = "";
-                    let i;
-                    console.log(data);
-                    //Lists every exercise of the selected body part
-                    for(i = 0; i < data.length; i++) {
-                        let bodyPart = data[i].bodyPart;
-                        let equipment = data[i].equipment;
-                        let gifUrl = data[i].gifUrl;
-                        let id = data[i].id;
-                        let name = data[i].name;
-                        let target = data[i].target;
-                        bodyParts += '<div class=exerciseByBodyParts>' + '<option>' +
-                            '<p>' + "Body Part: " + bodyPart + " " + '</p>' +
-                            '<p>' + "Muscle Group: " + target + " " + '</p>' +
-                            '<p>' + "Equipment: " + equipment + " " + '</p>' +
-                            // '<p>' + "ID: " + id + '</p>' + " " +
-                            '<p>' + "Name: " + name + '</p>' + " " +
-                            '</option>' +
-                            '<p>' + '<img src="' + gifUrl + " " + '" alt="animation">' + '</p>' +
-                            '</div>';
-                    }
+            let bodyParts = "";
+            let i;
+            console.log(data);
+            //Lists every exercise of the selected body part
+            for (i = 0; i < data.length; i++) {
+                let bodyPart = data[i].bodyPart;
+                let equipment = data[i].equipment;
+                let gifUrl = data[i].gifUrl;
+                let id = data[i].id;
+                let name = data[i].name;
+                let target = data[i].target;
+                bodyParts += '<div class=exerciseByBodyParts>' + '<option>' +
+                    '<p>' + "Body Part: " + bodyPart + " " + '</p>' +
+                    '<p>' + "Muscle Group: " + target + " " + '</p>' +
+                    '<p>' + "Equipment: " + equipment + " " + '</p>' +
+                    // '<p>' + "ID: " + id + '</p>' + " " +
+                    '<p>' + "Name: " + name + '</p>' + " " +
+                    '</option>' +
+                    '<p>' + '<img src="' + gifUrl + " " + '" alt="animation">' + '</p>' +
+                    '</div>';
+            }
 
-                    $('.exerciseByBodyParts').html(bodyParts)
+            $('.exerciseByBodyParts').html(bodyParts)
         })
     })
 })
 
 //Fetch exercise by name
 //Required Parameters: String -> name (the name of the workout)
-$(document).ready(function() {
+$(document).ready(function () {
     $('#submitBtnTwo').click(() => {
         $.ajax({
             async: true,
@@ -159,7 +158,7 @@ $(document).ready(function() {
 
 //Fetch exercises by target primary muscle
 //Required Parameter: String -> target (the muscle that user wishes to work)
-$(document).ready(function() {
+$(document).ready(function () {
     $('#submitBtnThree').click(() => {
         $.ajax({
             async: true,
@@ -199,7 +198,7 @@ $(document).ready(function() {
 
 //Fetch exercises by type of equipment
 //Required Parameter: String -> equipment (name of the equipment user wishes to use)
-$(document).ready(function() {
+$(document).ready(function () {
     $('#submitBtnFour').click(() => {
         $.ajax({
             async: true,
@@ -237,5 +236,45 @@ $(document).ready(function() {
     })
 })
 
+
+// $(document).ready(function () {
+//     $.ajax({
+//         async: true,
+//         crossDomain: true,
+//         url: 'https://exercisedb.p.rapidapi.com/exercises',
+//         method: 'GET',
+//         headers: {
+//             'X-RapidAPI-Key': '3b5ab618f4msh9fcd7bdc598e72ap123ca5jsn756b704ae812',
+//             'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+//         }
+//     }).done(function (data) {
+//         console.log(data);
+//         let card =""
+//         // let exercises = "";
+//         // let gif = "";
+//         let i;
+//         for (i = 0; i < data.length; i++) {
+//             let bodyPart = data[i].bodyPart;
+//             let equipment = data[i].equipment;
+//             let gifUrl = data[i].gifUrl;
+//             let id = data[i].id;
+//             let name = data[i].name;
+//             let target = data[i].target;
+//             card += ''
+//             // exercises += '<option id="' + id + '" class="exercises" value="' + id + '">' +
+//             //     "Name: " + name + " " + '</option>';
+//             // // need to replace the style with a css file ----------------------------------------------------------------------------------------------------
+//             // gif += '<img class="' + id + '" src="' + gifUrl + ' " alt="animation" style="display: none">'
+//         }
+//         $('.exercises').html(exercises);
+//         $('.gifOne').html(gif)
+//         let selected = document.querySelector('.exercises');
+//         selected.addEventListener("change", () => {
+//             let value = $('#exercises').val();
+//             console.log(value);
+//             $("img." + value).toggle();
+//         })
+//     })
+// })
 
 
