@@ -58,22 +58,15 @@ $(document).ready(function() {
                 gif += '<img class="'+ id + '" src="' + gifUrl + " " + '" alt="animation">'
 
                 let selected = document.querySelector('#exercises')
-                selected.addEventListener("select", () => {
-                    let test1 = exercises.classList.find('#'+ id +'')
-                    let test2 = gif.classList.find('.'+ id +'')
-                    if(test1 === test2) {
-                        $('.gifOne').html(gif)
+                selected.addEventListener("change", () => {
+                    let test1 = document.getElementById( id )
+                    let test2 = document.getElementsByClassName( id )
+                    if(test1.toString() === test2.toString()) {
+                        $('.gifOne').html(test2)
                     }
                 })
 
             }
-            // data.forEach(data.name)
-            // {
-            //     if ($('#exercises').select().name[i] === gifUrl[i]) {
-            //
-            //         $('.gifOne').html(gif)
-            //     }
-            // }
             $('.exercises').html(exercises);
 
             })

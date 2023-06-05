@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#favorites {
+    height: 100vh;
+}
+
+#workouts, #exercises {
+    height: 100%
+    background-color: #4f4fdc;
+
+}
+
+.box {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+}
