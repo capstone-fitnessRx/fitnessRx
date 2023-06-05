@@ -2,16 +2,11 @@ package com.capstone.fitnessrx.Controllers;
 
 import com.capstone.fitnessrx.Models.User;
 import com.capstone.fitnessrx.Repositories.UserRepository;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.Collection;
 
 @Controller
 public class UserController {
@@ -20,12 +15,6 @@ public class UserController {
     public UserController(UserRepository userDao) {
         this.userDao = userDao;
     }
-
-
-
-
-
-
 
 //    private PasswordEncoder passwordEncoder;
 
@@ -49,11 +38,11 @@ public class UserController {
     }
 
 
-    @PostMapping("/login")
-    public String loginUser(@ModelAttribute User user) {
-
-
-        return "redirect:/home";
-    }
+//    @PostMapping("/login")
+//    public String loginUser(@ModelAttribute User user) {
+//
+//
+//        return "redirect:/home";
+//    }
 
 }

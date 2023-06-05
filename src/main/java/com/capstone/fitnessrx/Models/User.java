@@ -17,6 +17,14 @@ public class User {
     private String password;
     @Column(nullable = false)
     private boolean admin;
+    @Column()
+    private String location;
+    @Column()
+    private String workoutPreference;
+    @Column()
+    private String bio;
+    @Column()
+    private String goal;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> post;
@@ -41,14 +49,19 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<FavoriteExercise> favoriteExercises;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(int id, String username, String email, String password, boolean admin, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteWorkout> favoriteWorkouts, List<FavoriteExercise> favoriteExercises) {
+    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteWorkout> favoriteWorkouts, List<FavoriteExercise> favoriteExercises) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.admin = admin;
+        this.location = location;
+        this.workoutPreference = workoutPreference;
+        this.bio = bio;
+        this.goal = goal;
         this.post = post;
         this.exercise = exercise;
         this.calender = calender;
@@ -61,11 +74,15 @@ public class User {
         this.favoriteExercises = favoriteExercises;
     }
 
-    public User(String username, String email, String password, boolean admin, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteWorkout> favoriteWorkouts, List<FavoriteExercise> favoriteExercises) {
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteWorkout> favoriteWorkouts, List<FavoriteExercise> favoriteExercises) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.admin = admin;
+        this.location = location;
+        this.workoutPreference = workoutPreference;
+        this.bio = bio;
+        this.goal = goal;
         this.post = post;
         this.exercise = exercise;
         this.calender = calender;
@@ -116,6 +133,38 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getWorkoutPreference() {
+        return workoutPreference;
+    }
+
+    public void setWorkoutPreference(String workoutPreference) {
+        this.workoutPreference = workoutPreference;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getGoal() {
+        return goal;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
     }
 
     public List<Post> getPost() {

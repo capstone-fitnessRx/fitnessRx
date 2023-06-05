@@ -4,24 +4,23 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile</title>
+    <title>Feed</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-    <link rel="stylesheet" href="../../static/css/feed.css">
+<!--    <link rel="stylesheet" href="../../static/css/feed.css">-->
     <!--    <link rel="stylesheet" href="/css/feed.css">-->
-    <!--    <link rel="stylesheet" href="../../static/css/feed.css">-->
+        <link rel="stylesheet" href="/css/feed.css">
     <!--    <link rel="stylesheet" href="/css/feed.css">-->
 </head>
 <body>
-
-<div class="container row">
+<div class="container-box row">
 
     <div class="card side-card col-md-3">
-        <img class="side-banner" src="../../static/img/bannerMain.jpeg">
-        <img class="side-pic" src="../../static/img/fitnessMyIMG.jpeg">
+        <img class="side-banner" src="/img/bannerMain.jpeg">
+        <img class="side-pic" src="/img/fitnessMyIMG.jpeg">
 
         <!--    <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
 
@@ -37,7 +36,7 @@
     <div class="col-md-9">
         <div class="card post-card">
 
-            <img class="post-pic" src="../../static/img/fitnessMyIMG.jpeg">
+            <img class="post-pic" src="/img/fitnessMyIMG.jpeg">
             <!--            <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
             <form>
                 <input class="post-input" type="text" id="post" placeholder="Post Something Here.">
@@ -46,21 +45,24 @@
                 <p class="img-link">images</p>
             </div>
             <div class="submit-div">
-                <buttons class="submit-post" id="post-submission">Post</buttons>
+                <button class="submit-post" id="post-submission">Post</button>
             </div>
         </div>
             <hr>
 
-        <div class="post-loop card">
-            <img class="feed-pic" src="../../static/img/giannaimg.png">
-            <h4>Users name</h4>
+
+<!--messing with thymeleaf-->
+
+        <div th:each="post : ${posts}" class="post-loop card">
+            <img class="feed-pic" src="/img/giannaimg.png">
+            <h4 th:text="${post.getUser().getUsername()}"></h4>
             <img>
-            <p>The works the user type for their post will fill into this area making it a post. images is optional.</p>
+            <p th:text="${post.getContent()}"></p>
 
             <div class="card-body comment-head">
-                <img>
-                <p>number of likes</p>
-                <p>number of comments(link)</p>
+<!--                <img>-->
+                <p th:text="${post.getLikes()} + ' Likes'"></p>
+                <p th:text="${post.getComments().size()} + ' comments'"></p>
             </div>
             <div class="card-body comment-body">
                 <img>
@@ -70,16 +72,19 @@
                 <img>
                 <p>Share</p>
 
-                <img class="comment-pic" src="../../static/img/giannaimg.png">
+                <img class="comment-pic" src="/img/giannaimg.png">
                 <form>
                     <input class="comment-input" type="text" id="comment" placeholder="Comment here...">
                 </form>
                 <div class="comment-submit-div">
-                    <buttons class="submit-comment" id="comment-submission">Send</buttons>
+                    <button class="submit-comment" id="comment-submission">Send</button>
                 </div>
             </div>
 
         </div>
+
+
+
 
 
         <div class="bottom-feed card bottom-card">
