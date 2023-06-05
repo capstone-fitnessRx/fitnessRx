@@ -1,0 +1,10 @@
+.navbar {
+    justify-content: flex-end;
+}
+
+.dropdown-menu {
+    max-width: unset;
+    word-wrap: break-word;
+    left: unset;
+    right: 0;
+}
