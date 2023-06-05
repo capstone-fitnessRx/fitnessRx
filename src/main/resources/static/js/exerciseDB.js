@@ -53,6 +53,7 @@ $(document).ready(function () {
                 // let target = data[i].target;
                 exercises += '<option id="' + id + '" class="exercises" value="' + id + '">' +
                     "Name: " + name + " " + '</option>';
+
                 // need to replace the style with a css file ----------------------------------------------------------------------------------------------------
                 gif += '<img class="' + id + '" src="' + gifUrl + ' " alt="animation" style="display: none">'
             }

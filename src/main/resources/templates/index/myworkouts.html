@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="../../static/css/myworkouts.css">
     <!--    jquery cdn-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="../../static/js/exerciseDB.js"></script>
 </head>
 <body>
     <h1>My Workouts</h1>
 <!--    button for building workout -->
 
     <div class="button-container">
-        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+        <button type="button" id="buildBtn" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
             Build Workout
         </button>
     </div>
@@ -81,7 +82,7 @@
                                     <a class="dropdown-item" href="#">Delete</a>
                                 </div>
                             </div>
-
+                        </div>
                         </div>
                         <!--need to insert workout imagine-->
                         <img class="card-img-top" src="..." alt="Card image cap">
@@ -94,5 +95,6 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!--    javascript file-->
     <script src="../../static/js/myworkouts.js"></script>
+    </div>
 </body>
 </html>
