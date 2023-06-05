@@ -4,18 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<link rel="stylesheet" href="INSERT CSS LINK">-->
-    <title>$My Project$</title>
+    <title>Exercise Page</title>
+<!--    JQuery-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="../../static/js/ExerciseDB.js"></script>
+    <script src="../../static/js/exerciseDB.js"></script>
+<!--    Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-<h1>Project Starter Kit</h1>
+<h1>Workout Generator</h1>
 <!--<script src="INSERT JS LINK"></script>-->
 <h3>Available Body Parts</h3>
+<button id="show" type="submit">Show</button>
 <div class="availableBodyParts"></div>
-<h3>Exercise Body Parts</h3>
-<div class="exerciseByBodyParts"></div>
+
 <h3>Exercises</h3>
-<div class="exercises"></div>
+<button id="showTwo" type="submit">Show</button>
+
+
+<label for="exercises"></label>
+<select id="exercises" class="exercises"></select>
+
+<div class="gifOne"></div>
+
+
+
+<h3>Exercise By Body Parts</h3>
+<div>
+    <label for="userInputOne">Enter Body Part</label>
+    <input id="userInputOne" type="text">
+    <button id="submitBtn" type="submit">Submit</button>
+</div>
+<label for="exerciseByBodyParts"></label>
+<select id="exerciseByBodyParts" class="exerciseByBodyParts"></select>
+
+<h3>Exercises By Name</h3>
+<div>
+    <label for="userInputTwo">Enter Exercise</label>
+    <input id="userInputTwo" type="text">
+    <button id="submitBtnTwo" type="submit">Submit</button>
+</div>
+<label for="exerciseByName"></label>
+<select id="exerciseByName" class="exerciseByName"></select>
+
+<h3>Exercise By Target Muscle</h3>
+<div>
+    <label for="userInputThree">Enter Targeted Muscle</label>
+    <input id="userInputThree" type="text">
+    <button id="submitBtnThree" type="submit">Submit</button>
+</div>
+<label for="targetByName"></label>
+<select id="targetByName" class="targetByName"></select>
+
+<h3>Exercise By Equipment</h3>
+<div>
+    <label for="userInputFour">Enter Equipment</label>
+    <input id="userInputFour" type="text">
+    <button id="submitBtnFour" type="submit">Submit</button>
+</div>
+<label for="equipmentByName"></label>
+<select id="equipmentByName" class="equipmentByName"></select>
+
 </body>
 </html>
