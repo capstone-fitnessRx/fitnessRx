@@ -1,22 +1,30 @@
 "use strict"
 
-// Get all custom dropdowns
-var customDropdowns = document.querySelectorAll('.custom-dropdown');
+const exercises = document.querySelector('#exercises')
+const workouts = document.querySelector('.workouts')
+const container = document.querySelector('.container')
 
-// Add click event listeners to each dropdown toggle
-customDropdowns.forEach(function(dropdown) {
-    var toggle = dropdown.querySelector('.custom-dropdown-toggle');
-    var content = dropdown.querySelector('.custom-dropdown-content');
+exercises.addEventListener('mouseenter', () => container.classList.add('hover-left'))
+exercises.addEventListener('mouseleave', () => container.classList.remove('hover-left'))
 
-    toggle.addEventListener('click', function() {
-        content.classList.toggle('show');
-    });
+workouts.addEventListener('mouseenter', () => container.classList.add('hover-right'))
+workouts.addEventListener('mouseleave', () => container.classList.remove('hover-right'))
 
-    window.onclick = function(event) {
-        if (!event.target.matches('.custom-dropdown-toggle')) {
-            if (content.classList.contains('show')) {
-                content.classList.remove('show');
-            }
-        }
-    };
-});
+let btnOne = document.querySelector('#btnOne')
+let btnTwo = document.querySelector('#btnTwo')
+
+btnOne.addEventListener('click', () => {
+// insert logic for populating exercise/workout
+})
+
+btnTwo.addEventListener('click', () => {
+// insert logic for populating exercise/workout
+})
+
+
+
+
+
+
+
+
