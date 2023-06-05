@@ -10,9 +10,9 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-<!--    <link rel="stylesheet" href="../../static/css/profile.css">-->
+    <!--    <link rel="stylesheet" href="../../static/css/profile.css">-->
     <link rel="stylesheet" href="/css/profile.css">
-<!--    <link rel="stylesheet" href="../../static/css/messenger.css">-->
+    <!--    <link rel="stylesheet" href="../../static/css/messenger.css">-->
     <link rel="stylesheet" href="/css/messenger.css">
 </head>
 <body>
@@ -23,9 +23,9 @@
     <div th:unless="${userProfile != userProfileId}">
         <p>This is not your profile.</p>
     </div>
-<!--    banner card-->
+    <!--    banner card-->
     <div class="card banner-card">
-<!--        <img class="main-banner" src="../../static/img/bannerMain.jpeg">-->
+        <!--        <img class="main-banner" src="../../static/img/bannerMain.jpeg">-->
         <img class="main-banner" src="/img/bannerMain.jpeg">
     </div>
 
@@ -33,7 +33,7 @@
 
 
         <!--  <h3 th:text="*{username}"></h3>-->
-<!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
+        <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
         <h3 class="main-name" th:text="${username}"></h3>
         <h5 class="main-loc" th:text="${location}"></h5>
@@ -47,17 +47,23 @@
         <h4 class="goal-header">My Goal</h4>
         <p class="goal" th:text="${goal}"></p>
     </div>
-<!--Workout card-->
+    <!--Workout card-->
     <div class="card workout-card">
-<!--        Conditional below-->
+        <!--        Conditional below-->
         <h4 class="workout-header">My Workouts</h4>
-<!--        for each here to list user made workouts-->
+        <div th:each="myWorkout : ${myWorkouts}"></div>
+        <h4 th:text="${favorites}"></h4>
+        <!--        for each here to list user made workouts-->
         <a class="view-all"><u>View All</u></a>
     </div>
-<!--Favorites card-->
+    <!--Favorites card-->
     <div class="card favorite-card">
         <!--        Conditional below-->
         <h4 class="favorite-header">My Favorites</h4>
+        <div th:each="favoriteWorkout : ${favoriteWorkouts}">
+
+            <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
+        </div>
         <!--        for each here to list user favorite workouts-->
         <a class="view-all"><u>View All</u></a>
     </div>
@@ -66,7 +72,6 @@
 
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="/js/messenger.js"></script>
-
 
 
 </body>

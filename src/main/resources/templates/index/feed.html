@@ -24,11 +24,11 @@
 
         <!--    <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
 
-        <h3 class="side-name">name here</h3>
-        <h5 class="sided-loc">Location</h5>
+        <h3 class="side-name" th:text="${username}"></h3>
+        <a class="sided-loc" th:href="@{/home}" th:text="${location}"></a>
         <p class="side-friend">Friends (number)</p>
-        <p class="side-workout">Workout Preference</p>
-        <p class="side-goal">Goals</p>
+        <p class="side-workout" th:text="${workoutPreference}">Workout Preference</p>
+        <p class="side-goal" th:text="${goal}">Goals</p>
 
     </div>
 
