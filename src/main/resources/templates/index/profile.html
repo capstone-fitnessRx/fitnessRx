@@ -17,10 +17,10 @@
 </head>
 <body>
 <div class="container">
-    <div th:if="${userId == userProfileId}">
+    <div th:if="${userProfile == userProfileId}">
         <p>This is your profile.</p>
     </div>
-    <div th:unless="${userId != userProfileId}">
+    <div th:unless="${userProfile != userProfileId}">
         <p>This is not your profile.</p>
     </div>
 <!--    banner card-->
@@ -35,17 +35,17 @@
         <!--  <h3 th:text="*{username}"></h3>-->
 <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
-        <h3 class="main-name">name here</h3>
-        <h5 class="main-loc">Location</h5>
+        <h3 class="main-name" th:text="${username}"></h3>
+        <h5 class="main-loc" th:text="${location}"></h5>
         <p class="main-friend">Friends (number)</p>
-        <p class="main-workout">Workout Preference</p>
-        <p class="main-bio">BIO</p>
+        <p class="main-workout" th:text="${workoutPreference}"></p>
+        <p class="main-bio" th:text="${bio}"></p>
     </div>
 
     <div class="card goal-card">
         <!--Make a conditional that changes 'My Goal' to the users name + goal if this isn't the owner viewing it-->
         <h4 class="goal-header">My Goal</h4>
-        <p class="goal">this will be a input for user to put their goals</p>
+        <p class="goal" th:text="${goal}"></p>
     </div>
 <!--Workout card-->
     <div class="card workout-card">
@@ -62,12 +62,12 @@
         <a class="view-all"><u>View All</u></a>
     </div>
 
-
-
-
-
 </div>
+
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="/js/messenger.js"></script>
+
+
+
 </body>
 </html>
