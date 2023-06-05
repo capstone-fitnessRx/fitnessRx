@@ -44,7 +44,6 @@ $(document).ready(function() {
             let exercises = "";
             let gif = "";
             let i;
-
             for (i = 0; i < data.length; i++) {
                 // let bodyPart = data[i].bodyPart;
                 // let equipment = data[i].equipment;
@@ -52,22 +51,27 @@ $(document).ready(function() {
                 let id = data[i].id;
                 let name = data[i].name;
                 // let target = data[i].target;
-
-                exercises += '<option id="'+ id + '" value="' + name + '">' +
+                exercises += '<option id="'+ id + '" class="exercises" value="' + id + '">' +
                     "Name: " + name + " " + '</option>';
-                gif += '<img class="'+ id + '" src="' + gifUrl + " " + '" alt="animation">'
 
-                let selected = document.querySelector('#exercises')
-                selected.addEventListener("change", () => {
-                    let test1 = document.getElementById( id )
-                    let test2 = document.getElementsByClassName( id )
-                    if(test1.toString() === test2.toString()) {
-                        $('.gifOne').html(test2)
-                    }
-                })
-
+                // need to replace the style with a css file ----------------------------------------------------------------------------------------------------
+                gif += '<img class="'+ id + '" src="'+ gifUrl +' " alt="animation" style="display: none">'
             }
             $('.exercises').html(exercises);
+            $('.gifOne').html(gif)
+            let selected = document.querySelector('.exercises');
+            selected.addEventListener("change", () => {
+                let value = $('#exercises').val();
+                console.log(value);
+                $("img." + value).toggle();
+            })
+            // data.forEach(data.name)
+            // {
+            //     if ($('#exercises').select().name[i] === gifUrl[i]) {
+            //
+            //         $('.gifOne').html(gif)
+            //     }
+            // }
 
             })
             })
