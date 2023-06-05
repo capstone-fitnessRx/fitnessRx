@@ -46,30 +46,36 @@ $(document).ready(function() {
             let i;
 
             for (i = 0; i < data.length; i++) {
-                let bodyPart = data[i].bodyPart;
-                let equipment = data[i].equipment;
+                // let bodyPart = data[i].bodyPart;
+                // let equipment = data[i].equipment;
                 let gifUrl = data[i].gifUrl;
                 let id = data[i].id;
                 let name = data[i].name;
-                let target = data[i].target;
+                // let target = data[i].target;
 
-                exercises += '<option value="' + name + '">' +
+                exercises += '<option id="'+ id + '" value="' + name + '">' +
                     "Name: " + name + " " + '</option>';
+                gif += '<img class="'+ id + '" src="' + gifUrl + " " + '" alt="animation">'
 
-                gif += '<img src="' + gifUrl + " " + '" alt="animation">';
-            }
-
-            $('.exercises').html(exercises);
-            $('#exercises').change( () => {
-                let selectedName = $(this).val();
-                let selectedObj = data.find( (item) => {
-                    return item.name === selectedName;
+                let selected = document.querySelector('#exercises')
+                selected.addEventListener("select", () => {
+                    let test1 = exercises.classList.find('#'+ id +'')
+                    let test2 = gif.classList.find('.'+ id +'')
+                    if(test1 === test2) {
+                        $('.gifOne').html(gif)
+                    }
                 })
-                if(selectedObj) {
-                    let gifUrl = selectedObj.gifUrl;
-                    $('.gifOne').html('<img src="' + gifUrl + '" alt=animation>')
-                }
-            })
+
+            }
+            // data.forEach(data.name)
+            // {
+            //     if ($('#exercises').select().name[i] === gifUrl[i]) {
+            //
+            //         $('.gifOne').html(gif)
+            //     }
+            // }
+            $('.exercises').html(exercises);
+
             })
             })
         })
