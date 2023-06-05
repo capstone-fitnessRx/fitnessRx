@@ -73,9 +73,12 @@ public class MainController {
 
         if (userProfile != null) {
             List<Workout> userFavorites = userProfile.getFavoriteWorkouts();
+            List<Workout> userWorkout = workoutDao.findWorkoutsByUser(userDao.getReferenceById(id));
+
 
             // Add the favoriteWorkouts list to the model
             model.addAttribute("favoriteWorkouts", userFavorites);
+            model.addAttribute("myWorkouts", userWorkout);
 
             String username = userProfile.getUsername();
             String location = userProfile.getLocation();

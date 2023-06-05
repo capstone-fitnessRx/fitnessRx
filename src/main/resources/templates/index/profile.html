@@ -51,19 +51,23 @@
     <div class="card workout-card">
         <!--        Conditional below-->
         <h4 class="workout-header">My Workouts</h4>
-        <div th:each="myWorkout : ${myWorkouts}"></div>
-        <h4 th:text="${favorites}"></h4>
+        <div th:each="myWorkout : ${myWorkouts}">
+        <h4 th:text="${myWorkout.getTitle()}"></h4>
         <!--        for each here to list user made workouts-->
         <a class="view-all"><u>View All</u></a>
+        </div>
     </div>
     <!--Favorites card-->
     <div class="card favorite-card">
         <!--        Conditional below-->
         <h4 class="favorite-header">My Favorites</h4>
-        <div th:each="favoriteWorkout : ${favoriteWorkouts}">
 
+        <a th:href="@{/home}" th:each="favoriteWorkout : ${favoriteWorkouts}">
+        <div>
             <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
         </div>
+        </a>
+
         <!--        for each here to list user favorite workouts-->
         <a class="view-all"><u>View All</u></a>
     </div>
