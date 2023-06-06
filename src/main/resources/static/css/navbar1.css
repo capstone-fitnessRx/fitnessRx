@@ -1,0 +1,44 @@
+.navbar {
+    justify-content: flex-end;
+    background-color: dimgrey;
+}
+
+.dropdown-menu {
+    max-width: unset;
+    word-wrap: break-word;
+    left: unset;
+    right: 0;
+}
+.menu {
+    display: flex;
+}
+.tab-menu {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+
+
+#tab1:hover, #tab2:hover, #tab3:hover, #tab4:hover, #tab5:hover{
+    font-weight: bolder;
+    color: white;
+}
+
+
+
+/*.dropdown-toggle {*/
+/*    border-radius: 50%;*/
+/*    height: 50px;*/
+/*    width: 50px;*/
+/*    border: black 2px solid;*/
+/*}*/
+
+.profile-nav-pic {
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    border: black 2px solid;
+    border-top-left-radius: 50%;
+    padding: 0;
+}
