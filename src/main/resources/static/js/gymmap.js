@@ -29,6 +29,12 @@ function populateMapInput(location) {
             const coordinates = data.features[0].center;
             const lng = coordinates[0];
             const lat = coordinates[1];
+            // let gyms = data.features.type;
+            // gyms.forEach(gym => {
+            //     let gymName = gym.text;
+            //     let latitude = gym.center[1]
+            //     let longitude = gym.center[0]
+            // })
             map.setCenter([lng, lat]);
         })
         .catch(error => {
@@ -42,4 +48,22 @@ const locationParam = url.pathname.split('/').pop();
 
 if (locationParam) {
     populateMapInput(locationParam);
+}
+
+// $.ajax({
+//     url: `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedLocation}.json?access_token=${mapboxgl.accessToken}`
+// }).done( (data) => {
+//     let gyms = data["features"]
+//     for gym in gyms:
+//     name = gym["text"]
+//     latitude = gym["center"][1]
+//     longitude = gym["center"][0]
+
+
+
+
+
+//function for finding gym to be (appended on url?)
+function findGym(){
+
 }
