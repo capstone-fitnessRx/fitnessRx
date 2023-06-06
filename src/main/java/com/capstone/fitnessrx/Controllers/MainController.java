@@ -69,6 +69,7 @@ public class MainController {
         List<FavoriteExercise> favoriteExercise = favexerDao.findAll();
 
         User userProfile = userDao.findById(id).orElse(null);
+        List<Friends> userFriends = friendsDao.findAllByUserMain(userProfile);
 
 
         if (userProfile != null) {
@@ -90,7 +91,7 @@ public class MainController {
 //            User user = (User) authentication.getPrincipal();
             // Add the userProfile, userProfileId, and userId variables to the model
 
-
+            model.addAttribute("userFriends", userFriends);
             model.addAttribute("userProfile", userProfile);
             model.addAttribute("userProfileId", id);
             model.addAttribute("username", username);
@@ -118,6 +119,7 @@ public class MainController {
         List<Comments> comment = commentsDao.findAll();
         List<Post> posts = postDao.findAll();
         User userProfile = userDao.findById(id).orElse(null);
+
 
         if (userProfile != null) {
             String username = userProfile.getUsername();

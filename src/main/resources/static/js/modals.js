@@ -54,3 +54,31 @@ $(document).ready(function() {
         }
     });
 });
+
+
+$(document).ready(function() {
+
+    var anchorFriends = $("#modalFriends");
+    var modalFriends = $("#myModalFriends");
+
+    //open modal
+    anchorFriends.on("click", function(e) {
+        e.preventDefault();
+        console.log("clicked");
+
+        modalFriends.css("display", "block");
+    });
+//close modal
+    $(".close").on("click", function() {
+        // Hide the modal
+        modalFriends.css("display", "none");
+    });
+
+
+    $(document).on("click", function(event) {
+        if (!$(event.target).closest(".modal-content").length && !$(event.target).is(anchorFriends)) {
+
+            modalFriends.css("display", "none");
+        }
+    });
+});

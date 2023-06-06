@@ -18,3 +18,21 @@
     margin-left: auto;
     margin-right: auto;
 }
+.modal-friend {
+    height: 800px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    top: 150px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+}
+.friend-img {
+    border-radius: 50%;
+    height: 65px;
+    width: 65px;
+
+}
