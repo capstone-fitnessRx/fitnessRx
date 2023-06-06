@@ -115,6 +115,7 @@ public class MainController {
 
     @GetMapping("/feed/{id}")
     public String getFeed(@PathVariable Long id, Model model) {
+        List<Comments> comment = commentsDao.findAll();
         List<Post> posts = postDao.findAll();
         User userProfile = userDao.findById(id).orElse(null);
 
@@ -136,21 +137,21 @@ public class MainController {
             model.addAttribute("bio", bio);
             model.addAttribute("goal", goal);
 
+            model.addAttribute("comments", comment);
             model.addAttribute("posts", posts);
 
             return "index/feed";
         } else {
             // Handle the case when the user with the provided id is not found
-            return "error"; // or any other error handling mechanism
+            return "index/error"; // or any other error handling mechanism
         }
         }
 
     @GetMapping("/calendar/{id}")
-    public String getCalender() {
+    public String getCalender(@PathVariable Long id) {
 
+            return "index/calendar";
 
-
-        return "index/calendar";
     }
 
     @GetMapping("/my-workouts/{id}")
@@ -173,7 +174,7 @@ public class MainController {
 
     @GetMapping("/favorites/{id}")
 
-    public String getFavorites(Model model) {
+    public String getFavorites(@PathVariable Long id) {
 
 
 
@@ -195,7 +196,7 @@ public class MainController {
 
 
 
-        return "index/exercise";
+        return "index/exercises";
     }
 
     @GetMapping("/exercise-display")
@@ -204,7 +205,7 @@ public class MainController {
 
 
 
-        return "index/specificexercise";
+        return "index/exerciseDisplay";
     }
 
     @GetMapping("/workouts-wall")
@@ -213,7 +214,7 @@ public class MainController {
 
 
 
-        return "index/workouts";
+        return "index/allworkouts";
     }
 
     @GetMapping("/workout-plan")
