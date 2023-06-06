@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="/css/profile.css">
     <!--    <link rel="stylesheet" href="../../static/css/messenger.css">-->
     <link rel="stylesheet" href="/css/messenger.css">
+    <link rel="stylesheet" href="/css/navbar1.css">
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar" />
 <div class="container">
     <div th:if="${userProfile == userProfileId}">
         <p>This is your profile.</p>
@@ -76,6 +78,7 @@
 
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="/js/messenger.js"></script>
+<script src="/js/navbar.js"></script>
 
 
 </body>

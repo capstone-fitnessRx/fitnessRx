@@ -145,32 +145,33 @@ public class MainController {
         }
         }
 
-    @GetMapping("/calender")
+    @GetMapping("/calendar/{id}")
     public String getCalender() {
 
 
 
-        return "index/calender";
+        return "index/calendar";
     }
 
     @GetMapping("/my-workouts/{id}")
 
-    public String getMyWorkouts(@PathVariable String id) {
+    public String getMyWorkouts(@PathVariable Long id) {
 
 
 
         return "index/myworkouts";
     }
 
-    @GetMapping("/map")
+    @GetMapping("/map/{location}")
+    public String getMap(@PathVariable String location, Model model) {
+        // Pass the location to the view
+        model.addAttribute("location", location);
 
-    public String getMap() {
 
-
-        return "index/map";
+        return "index/gymmap";
     }
 
-    @GetMapping("/favorites")
+    @GetMapping("/favorites/{id}")
 
     public String getFavorites(Model model) {
 
