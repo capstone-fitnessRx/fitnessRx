@@ -14,8 +14,11 @@
     <!--    <link rel="stylesheet" href="/css/feed.css">-->
     <link rel="stylesheet" href="/css/feed.css">
     <!--    <link rel="stylesheet" href="/css/feed.css">-->
+    <link rel="stylesheet" href="/css/modals.css">
 </head>
 <body>
+
+<div th:insert="partials/modals.html :: modals"></div>
 <div class="container-box row">
 
     <div class="card side-card col-md-3">
@@ -26,7 +29,7 @@
 
         <h3 class="side-name" th:text="${username}"></h3>
         <a class="sided-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>
-        <p class="side-friend">Friends (number)</p>
+        <a class="main-friend" id="modalFriends" href="#" th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
         <p class="side-workout" th:text="${workoutPreference}">Workout Preference</p>
         <p class="side-goal" th:text="${goal}">Goals</p>
 
@@ -108,7 +111,9 @@
     </div>
 
 </div>
-<script src="/js/feed.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/feed.js"></script>
+<script src="/js/modals.js"></script>
 </body>
 </html>

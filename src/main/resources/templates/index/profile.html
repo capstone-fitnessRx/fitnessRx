@@ -61,8 +61,9 @@
         <div th:each="myWorkout : ${myWorkouts}">
         <h4 th:text="${myWorkout.getTitle()}"></h4>
         <!--        for each here to list user made workouts-->
-        <a class="view-all" th:href="@{/my-workouts/{id}}"><u>View All</u></a>
+
         </div>
+        <a class="view-all" th:href="@{/my-workouts/{id}}"><u>View All</u></a>
     </div>
     <!--Favorites card-->
     <div class="card favorite-card">

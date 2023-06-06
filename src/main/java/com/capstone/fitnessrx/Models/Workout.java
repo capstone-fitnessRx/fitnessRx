@@ -27,9 +27,8 @@ public class Workout {
     @Column(nullable = false)
     private Date created;
 
-    @ManyToOne
-    @JoinColumn(name = "wo_ex_id", nullable = false)
-    private ExerciseDetails exerciseDetails;
+    @OneToMany(mappedBy = "workout")
+    private List<ExerciseDetails> excerciseDetails;
 
     @Column()
     private double avgRating;
@@ -59,13 +58,13 @@ public class Workout {
     public Workout() {
     }
 
-    public Workout(Long id, User user, String title, String description, Date created, ExerciseDetails exerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, List<Categories> categories, List<User> usersFavorites) {
+    public Workout(Long id, User user, String title, String description, Date created, List<ExerciseDetails> excerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, List<Categories> categories, List<User> usersFavorites) {
         this.id = id;
         this.user = user;
         this.title = title;
         this.description = description;
         this.created = created;
-        this.exerciseDetails = exerciseDetails;
+        this.excerciseDetails = excerciseDetails;
         this.avgRating = avgRating;
         this.workoutImage = workoutImage;
         this.ratings = ratings;
@@ -73,12 +72,12 @@ public class Workout {
         this.usersFavorites = usersFavorites;
     }
 
-    public Workout(User user, String title, String description, Date created, ExerciseDetails exerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, List<Categories> categories, List<User> usersFavorites) {
+    public Workout(User user, String title, String description, Date created, List<ExerciseDetails> excerciseDetails, double avgRating, String workoutImage, List<Ratings> ratings, List<Categories> categories, List<User> usersFavorites) {
         this.user = user;
         this.title = title;
         this.description = description;
         this.created = created;
-        this.exerciseDetails = exerciseDetails;
+        this.excerciseDetails = excerciseDetails;
         this.avgRating = avgRating;
         this.workoutImage = workoutImage;
         this.ratings = ratings;
@@ -126,12 +125,12 @@ public class Workout {
         this.created = created;
     }
 
-    public ExerciseDetails getExerciseDetails() {
-        return exerciseDetails;
+    public List<ExerciseDetails> getExcerciseDetails() {
+        return excerciseDetails;
     }
 
-    public void setExerciseDetails(ExerciseDetails exerciseDetails) {
-        this.exerciseDetails = exerciseDetails;
+    public void setExcerciseDetails(List<ExerciseDetails> excerciseDetails) {
+        this.excerciseDetails = excerciseDetails;
     }
 
     public double getAvgRating() {
