@@ -28,6 +28,11 @@
 .p-drop {
     margin: 0;
 }
+.modal-dropdown {
+ position: relative;
+    top: 10px;
+
+}
 
 /*.dropdown-toggle {*/
 /*    border-radius: 50%;*/
