@@ -23,4 +23,21 @@
       <p>theme: </p>
     </div>
   </div>
+  <div id="myModalFriends" class="modal modal-friend">
+    <div class="modal-content row">
+      <span class="close">&times;</span>
+      <h2>Friends List</h2>
+      <div th:each="friend : ${userFriends}" class="card col-4">
+        <div>
+        <img class="friend-img" src="/img/fitnessMyIMG.jpeg">
+        </div>
+        <div class="card-body">
+          <p th:text="${friend.userFriend.username}"></p>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
 </div>

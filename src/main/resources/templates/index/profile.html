@@ -44,7 +44,7 @@
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
         <h3 class="main-name" th:text="${username}"></h3>
         <a class="main-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>
-        <p class="main-friend">Friends (number)</p>
+        <a class="main-friend" id="modalFriends" href="#" th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
         <p class="main-workout" th:text="${workoutPreference}"></p>
         <p class="main-bio" th:text="${bio}"></p>
     </div>

@@ -1,16 +1,16 @@
-"use strict"
-document.addEventListener("DOMContentLoaded", function () {
-    var commentDropLink = document.querySelector(".dropdown-toggle");
+"use strict";
 
-    var commentDropDownDisplay = document.querySelector(".dropdown-comments");
+$(document).ready(function() {
+    var commentDropLink = $(".dropdown-toggle");
+    var commentDropDownDisplay = $(".dropdown-comments");
 
-    commentDropLink.addEventListener("click", function() {
-        commentDropDownDisplay.classList.toggle("show");
+    commentDropLink.on("click", function() {
+        commentDropDownDisplay.toggleClass("show");
     });
 
-    document.addEventListener("click", function(event) {
-        if (!commentDropLink.contains(event.target)) {
-            commentDropDownDisplay.classList.remove("show");
+    $(document).on("click", function(event) {
+        if (!commentDropLink.is(event.target) && !commentDropDownDisplay.has(event.target).length) {
+            commentDropDownDisplay.removeClass("show");
         }
     });
 });
