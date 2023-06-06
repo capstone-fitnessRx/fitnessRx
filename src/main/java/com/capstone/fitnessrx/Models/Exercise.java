@@ -12,13 +12,19 @@ public class Exercise {
     @Column(nullable = false, length = 100)
     private String exercise_name;
 
-    @ManyToOne
-    @JoinColumn(name = "ex_id")
-    private Exercise parentExercise;
+
+
+
+    @OneToMany(mappedBy = "exercise")
+    private List<ExerciseDetails> exercisesDetails;
+
+
+
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "ex_cat",
-            joinColumns = {@JoinColumn(name = "ex_id")},
+            joinColumns = {@JoinColumn(name = "exercises_id")},
             inverseJoinColumns = {@JoinColumn(name = "cat_id")}
     )
     private List<Categories> categories;
@@ -36,10 +42,10 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(long id, String exercise_name, Exercise parentExercise, List<Categories> categories, String target_muscle, String equipment, String bodypart, FavoriteExercise favoriteExercise) {
+    public Exercise(long id, String exercise_name, List<ExerciseDetails> exercisesDetails, List<Categories> categories, String target_muscle, String equipment, String bodypart, FavoriteExercise favoriteExercise) {
         this.id = id;
         this.exercise_name = exercise_name;
-        this.parentExercise = parentExercise;
+        this.exercisesDetails = exercisesDetails;
         this.categories = categories;
         this.target_muscle = target_muscle;
         this.equipment = equipment;
@@ -47,9 +53,9 @@ public class Exercise {
         this.favoriteExercise = favoriteExercise;
     }
 
-    public Exercise(String exercise_name, Exercise parentExercise, List<Categories> categories, String target_muscle, String equipment, String bodypart, FavoriteExercise favoriteExercise) {
+    public Exercise(String exercise_name, List<ExerciseDetails> exercisesDetails, List<Categories> categories, String target_muscle, String equipment, String bodypart, FavoriteExercise favoriteExercise) {
         this.exercise_name = exercise_name;
-        this.parentExercise = parentExercise;
+        this.exercisesDetails = exercisesDetails;
         this.categories = categories;
         this.target_muscle = target_muscle;
         this.equipment = equipment;
@@ -73,12 +79,12 @@ public class Exercise {
         this.exercise_name = exercise_name;
     }
 
-    public Exercise getParentExercise() {
-        return parentExercise;
+    public List<ExerciseDetails> getExercisesDetails() {
+        return exercisesDetails;
     }
 
-    public void setParentExercise(Exercise parentExercise) {
-        this.parentExercise = parentExercise;
+    public void setExercisesDetails(List<ExerciseDetails> exercisesDetails) {
+        this.exercisesDetails = exercisesDetails;
     }
 
     public List<Categories> getCategories() {
