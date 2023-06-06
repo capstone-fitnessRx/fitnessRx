@@ -25,7 +25,9 @@
     color: white;
 }
 
-
+.p-drop {
+    margin: 0;
+}
 
 /*.dropdown-toggle {*/
 /*    border-radius: 50%;*/

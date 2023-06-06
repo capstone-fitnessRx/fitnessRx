@@ -7,10 +7,10 @@
         <div>
             <div class="menu">
             <div class="tab-menu" role="group" aria-label="Button group with nested dropdown">
-                <a href="@{/home}" id="tab1" class="btn">Home</a>
-                <a href="@{/feed/{id}}" id="tab2" class="btn">Feed</a>
-                <a href="@{/exercises}" id="tab3" class="btn">Exercises</a>
-                <a href="@{/workouts-wall}" id="tab4" class="btn">Workouts</a>
+                <a th:href="@{/home}" id="tab1" class="btn">Home</a>
+                <a th:href="@{/feed/{id}}" id="tab2" class="btn">Feed</a>
+                <a th:href="@{/exercise-page}" id="tab3" class="btn">Exercises</a>
+                <a th:href="@{/workouts-wall}" id="tab4" class="btn">Workouts</a>
                 <a th:href="@{/calendar/{id}}" id="tab5" class="btn">Calendar</a>
             </div>
 
@@ -22,15 +22,40 @@
                 </div>
                 <!--            </button>-->
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                    <li><a class="dropdown-item p-drop" href='#' id="modalEdit">Edit Profile</a></li>
                     <li><a class="dropdown-item" th:href="@{/my-workouts/{id}}">My Workouts</a></li>
                     <li><a class="dropdown-item" th:href="@{/favorites/{id}}">Favorites</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item p-drop" href='#' id="modalSettings">Settings</a></li>
                     <li><a class="dropdown-item" href="#">Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
+    <div id="myModalEdit" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Profile</h2>
+            <p>UserName: </p>
+            <p>Profile Image: </p>
+            <p>Banner Image: </p>
+            <p>Location: </p>
+            <p>Bio: </p>
+            <p>Goals: </p>
+            <p>Background Color</p>
+        </div>
+    </div>
+    <div id="myModalSettings" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <p>privacy: </p>
+            <p>change password: </p>
+            <p>change email: </p>
+            <p>theme: </p>
+        </div>
+    </div>
 </nav>
+
+
 
 

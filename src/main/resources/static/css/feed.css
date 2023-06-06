@@ -79,15 +79,31 @@
 .comment-head {
     background-color: #c9c6c6;
     border-bottom: black solid 2px;
+    display: flex;
+    justify-content: space-between;
+
 
 }
 .comment-body{
     background-color: #c9c6c6;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+
+    display: flex;
+    justify-content: space-around;
+
 }
 .comment-pic{
     border-radius: 50%;
     height: 30px;
     width: 30px;
 }
+.input-div {
+    display: flex;
+    background-color: #c9c6c6;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.dropdown-comments {
+
+}
+

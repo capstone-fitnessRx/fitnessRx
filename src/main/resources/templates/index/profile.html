@@ -38,7 +38,7 @@
         <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
         <h3 class="main-name" th:text="${username}"></h3>
-        <h5 class="main-loc" th:text="${location}"></h5>
+        <a class="main-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>
         <p class="main-friend">Friends (number)</p>
         <p class="main-workout" th:text="${workoutPreference}"></p>
         <p class="main-bio" th:text="${bio}"></p>
@@ -56,7 +56,7 @@
         <div th:each="myWorkout : ${myWorkouts}">
         <h4 th:text="${myWorkout.getTitle()}"></h4>
         <!--        for each here to list user made workouts-->
-        <a class="view-all"><u>View All</u></a>
+        <a class="view-all" th:href="@{/my-workouts/{id}}"><u>View All</u></a>
         </div>
     </div>
     <!--Favorites card-->
@@ -71,7 +71,7 @@
         </a>
 
         <!--        for each here to list user favorite workouts-->
-        <a class="view-all"><u>View All</u></a>
+        <a class="view-all" th:href="@{/favorites/{id}}"><u>View All</u></a>
     </div>
 
 </div>
@@ -79,6 +79,7 @@
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 </body>

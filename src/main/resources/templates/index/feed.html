@@ -10,9 +10,9 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-<!--    <link rel="stylesheet" href="../../static/css/feed.css">-->
+    <!--    <link rel="stylesheet" href="../../static/css/feed.css">-->
     <!--    <link rel="stylesheet" href="/css/feed.css">-->
-        <link rel="stylesheet" href="/css/feed.css">
+    <link rel="stylesheet" href="/css/feed.css">
     <!--    <link rel="stylesheet" href="/css/feed.css">-->
 </head>
 <body>
@@ -48,10 +48,10 @@
                 <button class="submit-post" id="post-submission">Post</button>
             </div>
         </div>
-            <hr>
+        <hr>
 
 
-<!--messing with thymeleaf-->
+        <!--messing with thymeleaf-->
 
         <div th:each="post : ${posts}" class="post-loop card">
             <img class="feed-pic" src="/img/giannaimg.png">
@@ -60,9 +60,9 @@
             <p th:text="${post.getContent()}"></p>
 
             <div class="card-body comment-head">
-<!--                <img>-->
+                <!--                <img>-->
                 <p th:text="${post.getLikes()} + ' Likes'"></p>
-                <p th:text="${post.getComments().size()} + ' comments'"></p>
+                <button class="dropdown-toggle" th:text="${post.getComments().size()} + ' comments'"></button>
             </div>
             <div class="card-body comment-body">
                 <img>
@@ -71,7 +71,8 @@
                 <p>Comment</p>
                 <img>
                 <p>Share</p>
-
+            </div>
+            <div class="input-div">
                 <img class="comment-pic" src="/img/giannaimg.png">
                 <form>
                     <input class="comment-input" type="text" id="comment" placeholder="Comment here...">
@@ -79,22 +80,35 @@
                 <div class="comment-submit-div">
                     <button class="submit-comment" id="comment-submission">Send</button>
                 </div>
+                <!---->
+                <!---->
+                <!---->
+                <!--comment section-->
+                <div th:each="comment : ${post.getComments()}" class="dropdown-comments card-body">
+                    <p th:text="${comment.getUser().getUsername()}"></p>
+                    <p th:text="${comment.getContent()}"></p>
+                    <p th:text="${comment.getCommentLikes()}"></p>
+                </div>
+                <!---->
+                <!---->
+                <!---->
+                <!---->
             </div>
 
         </div>
-
-
-
-
-
         <div class="bottom-feed card bottom-card">
-            <p>You have reached the end of the feed.</p>
-            <a>Back to top?</a>
+                    <p>You have reached the end of the feed.</p>
+                    <a>Back to top?</a>
+                </div>
+
+            </div>
+
+
         </div>
     </div>
+
 </div>
-
-
 <script src="/js/feed.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
