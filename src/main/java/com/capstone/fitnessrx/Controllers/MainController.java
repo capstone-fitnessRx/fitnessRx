@@ -423,6 +423,7 @@ public class MainController {
     @GetMapping("/workouts-wall")
     public String getWorkoutWall(Model model) {
 
+
         User user = getAuthenticatedUser();
 
 
