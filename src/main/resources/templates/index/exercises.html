@@ -6,96 +6,53 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exercises</title>
+    <link rel="stylesheet" href="/css/modals.css">
+    <link rel="stylesheet" href="/css/messenger.css">
+    <link rel="stylesheet" href="/css/navbar1.css">
 </head>
 <body id="cards">
+
+<nav th:replace="partials/navbar.html :: navbar"/>
+
+<div th:insert="partials/modals.html :: modals"></div>
+<section class="container d-flex justify-content-evenly flex-wrap">
+    <form class="col-md-4" method="post">
+    <button class="btn " type="submit">
+        <div class="card text-center">
+            <div class="card-header">
+                <h5 class="card-title" id=>Exercise Name</h5>
+            </div>
+            <div class="card-body" id=>
+                <img class="card-text">image will go here</img>
+
 <section class="container d-flex justify-content-evenly flex-wrap" id="exercises">
-    <form class="col-md-4 col-lg-3 col-xl-2" method="post">
-        <button class="btn " type="submit">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h5 class="card-title" id=>Exercise Name</h5>
-                </div>
-                <div class="card-body" id=>
-                    <img class="card-text">image will go here</img>
-                </div>
-            </div>
-        </button>
-    </form>
-    <form class="col-md-4 col-lg-3 col-xl-2">
-        <button class="btn " type="submit">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h5 class="card-title" id=>Exercise Name</h5>
-                </div>
-                <div class="card-body" id=>
-                    <img class="card-text">image will go here</img>
-                </div>
-            </div>
-        </button>
-    </form>
-    <form class="col-md-4 col-lg-3 col-xl-2">
-        <button class="btn " type="submit">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h5 class="card-title" id=>Exercise Name</h5>
-                </div>
-                <div class="card-body" id=>
-                    <img class="card-text">image will go here</img>
-                </div>
-            </div>
-        </button>
-    </form>
-    <form class="col-md-4 col-lg-3 col-xl-2">
-        <button class="btn " type="submit">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h5 class="card-title" id=>Exercise Name</h5>
-                </div>
-                <div class="card-body" id=>
-                    <img class="card-text">image will go here</img>
-                </div>
-            </div>
-        </button>
-    </form>
-    <form class="col-md-4 col-lg-3 col-xl-2">
-        <button class="btn " type="submit">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h5 class="card-title" id=>Exercise Name</h5>
-                </div>
-                <div class="card-body" id=>
-                    <img class="card-text">image will go here</img>
-                </div>
-            </div>
-        </button>
-    </form>
-    <form class="col-md-4 col-lg-3 col-xl-2">
-        <button class="btn " type="submit">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h5 class="card-title" id=>Exercise Name</h5>
-                </div>
-                <div class="card-body" id=>
-                    <img class="card-text">image will go here</img>
-                </div>
-            </div>
-        </button>
-    </form>
-    <form class="col-md-4 col-lg-3 col-xl-2">
-        <button class="btn " type="submit">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h5 class="card-title" id=>Exercise Name</h5>
-                </div>
-                <div class="card-body" id=>
-                    <img class="card-text">image will go here</img>
-                </div>
-            </div>
-        </button>
-    </form>
+<!--    <form class="col-md-4 col-lg-3 col-xl-2" method="post">-->
+<!--        <button class="btn " type="submit">-->
+<!--            <div class="card text-center">-->
+<!--                <div class="card-header">-->
+<!--                    <h5 class="card-title" id=>Exercise Name</h5>-->
+<!--                </div>-->
+<!--                <div class="card-body" id=>-->
+<!--                    <img class="card-text">image will go here</img>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </button>-->
+<!--    </form>-->
+
 </section>
+
+
+
+<div th:insert="partials/messenger-partial.html :: messenger"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/feed.js"></script>
+<script src="/js/modals.js"></script>
+<script src="/js/messenger.js"></script>
+<script src="/js/navbar.js"></script>
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="../../static/js/exerciseDB.js"></script>
+
 </body>
 </html>

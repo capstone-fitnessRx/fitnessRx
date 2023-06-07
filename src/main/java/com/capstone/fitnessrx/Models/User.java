@@ -58,6 +58,13 @@ public class User {
     public User() {
     }
 
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
     public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteExercise> favoriteExercises, List<Workout> favoriteWorkouts) {
         this.id = id;
         this.username = username;
@@ -254,3 +261,5 @@ public class User {
         this.favoriteWorkouts = favoriteWorkouts;
     }
 }
+
+
