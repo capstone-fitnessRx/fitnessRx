@@ -28,8 +28,6 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> post;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<FavoriteExercise> exercise;
     @OneToMany(mappedBy = "user")
     private List<Calender> calender;
     @OneToMany(mappedBy = "user")
@@ -45,28 +43,50 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userFriend")
     private List<Friends> friendsAsFriendUser;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<FavoriteExercise> favoriteExercises;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    private List<FavoriteExercise> favoriteExercises;
 
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="users_favorite_workouts",
-    joinColumns={@JoinColumn(name="user_id")},
-    inverseJoinColumns = {@JoinColumn(name="workout_id")})
+    @JoinTable(name = "users_favorite_workouts",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "workout_id")})
     private List<Workout> favoriteWorkouts;
 
-    public User() {
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_favorite_exercises",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "exercise_id")})
+    private List<Exercise> favoriteExercise;
+
+    public User () {
+
     }
+
+
 
     public User(User copy) {
-        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-        email = copy.email;
-        username = copy.username;
-        password = copy.password;
+        id =copy.id;
+        username =copy.username;
+        email =copy.email;
+        password =copy.password;
+        admin =copy.admin;
+        location = copy.location;
+        workoutPreference =copy.workoutPreference;
+        bio =copy.bio;
+        post =copy.post;
+        goal = copy.goal;
+        calender = copy.calender;
+        ratings =copy.ratings;
+        sentMessages =copy.sentMessages;
+        receivedMessages =copy.receivedMessages;
+        friendsAsMainUser =copy.friendsAsMainUser;
+        friendsAsFriendUser =copy.friendsAsFriendUser;
+        favoriteWorkouts = copy.favoriteWorkouts;
+        favoriteExercise =copy.favoriteExercise;
     }
 
-    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteExercise> favoriteExercises, List<Workout> favoriteWorkouts) {
-        this.id = id;
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -76,36 +96,14 @@ public class User {
         this.bio = bio;
         this.goal = goal;
         this.post = post;
-        this.exercise = exercise;
         this.calender = calender;
         this.ratings = ratings;
         this.sentMessages = sentMessages;
         this.receivedMessages = receivedMessages;
         this.friendsAsMainUser = friendsAsMainUser;
         this.friendsAsFriendUser = friendsAsFriendUser;
-        this.favoriteExercises = favoriteExercises;
         this.favoriteWorkouts = favoriteWorkouts;
-    }
-
-    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<FavoriteExercise> exercise, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<FavoriteExercise> favoriteExercises, List<Workout> favoriteWorkouts) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.admin = admin;
-        this.location = location;
-        this.workoutPreference = workoutPreference;
-        this.bio = bio;
-        this.goal = goal;
-        this.post = post;
-        this.exercise = exercise;
-        this.calender = calender;
-        this.ratings = ratings;
-        this.sentMessages = sentMessages;
-        this.receivedMessages = receivedMessages;
-        this.friendsAsMainUser = friendsAsMainUser;
-        this.friendsAsFriendUser = friendsAsFriendUser;
-        this.favoriteExercises = favoriteExercises;
-        this.favoriteWorkouts = favoriteWorkouts;
+        this.favoriteExercise = favoriteExercise;
     }
 
     public int getId() {
@@ -188,14 +186,6 @@ public class User {
         this.post = post;
     }
 
-    public List<FavoriteExercise> getExercise() {
-        return exercise;
-    }
-
-    public void setExercise(List<FavoriteExercise> exercise) {
-        this.exercise = exercise;
-    }
-
     public List<Calender> getCalender() {
         return calender;
     }
@@ -244,15 +234,6 @@ public class User {
         this.friendsAsFriendUser = friendsAsFriendUser;
     }
 
-
-    public List<FavoriteExercise> getFavoriteExercises() {
-        return favoriteExercises;
-    }
-
-    public void setFavoriteExercises(List<FavoriteExercise> favoriteExercises) {
-        this.favoriteExercises = favoriteExercises;
-    }
-
     public List<Workout> getFavoriteWorkouts() {
         return favoriteWorkouts;
     }
@@ -260,6 +241,12 @@ public class User {
     public void setFavoriteWorkouts(List<Workout> favoriteWorkouts) {
         this.favoriteWorkouts = favoriteWorkouts;
     }
+
+    public List<Exercise> getFavoriteExercise() {
+        return favoriteExercise;
+    }
+
+    public void setFavoriteExercise(List<Exercise> favoriteExercise) {
+        this.favoriteExercise = favoriteExercise;
+    }
 }
-
-

@@ -13,54 +13,29 @@ public class Exercise {
     private String exercise_name;
 
 
-
-
-    @OneToMany(mappedBy = "exercise")
-    private List<ExerciseDetails> exercisesDetails;
-
-
-
+    @ManyToMany(mappedBy = "favoriteExercise")
+    private List<User> users;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "ex_cat",
-            joinColumns = {@JoinColumn(name = "exercises_id")},
-            inverseJoinColumns = {@JoinColumn(name = "cat_id")}
-    )
+    @JoinTable(name = "exercise_categories",
+            joinColumns = {@JoinColumn(name = "exercise_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private List<Categories> categories;
-    @Column(nullable = false, length = 100)
-    private String target_muscle;
-    @Column(nullable = false, length = 100)
-    private String equipment;
-    @Column(nullable = false, length = 100)
-    private String bodypart;
-    @ManyToOne
-    @JoinColumn(name = "favorite_exercise_id")
-    private FavoriteExercise favoriteExercise;
-
 
     public Exercise() {
     }
 
-    public Exercise(long id, String exercise_name, List<ExerciseDetails> exercisesDetails, List<Categories> categories, String target_muscle, String equipment, String bodypart, FavoriteExercise favoriteExercise) {
-        this.id = id;
+    public Exercise(String exercise_name, List<User> users, List<Categories> categories) {
         this.exercise_name = exercise_name;
-        this.exercisesDetails = exercisesDetails;
+        this.users = users;
         this.categories = categories;
-        this.target_muscle = target_muscle;
-        this.equipment = equipment;
-        this.bodypart = bodypart;
-        this.favoriteExercise = favoriteExercise;
     }
 
-    public Exercise(String exercise_name, List<ExerciseDetails> exercisesDetails, List<Categories> categories, String target_muscle, String equipment, String bodypart, FavoriteExercise favoriteExercise) {
+    public Exercise(long id, String exercise_name, List<User> users, List<Categories> categories) {
+        this.id = id;
         this.exercise_name = exercise_name;
-        this.exercisesDetails = exercisesDetails;
+        this.users = users;
         this.categories = categories;
-        this.target_muscle = target_muscle;
-        this.equipment = equipment;
-        this.bodypart = bodypart;
-        this.favoriteExercise = favoriteExercise;
     }
 
     public long getId() {
@@ -79,12 +54,12 @@ public class Exercise {
         this.exercise_name = exercise_name;
     }
 
-    public List<ExerciseDetails> getExercisesDetails() {
-        return exercisesDetails;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setExercisesDetails(List<ExerciseDetails> exercisesDetails) {
-        this.exercisesDetails = exercisesDetails;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public List<Categories> getCategories() {
@@ -93,37 +68,5 @@ public class Exercise {
 
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
-    }
-
-    public String getTarget_muscle() {
-        return target_muscle;
-    }
-
-    public void setTarget_muscle(String target_muscle) {
-        this.target_muscle = target_muscle;
-    }
-
-    public String getEquipment() {
-        return equipment;
-    }
-
-    public void setEquipment(String equipment) {
-        this.equipment = equipment;
-    }
-
-    public String getBodypart() {
-        return bodypart;
-    }
-
-    public void setBodypart(String bodypart) {
-        this.bodypart = bodypart;
-    }
-
-    public FavoriteExercise getFavoriteExercise() {
-        return favoriteExercise;
-    }
-
-    public void setFavoriteExercise(FavoriteExercise favoriteExercise) {
-        this.favoriteExercise = favoriteExercise;
     }
 }
