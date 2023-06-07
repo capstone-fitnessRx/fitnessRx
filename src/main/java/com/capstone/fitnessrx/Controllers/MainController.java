@@ -214,8 +214,6 @@ public class MainController {
 
     public String getWorkoutWall(Model model) {
 
-
-
         return "index/allworkouts";
     }
 
