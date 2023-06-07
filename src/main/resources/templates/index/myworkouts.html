@@ -20,7 +20,7 @@
 
     <div class="button-container">
         <button type="button" id="buildBtn" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-            Build Workout
+            <a sec:authorize="isAuthenticated()" th:href="@{/workout-builder}">Build Workout</a>
         </button>
     </div>
     <div class="container">
@@ -30,7 +30,7 @@
                 <div class="card" style="width: 18em;">
                     <div class="card-body">
                         <div class="card-title-with-dropdown">
-                            <h5 class="card-title">Workout Title</h5>
+                            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Workout Title</a></h5>
                             <!-- drop down goes here-->
                             <div class="custom-dropdown">
                                 <button class="btn btn-secondary custom-dropdown-toggle" type="button">
@@ -52,7 +52,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <div class="card-title-with-dropdown">
-                            <h5 class="card-title">Workout Title</h5>
+                            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Workout Title</a></h5>
                             <!-- drop down goes here-->
                             <div class="custom-dropdown">
                                 <button class="btn btn-secondary custom-dropdown-toggle" type="button">
@@ -74,7 +74,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <div class="card-title-with-dropdown">
-                            <h5 class="card-title">Workout Title</h5>
+                            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Workout Title</a></h5>
                             <!-- drop down goes here-->
                             <div class="custom-dropdown">
                                 <button class="btn btn-secondary custom-dropdown-toggle" type="button">

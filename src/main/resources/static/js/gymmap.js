@@ -41,6 +41,35 @@ function populateMapInput(location) {
             console.log('Error:', error);
         });
 }
+$(document).ready(function () {
+    $('#show').click(() => {
+        $.ajax({
+            async: true,
+            crossDomain: true,
+            url: 'https://api.tomtom.com/search/2/poiSearch/gym.json?lat=${results[1]]}&lon=${results[0]}&categorySet=7320&view=Unified&key=*****',
+            headers: {
+                'content-type': 'application/json; charset=utf-8',
+                'tracking-id': '88f556f8-afde-4d07-8192-46b5f99df072'
+
+            }
+        }).done(function (data) {
+            console.log(data);
+            let gyms = "";
+            let i;
+            for (i = 0; i < data.length; i++) {
+                let gym = data[i];
+                gyms += '<div class=gymLocation>' + gym + '</div>';
+            }
+            $('.address2').html(gyms)
+            //for loop to loop through array list
+            // for (i = 0; i < data.length; i++) {
+            //     let gym = data[i];
+            //     bodyParts += '<div class=availableBodyParts>' + bodyPart + '</div>';
+            // }
+            // $('.availableBodyParts').html(bodyParts)
+        })
+    })
+})
 
 // Get the location from the URL
 const url = new URL(window.location.href);
