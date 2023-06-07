@@ -238,44 +238,56 @@ $(document).ready(function () {
 })
 
 
-// $(document).ready(function () {
-//     $.ajax({
-//         async: true,
-//         crossDomain: true,
-//         url: 'https://exercisedb.p.rapidapi.com/exercises',
-//         method: 'GET',
-//         headers: {
-//             'X-RapidAPI-Key': '3b5ab618f4msh9fcd7bdc598e72ap123ca5jsn756b704ae812',
-//             'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
-//         }
-//     }).done(function (data) {
-//         console.log(data);
-//         let card =""
-//         // let exercises = "";
-//         // let gif = "";
-//         let i;
-//         for (i = 0; i < data.length; i++) {
-//             let bodyPart = data[i].bodyPart;
-//             let equipment = data[i].equipment;
-//             let gifUrl = data[i].gifUrl;
-//             let id = data[i].id;
-//             let name = data[i].name;
-//             let target = data[i].target;
-//             card += ''
-//             // exercises += '<option id="' + id + '" class="exercises" value="' + id + '">' +
-//             //     "Name: " + name + " " + '</option>';
-//             // // need to replace the style with a css file ----------------------------------------------------------------------------------------------------
-//             // gif += '<img class="' + id + '" src="' + gifUrl + ' " alt="animation" style="display: none">'
-//         }
-//         $('.exercises').html(exercises);
-//         $('.gifOne').html(gif)
-//         let selected = document.querySelector('.exercises');
-//         selected.addEventListener("change", () => {
-//             let value = $('#exercises').val();
-//             console.log(value);
-//             $("img." + value).toggle();
-//         })
-//     })
-// })
+$(document).ready(function () {
+    $.ajax({
+        async: true,
+        crossDomain: true,
+        url: 'https://exercisedb.p.rapidapi.com/exercises',
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '3b5ab618f4msh9fcd7bdc598e72ap123ca5jsn756b704ae812',
+            'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+        }
+    }).done(function (data) {
+        console.log(data);
+        let card =""
+        // let exercises = "";
+        // let gif = "";
+        let i;
+        for (i = 0; i < data.length; i++) {
+            let bodyPart = data[i].bodyPart;
+            let equipment = data[i].equipment;
+            let gifUrl = data[i].gifUrl;
+            let id = data[i].id;
+            let name = data[i].name;
+            let target = data[i].target;
+            card += '<form class="col-md-4 col-lg-3 col-xl-2" method="post">\n' +
+                '        <button class="btn " type="submit">\n' +
+                '            <div class="card text-center" style="width: 158px">\n' +
+                '                <div class="card-header " style="height: 115px">\n' +
+                '                    <h5 class="card-title my-auto">'+name+'</h5>\n' +
+                '                </div>\n' +
+                '                <div class="card-body" id=>\n' +
+                '                    <img class="card-text">image will go here</img>\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                '        </button>\n' +
+                '    </form>'
+            // exercises += '<option id="' + id + '" class="exercises" value="' + id + '">' +
+            //     "Name: " + name + " " + '</option>';
+            // // need to replace the style with a css file ----------------------------------------------------------------------------------------------------
+            // gif += '<img class="' + id + '" src="' + gifUrl + ' " alt="animation" style="display: none">'
+        }
+        $('#exercises').html(card);
+        // $('.exercises').html(exercises);
+        // $('.gifOne').html(gif)
+        // let selected = document.querySelector('.exercises');
+        // selected.addEventListener("change", () => {
+        //     let value = $('#exercises').val();
+        //     console.log(value);
+        //     $("img." + value).toggle();
+        // })
+    })
+})
 
 
