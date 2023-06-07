@@ -32,6 +32,9 @@
         <div th:if="${favoriteExercise != null}">
             <div th:each="exercise : ${favoriteExercise}" th:text="${exercise.exercise_name}"></div>
         </div>
+<!--        <div th:if="${favoriteExercise.isEmpty()}">-->
+<!--            <h4 th:text="INSERT FAVORITE EXERCISE"></h4>-->
+<!--        </div>-->
     </div>
 
     <div class="split right">
@@ -40,6 +43,9 @@
         <div th:if="${favoriteWorkout != null}">
             <div th:each="workout : ${favoriteWorkout}" th:text="${workout.title}"></div>
         </div>
+<!--        <div th:if="${favoriteWorkout.isEmpty()}">-->
+<!--            <h4 th:text="INSERT FAVORITE EXERCISE"></h4>-->
+<!--        </div>-->
     </div>
 </div>
 
