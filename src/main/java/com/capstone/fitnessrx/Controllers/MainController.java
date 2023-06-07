@@ -24,8 +24,7 @@ public class MainController {
     private final WorkoutRepository workoutDao;
 //    private final FavoriteWorkoutRepository favworkDao;
     private final FavoriteExerciseRepository favexerDao;
-
-
+    private final ExerciseRepository exerciseDao;
 
 
     public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, FavoriteExerciseRepository favexerDao, ExerciseRepository exerciseDao) {
@@ -292,23 +291,22 @@ public class MainController {
     @GetMapping("/favorites/{id}")
     public String getFavorites(@PathVariable Long id, Model model) {
 
- austinv9
-        User user = getAuthenticatedUser();
+        User userAuth = getAuthenticatedUser();
 
 
-        String profileUrl = "/profile/" + user.getId();
+        String profileUrl = "/profile/" + userAuth.getId();
         model.addAttribute("profileUrl", profileUrl);
 
-        String feedUrl = "/feed/" + user.getId();
+        String feedUrl = "/feed/" + userAuth.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
+        String calendarUrl = "/calendar/" + userAuth.getId();
         model.addAttribute("calendarUrl", calendarUrl);
 
-        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        String myWorkoutsUrl = "/my-workouts/" + userAuth.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
 
-        String favoritesUrl = "/favorites/" + user.getId();
+        String favoritesUrl = "/favorites/" + userAuth.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
 
         //getting user id
@@ -327,7 +325,7 @@ public class MainController {
 
         //getting favorite workouts from user
         List<Workout> userFavorites = user.getFavoriteWorkouts();
- main
+
 
         model.addAttribute("favoriteExercise", exerciseList);
 
