@@ -65,6 +65,7 @@ public class MainController {
 
     @GetMapping("/home")
     public String getHome(Model model) {
+
         User user = getAuthenticatedUser();
 
         if (user != null) {
@@ -93,8 +94,13 @@ public class MainController {
 
         User user = getAuthenticatedUser();
 
+// this gets the current users id and compares it to the url id, so we can match itn using thymeleaf
+        User authenticatedUserId = getAuthenticatedUser();
+        model.addAttribute("authenticatedUserId", authenticatedUserId);
+        model.addAttribute("urlUserId", id);
 
 
+//        this gives us the endpoint and id for html pages to reference
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
 
@@ -109,6 +115,9 @@ public class MainController {
 
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
+
+
+
 
 //        List<FavoriteWorkout> favoriteWorkout = favworkDao.findAll();
         List<FavoriteExercise> favoriteExercise = favexerDao.findAll();
@@ -127,6 +136,9 @@ public class MainController {
             // Add the favoriteWorkouts list to the model
             model.addAttribute("favoriteWorkouts", userFavorites);
             model.addAttribute("myWorkouts", userWorkout);
+
+
+
 
             String username = userProfile.getUsername();
             String location = userProfile.getLocation();
