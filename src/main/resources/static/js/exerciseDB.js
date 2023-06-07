@@ -261,7 +261,7 @@ $(document).ready(function () {
             let id = data[i].id;
             let name = data[i].name;
             let target = data[i].target;
-            card += '<form class="col-md-4 col-lg-3 col-xl-2" th:action="@{/exercise-display}" th:method="post" th:object="${post}"> \n' +
+            card += '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:method="get"> \n' +
                 '        <button class="btn " type="submit">\n' +
                 '            <div class="card text-center" style="width: 180px">\n' +
                 '                <div class="card-header " style="height: 130px">\n' +

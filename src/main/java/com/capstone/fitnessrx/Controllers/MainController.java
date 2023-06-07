@@ -419,6 +419,12 @@ public class MainController {
 
         return "index/exerciseDisplay";
     }
+//    @GetMapping("/exercise-display")
+
+//@PostMapping("/exercise-display")
+//public String postExerciseDisplay(Model model) {
+//
+//}
 
     @GetMapping("/workouts-wall")
     public String getWorkoutWall(Model model) {
