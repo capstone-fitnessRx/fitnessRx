@@ -23,11 +23,10 @@ public class MainController {
     private final CalenderRepository calenderDao;
     private final WorkoutRepository workoutDao;
 //    private final FavoriteWorkoutRepository favworkDao;
-    private final FavoriteExerciseRepository favexerDao;
     private final ExerciseRepository exerciseDao;
 
 
-    public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, FavoriteExerciseRepository favexerDao, ExerciseRepository exerciseDao) {
+    public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, ExerciseRepository exerciseDao) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.commentsDao = commentsDao;
@@ -36,7 +35,6 @@ public class MainController {
         this.ratingsDao = ratingsDao;
         this.calenderDao = calenderDao;
         this.workoutDao = workoutDao;
-        this.favexerDao = favexerDao;
         this.exerciseDao = exerciseDao;
 
     }
@@ -120,7 +118,7 @@ public class MainController {
 
 
 //        List<FavoriteWorkout> favoriteWorkout = favworkDao.findAll();
-        List<FavoriteExercise> favoriteExercise = favexerDao.findAll();
+
 
 
 
@@ -323,24 +321,22 @@ public class MainController {
 
         //getting user id
         User user = userDao.findById(id).orElse(null);
-        FavoriteExercise favoriteExercise1 = favexerDao.findById(id).orElse(null);
+//        FavoriteExercise favoriteExercise1 = favexerDao.findById(id).orElse(null);
         assert user != null;
-        assert favoriteExercise1 != null;
+//        assert favoriteExercise1 != null;
         //creating list of favorite exercises
-        List<FavoriteExercise> favoriteExercise = user.getFavoriteExercises();
+//        List<FavoriteExercise> favoriteExercise = user.getFavoriteExercises();
 
-        List<Exercise> exerciseList = favoriteExercise1.getExercises();
+//        List<Exercise> exerciseList = favoriteExercise1.getExercises();
 
-
-
-
+        //getting favorite exercises from user
+        List<Exercise> userFavoriteExercise = user.getFavoriteExercise();
 
         //getting favorite workouts from user
         List<Workout> userFavorites = user.getFavoriteWorkouts();
 
 
-        model.addAttribute("favoriteExercise", exerciseList);
-
+        model.addAttribute("favoriteExercise", userFavoriteExercise);
         model.addAttribute("favoriteWorkout", userFavorites);
 
         return "index/favorites";
