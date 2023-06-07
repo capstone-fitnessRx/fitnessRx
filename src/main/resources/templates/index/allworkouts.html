@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +30,7 @@
 
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Intense Abs Workout</h5>
+            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Intense Abs Workout</a></h5>
             <p class="card-text">Targeted Muscle Group: Abs</p>
             <a href="#" class="card-link">+ Calendar</a>
             <a href="#" class="card-link">+ Favorites</a>
@@ -38,7 +38,7 @@
     </div>
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Bicep Workout</h5>
+            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Bicep Workout</a></h5>
             <p class="card-text">Targeted Muscle Group: Arms</p>
             <a href="#" class="card-link">+ Calendar</a>
             <a href="#" class="card-link">+ Favorites</a>
@@ -46,7 +46,7 @@
     </div>
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Lower Body Workout</h5>
+            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Lower Body Workout</a></h5>
             <p class="card-text">Targeted Muscle Group: Legs</p>
             <a href="#" class="card-link">+ Calendar</a>
             <a href="#" class="card-link">+ Favorites</a>
@@ -54,7 +54,7 @@
     </div>
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">HIIT Cardio Workout</h5>
+            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">HIIT Cardio Workout</a></h5>
             <p class="card-text">Targeted Muscle Group: Full Body</p>
             <a href="#" class="card-link">+ Calendar</a>
             <a href="#" class="card-link">+ Favorites</a>
