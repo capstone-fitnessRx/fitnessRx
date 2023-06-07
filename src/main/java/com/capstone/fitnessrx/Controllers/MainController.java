@@ -309,13 +309,8 @@ public class MainController {
 
         //getting user id
         User user = userDao.findById(id).orElse(null);
-//        FavoriteExercise favoriteExercise1 = favexerDao.findById(id).orElse(null);
-        assert user != null;
-//        assert favoriteExercise1 != null;
-        //creating list of favorite exercises
-//        List<FavoriteExercise> favoriteExercise = user.getFavoriteExercises();
 
-//        List<Exercise> exerciseList = favoriteExercise1.getExercises();
+        assert user != null;
 
         //getting favorite exercises from user
         List<Exercise> userFavoriteExercise = user.getFavoriteExercise();

@@ -29,14 +29,17 @@
     <div class="split left">
         <h3>Exercises</h3>
         <a href="#" class="btn" id="btnOne">View</a>
-        <div th:each="exercise : ${favoriteExercise}" th:text="${exercise.exercise_name}"></div>
+        <div th:if="${favoriteExercise != null}">
+            <div th:each="exercise : ${favoriteExercise}" th:text="${exercise.exercise_name}"></div>
+        </div>
     </div>
 
     <div class="split right">
         <h3>Workouts</h3>
         <a href="#" class="btn" id="btnTwo">View</a>
-        <div th:each="workout : ${favoriteWorkout}" th:text="${workout.title}"></div>
-        <div th:text="testing"></div>
+        <div th:if="${favoriteWorkout != null}">
+            <div th:each="workout : ${favoriteWorkout}" th:text="${workout.title}"></div>
+        </div>
     </div>
 </div>
 
