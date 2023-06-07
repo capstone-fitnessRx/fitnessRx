@@ -24,10 +24,14 @@ public class MainController {
 //    private final FavoriteWorkoutRepository favworkDao;
     private final FavoriteExerciseRepository favexerDao;
 
+    private final ExerciseRepository exerciseDao;
+
+
+
     private Model model;
 
 
-    public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, FavoriteExerciseRepository favexerDao) {
+    public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, FavoriteExerciseRepository favexerDao, ExerciseRepository exerciseDao) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.commentsDao = commentsDao;
@@ -37,6 +41,7 @@ public class MainController {
         this.calenderDao = calenderDao;
         this.workoutDao = workoutDao;
         this.favexerDao = favexerDao;
+        this.exerciseDao = exerciseDao;
 
     }
 
@@ -175,10 +180,28 @@ public class MainController {
     }
 
     @GetMapping("/favorites/{id}")
+    public String getFavorites(@PathVariable Long id, Model model) {
 
-    public String getFavorites(@PathVariable Long id) {
+        //getting user id
+        User user = userDao.findById(id).orElse(null);
+        FavoriteExercise favoriteExercise1 = favexerDao.findById(id).orElse(null);
+        assert user != null;
+        assert favoriteExercise1 != null;
+        //creating list of favorite exercises
+        List<FavoriteExercise> favoriteExercise = user.getFavoriteExercises();
+
+        List<Exercise> exerciseList = favoriteExercise1.getExercises();
 
 
+
+
+
+        //getting favorite workouts from user
+        List<Workout> userFavorites = user.getFavoriteWorkouts();
+
+        model.addAttribute("favoriteExercise", exerciseList);
+
+        model.addAttribute("favoriteWorkout", userFavorites);
 
         return "index/favorites";
     }

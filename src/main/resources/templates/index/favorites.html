@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,13 +23,14 @@
     <div class="split left">
         <h3>Exercises</h3>
         <a href="#" class="btn" id="btnOne">View</a>
-        <div class="exercises"></div>
+        <div th:each="exercise : ${favoriteExercise}" th:text="${exercise.exercise_name}"></div>
     </div>
 
     <div class="split right">
         <h3>Workouts</h3>
         <a href="#" class="btn" id="btnTwo">View</a>
-        <div class="exercises"></div>
+        <div th:each="workout : ${favoriteWorkout}" th:text="${workout.title}"></div>
+        <div th:text="testing"></div>
     </div>
 </div>
 
