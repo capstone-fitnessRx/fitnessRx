@@ -12,12 +12,19 @@
   <link rel="stylesheet" href="../../static/css/allworkouts.css">
 
 
+
   <!-- for web app running-->
 <!--  <link rel="stylesheet" href="/css/allworkouts.css">-->
-
+    <link rel="stylesheet" href="/css/modals.css">
+    <link rel="stylesheet" href="/css/messenger.css">
+    <link rel="stylesheet" href="/css/navbar1.css">
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"/>
+
+<div th:insert="partials/modals.html :: modals"></div>
 <div class="container">
+
 <!--  <div class="card mb-3" style="width: 18rem;">-->
     <div class="card-body">
       <h5 class="card-title">Lower Ab Exercise</h5>
@@ -52,6 +59,16 @@
       <p class="card-text">Reps: 60 seconds</p>
       <p class="card-text">Sets: 2</p>
     </div>
+
+
+
+
 </div>
+<div th:insert="partials/messenger-partial.html :: messenger"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/feed.js"></script>
+<script src="/js/modals.js"></script>
+<script src="/js/messenger.js"></script>
+<script src="/js/navbar.js"></script>
 </body>
 </html>

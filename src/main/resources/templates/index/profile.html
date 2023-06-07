@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 
     <meta charset="UTF-8">
@@ -18,7 +19,18 @@
     <link rel="stylesheet" href="/css/modals.css">
 </head>
 <body>
-<nav th:replace="partials/navbar.html :: navbar" />
+<nav th:replace="partials/navbar.html :: navbar"/>
+
+
+<div sec:authorize="isAuthenticated()">
+    This content is only shown to authenticated users.
+
+    User ID: <span th:text="${#authentication.principal.id}"/>
+    Username: <span th:text="${#authentication.principal.username}"/>
+    Email: <span th:text="${#authentication.principal.email}"/>
+</div>
+
+
 <div class="container">
 
     <div th:insert="partials/modals.html :: modals"></div>
@@ -44,7 +56,8 @@
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
         <h3 class="main-name" th:text="${username}"></h3>
         <a class="main-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>
-        <a class="main-friend" id="modalFriends" href="#" th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
+        <a class="main-friend" id="modalFriends" href="#"
+           th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
         <p class="main-workout" th:text="${workoutPreference}"></p>
         <p class="main-bio" th:text="${bio}"></p>
     </div>
@@ -59,8 +72,7 @@
         <!--        Conditional below-->
         <h4 class="workout-header">My Workouts</h4>
         <div th:each="myWorkout : ${myWorkouts}">
-        <h4 th:text="${myWorkout.getTitle()}"></h4>
-        <!--        for each here to list user made workouts-->
+            <h4 th:text="${myWorkout.getTitle()}"></h4>
 
         </div>
         <a class="view-all" th:href="@{/my-workouts/{id}}"><u>View All</u></a>
@@ -71,9 +83,9 @@
         <h4 class="favorite-header">My Favorites</h4>
 
         <a th:href="@{/home}" th:each="favoriteWorkout : ${favoriteWorkouts}">
-        <div>
-            <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
-        </div>
+            <div>
+                <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
+            </div>
         </a>
 
         <!--        for each here to list user favorite workouts-->

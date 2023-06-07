@@ -14,8 +14,12 @@
 
     <!-- for web app running-->
     <link rel="stylesheet" href="/css/allworkouts.css">
+    <link rel="stylesheet" href="/css/modals.css">
+    <link rel="stylesheet" href="/css/messenger.css">
+    <link rel="stylesheet" href="/css/navbar1.css">
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"/>
 <div class="row">
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-body">
@@ -50,5 +54,12 @@
         </div>
     </div>
 </div>
+
+<div th:insert="partials/messenger-partial.html :: messenger"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/feed.js"></script>
+<script src="/js/modals.js"></script>
+<script src="/js/messenger.js"></script>
+<script src="/js/navbar.js"></script>
 </body>
 </html>

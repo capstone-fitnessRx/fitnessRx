@@ -15,8 +15,11 @@
     <link rel="stylesheet" href="/css/feed.css">
     <!--    <link rel="stylesheet" href="/css/feed.css">-->
     <link rel="stylesheet" href="/css/modals.css">
+    <link rel="stylesheet" href="/css/messenger.css">
+    <link rel="stylesheet" href="/css/navbar1.css">
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"/>
 
 <div th:insert="partials/modals.html :: modals"></div>
 <div class="container-box row">
@@ -32,7 +35,7 @@
         <a class="main-friend" id="modalFriends" href="#" th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
         <p class="side-workout" th:text="${workoutPreference}">Workout Preference</p>
         <p class="side-goal" th:text="${goal}">Goals</p>
-
+        <a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a>
     </div>
 
 
@@ -111,9 +114,11 @@
     </div>
 
 </div>
-
+<div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/feed.js"></script>
 <script src="/js/modals.js"></script>
+<script src="/js/messenger.js"></script>
+<script src="/js/navbar.js"></script>
 </body>
 </html>
