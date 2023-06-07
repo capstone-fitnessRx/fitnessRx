@@ -2,7 +2,8 @@ package com.capstone.fitnessrx.Controllers;
 
 import com.capstone.fitnessrx.Repositories.*;
 import com.capstone.fitnessrx.Models.*;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,6 @@ public class MainController {
 //    private final FavoriteWorkoutRepository favworkDao;
     private final FavoriteExerciseRepository favexerDao;
 
-    private Model model;
 
 
     public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, FavoriteExerciseRepository favexerDao) {
@@ -38,6 +38,15 @@ public class MainController {
         this.workoutDao = workoutDao;
         this.favexerDao = favexerDao;
 
+    }
+
+
+    private User getAuthenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof User) {
+            return (User) authentication.getPrincipal();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -54,19 +63,56 @@ public class MainController {
 
 
     @GetMapping("/home")
-
     public String getHome(Model model) {
+        User user = getAuthenticatedUser();
 
+        if (user != null) {
+            String profileUrl = "/profile/" + user.getId();
+            model.addAttribute("profileUrl", profileUrl);
 
+            String feedUrl = "/feed/" + user.getId();
+            model.addAttribute("feedUrl", feedUrl);
+
+            String calendarUrl = "/calendar/" + user.getId();
+            model.addAttribute("calendarUrl", calendarUrl);
+
+            String myWorkoutsUrl = "/my-workouts/" + user.getId();
+            model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+            String favoritesUrl = "/favorites/" + user.getId();
+            model.addAttribute("favoritesUrl", favoritesUrl);
+        }
 
         return "index/landingpage";
     }
 
+
     @GetMapping("/profile/{id}")
     public String getProfile(@PathVariable Long id, Model model) {
 
+        User user = getAuthenticatedUser();
+
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
+
 //        List<FavoriteWorkout> favoriteWorkout = favworkDao.findAll();
         List<FavoriteExercise> favoriteExercise = favexerDao.findAll();
+
+
 
         User userProfile = userDao.findById(id).orElse(null);
         List<Friends> userFriends = friendsDao.findAllByUserMain(userProfile);
@@ -86,10 +132,7 @@ public class MainController {
             String workoutPreference = userProfile.getWorkoutPreference();
             String bio = userProfile.getBio();
             String goal = userProfile.getGoal();
-            // Retrieve the currently logged-in user's ID
-//            Long userId = ((YourUserDetailsClass) authentication.getPrincipal()).getUserId();
-//            User user = (User) authentication.getPrincipal();
-            // Add the userProfile, userProfileId, and userId variables to the model
+
 
             model.addAttribute("userFriends", userFriends);
             model.addAttribute("userProfile", userProfile);
@@ -105,17 +148,36 @@ public class MainController {
 
 //            model.addAttribute("userId", userId);
 
-            // Return the template name
+
             return "index/profile";
         } else {
-            // Handle the case when the user with the provided id is not found
-            return "error"; // or any other error handling mechanism
+
+            return "error";
         }
     }
 
-
+//tried making a post it gave 403 now i get 403 error when attempt to visit
     @GetMapping("/feed/{id}")
     public String getFeed(@PathVariable Long id, Model model) {
+
+        User user = getAuthenticatedUser();
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
+
+
         List<Comments> comment = commentsDao.findAll();
         List<Post> posts = postDao.findAll();
         User userProfile = userDao.findById(id).orElse(null);
@@ -127,7 +189,6 @@ public class MainController {
             String workoutPreference = userProfile.getWorkoutPreference();
             String bio = userProfile.getBio();
             String goal = userProfile.getGoal();
-
 
 
 
@@ -144,13 +205,30 @@ public class MainController {
 
             return "index/feed";
         } else {
-            // Handle the case when the user with the provided id is not found
-            return "index/error"; // or any other error handling mechanism
+
+            return "index/error";
         }
         }
 
     @GetMapping("/calendar/{id}")
-    public String getCalender(@PathVariable Long id) {
+    public String getCalender(@PathVariable Long id, Model model) {
+
+        User user = getAuthenticatedUser();
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
 
             return "index/calendar";
 
@@ -158,7 +236,24 @@ public class MainController {
 
     @GetMapping("/my-workouts/{id}")
 
-    public String getMyWorkouts(@PathVariable Long id) {
+    public String getMyWorkouts(@PathVariable Long id, Model model) {
+
+        User user = getAuthenticatedUser();
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
 
 
 
@@ -167,6 +262,24 @@ public class MainController {
 
     @GetMapping("/map/{location}")
     public String getMap(@PathVariable String location, Model model) {
+
+        User user = getAuthenticatedUser();
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
         // Pass the location to the view
         model.addAttribute("location", location);
 
@@ -175,8 +288,25 @@ public class MainController {
     }
 
     @GetMapping("/favorites/{id}")
+    public String getFavorites(@PathVariable Long id, Model model) {
 
-    public String getFavorites(@PathVariable Long id) {
+        User user = getAuthenticatedUser();
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
 
 
 
@@ -184,8 +314,25 @@ public class MainController {
     }
 
     @GetMapping("/workout-builder")
-
     public String getBuilder(Model model) {
+
+        User user = getAuthenticatedUser();
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
 
 
 
@@ -193,8 +340,25 @@ public class MainController {
     }
 
     @GetMapping("/exercise-page")
-
     public String getExercise(Model model) {
+
+        User user = getAuthenticatedUser();
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
 
 
 
@@ -202,8 +366,25 @@ public class MainController {
     }
 
     @GetMapping("/exercise-display")
-
     public String getExerciseDisplay(Model model) {
+
+        User user = getAuthenticatedUser();
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
 
 
 
@@ -211,8 +392,26 @@ public class MainController {
     }
 
     @GetMapping("/workouts-wall")
-
     public String getWorkoutWall(Model model) {
+
+        User user = getAuthenticatedUser();
+
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
 
 
 
@@ -220,11 +419,30 @@ public class MainController {
     }
 
     @GetMapping("/workout-plan")
-
     public String getWorkoutPlan(Model model) {
+
+        User user = getAuthenticatedUser();
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calendarUrl = "/calendar/" + user.getId();
+        model.addAttribute("calendarUrl", calendarUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
 
 
 
         return "index/workoutplan";
     }
 }
+
+

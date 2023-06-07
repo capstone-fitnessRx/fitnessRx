@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Workout builder</title>
+    <link rel="stylesheet" href="/css/modals.css">
+    <link rel="stylesheet" href="/css/messenger.css">
+    <link rel="stylesheet" href="/css/navbar1.css">
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"/>
 
+<div th:insert="partials/modals.html :: modals"></div>
+
+
+
+
+
+
+<div th:insert="partials/messenger-partial.html :: messenger"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/feed.js"></script>
+<script src="/js/modals.js"></script>
+<script src="/js/messenger.js"></script>
+<script src="/js/navbar.js"></script>
 </body>
 </html>
