@@ -33,8 +33,10 @@ public class Exercise {
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private List<Categories> categories;
 
+
     public Exercise() {
     }
+
 
     public Exercise(long id, String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, List<User> users, List<Categories> categories) {
         this.id = id;
@@ -48,6 +50,7 @@ public class Exercise {
     }
 
     public Exercise(String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, List<User> users, List<Categories> categories) {
+
         this.exercise_name = exercise_name;
         this.exercise_bodyPart = exercise_bodyPart;
         this.exercise_equipment = exercise_equipment;

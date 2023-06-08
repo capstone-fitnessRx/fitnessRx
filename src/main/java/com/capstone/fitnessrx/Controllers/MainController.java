@@ -365,61 +365,51 @@ public class MainController {
 
     @GetMapping("/exercise-page")
     public String getExercise(Model model) {
+        model.addAttribute("exercise", new Exercise());
 
         User user = getAuthenticatedUser();
-
-
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
-
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
-
         String calendarUrl = "/calendar/" + user.getId();
         model.addAttribute("calendarUrl", calendarUrl);
-
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
-
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
-
-
 
         return "index/exercises";
     }
+//    @PostMapping("exercise-page")
+//    public String postExercise(@ModelAttribute Exercise exercise, Model model) {
+//        exerciseDao.save(exercise);
+//        model.addAttribute("exercise", exerciseDao);
+//        return "redirect:/exercise-display";
+//    }
 
     @GetMapping("/exercise-display")
-    public String getExerciseDisplay(Model model) {
+    public String getExerciseDisplay(Model model, @RequestParam String exerciseName, @RequestParam String exerciseTarget, @RequestParam String exerciseEquipment, @RequestParam String exerciseGif) {
+
+        model.addAttribute("exerciseName", exerciseName);
+        model.addAttribute("exerciseTarget", exerciseTarget);
+        model.addAttribute("exerciseEquipment", exerciseEquipment);
+        model.addAttribute("exerciseGif", exerciseGif);
 
         User user = getAuthenticatedUser();
-
-
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
-
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
-
         String calendarUrl = "/calendar/" + user.getId();
         model.addAttribute("calendarUrl", calendarUrl);
-
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
-
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
-
-
-
         return "index/exerciseDisplay";
     }
-//    @GetMapping("/exercise-display")
 
-//@PostMapping("/exercise-display")
-//public String postExerciseDisplay(Model model) {
-//
-//}
 
     @GetMapping("/workouts-wall")
     public String getWorkoutWall(Model model) {

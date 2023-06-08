@@ -232,7 +232,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $.ajax({
-        async: true,
+        async: false,
         crossDomain: true,
         url: 'https://exercisedb.p.rapidapi.com/exercises',
         method: 'GET',
@@ -243,6 +243,7 @@ $(document).ready(function () {
     }).done(function (data) {
         console.log(data);
         let card =""
+        let workoutBuilderCard =""
         // let exercises = "";
         // let gif = "";
         let i;
@@ -253,7 +254,7 @@ $(document).ready(function () {
             let id = data[i].id;
             let name = data[i].name;
             let target = data[i].target;
-            card += '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:method="get"> \n' +
+            card += '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
                 '        <button class="btn " type="submit">\n' +
                 '            <div class="card text-center" style="width: 180px">\n' +
                 '                <div class="card-header " style="height: 130px">\n' +
@@ -264,29 +265,56 @@ $(document).ready(function () {
                 '                </div>\n' +
                 '            </div>\n' +
                 <!--            sends the name of the exercise-->
-                '            <input class="d-none form-control" type="text" name="exerciseName" value="'+name+'">\n' +
+                '            <input class="d-none form-control" type="text" th:field="*{exercise_name}" name="exerciseName" value="'+name+'">\n' +
                 <!--             sends the muscles targeted-->
-                '            <input class="d-none form-control" type="text" name="exerciseTarget" value="'+target+'">\n' +
+                '            <input class="d-none form-control" type="text" th:field="*{target_muscle}" name="exerciseTarget" value="'+target+'">\n' +
                 <!--            sends the equipment-->
-                '            <input class="d-none form-control" type="text" name="exerciseEquipment" value="'+equipment+'">\n' +
+                '            <input class="d-none form-control" type="text" th:field="*{equipment}" name="exerciseEquipment" value="'+equipment+'">\n' +
                 <!--            sends the gif-->
-                '            <input class="d-none form-control" type="text" name="exerciseGif" value="'+gifUrl+'">\n' +
+                '            <input class="d-none form-control" type="text" th:field="*{exerciseGif}" name="exerciseGif" value="'+gifUrl+'">\n' +
                 '        </button>\n' +
-                '    </form>'
-            // exercises += '<option id="' + id + '" class="exercises" value="' + id + '">' +
-            //     "Name: " + name + " " + '</option>';
-            // // need to replace the style with a css file ----------------------------------------------------------------------------------------------------
-            // gif += '<img class="' + id + '" src="' + gifUrl + ' " alt="animation" style="display: none">'
+                '    </form>';
+            workoutBuilderCard += '<div><form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
+                '        <button class="btn " type="submit">\n' +
+                '            <div class="card text-center" style="width: 180px">\n' +
+                '                <div class="card-header " style="height: 130px">\n' +
+                '                    <h5 class="card-title my-auto">' + name + '</h5>\n' +
+                '                </div>\n' +
+                '                <div class="card-body" id=>\n' +
+                '                    <img src="' + gifUrl + '" style="" class="img-fluid" alt="">\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                <!--            sends the name of the exercise-->
+                '            <input class="d-none form-control" type="text" th:field="*{exercise_name}" name="exerciseName" value="' + name + '">\n' +
+                <!--             sends the muscles targeted-->
+                '            <input class="d-none form-control" type="text" th:field="*{target_muscle}" name="exerciseTarget" value="' + target + '">\n' +
+                <!--            sends the equipment-->
+                '            <input class="d-none form-control" type="text" th:field="*{equipment}" name="exerciseEquipment" value="' + equipment + '">\n' +
+                <!--            sends the gif-->
+                '            <input class="d-none form-control" type="text" th:field="*{exerciseGif}" name="exerciseGif" value="' + gifUrl + '">\n' +
+                '        </button>\n' +
+                '    </form> ' +
+                '<button class="text-center open_modal" id="" >Add to Workout</button>' +
+                '</div>' +
+                '<dialog class="data_modal">' +
+                '   <div>test</div>' +
+                '   <button class="close_modal">close</button>' +
+                '</dialog>'
         }
-        $('#exercises').html(card);
-        // $('.exercises').html(exercises);
-        // $('.gifOne').html(gif)
-        // let selected = document.querySelector('.exercises');
-        // selected.addEventListener("change", () => {
-        //     let value = $('#exercises').val();
-        //     console.log(value);
-        //     $("img." + value).toggle();
-        // })
+        // $('#exercises').html(card);
+        $('#workoutBuilder').html(workoutBuilderCard);
+        // let openModal = document.getElementsByClassName("open_modal");
+        // let closeModal = document.getElementsByClassName("close_modal");
+        // let modal = document.getElementsByClassName("data_modal");
+        // console.log(openModal.length);
+        // for (let i = 0 ; i < openModal.length; i++) {
+        //     openModal[i].addEventListener('click' , () => {
+        //         this.showModal();
+        //     },true ) ;
+        //     closeModal[i].addEventListener('click' , () => {
+        //         this.close();
+        //     },true ) ;
+        // }
     })
 })
 
