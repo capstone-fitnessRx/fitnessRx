@@ -58,6 +58,18 @@ body {
     position: relative;
     bottom: 2em;
 }
+.addFriend-div{
+    display: flex;
+
+}
+.addFriend {
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    position: relative;
+    bottom: 45px;
+    left: 10px;
+}
 .main-loc{
     position: relative;
     bottom: 2em;

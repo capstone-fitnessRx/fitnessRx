@@ -80,4 +80,5 @@ public class Comments {
     public void setPosts(Post posts) {
         this.posts = posts;
     }
+
 }

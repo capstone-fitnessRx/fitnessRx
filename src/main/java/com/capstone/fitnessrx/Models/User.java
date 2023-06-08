@@ -17,7 +17,7 @@ public class User {
     private String password;
     @Column(nullable = false)
     private boolean admin;
-    @Column()
+    @Column(nullable = false)
     private String location;
     @Column()
     private String workoutPreference;

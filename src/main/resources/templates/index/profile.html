@@ -42,7 +42,7 @@
     </div>
 
     <div class="card main-card">
-        <img class="profile-menu" id="modalEdit" src="/img/edit.png">
+        <img th:if="${authenticatedUserId.getId() == urlUserId}" class="profile-menu" id="modalEdit" src="/img/edit.png">
 <!--        <div th:if="${authenticatedUserId.getId() == urlUserId}">-->
 <!--            this is your profile.-->
 <!--        </div>-->
@@ -53,7 +53,11 @@
         <!--  <h3 th:text="*{username}"></h3>-->
         <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
+        <div class="addFriend-div">
         <h3 class="main-name" th:text="${username}"></h3>
+            <img th:if="${authenticatedUserId.getId() != urlUserId}" class="addFriend" id="addFriend" src="/img/addFriend.png">
+        </div>
+
         <a class="main-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>
         <a class="main-friend" id="modalFriends" href="#"
            th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
@@ -72,10 +76,10 @@
         <!--        Conditional below-->
         <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="workout-header">My Workouts</h4>
         <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="workout-header" th:text="${username} + 's Workouts'"></h4>
-        <div th:each="myWorkout : ${myWorkouts}">
+        <a th:href="@{/workout-plan/{id}(id=${workout})}" th:each="myWorkout : ${myWorkouts}">
             <h4 th:text="${myWorkout.getTitle()}"></h4>
 
-        </div>
+        </a>
         <a class="view-all" th:href="@{/my-workouts/{id}(id=${urlUserId})}"><u>View All</u></a>
     </div>
     <!--Favorites card-->
@@ -84,7 +88,7 @@
         <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="favorite-header">My Favorites</h4>
         <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="favorite-header" th:text="${username} + 's Favorites'"></h4>
 
-        <a th:href="@{/home}" th:each="favoriteWorkout : ${favoriteWorkouts}">
+        <a th:href="@{/workout-plan/{id}(id=${wo})}" th:each="favoriteWorkout : ${favoriteWorkouts}">
             <div>
                 <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
             </div>
