@@ -397,13 +397,8 @@ public class MainController {
 
         //getting user id
         User user = userDao.findById(id).orElse(null);
-//        FavoriteExercise favoriteExercise1 = favexerDao.findById(id).orElse(null);
-        assert user != null;
-//        assert favoriteExercise1 != null;
-        //creating list of favorite exercises
-//        List<FavoriteExercise> favoriteExercise = user.getFavoriteExercises();
 
-//        List<Exercise> exerciseList = favoriteExercise1.getExercises();
+        assert user != null;
 
         //getting favorite exercises from user
         List<Exercise> userFavoriteExercise = user.getFavoriteExercise();
@@ -446,61 +441,56 @@ public class MainController {
 
     @GetMapping("/exercise-page")
     public String getExercise(Model model) {
+        model.addAttribute("exercise", new Exercise());
+
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
+
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
-
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
-
         String calendarUrl = "/calendar/" + user.getId();
         model.addAttribute("calendarUrl", calendarUrl);
-
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
-
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
-
-
 
         return "index/exercises";
     }
+//    @PostMapping("exercise-page")
+//    public String postExercise(@ModelAttribute Exercise exercise, Model model) {
+//        exerciseDao.save(exercise);
+//        model.addAttribute("exercise", exerciseDao);
+//        return "redirect:/exercise-display";
+//    }
 
     @GetMapping("/exercise-display")
-    public String getExerciseDisplay(Model model) {
-
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String getExerciseDisplay(Model model, @RequestParam String exerciseName, @RequestParam String exerciseTarget, @RequestParam String exerciseEquipment, @RequestParam String exerciseGif) {
 
 
+        model.addAttribute("exerciseName", exerciseName);
+        model.addAttribute("exerciseTarget", exerciseTarget);
+        model.addAttribute("exerciseEquipment", exerciseEquipment);
+        model.addAttribute("exerciseGif", exerciseGif);
+
+        User user = getAuthenticatedUser();
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
-
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
-
         String calendarUrl = "/calendar/" + user.getId();
         model.addAttribute("calendarUrl", calendarUrl);
-
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
-
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
-
-
-
         return "index/exerciseDisplay";
     }
-//    @GetMapping("/exercise-display")
 
-//@PostMapping("/exercise-display")
-//public String postExerciseDisplay(Model model) {
-//
-//}
 
     @GetMapping("/workouts-wall")
     public String getWorkoutWall(Model model) {
