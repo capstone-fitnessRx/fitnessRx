@@ -16,21 +16,14 @@
 
 <div th:insert="partials/modals.html :: modals"></div>
 
-
-
-
-
-
-
-
 <main class="container d-flex justify-content-evenly flex-wrap" >
     <section class="container">
         <form method="post">
             <div class="container card text-center">
                 <div class="card-header">
-                    <h5 class="card-title" id=>Your Workout</h5>
+                    <h5 class="card-title">Your Workout</h5>
                 </div>
-                <div class="card-body" id=>
+                <div class="card-body">
                     <table id="exercises" class="">
                         <thead class="text-center">
                         <tr class=" text-center">
@@ -48,128 +41,32 @@
                 </div>
             </div>
         </form>
+        <button class="">Finalize Workout</button>
     </section>
-    <section class="container d-flex justify-content-evenly flex-wrap">
-        <div class="text-center">
-        <form class="" method="post">
-            <button class="btn " type="submit">
-                <div class="card text-center">
-                    <div class="card-header">
-                        <h5 class="card-title" id=>Exercise Name</h5>
-                    </div>
-                    <div class="card-body" id=>
-                        <img class="card-text">image will go here</img>
-                    </div>
-                </div>
-            </button>
-        </form>
-            <button class="">Add to Workout</button>
-        </div>
-        <div class="text-center">
-            <form class="" method="post">
-                <button class="btn " type="submit">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h5 class="card-title" id=>Exercise Name</h5>
-                        </div>
-                        <div class="card-body" id=>
-                            <img class="card-text">image will go here</img>
-                        </div>
-                    </div>
-                </button>
-            </form>
-            <button class="">Add to Workout</button>
-        </div>
-        <div class="text-center">
-            <form class="" method="post">
-                <button class="btn " type="submit">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h5 class="card-title" id=>Exercise Name</h5>
-                        </div>
-                        <div class="card-body" id=>
-                            <img class="card-text">image will go here</img>
-                        </div>
-                    </div>
-                </button>
-            </form>
-            <button class="">Add to Workout</button>
-        </div>
-        <div class="text-center">
-            <form class="" method="post">
-                <button class="btn " type="submit">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h5 class="card-title" id=>Exercise Name</h5>
-                        </div>
-                        <div class="card-body" id=>
-                            <img class="card-text">image will go here</img>
-                        </div>
-                    </div>
-                </button>
-            </form>
-            <button class="">Add to Workout</button>
-        </div>
-        <div class="text-center">
-            <form class="" method="post">
-                <button class="btn " type="submit">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h5 class="card-title" id=>Exercise Name</h5>
-                        </div>
-                        <div class="card-body" id=>
-                            <img class="card-text">image will go here</img>
-                        </div>
-                    </div>
-                </button>
-            </form>
-            <button class="">Add to Workout</button>
-        </div>
-        <div class="text-center">
-            <form class="" method="post">
-                <button class="btn " type="submit">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h5 class="card-title" id=>Exercise Name</h5>
-                        </div>
-                        <div class="card-body" id=>
-                            <img class="card-text">image will go here</img>
-                        </div>
-                    </div>
-                </button>
-            </form>
-            <button class="">Add to Workout</button>
-        </div>
-        <div class="text-center">
-            <form class="" method="post">
-                <button class="btn " type="submit">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h5 class="card-title" id=>Exercise Name</h5>
-                        </div>
-                        <div class="card-body" id=>
-                            <img class="card-text">image will go here</img>
-                        </div>
-                    </div>
-                </button>
-            </form>
-            <button class="">Add to Workout</button>
-        </div>
-        <div class="text-center">
-            <form class="" method="post">
-                <button class="btn " type="submit">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h5 class="card-title" id=>Exercise Name</h5>
-                        </div>
-                        <div class="card-body" id=>
-                            <img class="card-text">image will go here</img>
-                        </div>
-                    </div>
-                </button>
-            </form>
-            <button class="">Add to Workout</button>
-        </div>
+    <section class="container d-flex justify-content-evenly flex-wrap" id="workoutBuilder">
+<!--        <form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get">-->
+<!--                <button class="btn " type="submit">-->
+<!--                    <div class="card text-center" style="width: 180px">-->
+<!--                        <div class="card-header" style="height: 130px">>-->
+<!--                            <h5 class="card-title" id=>Exercise Name</h5>-->
+<!--                        </div>-->
+<!--                        <div class="card-body" id=>-->
+<!--                            <img class="card-text">image will go here</img>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;            sends the name of the exercise&ndash;&gt;-->
+<!--                    <input class="d-none form-control" type="text" name="" value="">-->
+<!--                    &lt;!&ndash;             sends the muscles targeted&ndash;&gt;-->
+<!--                    <input class="d-none form-control" type="text" name="" value="">-->
+<!--                    &lt;!&ndash;            sends the equipment&ndash;&gt;-->
+<!--                    <input class="d-none form-control" type="text" name="" value="">-->
+<!--                    &lt;!&ndash;            sends the gif&ndash;&gt;-->
+<!--                    <input class="d-none form-control" type="text" name="" value="">-->
+<!--                </button>-->
+<!--            </form>-->
+<!--            <button id="openModel" class="">Add to Workout</button>-->
+<!--        </div>-->
+
     </section>
 </main>
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
@@ -178,6 +75,21 @@
 <script src="/js/modals.js"></script>
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
+<script src="/js/exerciseDB.js"></script>
+<script>
+    let openModal = document.getElementsByClassName("open_modal");
+    let closeModal = document.getElementsByClassName("close_modal");
+    let modal = document.getElementsByClassName("data_modal");
+    console.log(openModal.length);
+    for (let i = 0 ; i < openModal.length; i++) {
+        openModal[i].addEventListener('click' , () => {
+            modal.showModal();
+        },true ) ;
+        closeModal[i].addEventListener('click' , () => {
+            modal.close();
+        },true ) ;
+    }
+</script>
 
 </body>
 </html>

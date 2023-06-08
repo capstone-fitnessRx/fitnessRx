@@ -18,9 +18,6 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise")
     private List<ExerciseDetails> exercisesDetails;
 
-
-
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "ex_cat",
@@ -34,6 +31,8 @@ public class Exercise {
     private String equipment;
     @Column(nullable = false, length = 100)
     private String bodypart;
+    @Column(nullable = false)
+    private String exerciseGif;
     @ManyToOne
     @JoinColumn(name = "favorite_exercise_id")
     private FavoriteExercise favoriteExercise;
@@ -42,7 +41,7 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(long id, String exercise_name, List<ExerciseDetails> exercisesDetails, List<Categories> categories, String target_muscle, String equipment, String bodypart, FavoriteExercise favoriteExercise) {
+    public Exercise(long id, String exercise_name, List<ExerciseDetails> exercisesDetails, List<Categories> categories, String target_muscle, String equipment, String bodypart, String exerciseGif, FavoriteExercise favoriteExercise) {
         this.id = id;
         this.exercise_name = exercise_name;
         this.exercisesDetails = exercisesDetails;
@@ -50,17 +49,33 @@ public class Exercise {
         this.target_muscle = target_muscle;
         this.equipment = equipment;
         this.bodypart = bodypart;
+        this.exerciseGif = exerciseGif;
         this.favoriteExercise = favoriteExercise;
     }
 
-    public Exercise(String exercise_name, List<ExerciseDetails> exercisesDetails, List<Categories> categories, String target_muscle, String equipment, String bodypart, FavoriteExercise favoriteExercise) {
+    public Exercise(String exercise_name, List<ExerciseDetails> exercisesDetails, List<Categories> categories, String target_muscle, String equipment, String bodypart, String exerciseGif, FavoriteExercise favoriteExercise) {
         this.exercise_name = exercise_name;
         this.exercisesDetails = exercisesDetails;
         this.categories = categories;
         this.target_muscle = target_muscle;
         this.equipment = equipment;
         this.bodypart = bodypart;
+        this.exerciseGif = exerciseGif;
         this.favoriteExercise = favoriteExercise;
+    }
+
+    public Exercise(String exercise_name, String target_muscle, String equipment, String exerciseGif) {
+        this.exercise_name = exercise_name;
+        this.target_muscle = target_muscle;
+        this.equipment = equipment;
+        this.exerciseGif = exerciseGif;
+    }
+    public String getExerciseGif() {
+        return exerciseGif;
+    }
+
+    public void setExerciseGif(String exerciseGif) {
+        this.exerciseGif = exerciseGif;
     }
 
     public long getId() {
