@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>My Workouts</title>
     <!--    bootstrap styling-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--    external stylesheet-->
-    <link rel="stylesheet" href="../../static/css/myworkouts.css">
+<!--    <link rel="stylesheet" href="../../static/css/myworkouts.css">-->
+    <link rel="stylesheet" href="/css/myworkouts.css">
     <link rel="stylesheet" href="/css/messenger.css">
     <link rel="stylesheet" href="/css/navbar1.css">
     <!--    jquery cdn-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="../../static/js/exerciseDB.js"></script>
+    <script src="/js/exerciseDB.js"></script>
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"/>
@@ -99,10 +101,10 @@
     <!--    jquery cdn-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!--    javascript file-->
-    <script src="../../static/js/myworkouts.js"></script>
+    <script src="/js/myworkouts.js"></script>
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
 <script src="/js/modals.js"></script>
-    </div>
+
 </body>
 </html>
