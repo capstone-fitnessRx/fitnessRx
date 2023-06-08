@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -64,7 +66,7 @@ public class MainController {
     @GetMapping("/home")
     public String getHome(Model model) {
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (user != null) {
             String profileUrl = "/profile/" + user.getId();
@@ -90,7 +92,8 @@ public class MainController {
     @GetMapping("/profile/{id}")
     public String getProfile(@PathVariable Long id, Model model) {
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
 
 // this gets the current users id and compares it to the url id, so we can match itn using thymeleaf
         User authenticatedUserId = getAuthenticatedUser();
@@ -120,8 +123,6 @@ public class MainController {
 //        List<FavoriteWorkout> favoriteWorkout = favworkDao.findAll();
 
 
-
-
         User userProfile = userDao.findById(id).orElse(null);
         List<Friends> userFriends = friendsDao.findAllByUserMain(userProfile);
 
@@ -129,7 +130,6 @@ public class MainController {
         if (userProfile != null) {
             List<Workout> userFavorites = userProfile.getFavoriteWorkouts();
             List<Workout> userWorkout = workoutDao.findWorkoutsByUser(userDao.getReferenceById(id));
-
 
             // Add the favoriteWorkouts list to the model
             model.addAttribute("favoriteWorkouts", userFavorites);
@@ -171,7 +171,10 @@ public class MainController {
     @GetMapping("/feed/{id}")
     public String getFeed(@PathVariable Long id, Model model) {
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        System.out.println("User" + user.getUsername());
+
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -191,10 +194,19 @@ public class MainController {
 
         List<Comments> comment = commentsDao.findAll();
         List<Post> posts = postDao.findAll();
+        Collections.reverse(posts);
+        List<Comments> comments = commentsDao.findAll();
         User userProfile = userDao.findById(id).orElse(null);
 
 
         if (userProfile != null) {
+//
+//            List<Post> post = postDao.findAll();
+
+            model.addAttribute("post", new Post());
+            model.addAttribute("comments", new Comments());
+
+
             String username = userProfile.getUsername();
             String location = userProfile.getLocation();
             String workoutPreference = userProfile.getWorkoutPreference();
@@ -210,9 +222,9 @@ public class MainController {
             model.addAttribute("workoutPreference", workoutPreference);
             model.addAttribute("bio", bio);
             model.addAttribute("goal", goal);
-
             model.addAttribute("comments", comment);
             model.addAttribute("posts", posts);
+
 
             return "index/feed";
         } else {
@@ -221,10 +233,74 @@ public class MainController {
         }
         }
 
+//        @PostMapping("/feed/{id}/comment")
+//        public String commentCreate(@RequestParam(name = "comment") String content, @PathVariable Long id, Model model) {
+//            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            user = userDao.getReferenceById((long) user.getId());
+//            model.addAttribute("userProfileId", id);
+//
+//            Post post = postDao.getReferenceById((long) user.getId());
+//
+//            //Create a new comment object
+//            Comments commentToDb = new Comments();
+////            commentToDb.setContent(content);
+//
+//            commentToDb.setContent(commentToDb.getContent());
+//            commentToDb.setUser(user);
+//            commentToDb.setPosts(post);
+//
+//            commentsDao.save(commentToDb);
+////            System.out.println("~~~~~~~~~~~~~~");
+////            System.out.println("commentToDb.getContent() = " + commentToDb.getContent());
+//
+//            return "redirect:/feed/" + user.getId();
+//        }
+    @PostMapping("/feed/comment/create")
+    public String commentvIICreate(@RequestParam(name="comment") String content, @RequestParam(name="postIdent") String postIdentNum) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById((long) user.getId());
+
+        Long postId = Long.parseLong(postIdentNum);
+        Post post = postDao.getReferenceById(postId);
+
+        //Create a new comment object
+        Comments newComment = new Comments();
+
+        newComment.setContent(content);
+        newComment.setUser(user);
+        newComment.setPosts(post);
+
+        commentsDao.save(newComment);
+
+//            System.out.println("~~~~~~~~~~~~~~");
+//            System.out.println("commentToDb.getContent() = " + commentToDb.getContent());
+
+        return "redirect:/feed/" + user.getId();
+    }
+
+        @PostMapping("/feed/{id}")
+        public String postCreate(@ModelAttribute Post newPost) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            user = userDao.getReferenceById((long) user.getId());
+//            User userIdUrl = userDao.findById(id).orElse(null);
+
+            // Create a new Post object
+            Post post = new Post();
+//
+            post.setContent(newPost.getContent());
+            post.setUser(user);
+
+            postDao.save(post);
+
+
+
+            return "redirect:/feed/" + user.getId();
+        }
+
     @GetMapping("/calendar/{id}")
     public String getCalender(@PathVariable Long id, Model model) {
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -249,7 +325,7 @@ public class MainController {
 
     public String getMyWorkouts(@PathVariable Long id, Model model) {
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -274,7 +350,7 @@ public class MainController {
     @GetMapping("/map/{location}")
     public String getMap(@PathVariable String location, Model model) {
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
         String profileUrl = "/profile/" + user.getId();
@@ -301,7 +377,7 @@ public class MainController {
     @GetMapping("/favorites/{id}")
     public String getFavorites(@PathVariable Long id, Model model) {
 
-        User userAuth = getAuthenticatedUser();
+        User userAuth = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
         String profileUrl = "/profile/" + userAuth.getId();
@@ -340,7 +416,7 @@ public class MainController {
     @GetMapping("/workout-builder")
     public String getBuilder(Model model) {
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
         String profileUrl = "/profile/" + user.getId();
@@ -367,7 +443,11 @@ public class MainController {
     public String getExercise(Model model) {
         model.addAttribute("exercise", new Exercise());
 
-        User user = getAuthenticatedUser();
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
         String feedUrl = "/feed/" + user.getId();
@@ -390,6 +470,7 @@ public class MainController {
 
     @GetMapping("/exercise-display")
     public String getExerciseDisplay(Model model, @RequestParam String exerciseName, @RequestParam String exerciseTarget, @RequestParam String exerciseEquipment, @RequestParam String exerciseGif) {
+
 
         model.addAttribute("exerciseName", exerciseName);
         model.addAttribute("exerciseTarget", exerciseTarget);
@@ -415,7 +496,7 @@ public class MainController {
     public String getWorkoutWall(Model model) {
 
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
 
@@ -442,7 +523,7 @@ public class MainController {
     @GetMapping("/workout-plan")
     public String getWorkoutPlan(Model model) {
 
-        User user = getAuthenticatedUser();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
         String profileUrl = "/profile/" + user.getId();

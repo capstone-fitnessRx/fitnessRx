@@ -32,7 +32,8 @@
 
         <h3 class="side-name" th:text="${username}"></h3>
         <a class="sided-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>
-        <a class="main-friend" id="modalFriends" href="#" th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
+        <a class="main-friend" id="modalFriends" href="#"
+           th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
         <p class="side-workout" th:text="${workoutPreference}">Workout Preference</p>
         <p class="side-goal" th:text="${goal}">Goals</p>
         <a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a>
@@ -44,32 +45,45 @@
 
             <img class="post-pic" src="/img/fitnessMyIMG.jpeg">
             <!--            <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
-            <form>
-                <input class="post-input" type="text" id="post" placeholder="Post Something Here.">
+            <form method="POST" th:action="@{{feedUrl}(feedUrl=${feedUrl})}" th:object="${post}">
+                <input class="post-input" type="text" id="post" th:field="*{content}"
+                       placeholder="Post Something Here.">
+
+                <div class="image-import-div">
+                    <p class="img-link">images</p>
+                </div>
+                <div class="submit-div">
+                    <button class="submit-post" id="post-submission">Post</button>
+                </div>
             </form>
-            <div class="image-import-div">
-                <p class="img-link">images</p>
-            </div>
-            <div class="submit-div">
-                <button class="submit-post" id="post-submission">Post</button>
-            </div>
         </div>
         <hr>
-
 
         <!--messing with thymeleaf-->
 
         <div th:each="post : ${posts}" class="post-loop card">
-            <img class="feed-pic" src="/img/giannaimg.png">
-            <h4 th:text="${post.getUser().getUsername()}"></h4>
-            <img>
-            <p th:text="${post.getContent()}"></p>
 
-            <div class="card-body comment-head">
-                <!--                <img>-->
-                <p th:text="${post.getLikes()} + ' Likes'"></p>
-                <button class="dropdown-toggle" th:text="${post.getComments().size()} + ' comments'"></button>
-            </div>
+                <img class="feed-pic" src="/img/giannaimg.png">
+                <h4 th:text="${post.getUser().getUsername()}"></h4>
+                <img>
+                <p th:text="${post.getContent()}"></p>
+
+                <div class="card-body comment-head">
+                    <!--                <img>-->
+                    <p th:text="${post.getLikes()} + ' Likes'"></p>
+                    <button class="dropdown-toggle" th:text="${post.getComments().size()} + ' comments'"></button>
+
+                </div>
+                <form th:method="POST" th:action="@{/feed/comment/create}">
+                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment" placeholder="Comment here...">
+
+                    <input type="hidden" th:value="${post.getId()}" name="postIdent">
+
+                    <div class="comment-submit-div">
+                        <button class="submit-comment" id="comment-submission">Send</button>
+                    </div>
+                </form>
+
             <div class="card-body comment-body">
                 <img>
                 <p>Like</p>
@@ -78,14 +92,19 @@
                 <img>
                 <p>Share</p>
             </div>
+
             <div class="input-div">
                 <img class="comment-pic" src="/img/giannaimg.png">
-                <form>
-                    <input class="comment-input" type="text" id="comment" placeholder="Comment here...">
-                </form>
-                <div class="comment-submit-div">
-                    <button class="submit-comment" id="comment-submission">Send</button>
-                </div>
+<!--                Moved up to iterating structure to test input creation and DOM-->
+<!--                <form th:method="POST" th:action="@{/feed/comment/create}">-->
+<!--                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment" placeholder="Comment here...">-->
+
+<!--                    <input type="hidden" th:value="${post.getId()}" name="postIdent">-->
+
+<!--                    <div class="comment-submit-div">-->
+<!--                        <button class="submit-comment" id="comment-submission">Send</button>-->
+<!--                    </div>-->
+<!--                </form>-->
                 <!---->
                 <!---->
                 <!---->
@@ -103,15 +122,15 @@
 
         </div>
         <div class="bottom-feed card bottom-card">
-                    <p>You have reached the end of the feed.</p>
-                    <a>Back to top?</a>
-                </div>
-
-            </div>
-
-
+            <p>You have reached the end of the feed.</p>
+            <a>Back to top?</a>
         </div>
+
     </div>
+
+
+</div>
+</div>
 
 </div>
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
