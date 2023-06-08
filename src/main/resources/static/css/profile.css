@@ -39,6 +39,12 @@ body {
     padding-left: 20px;
     padding-right: 20px;
 }
+.profile-menu {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    margin-left: auto;
+}
 .main-profile-pic {
     border-radius: 50%;
     width: 170px;

@@ -24,7 +24,6 @@
 
 <div sec:authorize="isAuthenticated()">
     This content is only shown to authenticated users.
-
     User ID: <span th:text="${#authentication.principal.id}"/>
     Username: <span th:text="${#authentication.principal.username}"/>
     Email: <span th:text="${#authentication.principal.email}"/>
@@ -36,12 +35,6 @@
     <div th:insert="partials/modals.html :: modals"></div>
 
 
-    <div th:if="${userProfile == userProfileId}">
-        <p>This is your profile.</p>
-    </div>
-    <div th:unless="${userProfile != userProfileId}">
-        <p>This is not your profile.</p>
-    </div>
     <!--    banner card-->
     <div class="card banner-card">
         <!--        <img class="main-banner" src="../../static/img/bannerMain.jpeg">-->
@@ -49,7 +42,13 @@
     </div>
 
     <div class="card main-card">
-
+        <img class="profile-menu" id="modalEdit" src="/img/edit.png">
+<!--        <div th:if="${authenticatedUserId.getId() == urlUserId}">-->
+<!--            this is your profile.-->
+<!--        </div>-->
+<!--        <div th:if="${authenticatedUserId.getId() != urlUserId}">-->
+<!--            this is NOT your profile.-->
+<!--        </div>-->
 
         <!--  <h3 th:text="*{username}"></h3>-->
         <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
@@ -64,23 +63,26 @@
 
     <div class="card goal-card">
         <!--Make a conditional that changes 'My Goal' to the users name + goal if this isn't the owner viewing it-->
-        <h4 class="goal-header">My Goal</h4>
+        <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="goal-header">My Goal</h4>
+        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="goal-header" th:text="${username} + 's Goal'"></h4>
         <p class="goal" th:text="${goal}"></p>
     </div>
     <!--Workout card-->
     <div class="card workout-card">
         <!--        Conditional below-->
-        <h4 class="workout-header">My Workouts</h4>
+        <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="workout-header">My Workouts</h4>
+        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="workout-header" th:text="${username} + 's Workouts'"></h4>
         <div th:each="myWorkout : ${myWorkouts}">
             <h4 th:text="${myWorkout.getTitle()}"></h4>
 
         </div>
-        <a class="view-all" th:href="@{/my-workouts/{id}}"><u>View All</u></a>
+        <a class="view-all" th:href="@{/my-workouts/{id}(id=${urlUserId})}"><u>View All</u></a>
     </div>
     <!--Favorites card-->
     <div class="card favorite-card">
         <!--        Conditional below-->
-        <h4 class="favorite-header">My Favorites</h4>
+        <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="favorite-header">My Favorites</h4>
+        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="favorite-header" th:text="${username} + 's Favorites'"></h4>
 
         <a th:href="@{/home}" th:each="favoriteWorkout : ${favoriteWorkouts}">
             <div>
@@ -89,7 +91,7 @@
         </a>
 
         <!--        for each here to list user favorite workouts-->
-        <a class="view-all" th:href="@{/favorites/{id}}"><u>View All</u></a>
+        <a class="view-all" th:href="@{/favorites/{id}(id=${urlUserId})}"><u>View All</u></a>
     </div>
 
 </div>

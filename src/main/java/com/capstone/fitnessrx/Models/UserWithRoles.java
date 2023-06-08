@@ -12,6 +12,10 @@ public class UserWithRoles extends User implements UserDetails {
         super(user);
     }
 
+
+
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String roles = "";

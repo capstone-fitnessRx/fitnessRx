@@ -4,10 +4,15 @@
             <img src="" alt="Logo">
         </div>
 
+
+
+
+
+
         <div>
             <div class="menu">
                 <div class="tab-menu" role="group" aria-label="Button group with nested dropdown">
-                    <a sec:authorize="isAuthenticated()" th:href="@{/home}" id="tab1" class="btn">Home</a>
+                    <a th:href="@{/home}" id="tab1" class="btn">Home</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{{feedUrl}(feedUrl=${feedUrl})}" id="tab2" class="btn">Feed</a>
                     <a th:href="@{/exercise-page}" id="tab3" class="btn">Exercises</a>
                     <a th:href="@{/workouts-wall}" id="tab4" class="btn">Workouts</a>
@@ -31,13 +36,13 @@
                             <button class="btn-link btn" style="margin-top: 8px"><a class="link-no-auth" th:href="@{/register}">Register</a></button>
 
                 </div>
-
+<!--                <div>-->
+<!--                    <span sec:authorize="Authenticated()">yes</span>-->
+<!--                </div>-->
                 <div>
-
-
                     <!--            </button>-->
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item p-drop" href='#' id="modalEdit">Edit Profile</a></li>
+                        <li><a class="dropdown-item p-drop" th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a></li>
                         <li><a class="dropdown-item" th:href="@{{myWorkoutsUrl}(myWorkoutsUrl=${myWorkoutsUrl})}">My
                             Workouts</a></li>
                         <li><a class="dropdown-item"
@@ -46,6 +51,7 @@
                         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
                             <button class="btn-link btn dropdown-item" style="margin-top: 8px">Logout</button>
                         </form>
+<!--                        <li><a class="dropdown-item p-drop" href='#' id="modalEdit">Edit Profile</a></li>-->
                     </ul>
                 </div>
             </div>
