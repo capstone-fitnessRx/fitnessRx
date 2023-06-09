@@ -274,7 +274,8 @@ $(document).ready(function () {
                 '            <input class="d-none form-control" type="text" th:field="*{exerciseGif}" name="exerciseGif" value="'+gifUrl+'">\n' +
                 '        </button>\n' +
                 '    </form>';
-            workoutBuilderCard += '<div xmlns="http://www.w3.org/1999/html"><form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
+            workoutBuilderCard += '<div xmlns="http://www.w3.org/1999/html">' +
+                '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
                 '        <button class="btn " type="submit">\n' +
                 '            <div class="card text-center" style="width: 180px">\n' +
                 '                <div class="card-header " style="height: 130px">\n' +
@@ -297,12 +298,12 @@ $(document).ready(function () {
                 '<button class="text-center open_modal" data-open-modal >Add to Workout</button>' +
                 '</div>' +
                 '<dialog class="data_modal" data-modal>' +
-                '   <form>' +
-                '       <input type="text" name="">Reps: </input> ' +
-                '       <input type="text">Sets: </input> ' +
-                '       <input class="d-none" value="'+name+'">' +
-                '       <input class="d-none" value="'+name+'"> ' +
-                '       <button >Save</button>' +
+                '   <form th:action="@{/workout-builder/save}"  th:method="post" th:object="${exerciseDetails}">' +
+                '       <input type="text"  th:field="*{reps}" name="reps">Reps: </input> ' +
+                '       <input type="text" th:field="*{sets}" name="sets">Sets: </input> ' +
+                '       <input class="d-none" th:field="*{exercise_Api_Id}" name="exercise_Api_Id" value="'+id+'"> ' +
+                // '       <input class="d-none" th:field="*{target_muscle}" value="'+name+'">' +
+                '       <button type="submit">Save</button>' +
                 '   </form>' +
                 '   <button class="close_modal" data-close-modal>close</button>' +
                 '</dialog>'
