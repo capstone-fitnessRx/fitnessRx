@@ -27,6 +27,7 @@
     User ID: <span th:text="${#authentication.principal.id}"/>
     Username: <span th:text="${#authentication.principal.username}"/>
     Email: <span th:text="${#authentication.principal.email}"/>
+    Color: <span th:text="${#authentication.principal.cardColor}"/>
 </div>
 
 
@@ -41,7 +42,7 @@
         <img class="main-banner" src="/img/bannerMain.jpeg">
     </div>
 
-    <div class="card main-card">
+    <div class="card main-card" th:style="'background-color:' + ${cardColor}">
         <img th:if="${authenticatedUserId.getId() == urlUserId}" class="profile-menu" id="modalEdit" src="/img/edit.png">
 <!--        <div th:if="${authenticatedUserId.getId() == urlUserId}">-->
 <!--            this is your profile.-->
@@ -54,8 +55,10 @@
         <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
         <div class="addFriend-div">
-        <h3 class="main-name" th:text="${username}"></h3>
+        <h1 class="main-name" th:text="${username}"></h1>
+            <a>
             <img th:if="${authenticatedUserId.getId() != urlUserId}" class="addFriend" id="addFriend" src="/img/addFriend.png">
+            </a>
         </div>
 
         <a class="main-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>

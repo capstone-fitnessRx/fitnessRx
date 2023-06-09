@@ -25,7 +25,8 @@ public class User {
     private String bio;
     @Column()
     private String goal;
-
+    @Column()
+    private String cardColor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> post;
     @OneToMany(mappedBy = "user")
@@ -59,10 +60,6 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "exercise_id")})
     private List<Exercise> favoriteExercise;
 
-    public User () {
-
-    }
-
 
 
     public User(User copy) {
@@ -76,6 +73,7 @@ public class User {
         bio =copy.bio;
         post =copy.post;
         goal = copy.goal;
+        cardColor = copy.cardColor;
         calender = copy.calender;
         ratings =copy.ratings;
         sentMessages =copy.sentMessages;
@@ -86,7 +84,14 @@ public class User {
         favoriteExercise =copy.favoriteExercise;
     }
 
-    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+
+    public User () {
+
+    }
+
+
+
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -95,6 +100,7 @@ public class User {
         this.workoutPreference = workoutPreference;
         this.bio = bio;
         this.goal = goal;
+        this.cardColor = cardColor;
         this.post = post;
         this.calender = calender;
         this.ratings = ratings;
@@ -176,6 +182,14 @@ public class User {
 
     public void setGoal(String goal) {
         this.goal = goal;
+    }
+
+    public String getCardColor() {
+        return cardColor;
+    }
+
+    public void setCardColor(String cardColor) {
+        this.cardColor = cardColor;
     }
 
     public List<Post> getPost() {
