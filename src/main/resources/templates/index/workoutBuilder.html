@@ -30,11 +30,9 @@
                             <th class=" ">Exercise Name</th>
                             <th class=" px-4">Sets</th>
                             <th class=" px-4 ">Reps</th>
-                            <th class=" px-4">Weight</th>
                         </tr>
                         </thead>
                         <tbody id="insertExercises" class=" text-center">
-
                         <!--                        exercises will be appended here-->
                         </tbody>
                     </table>
@@ -77,18 +75,18 @@
 <script src="/js/navbar.js"></script>
 <script src="/js/exerciseDB.js"></script>
 <script>
-    let openModal = document.getElementsByClassName("open_modal");
-    let closeModal = document.getElementsByClassName("close_modal");
-    let modal = document.getElementsByClassName("data_modal");
-    console.log(openModal.length);
-    for (let i = 0 ; i < openModal.length; i++) {
-        openModal[i].addEventListener('click' , () => {
-            modal.showModal();
-        },true ) ;
-        closeModal[i].addEventListener('click' , () => {
-            modal.close();
-        },true ) ;
-    }
+    // let openModal = document.getElementsByClassName("open_modal");
+    // let closeModal = document.getElementsByClassName("close_modal");
+    // let modal = document.getElementsByClassName("data_modal");
+    // console.log(openModal.length);
+    // for (let i = 0 ; i < openModal.length; i++) {
+    //     openModal[i].addEventListener('click' , () => {
+    //         modal.showModal();
+    //     },true ) ;
+    //     closeModal[i].addEventListener('click' , () => {
+    //         modal.close();
+    //     },true ) ;
+    // }
 </script>
 
 </body>

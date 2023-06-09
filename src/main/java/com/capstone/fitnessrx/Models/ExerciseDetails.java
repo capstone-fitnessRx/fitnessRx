@@ -11,9 +11,10 @@ public class ExerciseDetails {
     private Long id;
 
     @Column(nullable = false)
-    private int reps;
+    private int exercise_Api_Id;
+
     @Column(nullable = false)
-    private String weight;
+    private int reps;
     @Column(nullable = false)
     private int sets;
 
@@ -29,21 +30,35 @@ public class ExerciseDetails {
     public ExerciseDetails() {
     }
 
-    public ExerciseDetails(Long id, int reps, String weight, int sets, Exercise exercise, Workout workout) {
+    public ExerciseDetails(Long id,int exercise_Api_Id, int reps, int sets, Exercise exercise, Workout workout) {
         this.id = id;
+        this.exercise_Api_Id = exercise_Api_Id;
         this.reps = reps;
-        this.weight = weight;
         this.sets = sets;
         this.exercise = exercise;
         this.workout = workout;
     }
 
-    public ExerciseDetails(int reps, String weight, int sets, Exercise exercise, Workout workout) {
+    public ExerciseDetails(int reps,int exercise_Api_Id, int sets, Exercise exercise, Workout workout) {
+        this.exercise_Api_Id = exercise_Api_Id;
         this.reps = reps;
-        this.weight = weight;
         this.sets = sets;
         this.exercise = exercise;
         this.workout = workout;
+    }
+
+    public ExerciseDetails(int exercise_Api_Id, int reps, int sets) {
+        this.exercise_Api_Id = exercise_Api_Id;
+        this.reps = reps;
+        this.sets = sets;
+    }
+
+    public int getExercise_Api_Id() {
+        return exercise_Api_Id;
+    }
+
+    public void setExercise_Api_Id(int exercise_Api_Id) {
+        this.exercise_Api_Id = exercise_Api_Id;
     }
 
     public Long getId() {
@@ -60,14 +75,6 @@ public class ExerciseDetails {
 
     public void setReps(int reps) {
         this.reps = reps;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
     }
 
     public int getSets() {
