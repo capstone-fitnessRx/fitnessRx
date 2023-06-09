@@ -2,7 +2,15 @@
     position: relative;
 }
 
+.form-check {
+    float: right;
+    clear: both;
+    margin-left: 10px;
+    margin-top: 55px;
+}
+
 .card .form-control {
     width: 100%;
     box-sizing: border-box;
 }
+

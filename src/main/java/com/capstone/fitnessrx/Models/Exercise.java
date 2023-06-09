@@ -24,6 +24,9 @@ public class Exercise {
     @Column(nullable = false, length = 200)
     private long exercise_id;
 
+    @Column(nullable = false, length = 200)
+    private String exercise_gif;
+
     @ManyToMany(mappedBy = "favoriteExercise")
     private List<User> users;
 
@@ -38,24 +41,25 @@ public class Exercise {
     }
 
 
-    public Exercise(long id, String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, List<User> users, List<Categories> categories) {
+    public Exercise(long id, String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<Categories> categories) {
         this.id = id;
         this.exercise_name = exercise_name;
         this.exercise_bodyPart = exercise_bodyPart;
         this.exercise_equipment = exercise_equipment;
         this.exercise_target = exercise_target;
         this.exercise_id = exercise_id;
+        this.exercise_gif = exercise_gif;
         this.users = users;
         this.categories = categories;
     }
 
-    public Exercise(String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, List<User> users, List<Categories> categories) {
-
+    public Exercise(String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<Categories> categories) {
         this.exercise_name = exercise_name;
         this.exercise_bodyPart = exercise_bodyPart;
         this.exercise_equipment = exercise_equipment;
         this.exercise_target = exercise_target;
         this.exercise_id = exercise_id;
+        this.exercise_gif = exercise_gif;
         this.users = users;
         this.categories = categories;
     }
@@ -136,5 +140,13 @@ public class Exercise {
 
     public void setExercise_id(long exercise_id) {
         this.exercise_id = exercise_id;
+    }
+
+    public String getExercise_gif() {
+        return exercise_gif;
+    }
+
+    public void setExercise_gif(String exercise_gif) {
+        this.exercise_gif = exercise_gif;
     }
 }
