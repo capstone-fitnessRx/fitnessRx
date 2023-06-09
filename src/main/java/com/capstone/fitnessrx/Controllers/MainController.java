@@ -394,28 +394,6 @@ public class MainController {
 
     }
 
-    @PostMapping("/calendar/note")
-    public String saveNotes(@ModelAttribute Calender newCalender){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user = userDao.getReferenceById((long) user.getId());
-
-        Calender calender = new Calender();
-
-        newCalender.setNotes(newCalender.getNotes());
-                calender.setUser(user);
-                calenderDao.save(calender);
-
-
-        return "redirect:/calendar/" + user.getId();
-
-    }
-
-
-
-
-
-
-
 
 
     @GetMapping("/my-workouts/{id}")
