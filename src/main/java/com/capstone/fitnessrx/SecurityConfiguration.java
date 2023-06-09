@@ -58,7 +58,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers(
 
-                        "/feed/like", "/profile/{id}","feed/comment/create", "/js/**", "/feed/{id}", "/calendar/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder", "/exercise-display", "/workout-plan"// only authenticated users can edit ads
+
+
+                        "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder", "/exercise-page", "/exercise-display", "/workouts-wall", "/workout-plan", "/calender/note"
+                        // only authenticated users can edit ads
+
 
                 )
                 .authenticated()

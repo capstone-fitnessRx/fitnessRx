@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Gym Locator</title>
-<!--    bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-  <!--  css link-->
-  <link rel="stylesheet" href="/css/gymmap.css">
+    <!--mapbox css-->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+<!--    <script src="js/mapbox-geocoder-utils.js"></script>-->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+    <!--  css link-->
+    <link rel="stylesheet" href="/css/gymmap.css">
     <link rel="stylesheet" href="/css/messenger.css">
     <link rel="stylesheet" href="/css/navbar1.css">
-<!--  <link rel="stylesheet" href="../../static/css/gymmap.css">-->
-<!--mapbox-->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
 
+
+    <!--    bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"/>
   <h1>Gym locations near you!</h1>
-  <div id='map' data-location="${location}." style='width: 700px; height: 400px;'></div>
+  <div id='map' data-location="${location}." style='width: 700px; height: 400px;z-index:5;display:block'></div>
 <div th:insert="partials/modals.html :: modals"></div>
 
 
@@ -34,12 +34,19 @@
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
   <!--    jquery cdn-->
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<!--&lt;!&ndash;geocoder utils&ndash;&gt;-->
+<!--<script src="js/mapbox-geocoder-utils.js"></script>-->
     <!--javascript file-->
+<script src="/js/gymmap.js"></script>
+<!--mapbox js-->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
 <!--<script src="../../static/js/gymmap.js"></script>-->
 <script src="/js/gymmap.js"></script>
 <script src="/js/feed.js"></script>
 <script src="/js/modals.js"></script>
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
+<!--mapbox js-->
+
 </body>
 </html>

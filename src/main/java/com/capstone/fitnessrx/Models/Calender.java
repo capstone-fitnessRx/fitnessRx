@@ -17,6 +17,9 @@ public class Calender {
     @Column()
     private String notes;
 
+    @Column()
+    private String notes;
+
     public Calender() {
     }
 
@@ -64,4 +67,6 @@ public class Calender {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
 }
+
