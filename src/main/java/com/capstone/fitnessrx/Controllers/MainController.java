@@ -565,6 +565,34 @@ public class MainController {
 
         return "index/workoutplan";
     }
+
+    @GetMapping("/test")
+    public String loading(Model model) {
+        model.addAttribute("exercise", new Exercise());
+        return "index/TEST";
+    }
+
+    @PostMapping("/test")
+    public String saveExercise(@ModelAttribute Exercise exercise){
+        System.out.println(exercise.getExercise_bodyPart());
+        String name = exercise.getExercise_name();
+        exercise.setExercise_name(name);
+
+        String bodyPart = exercise.getExercise_bodyPart();
+        exercise.setExercise_bodyPart(bodyPart);
+
+        String equipment = exercise.getExercise_equipment();
+        exercise.setExercise_equipment(equipment);
+
+        String target = exercise.getExercise_target();
+        exercise.setExercise_target(target);
+
+        long id = exercise.getExercise_id();
+        exercise.setExercise_id(id);
+
+        exerciseDao.save(exercise);
+        return "redirect:/test";
+    }
 }
 
 
