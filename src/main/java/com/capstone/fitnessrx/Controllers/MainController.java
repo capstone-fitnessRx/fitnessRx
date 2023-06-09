@@ -26,7 +26,7 @@ public class MainController {
     private final WorkoutRepository workoutDao;
 //    private final FavoriteWorkoutRepository favworkDao;
     private final ExerciseRepository exerciseDao;
-    private final ExerciseDetailsRepository exerciseDetailsDao;
+    private ExerciseDetailsRepository exerciseDetailsDao = null;
 
 
 
@@ -436,8 +436,8 @@ public class MainController {
 //@RequestParam String reps, @RequestParam String sets, @RequestParam String exercise_Api_Id
     @GetMapping("/workout-builder")
     public String getBuilder(Model model) {
-//        ExerciseDetails exerciseDetails = new ExerciseDetails(Integer.parseInt(reps),Integer.parseInt(sets),Integer.parseInt(exercise_Api_Id));
-//        exerciseDetailsDao.save(exerciseDetails);
+        model.addAttribute("exerciseDetails", new ExerciseDetails());
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
@@ -460,30 +460,17 @@ public class MainController {
 
         return "index/workoutBuilder";
     }
-    @GetMapping("/workout-builder/save")
-    public String getBuilder(@PathVariable long reps, long sets, long exercise_Api_Id, Model model) {
-//        ExerciseDetails exerciseDetails = new ExerciseDetails(Integer.parseInt(reps),Integer.parseInt(sets),Integer.parseInt(exercise_Api_Id));
-//        exerciseDetailsDao.save(exerciseDetails);
-        model.addAttribute("exerciseDetails", exerciseDetailsDao.getReferenceById(reps));
-        model.addAttribute("exerciseDetails", exerciseDetailsDao.getReferenceById(sets));
-        model.addAttribute("exerciseDetails", exerciseDetailsDao.getReferenceById(exercise_Api_Id));
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String profileUrl = "/profile/" + user.getId();
-        model.addAttribute("profileUrl", profileUrl);
-        String feedUrl = "/feed/" + user.getId();
-        model.addAttribute("feedUrl", feedUrl);
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
-        String myWorkoutsUrl = "/my-workouts/" + user.getId();
-        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
-        String favoritesUrl = "/favorites/" + user.getId();
-        model.addAttribute("favoritesUrl", favoritesUrl);
-        return "index/workoutBuilder";
-    }
 
-    @PostMapping("/workout-builder/save")
+    @PostMapping("/workout-builder")
     public String postBuilder(ExerciseDetails exerciseDetails) {
-//        ExerciseDetails exerciseDetails = new ExerciseDetails(Integer.parseInt(reps),Integer.parseInt(sets),Integer.parseInt(exercise_Api_Id));
+        int reps = exerciseDetails.getReps();
+        exerciseDetails.setReps(reps);
+
+        int sets = exerciseDetails.getSets();
+        exerciseDetails.setSets(sets);
+
+        int exercise_Api_Id = exerciseDetails.getExercise_Api_Id();
+        exerciseDetails.setExercise_Api_Id(exercise_Api_Id);
         exerciseDetailsDao.save(exerciseDetails);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -512,12 +499,6 @@ public class MainController {
 
         return "index/exercises";
     }
-//    @PostMapping("exercise-page")
-//    public String postExercise(@ModelAttribute Exercise exercise, Model model) {
-//        exerciseDao.save(exercise);
-//        model.addAttribute("exercise", exerciseDao);
-//        return "redirect:/exercise-display";
-//    }
 
     @GetMapping("/exercise-display")
     public String getExerciseDisplay(Model model, @RequestParam String exerciseName, @RequestParam String exerciseTarget, @RequestParam String exerciseEquipment, @RequestParam String exerciseGif) {

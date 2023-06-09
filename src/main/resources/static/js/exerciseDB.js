@@ -298,7 +298,7 @@ $(document).ready(function () {
                 '<button class="text-center open_modal" data-open-modal >Add to Workout</button>' +
                 '</div>' +
                 '<dialog class="data_modal" data-modal>' +
-                '   <form th:action="@{/workout-builder/save}"  th:method="post" th:object="${exerciseDetails}">' +
+                '   <form th:action="@{/workout-builder}"  th:method="post" th:object="${exerciseDetails}">' +
                 '       <input type="text"  th:field="*{reps}" name="reps">Reps: </input> ' +
                 '       <input type="text" th:field="*{sets}" name="sets">Sets: </input> ' +
                 '       <input class="d-none" th:field="*{exercise_Api_Id}" name="exercise_Api_Id" value="'+id+'"> ' +
