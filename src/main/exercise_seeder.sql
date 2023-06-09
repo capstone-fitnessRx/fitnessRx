@@ -1,43 +1,43 @@
 USE fitnessRx_test_db;
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-    VALUES ('waist','body weight','https://edbv2-ff7foj6vca-uc.a.run.app/image/XkHKCAW5D6UFoH','0001','3/4 sit-up','abs');
+    VALUES ('waist','no equipment','https://edbv2-ff7foj6vca-uc.a.run.app/image/XkHKCAW5D6UFoH','0001','3/4 sit-up','abs');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('waist', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/b0wKm4kxwLCBY-', '0002', '45° side bend', 'abs');
+        VALUES ('waist', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/b0wKm4kxwLCBY-', '0002', '45° side bend', 'abs');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('waist', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/FHY1rS1Bb6TPrQ', '0003', 'air bike', 'abs');
+        VALUES ('waist', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/FHY1rS1Bb6TPrQ', '0003', 'air bike', 'abs');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('upper legs', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/2-8CEMjBu_Yl7J', '1512', 'all fours squad stretch', 'quads');
+        VALUES ('upper legs', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/2-8CEMjBu_Yl7J', '1512', 'all fours squad stretch', 'quads');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('waist', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/NZdlqE_+0Ny3pY', '0006', 'alternate heel touchers', 'abs');
+        VALUES ('waist', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/NZdlqE_+0Ny3pY', '0006', 'alternate heel touchers', 'abs');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
         VALUES ('back', 'cable', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/tF70efRIN3w=yD', '0007', 'alternate lateral pulldown', 'lats');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('lower legs', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/zP8_T-bC1gw-d7', '1368', 'ankle circles', 'calves');
+        VALUES ('lower legs', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/zP8_T-bC1gw-d7', '1368', 'ankle circles', 'calves');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('back', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/2teABoI98NRQQg', '3293', 'archer pull up', 'lats');
+        VALUES ('back', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/2teABoI98NRQQg', '3293', 'archer pull up', 'lats');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('chest', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/yGdRgwYDDxk4k9', '3294', 'archer push up', 'pectorals');
+        VALUES ('chest', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/yGdRgwYDDxk4k9', '3294', 'archer push up', 'pectorals');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('waist', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/UjSpAsqoKq+PwX', '2355', 'arm slingers hanging bent knee legs', 'abs');
+        VALUES ('waist', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/UjSpAsqoKq+PwX', '2355', 'arm slingers hanging bent knee legs', 'abs');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('waist', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/nhLI-T4DShO008', '2333', 'arm slingers hanging straight legs', 'abs');
+        VALUES ('waist', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/nhLI-T4DShO008', '2333', 'arm slingers hanging straight legs', 'abs');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('upper legs', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/m60L5NyJorRg7=', '3214', 'arms apart circular toe touch (male)', 'glutes');
+        VALUES ('upper legs', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/m60L5NyJorRg7=', '3214', 'arms apart circular toe touch (male)', 'glutes');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-        VALUES ('waist', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/F4RX1z3JOeCr_4', '3204', 'arms overhead full sit-up (male)', 'abs');
+        VALUES ('waist', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/F4RX1z3JOeCr_4', '3204', 'arms overhead full sit-up (male)', 'abs');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
         VALUES ('chest', 'leverage machine', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/v1TBqVQ5qoJO3B', '0009', 'assisted chest dip (kneeling)', 'pectorals');
@@ -106,25 +106,25 @@ INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exer
       VALUES ('chest', 'leverage machine', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/dHO5iAZaqv1a_-', '2364', 'assisted wide-grip chest dip (kneeling)', 'pectorals');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-      VALUES ('cardio', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/-Txs0Wo2kHwl8j', '3220', 'astride jumps (male)', 'cardiovascular system');
+      VALUES ('cardio', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/-Txs0Wo2kHwl8j', '3220', 'astride jumps (male)', 'cardiovascular system');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-      VALUES ('cardio', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/hceReKl5tCprhs', '3672', 'back and forth step', 'cardiovascular system');
+      VALUES ('cardio', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/hceReKl5tCprhs', '3672', 'back and forth step', 'cardiovascular system');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
       VALUES ('back', 'stability ball', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/i8uO0fVh6EmUdT', '1314', 'back extension on exercise ball', 'spine');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-    VALUES ('back', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/GS6w1c1JDHUyDl', '3297', 'back lever', 'upper back');
+    VALUES ('back', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/GS6w1c1JDHUyDl', '3297', 'back lever', 'upper back');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-    VALUES ('back', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/zgqxaF2dsaxd1f', '1405', 'back pec stretch', 'lats');
+    VALUES ('back', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/zgqxaF2dsaxd1f', '1405', 'back pec stretch', 'lats');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-    VALUES ('upper legs', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/8oAMSXWJXxwjul', '1473', 'backward jump', 'quads');
+    VALUES ('upper legs', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/8oAMSXWJXxwjul', '1473', 'backward jump', 'quads');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
-    VALUES ('upper legs', 'body weight', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/X571ugI+eYDqft', '0020', 'balance board', 'quads');
+    VALUES ('upper legs', 'no equipment', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/X571ugI+eYDqft', '0020', 'balance board', 'quads');
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
     VALUES ('upper arms', 'band', 'https://edbv2-ff7foj6vca-uc.a.run.app/image/YXLOk9Fkz-Eevp', '0968', 'band alternating biceps curl', 'biceps');
