@@ -186,11 +186,11 @@ public class User {
         this.post = post;
     }
 
-    public List<Calender> getCalender() {
+    public List<Calender> getcalender() {
         return calender;
     }
 
-    public void setCalender(List<Calender> calender) {
+    public void setcalender(List<Calender> calender) {
         this.calender = calender;
     }
 
