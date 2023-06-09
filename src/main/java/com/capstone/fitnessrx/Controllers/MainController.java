@@ -105,10 +105,54 @@ public class MainController {
 
         return "redirect:/profile/" + user.getId();
     }
+//
+//
+//
+//
+//
+//
+@PostMapping("/profile/{id}")
+    public String addContact (@PathVariable Long id, @RequestParam(name="contactHidden") long addID, Model model){
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User newFriend = userDao.getOne(addID);
 
+    User userProfile = userDao.findById(id).orElse(null);
 
+    model.addAttribute("userProfile", id);
 
+        Friends friends = new Friends();
 
+        friends.setUserMain(user);
+        friends.setUserFriend(newFriend);
+        friendsDao.save(friends);
+
+    return "redirect:/profile/" + user.getId();
+    }
+
+//
+//
+//
+//
+//    @PostMapping("/messages/addcontact")
+//    public String addContact (@RequestParam(name="contactHidden") long addID){
+//        Contact addedContact = new Contact();
+//        User addthisUserID = userDao.getOne(addID);
+//        User contactlistOwner = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        addedContact.setOwner_user(contactlistOwner);
+//        addedContact.setAdded_user_id(addthisUserID);
+//        contactDao.save(addedContact);
+//
+//        return "redirect:/messages";
+//    }
+//
+//
+//
+//
+//
+//
+//
+//
     @PostMapping("/profile/update")
     public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal,Model model) {
 
@@ -253,6 +297,8 @@ public class MainController {
         if (userProfile != null) {
 //
 //            List<Post> post = postDao.findAll();
+            User userfeed = userDao.findById(id).orElse(null);
+            List<Friends> userFriends = friendsDao.findAllByUserMain(userfeed);
 
             model.addAttribute("post", new Post());
             model.addAttribute("comments", new Comments());
@@ -265,7 +311,7 @@ public class MainController {
             String goal = userProfile.getGoal();
 
 
-
+            model.addAttribute("userFriends", userFriends);
             model.addAttribute("userProfile", userProfile);
             model.addAttribute("userProfileId", id);
             model.addAttribute("username", username);

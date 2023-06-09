@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class Friends {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
     @ManyToOne
