@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+//import java.util.Calender;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public class MainController {
     private final WorkoutRepository workoutDao;
 //    private final FavoriteWorkoutRepository favworkDao;
     private final ExerciseRepository exerciseDao;
+
 
 
     public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, ExerciseRepository exerciseDao) {
@@ -75,8 +77,8 @@ public class MainController {
             String feedUrl = "/feed/" + user.getId();
             model.addAttribute("feedUrl", feedUrl);
 
-            String calendarUrl = "/calendar/" + user.getId();
-            model.addAttribute("calendarUrl", calendarUrl);
+            String calenderUrl = "/calender/" + user.getId();
+            model.addAttribute("calenderUrl", calenderUrl);
 
             String myWorkoutsUrl = "/my-workouts/" + user.getId();
             model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -108,8 +110,8 @@ public class MainController {
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -182,8 +184,8 @@ public class MainController {
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -297,10 +299,13 @@ public class MainController {
             return "redirect:/feed/" + user.getId();
         }
 
-    @GetMapping("/calendar/{id}")
+    @GetMapping("/calender/{id}")
     public String getCalender(@PathVariable Long id, Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+        model.addAttribute("calender", new Calender());
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -308,8 +313,8 @@ public class MainController {
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -317,7 +322,22 @@ public class MainController {
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
 
-            return "index/calendar";
+        return "index/calender";
+    }
+
+    @PostMapping("/calender/note")
+    public String saveNotes(@ModelAttribute Calender newCalender){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById((long) user.getId());
+
+        Calender calender = new Calender();
+
+        calender.setNotes(newCalender.getNotes());
+        calender.setUser(user);
+        calenderDao.save(calender);
+
+
+        return "redirect:/calender/" + user.getId();
 
     }
 
@@ -333,8 +353,8 @@ public class MainController {
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -359,8 +379,8 @@ public class MainController {
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -386,8 +406,8 @@ public class MainController {
         String feedUrl = "/feed/" + userAuth.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + userAuth.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + userAuth.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + userAuth.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -425,8 +445,8 @@ public class MainController {
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -452,8 +472,8 @@ public class MainController {
         model.addAttribute("profileUrl", profileUrl);
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
         String favoritesUrl = "/favorites/" + user.getId();
@@ -482,8 +502,8 @@ public class MainController {
         model.addAttribute("profileUrl", profileUrl);
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
         String favoritesUrl = "/favorites/" + user.getId();
@@ -506,8 +526,8 @@ public class MainController {
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
@@ -532,8 +552,8 @@ public class MainController {
         String feedUrl = "/feed/" + user.getId();
         model.addAttribute("feedUrl", feedUrl);
 
-        String calendarUrl = "/calendar/" + user.getId();
-        model.addAttribute("calendarUrl", calendarUrl);
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
 
         String myWorkoutsUrl = "/my-workouts/" + user.getId();
         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);

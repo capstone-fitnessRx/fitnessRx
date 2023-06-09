@@ -2,11 +2,11 @@
 
 
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiemFrZXJpYWQiLCJhIjoiY2xmNHN0N285MDB1eTNwcG9idDg2amR2dyJ9.rQ7IuHwwb9nMRcMqv6K6lw';
+mapboxgl.accessToken = 'pk.eyJ1IjoiemFrZXJpYWQiLCJhIjoiY2xpbjlmMmQ5MDRkeTNxcGdyZDBibWE4aiJ9.bCxB3efrx5FPpejwfDtgWw';
 const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
-    // center: [${location}], // starting position [lng, lat]
+    center: [-74.5, 40], // starting position [lng, lat]
     zoom: 9, // starting zoom
 });
 //
@@ -18,58 +18,57 @@ const map = new mapboxgl.Map({
 
 
 
-function populateMapInput(location) {
+async function populateMapInput(location) {
     const encodedLocation = encodeURIComponent(location).replaceAll('%20', '+');
     const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedLocation}.json?access_token=${mapboxgl.accessToken}`;
-
-
-    fetch(geocodeUrl)
+    let gymLocatorUrl =""
+    let coordinates =[]
+    await fetch(geocodeUrl)
         .then(response => response.json())
         .then(data => {
-            const coordinates = data.features[0].center;
+            coordinates = data.features[0].center;
             const lng = coordinates[0];
             const lat = coordinates[1];
-            // let gyms = data.features.type;
-            // gyms.forEach(gym => {
-            //     let gymName = gym.text;
-            //     let latitude = gym.center[1]
-            //     let longitude = gym.center[0]
-            // })
             map.setCenter([lng, lat]);
+            gymLocatorUrl =`https://api.tomtom.com/search/2/poiSearch/gym.json?lat=${lat}&lon=${lng}&categorySet=7320&view=Unified&key=GGCftL4ynajz16FGIFxh6FwizgE0HkYP`
         })
         .catch(error => {
             console.log('Error:', error);
         });
-}
-$(document).ready(function () {
-    $('#show').click(() => {
-        $.ajax({
-            async: true,
-            crossDomain: true,
-            url: 'https://api.tomtom.com/search/2/poiSearch/gym.json?lat=${results[1]]}&lon=${results[0]}&categorySet=7320&view=Unified&key=*****',
-            headers: {
-                'content-type': 'application/json; charset=utf-8',
-                'tracking-id': '88f556f8-afde-4d07-8192-46b5f99df072'
 
-            }
-        }).done(function (data) {
-            console.log(data);
-            let gyms = "";
-            let i;
-            for (i = 0; i < data.length; i++) {
-                let gym = data[i];
-                gyms += '<div class=gymLocation>' + gym + '</div>';
-            }
-            $('.address2').html(gyms)
-            //for loop to loop through array list
-            // for (i = 0; i < data.length; i++) {
-            //     let gym = data[i];
-            //     bodyParts += '<div class=availableBodyParts>' + bodyPart + '</div>';
-            // }
-            // $('.availableBodyParts').html(bodyParts)
+    await fetch(gymLocatorUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            // const gymNear = coordinates;
+            // const gymLng = gymNear[0];
+            // const gymLat = gymNear[1];
+            // let newMarker = new mapboxgl.Marker();
+            // newMarker.setLngLat([gymLng,gymLat])
+            // newMarker.addTo(map);
         })
-    })
-})
+}
+// function getGyms(location) {
+//     let html=""
+//     fetch()
+//         .then(response => response.json())
+//         .then(data => {
+//             const coordinates = data.features[0].center;
+//             const lng = coordinates[0];
+//             const lat = coordinates[1];
+//             map.setCenter([lng, lat]);
+//             let newMarker = new mapboxgl.Marker();
+//             newMarker.setLngLat([lng,lat])
+//             newMarker.addTo(map);
+//         })
+//         .catch(error => {
+//             console.log('Error:', error);
+//         });
+//
+// }
+
+let myToken = 'GGCftL4ynajz16FGIFxh6FwizgE0HkYP'
+
 
 // Get the location from the URL
 const url = new URL(window.location.href);
@@ -79,20 +78,7 @@ if (locationParam) {
     populateMapInput(locationParam);
 }
 
-// $.ajax({
-//     url: `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedLocation}.json?access_token=${mapboxgl.accessToken}`
-// }).done( (data) => {
-//     let gyms = data["features"]
-//     for gym in gyms:
-//     name = gym["text"]
-//     latitude = gym["center"][1]
-//     longitude = gym["center"][0]
 
 
 
 
-
-//function for finding gym to be (appended on url?)
-function findGym(){
-
-}
