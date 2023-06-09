@@ -308,7 +308,7 @@ $(document).ready(function () {
                 '   <button class="close_modal" data-close-modal>close</button>' +
                 '</dialog>'
         }
-        // $('#exercises').html(card);
+        $('#exercises').html(card);
         $('#workoutBuilder').html(workoutBuilderCard);
         let openModal = document.querySelectorAll("[data-open-modal]");
         let closeModal = document.querySelectorAll("[data-close-modal]");
