@@ -395,7 +395,7 @@ public class MainController {
 //        String workoutPlanUrl = "/workout-plan/" + workout.getId();
 //        model.addAttribute("workoutPlanUrl", workoutPlanUrl);
 
-        model.addAttribute("workoutTitle", workoutTitle);
+//        model.addAttribute("workoutTitle", workoutTitle);
 
 
         return "index/allworkouts";
@@ -490,7 +490,7 @@ public class MainController {
         System.out.println(exercise.getExerciseBodyPart());
         String name = exercise.getExerciseName();
         exercise.setExerciseName(name);
-      System.out.println(exercise.getExercise_bodyPart());
+//      System.out.println(exercise.getExercise_bodyPart());
 
 //         String name = exercise.getExercise_name();
 //         exercise.setExercise_name(name);
