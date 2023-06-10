@@ -35,11 +35,12 @@ public class User {
     private List<Calender> calender;
     @OneToMany(mappedBy = "user")
     private List<Ratings> ratings;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
-    private List<Messages> sentMessages;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipient")
-    private List<Messages> receivedMessages;
+    @OneToMany(mappedBy = "sender")
+    @JsonBackReference
+    private Collection<Messages> sentMessages;
+    @OneToMany(mappedBy = "recipient")
+    @JsonBackReference
+    private Collection<Messages> receivedMessages;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userMain")
     @JsonBackReference
     private Collection<Friends> friendsAsMainUser;
@@ -93,7 +94,7 @@ public class User {
 
     }
 
-    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, Collection<Messages> sentMessages, Collection<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -115,7 +116,7 @@ public class User {
         this.favoriteExercise = favoriteExercise;
     }
 
-    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, Collection<Messages> sentMessages, Collection<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -240,19 +241,19 @@ public class User {
         this.ratings = ratings;
     }
 
-    public List<Messages> getSentMessages() {
+    public Collection<Messages> getSentMessages() {
         return sentMessages;
     }
 
-    public void setSentMessages(List<Messages> sentMessages) {
+    public void setSentMessages(Collection<Messages> sentMessages) {
         this.sentMessages = sentMessages;
     }
 
-    public List<Messages> getReceivedMessages() {
+    public Collection<Messages> getReceivedMessages() {
         return receivedMessages;
     }
 
-    public void setReceivedMessages(List<Messages> receivedMessages) {
+    public void setReceivedMessages(Collection<Messages> receivedMessages) {
         this.receivedMessages = receivedMessages;
     }
 
