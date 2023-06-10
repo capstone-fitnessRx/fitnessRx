@@ -29,6 +29,7 @@ public class MainController {
     private final ExerciseRepository exerciseDao;
     private ExerciseDetailsRepository exerciseDetailsDao = null;
 
+
     public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, ExerciseRepository exerciseDao, ExerciseDetailsRepository exerciseDetailsDao) {
         this.userDao = userDao;
         this.postDao = postDao;
@@ -681,26 +682,32 @@ public class MainController {
 //    model.addAttribute("exerciseName", exerciseName);
 Exercise exercise = (Exercise) currentUser.getExercisesList();
 
-        Workout workout = new Workout();
-ExerciseDetails exerciseDetails = new ExerciseDetails();
+List<Exercise> currentExercise = currentUser.getExercisesList();
+List<Workout> currentWorkout = currentUser.getWorkoutsList();
+Exercise exercise1 = (Exercise) exercise.getReps();
+
+
 
 //Exercise exercise = new Exercise();
-model.addAttribute("exercise", exercise);
+model.addAttribute("exercises", currentExercise);
+model.addAttribute("workouts", currentWorkout);
 
-String exerciseName = exercise.getExercise_name();
-model.addAttribute("exerciseName", exerciseName);
 
-String workoutPlanName = workout.getTitle();
-model.addAttribute("workoutPlanName", workoutPlanName);
 
-int exerciseReps = exerciseDetails.getReps();
-model.addAttribute("exerciseReps", exerciseReps);
-
-int exerciseSets = exerciseDetails.getSets();
-model.addAttribute("exerciseSets", exerciseSets);
-
-String exerciseEqupment = exercise.getExercise_equipment();
-model.addAttribute("exerciseEquipment", exerciseEqupment);
+//String exerciseName = exercise.getExercise_name();
+//model.addAttribute("exerciseName", exerciseName);
+//
+//String workoutPlanName = workout.getTitle();
+//model.addAttribute("workoutPlanName", workoutPlanName);
+//
+//int exerciseReps = exerciseDetails.getReps();
+//model.addAttribute("exerciseReps", exerciseReps);
+//
+//int exerciseSets = exerciseDetails.getSets();
+//model.addAttribute("exerciseSets", exerciseSets);
+//
+//String exerciseEqupment = exercise.getExercise_equipment();
+//model.addAttribute("exerciseEquipment", exerciseEqupment);
 
 
 

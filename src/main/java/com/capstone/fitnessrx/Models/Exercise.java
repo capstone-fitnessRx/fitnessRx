@@ -31,6 +31,19 @@ public class Exercise {
     private List<User> users;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "exercise_details_reps",
+            joinColumns = {@JoinColumn(name = "exercise_details_reps")},
+            inverseJoinColumns = {@JoinColumn(name = "reps")})
+    private List<ExerciseDetails> reps;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+            @JoinTable(name = "exercise_details_sets",
+        joinColumns = {@JoinColumn(name = "exercise_details_sets")},
+        inverseJoinColumns = {@JoinColumn(name = "sets")})
+    private List<ExerciseDetails> sets;
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "exercise_categories",
             joinColumns = {@JoinColumn(name = "exercise_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
@@ -45,20 +58,7 @@ public class Exercise {
     public Exercise() {
     }
 
-
-    public Exercise(String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<Categories> categories, User user) {
-        this.exercise_name = exercise_name;
-        this.exercise_bodyPart = exercise_bodyPart;
-        this.exercise_equipment = exercise_equipment;
-        this.exercise_target = exercise_target;
-        this.exercise_id = exercise_id;
-        this.exercise_gif = exercise_gif;
-        this.users = users;
-        this.categories = categories;
-        this.user = user;
-    }
-
-    public Exercise(long id, String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<Categories> categories, User user) {
+    public Exercise(long id, String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<ExerciseDetails> reps, List<ExerciseDetails> sets, List<Categories> categories, User user) {
         this.id = id;
         this.exercise_name = exercise_name;
         this.exercise_bodyPart = exercise_bodyPart;
@@ -67,6 +67,22 @@ public class Exercise {
         this.exercise_id = exercise_id;
         this.exercise_gif = exercise_gif;
         this.users = users;
+        this.reps = reps;
+        this.sets = sets;
+        this.categories = categories;
+        this.user = user;
+    }
+
+    public Exercise(String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<ExerciseDetails> reps, List<ExerciseDetails> sets, List<Categories> categories, User user) {
+        this.exercise_name = exercise_name;
+        this.exercise_bodyPart = exercise_bodyPart;
+        this.exercise_equipment = exercise_equipment;
+        this.exercise_target = exercise_target;
+        this.exercise_id = exercise_id;
+        this.exercise_gif = exercise_gif;
+        this.users = users;
+        this.reps = reps;
+        this.sets = sets;
         this.categories = categories;
         this.user = user;
     }
@@ -163,5 +179,21 @@ public class Exercise {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<ExerciseDetails> getReps() {
+        return reps;
+    }
+
+    public void setReps(List<ExerciseDetails> reps) {
+        this.reps = reps;
+    }
+
+    public List<ExerciseDetails> getSets() {
+        return sets;
+    }
+
+    public void setSets(List<ExerciseDetails> sets) {
+        this.sets = sets;
     }
 }

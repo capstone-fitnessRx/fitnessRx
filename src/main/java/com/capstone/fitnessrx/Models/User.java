@@ -106,6 +106,7 @@ public class User {
 
     }
 
+
     public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Exercise> exercisesList, List<Workout> workoutsList, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.id = id;
         this.username = username;
@@ -328,4 +329,4 @@ public class User {
     public void setWorkoutsList(List<Workout> workoutsList) {
         this.workoutsList = workoutsList;
     }
-}
+
