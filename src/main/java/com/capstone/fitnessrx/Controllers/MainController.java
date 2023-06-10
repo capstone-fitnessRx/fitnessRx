@@ -30,9 +30,6 @@ public class MainController {
     private ExerciseDetailsRepository exerciseDetailsDao = null;
 
 
-
-
-
     public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, ExerciseRepository exerciseDao, ExerciseDetailsRepository exerciseDetailsDao) {
         this.userDao = userDao;
         this.postDao = postDao;
@@ -627,9 +624,10 @@ public class MainController {
 
 
     @GetMapping("/workouts-wall")
-    public String getWorkoutWall(Model model) {
+    public String getWorkoutWall(Model model, @ModelAttribute Workout workout) {
 
-        String workoutTitle =  ();
+        String workoutTitle = workout.getTitle();
+        model.addAttribute("workoutTitle",workoutTitle);
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
