@@ -36,12 +36,29 @@ public class Exercise {
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private List<Categories> categories;
 
+    @ManyToOne
+    @JoinColumn(name = "user_exercise")
+    private User user;
+
+
 
     public Exercise() {
     }
 
 
-    public Exercise(long id, String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<Categories> categories) {
+    public Exercise(String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<Categories> categories, User user) {
+        this.exercise_name = exercise_name;
+        this.exercise_bodyPart = exercise_bodyPart;
+        this.exercise_equipment = exercise_equipment;
+        this.exercise_target = exercise_target;
+        this.exercise_id = exercise_id;
+        this.exercise_gif = exercise_gif;
+        this.users = users;
+        this.categories = categories;
+        this.user = user;
+    }
+
+    public Exercise(long id, String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<Categories> categories, User user) {
         this.id = id;
         this.exercise_name = exercise_name;
         this.exercise_bodyPart = exercise_bodyPart;
@@ -51,17 +68,7 @@ public class Exercise {
         this.exercise_gif = exercise_gif;
         this.users = users;
         this.categories = categories;
-    }
-
-    public Exercise(String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<Categories> categories) {
-        this.exercise_name = exercise_name;
-        this.exercise_bodyPart = exercise_bodyPart;
-        this.exercise_equipment = exercise_equipment;
-        this.exercise_target = exercise_target;
-        this.exercise_id = exercise_id;
-        this.exercise_gif = exercise_gif;
-        this.users = users;
-        this.categories = categories;
+        this.user = user;
     }
 
     //
@@ -148,5 +155,13 @@ public class Exercise {
 
     public void setExercise_gif(String exercise_gif) {
         this.exercise_gif = exercise_gif;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

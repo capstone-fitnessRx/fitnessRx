@@ -45,8 +45,8 @@ $(document).ready(function () {
             let gif = "";
             let i;
             for (i = 0; i < data.length; i++) {
-                // let bodyPart = data[i].bodyPart;
-                // let equipment = data[i].equipment;
+                let bodyPart = data[i].bodyPart;
+                let equipment = data[i].equipment;
                 let gifUrl = data[i].gifUrl;
                 let id = data[i].id;
                 let name = data[i].name;
