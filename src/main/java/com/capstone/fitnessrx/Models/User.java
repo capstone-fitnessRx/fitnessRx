@@ -48,12 +48,12 @@ public class User {
     @JsonBackReference
     private Collection<Friends> friendsAsFriendUser;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 //    private List<FavoriteExercise> favoriteExercises;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_exercise",
-        joinColumns = {@JoinColumn(name = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "exercise_id")})
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "exercise_id")})
     private List<Exercise> exercisesList;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -75,34 +75,32 @@ public class User {
     private List<Exercise> favoriteExercise;
 
 
-
     public User(User copy) {
-        id =copy.id;
-        username =copy.username;
-        email =copy.email;
-        password =copy.password;
-        admin =copy.admin;
+        id = copy.id;
+        username = copy.username;
+        email = copy.email;
+        password = copy.password;
+        admin = copy.admin;
         location = copy.location;
-        workoutPreference =copy.workoutPreference;
-        bio =copy.bio;
-        post =copy.post;
+        workoutPreference = copy.workoutPreference;
+        bio = copy.bio;
+        post = copy.post;
         goal = copy.goal;
         cardColor = copy.cardColor;
         calender = copy.calender;
-        ratings =copy.ratings;
-        sentMessages =copy.sentMessages;
-        receivedMessages =copy.receivedMessages;
-        friendsAsMainUser =copy.friendsAsMainUser;
-        friendsAsFriendUser =copy.friendsAsFriendUser;
+        ratings = copy.ratings;
+        sentMessages = copy.sentMessages;
+        receivedMessages = copy.receivedMessages;
+        friendsAsMainUser = copy.friendsAsMainUser;
+        friendsAsFriendUser = copy.friendsAsFriendUser;
         favoriteWorkouts = copy.favoriteWorkouts;
-        favoriteExercise =copy.favoriteExercise;
+        favoriteExercise = copy.favoriteExercise;
         exercisesList = copy.exercisesList;
         workoutsList = copy.workoutsList;
     }
 
 
-
-    public User () {
+    public User() {
 
     }
 
@@ -329,4 +327,5 @@ public class User {
     public void setWorkoutsList(List<Workout> workoutsList) {
         this.workoutsList = workoutsList;
     }
+}
 
