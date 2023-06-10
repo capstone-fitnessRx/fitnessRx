@@ -106,8 +106,7 @@ public class User {
 
     }
 
-    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
-
+    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Exercise> exercisesList, List<Workout> workoutsList, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -125,11 +124,13 @@ public class User {
         this.receivedMessages = receivedMessages;
         this.friendsAsMainUser = friendsAsMainUser;
         this.friendsAsFriendUser = friendsAsFriendUser;
+        this.exercisesList = exercisesList;
+        this.workoutsList = workoutsList;
         this.favoriteWorkouts = favoriteWorkouts;
         this.favoriteExercise = favoriteExercise;
     }
 
-    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Exercise> exercisesList, List<Workout> workoutsList, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -147,30 +148,10 @@ public class User {
         this.friendsAsMainUser = friendsAsMainUser;
         this.friendsAsFriendUser = friendsAsFriendUser;
         this.exercisesList = exercisesList;
+        this.workoutsList = workoutsList;
         this.favoriteWorkouts = favoriteWorkouts;
         this.favoriteExercise = favoriteExercise;
-        this.workoutsList = workoutsList;
     }
-
-//    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
-//        this.username = username;
-//        this.email = email;
-//        this.password = password;
-//        this.admin = admin;
-//        this.location = location;
-//        this.workoutPreference = workoutPreference;
-//        this.bio = bio;
-//        this.goal = goal;
-//        this.post = post;
-//        this.calender = calender;
-//        this.ratings = ratings;
-//        this.sentMessages = sentMessages;
-//        this.receivedMessages = receivedMessages;
-//        this.friendsAsMainUser = friendsAsMainUser;
-//        this.friendsAsFriendUser = friendsAsFriendUser;
-//        this.favoriteWorkouts = favoriteWorkouts;
-//        this.favoriteExercise = favoriteExercise;
-//    }
 
     public int getId() {
         return id;
@@ -338,5 +319,13 @@ public class User {
 
     public void setExercisesList(List<Exercise> exercisesList) {
         this.exercisesList = exercisesList;
+    }
+
+    public List<Workout> getWorkoutsList() {
+        return workoutsList;
+    }
+
+    public void setWorkoutsList(List<Workout> workoutsList) {
+        this.workoutsList = workoutsList;
     }
 }
