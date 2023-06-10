@@ -86,25 +86,11 @@
         <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="workout-header" th:text="${username} + 's Workouts'"></h4>
 
 
-
-
-
-        <a th:href="@{/workout-plan/{id}(id=${workout})}" th:each="myWorkout : ${myWorkouts}">
+        <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">
             <h4 th:text="${myWorkout.getTitle()}"></h4>
-
-
-
-
-            <div th:each="messagesv1 : ${messageattr}">
-                <h2 th:text="${messagesv1.getContent()}"></h2>
-                <p th:text="${messagesv1.getSender()}"></p>
-            </div>
-
-
-
-
-
         </a>
+
+
         <a class="view-all" th:href="@{/my-workouts/{id}(id=${urlUserId})}"><u>View All</u></a>
     </div>
     <!--Favorites card-->
@@ -113,11 +99,14 @@
         <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="favorite-header">My Favorites</h4>
         <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="favorite-header" th:text="${username} + 's Favorites'"></h4>
 
-        <a th:href="@{/workout-plan/{id}(id=${wo})}" th:each="favoriteWorkout : ${favoriteWorkouts}">
+        <a th:href="@{/workout-plan/{id}(id=*{favoriteWorkout.getId()})}" th:each="favoriteWorkout : ${favoriteWorkouts}">
             <div>
                 <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
             </div>
         </a>
+
+
+
 
         <!--        for each here to list user favorite workouts-->
         <a class="view-all" th:href="@{/favorites/{id}(id=${urlUserId})}"><u>View All</u></a>
@@ -140,7 +129,6 @@
     </div>
     <!--    -->
     <!--    -->
-    <!--    -->
 
 
 
@@ -149,6 +137,7 @@
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
 <script src="/js/modals.js"></script>

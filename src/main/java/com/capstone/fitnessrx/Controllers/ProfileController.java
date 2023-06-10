@@ -2,13 +2,16 @@ package com.capstone.fitnessrx.Controllers;
 
 import com.capstone.fitnessrx.Repositories.*;
 import com.capstone.fitnessrx.Models.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 //import java.util.Calender;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,6 +22,10 @@ public class ProfileController {
     private final FriendsRepository friendsDao;
     private final WorkoutRepository workoutDao;
     private final MessagesRepository messagesDao;
+
+
+//    @Value("${filestack.api.key}")
+//    private String filestackapi;
 
     public ProfileController(UserRepository userDao, FriendsRepository friendsDao, WorkoutRepository workoutDao, MessagesRepository messagesDao) {
         this.userDao = userDao;
@@ -64,9 +71,14 @@ public class ProfileController {
             String workoutPreference = userProfile.getWorkoutPreference();
             String bio = userProfile.getBio();
             String goal = userProfile.getGoal();
+//messaging friends
+            Collection<Friends> friends = user.getFriendsAsMainUser();
+            model.addAttribute("friends", friends);
 
 
-            List<Friends> userFriends = friendsDao.findAllByUserMain(userProfile);
+
+
+            Collection<Friends> userFriends = friendsDao.findAllByUserMain(userProfile);
             List<Workout> userFavorites = userProfile.getFavoriteWorkouts();
             List<Workout> userWorkout = workoutDao.findWorkoutsByUser(userDao.getReferenceById(id));
 
@@ -89,6 +101,43 @@ public class ProfileController {
             return "error";
         }
     }
+//
+//
+//
+//
+//@GetMapping("/message/{friendId}")
+//public String showSendMessageForm(@PathVariable("friendId") Long friendId, Model model) {
+//
+//    User friend = userDao.findById(friendId).orElse(null);
+//    if (friend != null) {
+//        model.addAttribute("friend", friend);
+//        return "index/sendMessage";
+//    } else {
+//        return "error";
+//    }
+//}
+//
+//    @PostMapping("/sendMessage")
+//    public String sendMessage(@RequestParam("friendId") Long friendId, @RequestParam("content") String content) {
+//        User friend = userDao.findById(friendId).orElse(null);
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        if (friend != null && user != null) {
+//            Messages message = new Messages();
+//            message.setSender(user);
+//            message.setRecipient(friend);
+//            message.setContent(content);
+////            message.setTimeStamp(new Date());
+//
+//            messagesDao.save(message);
+//        }
+//
+//        return "redirect:/profile/" + user.getId();
+//    }
+
+
+
+
 
 //
 //POST SETTINGS FOR PROFILE
@@ -133,13 +182,6 @@ public class ProfileController {
         // Retrieve the user's ID from the database based on the provided userId
         // Add the user's ID to the model to display it in the view
         model.addAttribute("userId", userId);
-
-//        Collection<Messages> otherUserMessages = messagesDao.findAllById(userId);
-//        Collection<Messages> userMessages = messagesDao.findAllById(user);
-//        model.addAttribute("userMessages", user);
-
-
-
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -176,11 +218,23 @@ public class ProfileController {
     //
     //POST Update Profile FOR PROFILE
     //
+//    @PostMapping("profile/upload")
+//    public String uploadProfile(Model model) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user = userDao.getReferenceById((long) user.getId());
+//
+//        model.addAttribute("filestackapi", filestackapi);
+//
+//
+//        return "redirect:/profile/" + user.getId();
+//    }
     @PostMapping("/profile/update")
     public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal,Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById((long) user.getId());
+
+
 
 
 
@@ -202,7 +256,16 @@ public class ProfileController {
         return "redirect:/profile/" + user.getId();
     }
 
+    @PostMapping("/profile/delete")
+    public String deleteProfile() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById((long) user.getId());
 
+        userDao.delete(user);
+
+
+        return "redirect:/profile/" + user.getId();
+    }
 
 
 

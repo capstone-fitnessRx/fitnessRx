@@ -1,89 +1,93 @@
 <div th:fragment="modals">
 
-  <div id="myModalEdit" class="modal modal-dropdown">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Edit Profile</h2>
-      <form method="POST" th:action="@{/profile/update}">
-        <label>Username: </label>
-        <input type="text" name="newUsername" th:value="${username}">
-        <label>Email: </label>
-        <input type="text" name="newEmail" th:value="${email}">
-        <label>Location: </label>
-        <input type="text" name="newLocation" th:value="${location}">
-        <label>Bio: </label>
-        <input type="text" name="newBio" th:value="${bio}">
-        <label>Goals: </label>
-        <input type="text" name="newGoal" th:value="${goal}">
-        <label>Workout Preference: </label>
-        <input type="text" name="newWorkoutPreference" th:value="${workoutPreference}">
-        <button type="submit">Update</button>
-      </form>
+    <div id="myModalEdit" class="modal modal-dropdown">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Profile</h2>
+            <form method="POST" th:action="@{/profile/update}">
+                <label>Username: </label>
+                <input type="text" name="newUsername" th:value="${username}">
+                <label>Email: </label>
+                <input type="text" name="newEmail" th:value="${email}">
+                <label>Location: </label>
+                <input type="text" name="newLocation" th:value="${location}">
+                <label>Bio: </label>
+                <input type="text" name="newBio" th:value="${bio}">
+                <label>Goals: </label>
+                <input type="text" name="newGoal" th:value="${goal}">
+                <label>Workout Preference: </label>
+                <input type="text" name="newWorkoutPreference" th:value="${workoutPreference}">
+                <button type="submit">Update</button>
+            </form>
+            <!--      -->
+            <!--      -->
+            <!--      API FILESTACK UPLOAD-->
+<!--            <form>-->
+<!--&lt;!&ndash;                <input id="stashFilestackURL" name="stashFilestackURL" value="replaceme" th:field="*{img}" type="hidden">&ndash;&gt;-->
+<!--                <label for="upload"></label>-->
+<!--                <button type="button" id="upload" name="upload">Upload an image</button>-->
+<!--            </form>-->
+            <!--      -->
+            <!--      -->
+            <p>Profile Image: </p>
+            <p>Banner Image: </p>
+            <p>Background Color</p>
 
-      <p>Profile Image: </p>
-      <p>Banner Image: </p>
-      <p>Background Color</p>
-
-    </div>
-  </div>
-  <div id="myModalSettings" class="modal modal-dropdown">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Settings</h2>
-      <form method="POST" th:action="@{/profile/settings}">
-        <label>Theme Color: </label>
-        <select type="text" name="newCardColor">
-          <option>green</option>
-          <option>blue</option>
-          <option>orange</option>
-          <option>red</option>
-        </select>
-        <button type="submit">Update</button>
-      </form>
-      <p>privacy: </p>
-      <p>change password: </p>
-      <p>change email: </p>
-      <p>theme: </p>
-    </div>
-  </div>
-  <div id="myModalFriends" class="modal modal-friend">
-    <div class="modal-content row">
-      <span class="close">&times;</span>
-      <h2>Friends List</h2>
-      <div th:each="friend : ${userFriends}" class="card col-4">
-        <div>
-        <img class="friend-img" src="/img/fitnessMyIMG.jpeg">
         </div>
-        <div class="card-body">
-          <p th:text="${friend.userFriend.username}"></p>
-        </div>
-      </div>
     </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-  <div id="myModalMessage" class="modal modal-message">
-    <div class="modal-content row">
-      <span class="close">&times;</span>
-      <h2>Message Display</h2>
-      <div th:each="friend : ${userFriends}" class="card col-4">
-        <div>
-          <img class="friend-img" src="/img/fitnessMyIMG.jpeg">
+    <div id="myModalSettings" class="modal modal-dropdown">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <form method="POST" th:action="@{/profile/settings}">
+                <label>Theme Color: </label>
+                <select type="text" name="newCardColor">
+                    <option>green</option>
+                    <option>blue</option>
+                    <option>orange</option>
+                    <option>red</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+            <p>privacy: </p>
+            <p>change password: </p>
+            <p>change email: </p>
+            <p>theme: </p>
+            <form method="POST" th:action="@{/profile/delete}">
+                <button type="button">DELETE</button>
+            </form>
         </div>
-        <div class="card-body">
-          <p th:text="${friend.userFriend.username}"></p>
-        </div>
-      </div>
     </div>
-  </div>
+    <div id="myModalFriends" class="modal modal-friend">
+        <div class="modal-content row">
+            <span class="close">&times;</span>
+            <h2>Friends List</h2>
+            <a th:href="@{/profile/{id}(id=*{friend.getUserFriend().getId()})}" th:each="friend : ${userFriends}"
+               class="card friendList">
+                <div>
+                    <img class="friend-img" src="/img/fitnessMyIMG.jpeg">
+                </div>
+                <div class="card-body">
+                    <p th:text="${friend.getUserFriend().getUsername()}"></p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div id="myModalMessage" class="modal modal-message">
+        <div class="modal-content row">
+            <span class="close">&times;</span>
+            <h2>Message Display</h2>
+            <div th:each="friend : ${userFriends}" class="card col-4">
+                <div>
+                    <img class="friend-img" src="/img/fitnessMyIMG.jpeg">
+                </div>
+                <div class="card-body">
+                    <p th:text="${friend.userFriend.username}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

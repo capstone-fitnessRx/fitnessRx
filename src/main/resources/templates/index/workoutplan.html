@@ -24,6 +24,13 @@
 <div th:insert="partials/modals.html :: modals"></div>
 <div class="container">
 
+    <div class="card" th:object="${myWorkouts}">
+        <h3 th:text="*{getTitle()}"></h3>
+        <p th:text="*{getDescription()}"></p>
+        <p th:text="*{getAvgRating()}"></p>
+        <p th:text="*{getCreated()}"></p>
+        <p th:text="*{getCategories()}"></p>
+    </div>
 
     <div class="card-body">
       <h5 class="card-title">Lower Ab Exercise</h5>

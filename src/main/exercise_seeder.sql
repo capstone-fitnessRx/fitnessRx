@@ -1,6 +1,5 @@
 USE fitnessRx_test_db;
 
-TRUNCATE TABLE exercise;
 
 INSERT INTO exercise (exercise_body_part, exercise_equipment, exercise_gif, exercise_id, exercise_name, exercise_target)
     VALUES ('waist','no equipment','https://edbv2-ff7foj6vca-uc.a.run.app/image/XkHKCAW5D6UFoH','0001','3/4 sit-up','abs');
