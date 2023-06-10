@@ -17,24 +17,34 @@
 <nav th:replace="partials/navbar.html :: navbar"/>
 <div th:insert="partials/modals.html :: modals"></div>
 
-<main>
-    <h1 class="text-center">Name of specific exercise goes here</h1>
-    <section>
-        <div class="d-flex justify-content-center">
-<!--            image of muscles group worked will go here-->
-<!--            <img src="#">-->
-            <div>
-                <p th:text="'name: ' + ${exerciseName}"/>
-                <p th:text="'Muscles targeted: ' + ${exerciseTarget}" />
-                <p th:text="'Equipment Needed: ' + ${exerciseEquipment}"/>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center">
-<!--            gif of workout goes here-->
-            <img th:src="${exerciseGif}">
-        </div>
-    </section>
-</main>
+<h1>exercise Display</h1>
+<div class="card" th:object="${displayExercise}">
+    <h2 th:text="*{getExerciseName()}"></h2>
+    <p th:text="*{getExerciseBodyPart()}"></p>
+    <p th:text="*{getExerciseTarget()}"></p>
+    <p th:text="*{getExerciseGif()}"></p>
+    <p th:text="*{getExerciseEquipment()}"></p>
+</div>
+
+
+<!--<main>-->
+<!--    <h1 class="text-center">Name of specific exercise goes here</h1>-->
+<!--    <section>-->
+<!--        <div class="d-flex justify-content-center">-->
+<!--&lt;!&ndash;            image of muscles group worked will go here&ndash;&gt;-->
+<!--&lt;!&ndash;            <img src="#">&ndash;&gt;-->
+<!--            <div>-->
+<!--                <p th:text="'name: ' + ${exerciseName}"/>-->
+<!--                <p th:text="'Muscles targeted: ' + ${exerciseTarget}" />-->
+<!--                <p th:text="'Equipment Needed: ' + ${exerciseEquipment}"/>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="d-flex justify-content-center">-->
+<!--&lt;!&ndash;            gif of workout goes here&ndash;&gt;-->
+<!--            <img th:src="${exerciseGif}">-->
+<!--        </div>-->
+<!--    </section>-->
+<!--</main>-->
 
   <div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

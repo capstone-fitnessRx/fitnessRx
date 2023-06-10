@@ -1,5 +1,6 @@
 package com.capstone.fitnessrx.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 
@@ -10,19 +11,21 @@ public class Messages {
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
+    @JsonManagedReference
     private User sender;
 
     @ManyToOne
     @JoinColumn(name = "recipient_id")
+    @JsonManagedReference
     private User recipient;
 
-    @Column(nullable = false)
+    @Column()
     private String content;
 
     @Column()
     private Date timeStamp;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
@@ -43,6 +46,7 @@ public class Messages {
         this.content = content;
         this.timeStamp = timeStamp;
     }
+
 
     public User getSender() {
         return sender;

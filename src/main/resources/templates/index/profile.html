@@ -84,10 +84,13 @@
         <!--        Conditional below-->
         <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="workout-header">My Workouts</h4>
         <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="workout-header" th:text="${username} + 's Workouts'"></h4>
-        <a th:href="@{/workout-plan/{id}(id=${workout})}" th:each="myWorkout : ${myWorkouts}">
-            <h4 th:text="${myWorkout.getTitle()}"></h4>
 
+
+        <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">
+            <h4 th:text="${myWorkout.getTitle()}"></h4>
         </a>
+
+
         <a class="view-all" th:href="@{/my-workouts/{id}(id=${urlUserId})}"><u>View All</u></a>
     </div>
     <!--Favorites card-->
@@ -96,21 +99,45 @@
         <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="favorite-header">My Favorites</h4>
         <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="favorite-header" th:text="${username} + 's Favorites'"></h4>
 
-        <a th:href="@{/workout-plan/{id}(id=${wo})}" th:each="favoriteWorkout : ${favoriteWorkouts}">
+        <a th:href="@{/workout-plan/{id}(id=*{favoriteWorkout.getId()})}" th:each="favoriteWorkout : ${favoriteWorkouts}">
             <div>
                 <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
             </div>
         </a>
 
+
+
+
         <!--        for each here to list user favorite workouts-->
         <a class="view-all" th:href="@{/favorites/{id}(id=${urlUserId})}"><u>View All</u></a>
     </div>
+
+<!--    -->
+<!--    -->
+<!--    -->
+<!--  remove below later just testing function for meassage system  -->
+
+    <div class="card">
+<!--        <form th:action="@{/messages/send}" th:method="post" th:object="${messages}" th:csrf>-->
+<!--        Message Body:-->
+<!--        <input th:field="*{content}" />-->
+<!--        <br />-->
+<!--        <input type="hidden" th:name="sendmessagetoID" th:value="${userId}" />-->
+<!--        <input type="submit" />-->
+<!--    </form>-->
+
+    </div>
+    <!--    -->
+    <!--    -->
+
+
 
 </div>
 
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
 <script src="/js/modals.js"></script>
