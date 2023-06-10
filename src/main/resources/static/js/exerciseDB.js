@@ -274,7 +274,8 @@ $(document).ready(function () {
                 '            <input class="d-none form-control" type="text" th:field="*{exerciseGif}" name="exerciseGif" value="'+gifUrl+'">\n' +
                 '        </button>\n' +
                 '    </form>';
-            workoutBuilderCard += '<div><form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
+            workoutBuilderCard += '<div xmlns="http://www.w3.org/1999/html">' +
+                '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
                 '        <button class="btn " type="submit">\n' +
                 '            <div class="card text-center" style="width: 180px">\n' +
                 '                <div class="card-header " style="height: 130px">\n' +
@@ -294,27 +295,33 @@ $(document).ready(function () {
                 '            <input class="d-none form-control" type="text" th:field="*{exerciseGif}" name="exerciseGif" value="' + gifUrl + '">\n' +
                 '        </button>\n' +
                 '    </form> ' +
-                '<button class="text-center open_modal" id="" >Add to Workout</button>' +
+                '<button class="text-center open_modal" data-open-modal >Add to Workout</button>' +
                 '</div>' +
-                '<dialog class="data_modal">' +
-                '   <div>test</div>' +
-                '   <button class="close_modal">close</button>' +
+                '<dialog class="data_modal" data-modal>' +
+                '   <form th:action="@{/workout-builder}"  th:method="post" th:object="${exerciseDetails}">' +
+                '       <input type="text"  th:field="*{reps}" name="reps">Reps: </input> ' +
+                '       <input type="text" th:field="*{sets}" name="sets">Sets: </input> ' +
+                '       <input class="d-none" th:field="*{exercise_Api_Id}" name="exercise_Api_Id" value="'+id+'"> ' +
+                // '       <input class="d-none" th:field="*{target_muscle}" value="'+name+'">' +
+                '       <button type="submit">Save</button>' +
+                '   </form>' +
+                '   <button class="close_modal" data-close-modal>close</button>' +
                 '</dialog>'
         }
-        // $('#exercises').html(card);
+        $('#exercises').html(card);
         $('#workoutBuilder').html(workoutBuilderCard);
-        // let openModal = document.getElementsByClassName("open_modal");
-        // let closeModal = document.getElementsByClassName("close_modal");
-        // let modal = document.getElementsByClassName("data_modal");
-        // console.log(openModal.length);
-        // for (let i = 0 ; i < openModal.length; i++) {
-        //     openModal[i].addEventListener('click' , () => {
-        //         this.showModal();
-        //     },true ) ;
-        //     closeModal[i].addEventListener('click' , () => {
-        //         this.close();
-        //     },true ) ;
-        // }
+        let openModal = document.querySelectorAll("[data-open-modal]");
+        let closeModal = document.querySelectorAll("[data-close-modal]");
+        let modal = document.querySelectorAll("[data-modal]");
+        console.log(openModal.length);
+        for (let i = 0 ; i < openModal.length; i++) {
+            openModal[i].addEventListener('click' , () => {
+                modal[i].showModal();
+            } ) ;
+            closeModal[i].addEventListener('click' , () => {
+                modal[i].close();
+            } ) ;
+        }
     })
 })
 

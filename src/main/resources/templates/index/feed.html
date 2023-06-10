@@ -63,26 +63,20 @@
 
         <div th:each="post : ${posts}" class="post-loop card">
 
-                <img class="feed-pic" src="/img/giannaimg.png">
-                <h4 th:text="${post.getUser().getUsername()}"></h4>
-                <img>
-                <p th:text="${post.getContent()}"></p>
-
-                <div class="card-body comment-head">
-                    <!--                <img>-->
-                    <p th:text="${post.getLikes()} + ' Likes'"></p>
-                    <button class="dropdown-toggle" th:text="${post.getComments().size()} + ' comments'"></button>
-
-                </div>
-                <form th:method="POST" th:action="@{/feed/comment/create}">
-                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment" placeholder="Comment here...">
-
-                    <input type="hidden" th:value="${post.getId()}" name="postIdent">
-
-                    <div class="comment-submit-div">
-                        <button class="submit-comment" id="comment-submission">Send</button>
-                    </div>
+            <img class="feed-pic" src="/img/giannaimg.png">
+            <h4 th:text="${post.getUser().getUsername()}"></h4>
+            <img>
+            <p th:text="${post.getContent()}"></p>
+            <p th:text="${post.getLikes()}"></p>
+            <div class="card-body comment-head">
+                <!--                <img>-->
+                <form method="POST" th:action="@{/feed/like}">
+                    <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>
                 </form>
+                <button class="dropdown-toggle" th:text="${post.getComments().size()} + ' comments'"></button>
+
+            </div>
+
 
             <div class="card-body comment-body">
                 <img>
@@ -95,19 +89,16 @@
 
             <div class="input-div">
                 <img class="comment-pic" src="/img/giannaimg.png">
-<!--                Moved up to iterating structure to test input creation and DOM-->
-<!--                <form th:method="POST" th:action="@{/feed/comment/create}">-->
-<!--                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment" placeholder="Comment here...">-->
 
-<!--                    <input type="hidden" th:value="${post.getId()}" name="postIdent">-->
+                <form th:method="POST" th:action="@{/feed/comment/create}">
+                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment" placeholder="Comment here...">
+                    <input type="hidden" th:value="${post.getId()}" name="postIdent">
+                    <div class="comment-submit-div">
+                        <button class="submit-comment" id="comment-submission">Send</button>
+                    </div>
+                </form>
 
-<!--                    <div class="comment-submit-div">-->
-<!--                        <button class="submit-comment" id="comment-submission">Send</button>-->
-<!--                    </div>-->
-<!--                </form>-->
-                <!---->
-                <!---->
-                <!---->
+
                 <!--comment section-->
                 <div th:each="comment : ${post.getComments()}" class="dropdown-comments card-body">
                     <p th:text="${comment.getUser().getUsername()}"></p>

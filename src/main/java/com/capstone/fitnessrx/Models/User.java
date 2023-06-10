@@ -1,7 +1,9 @@
 package com.capstone.fitnessrx.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -25,7 +27,8 @@ public class User {
     private String bio;
     @Column()
     private String goal;
-
+    @Column()
+    private String cardColor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> post;
     @OneToMany(mappedBy = "user")
@@ -38,10 +41,12 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipient")
     private List<Messages> receivedMessages;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userMain")
-    private List<Friends> friendsAsMainUser;
+    @JsonBackReference
+    private Collection<Friends> friendsAsMainUser;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userFriend")
-    private List<Friends> friendsAsFriendUser;
+    @JsonBackReference
+    private Collection<Friends> friendsAsFriendUser;
 
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 //    private List<FavoriteExercise> favoriteExercises;
@@ -69,10 +74,6 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "exercise_id")})
     private List<Exercise> favoriteExercise;
 
-    public User () {
-
-    }
-
 
 
     public User(User copy) {
@@ -86,6 +87,7 @@ public class User {
         bio =copy.bio;
         post =copy.post;
         goal = copy.goal;
+        cardColor = copy.cardColor;
         calender = copy.calender;
         ratings =copy.ratings;
         sentMessages =copy.sentMessages;
@@ -98,7 +100,14 @@ public class User {
         workoutsList = copy.workoutsList;
     }
 
-    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, List<Friends> friendsAsMainUser, List<Friends> friendsAsFriendUser, List<Exercise> exercisesList, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise, List<Workout> workoutsList) {
+
+
+    public User () {
+
+    }
+
+    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+
         this.id = id;
         this.username = username;
         this.email = email;
@@ -108,6 +117,28 @@ public class User {
         this.workoutPreference = workoutPreference;
         this.bio = bio;
         this.goal = goal;
+        this.cardColor = cardColor;
+        this.post = post;
+        this.calender = calender;
+        this.ratings = ratings;
+        this.sentMessages = sentMessages;
+        this.receivedMessages = receivedMessages;
+        this.friendsAsMainUser = friendsAsMainUser;
+        this.friendsAsFriendUser = friendsAsFriendUser;
+        this.favoriteWorkouts = favoriteWorkouts;
+        this.favoriteExercise = favoriteExercise;
+    }
+
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.admin = admin;
+        this.location = location;
+        this.workoutPreference = workoutPreference;
+        this.bio = bio;
+        this.goal = goal;
+        this.cardColor = cardColor;
         this.post = post;
         this.calender = calender;
         this.ratings = ratings;
@@ -213,6 +244,14 @@ public class User {
         this.goal = goal;
     }
 
+    public String getCardColor() {
+        return cardColor;
+    }
+
+    public void setCardColor(String cardColor) {
+        this.cardColor = cardColor;
+    }
+
     public List<Post> getPost() {
         return post;
     }
@@ -253,19 +292,19 @@ public class User {
         this.receivedMessages = receivedMessages;
     }
 
-    public List<Friends> getFriendsAsMainUser() {
+    public Collection<Friends> getFriendsAsMainUser() {
         return friendsAsMainUser;
     }
 
-    public void setFriendsAsMainUser(List<Friends> friendsAsMainUser) {
+    public void setFriendsAsMainUser(Collection<Friends> friendsAsMainUser) {
         this.friendsAsMainUser = friendsAsMainUser;
     }
 
-    public List<Friends> getFriendsAsFriendUser() {
+    public Collection<Friends> getFriendsAsFriendUser() {
         return friendsAsFriendUser;
     }
 
-    public void setFriendsAsFriendUser(List<Friends> friendsAsFriendUser) {
+    public void setFriendsAsFriendUser(Collection<Friends> friendsAsFriendUser) {
         this.friendsAsFriendUser = friendsAsFriendUser;
     }
 

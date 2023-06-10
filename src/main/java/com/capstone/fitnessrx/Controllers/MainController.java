@@ -2,6 +2,7 @@ package com.capstone.fitnessrx.Controllers;
 
 import com.capstone.fitnessrx.Repositories.*;
 import com.capstone.fitnessrx.Models.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 //import java.util.Calender;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -27,6 +27,8 @@ public class MainController {
     private final WorkoutRepository workoutDao;
 //    private final FavoriteWorkoutRepository favworkDao;
     private final ExerciseRepository exerciseDao;
+    private ExerciseDetailsRepository exerciseDetailsDao = null;
+
 
     private final ExerciseDetailsRepository exerciseDetailsDao;
 
@@ -92,12 +94,103 @@ public class MainController {
         return "index/landingpage";
     }
 
+    @PostMapping("/profile/settings")
+    public String settingsProfile(@RequestParam("newCardColor") String newCardColor) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById((long) user.getId());
+
+        user.setCardColor(newCardColor);
+
+
+
+        userDao.save(user);
+
+        return "redirect:/profile/" + user.getId();
+    }
+//
+//
+//
+//
+//
+//
+@PostMapping("/profile/{id}")
+    public String addContact (@PathVariable Long id, @RequestParam(name="contactHidden") long addID, Model model){
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User newFriend = userDao.getOne(addID);
+
+    User userProfile = userDao.findById(id).orElse(null);
+
+    model.addAttribute("userProfile", id);
+
+        Friends friends = new Friends();
+
+        friends.setUserMain(user);
+        friends.setUserFriend(newFriend);
+        friendsDao.save(friends);
+
+    return "redirect:/profile/" + user.getId();
+    }
+
+//
+//
+//
+//
+//    @PostMapping("/messages/addcontact")
+//    public String addContact (@RequestParam(name="contactHidden") long addID){
+//        Contact addedContact = new Contact();
+//        User addthisUserID = userDao.getOne(addID);
+//        User contactlistOwner = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        addedContact.setOwner_user(contactlistOwner);
+//        addedContact.setAdded_user_id(addthisUserID);
+//        contactDao.save(addedContact);
+//
+//        return "redirect:/messages";
+//    }
+//
+//
+//
+//
+//
+//
+//
+//
+    @PostMapping("/profile/update")
+    public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal,Model model) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById((long) user.getId());
+
+
+
+        user.setUsername(newUsername);
+        user.setEmail(newEmail);
+        user.setLocation(newLocation);
+        user.setBio(newBio);
+        user.setGoal(newGoal);
+        user.setWorkoutPreference(newWorkoutPreference);
+
+
+        // Save the updated user to the database or perform any desired actions
+        userDao.save(user);
+
+        // Add a success message or any other necessary information to the model
+        model.addAttribute("message", "Profile updated successfully!");
+
+        // Redirect to the profile page or return a view
+        return "redirect:/profile/" + user.getId();
+    }
 
     @GetMapping("/profile/{id}")
     public String getProfile(@PathVariable Long id, Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+
+
+
+        String cardColor = user.getCardColor();
+        model.addAttribute("cardColor", cardColor);
 
 // this gets the current users id and compares it to the url id, so we can match itn using thymeleaf
         User authenticatedUserId = getAuthenticatedUser();
@@ -206,6 +299,8 @@ public class MainController {
         if (userProfile != null) {
 //
 //            List<Post> post = postDao.findAll();
+            User userfeed = userDao.findById(id).orElse(null);
+            List<Friends> userFriends = friendsDao.findAllByUserMain(userfeed);
 
             model.addAttribute("post", new Post());
             model.addAttribute("comments", new Comments());
@@ -218,7 +313,7 @@ public class MainController {
             String goal = userProfile.getGoal();
 
 
-
+            model.addAttribute("userFriends", userFriends);
             model.addAttribute("userProfile", userProfile);
             model.addAttribute("userProfileId", id);
             model.addAttribute("username", username);
@@ -237,28 +332,31 @@ public class MainController {
         }
         }
 
-//        @PostMapping("/feed/{id}/comment")
-//        public String commentCreate(@RequestParam(name = "comment") String content, @PathVariable Long id, Model model) {
-//            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//            user = userDao.getReferenceById((long) user.getId());
-//            model.addAttribute("userProfileId", id);
-//
-//            Post post = postDao.getReferenceById((long) user.getId());
-//
-//            //Create a new comment object
-//            Comments commentToDb = new Comments();
-////            commentToDb.setContent(content);
-//
-//            commentToDb.setContent(commentToDb.getContent());
-//            commentToDb.setUser(user);
-//            commentToDb.setPosts(post);
-//
-//            commentsDao.save(commentToDb);
-////            System.out.println("~~~~~~~~~~~~~~");
-////            System.out.println("commentToDb.getContent() = " + commentToDb.getContent());
-//
-//            return "redirect:/feed/" + user.getId();
-//        }
+
+    @PostMapping("/feed/like")
+    public String likePost(@RequestParam("like") Long like, @RequestParam(name="postIdent") String postIdentNum) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById((long) user.getId());
+
+        // Retrieve the post from the database using the postId
+        Long postId = Long.parseLong(postIdentNum);
+        Post post = postDao.getReferenceById(postId);
+
+
+
+
+        // Increment the like count for the post
+        Long currentLikes = post.getLikes();
+        Long newLikes = currentLikes + 1;
+        post.setLikes(newLikes);
+
+        // Update the post in the database or perform any desired actions
+        postDao.save(post); // Assuming 'postDao' has a save method to persist the post changes
+
+        // Redirect to a different page or return the same page
+        return "redirect:/feed/" + user.getId();
+    }
+
     @PostMapping("/feed/comment/create")
     public String commentvIICreate(@RequestParam(name="comment") String content, @RequestParam(name="postIdent") String postIdentNum) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -290,11 +388,12 @@ public class MainController {
 
             // Create a new Post object
             Post post = new Post();
+
 //
             post.setContent(newPost.getContent());
             post.setUser(user);
-
             postDao.save(post);
+
 
 
 
@@ -342,6 +441,8 @@ public class MainController {
         return "redirect:/calender/" + user.getId();
 
     }
+
+
 
     @GetMapping("/my-workouts/{id}")
 
@@ -434,9 +535,10 @@ public class MainController {
 
         return "index/favorites";
     }
-
+//@RequestParam String reps, @RequestParam String sets, @RequestParam String exercise_Api_Id
     @GetMapping("/workout-builder")
     public String getBuilder(Model model) {
+        model.addAttribute("exerciseDetails", new ExerciseDetails());
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -458,7 +560,23 @@ public class MainController {
 
 
 
-        return "index/workoutbuilder";
+        return "index/workoutBuilder";
+    }
+
+    @PostMapping("/workout-builder")
+    public String postBuilder(ExerciseDetails exerciseDetails) {
+        int reps = exerciseDetails.getReps();
+        exerciseDetails.setReps(reps);
+
+        int sets = exerciseDetails.getSets();
+        exerciseDetails.setSets(sets);
+
+        int exercise_Api_Id = exerciseDetails.getExercise_Api_Id();
+        exerciseDetails.setExercise_Api_Id(exercise_Api_Id);
+        exerciseDetailsDao.save(exerciseDetails);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return "redirect:index/workout-builder";
     }
 
     @GetMapping("/exercise-page")
@@ -483,12 +601,6 @@ public class MainController {
 
         return "index/exercises";
     }
-//    @PostMapping("exercise-page")
-//    public String postExercise(@ModelAttribute Exercise exercise, Model model) {
-//        exerciseDao.save(exercise);
-//        model.addAttribute("exercise", exerciseDao);
-//        return "redirect:/exercise-display";
-//    }
 
     @GetMapping("/exercise-display")
     public String getExerciseDisplay(Model model, @RequestParam String exerciseName, @RequestParam String exerciseTarget, @RequestParam String exerciseEquipment, @RequestParam String exerciseGif) {

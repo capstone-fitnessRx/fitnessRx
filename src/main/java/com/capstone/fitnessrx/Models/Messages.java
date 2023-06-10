@@ -19,7 +19,7 @@ public class Messages {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
+    @Column()
     private Date timeStamp;
     @Id
     @GeneratedValue
