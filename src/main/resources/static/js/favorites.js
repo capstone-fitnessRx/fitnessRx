@@ -15,19 +15,11 @@ let btnTwo = document.querySelector('#btnTwo')
 
 btnOne.addEventListener('click', () => {
 // insert logic for populating exercise/workout
-    let exerciseList = "";
-    // while () {
-    //     exerciseList +=
-    //         '<button class="btnList" type="submit">' +
-    //         '<div class="card text-center">' +
-    //         '<h5 class="card-title" id="exerciseName">' + '</h5>' +
-    //         '<div class="card-body">' +
-    //         '<img class="card-text" alt="img">' +
-    //         '</div>' +
-    //         '</div>' +
-    //         '</button>';
-    // }
-    // $('.exercises').html(exerciseList);
+let exerciseItems = document.querySelectorAll('#exercises li')
+    exerciseItems.forEach(item => {
+        item.classList.add('active')
+    })
+
 })
 
 btnTwo.addEventListener('click', () => {

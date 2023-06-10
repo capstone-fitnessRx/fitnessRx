@@ -45,8 +45,8 @@ $(document).ready(function () {
             let gif = "";
             let i;
             for (i = 0; i < data.length; i++) {
-                // let bodyPart = data[i].bodyPart;
-                // let equipment = data[i].equipment;
+                let bodyPart = data[i].bodyPart;
+                let equipment = data[i].equipment;
                 let gifUrl = data[i].gifUrl;
                 let id = data[i].id;
                 let name = data[i].name;
@@ -265,17 +265,16 @@ $(document).ready(function () {
                 '                </div>\n' +
                 '            </div>\n' +
                 <!--            sends the name of the exercise-->
-                '            <input class="d-none form-control" type="text" th:field="*{exercise_name}" name="exerciseName" value="'+name+'">\n' +
+                '            <input class="d-none form-control" type="text"  name="exerciseName" value="'+name+'">\n' +
                 <!--             sends the muscles targeted-->
-                '            <input class="d-none form-control" type="text" th:field="*{target_muscle}" name="exerciseTarget" value="'+target+'">\n' +
+                '            <input class="d-none form-control" type="text"  name="exerciseTarget" value="'+target+'">\n' +
                 <!--            sends the equipment-->
-                '            <input class="d-none form-control" type="text" th:field="*{equipment}" name="exerciseEquipment" value="'+equipment+'">\n' +
+                '            <input class="d-none form-control" type="text"  name="exerciseEquipment" value="'+equipment+'">\n' +
                 <!--            sends the gif-->
-                '            <input class="d-none form-control" type="text" th:field="*{exerciseGif}" name="exerciseGif" value="'+gifUrl+'">\n' +
+                '            <input class="d-none form-control" type="text"  name="exerciseGif" value="'+gifUrl+'">\n' +
                 '        </button>\n' +
                 '    </form>';
-            workoutBuilderCard += '<div xmlns="http://www.w3.org/1999/html">' +
-                '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
+            workoutBuilderCard += '<div><form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
                 '        <button class="btn " type="submit">\n' +
                 '            <div class="card text-center" style="width: 180px">\n' +
                 '                <div class="card-header " style="height: 130px">\n' +
@@ -286,22 +285,22 @@ $(document).ready(function () {
                 '                </div>\n' +
                 '            </div>\n' +
                 <!--            sends the name of the exercise-->
-                '            <input class="d-none form-control" type="text" th:field="*{exercise_name}" name="exerciseName" value="' + name + '">\n' +
+                '            <input class="d-none form-control" type="text" name="exerciseName" value="' + name + '">\n' +
                 <!--             sends the muscles targeted-->
-                '            <input class="d-none form-control" type="text" th:field="*{target_muscle}" name="exerciseTarget" value="' + target + '">\n' +
+                '            <input class="d-none form-control" type="text"  name="exerciseTarget" value="' + target + '">\n' +
                 <!--            sends the equipment-->
-                '            <input class="d-none form-control" type="text" th:field="*{equipment}" name="exerciseEquipment" value="' + equipment + '">\n' +
+                '            <input class="d-none form-control" type="text"  name="exerciseEquipment" value="' + equipment + '">\n' +
                 <!--            sends the gif-->
-                '            <input class="d-none form-control" type="text" th:field="*{exerciseGif}" name="exerciseGif" value="' + gifUrl + '">\n' +
+                '            <input class="d-none form-control" type="text"  name="exerciseGif" value="' + gifUrl + '">\n' +
                 '        </button>\n' +
                 '    </form> ' +
                 '<button class="text-center open_modal" data-open-modal >Add to Workout</button>' +
                 '</div>' +
                 '<dialog class="data_modal" data-modal>' +
-                '   <form th:action="@{/workout-builder}"  th:method="post" th:object="${exerciseDetails}">' +
-                '       <input type="text"  th:field="*{reps}" name="reps">Reps: </input> ' +
-                '       <input type="text" th:field="*{sets}" name="sets">Sets: </input> ' +
-                '       <input class="d-none" th:field="*{exercise_Api_Id}" name="exercise_Api_Id" value="'+id+'"> ' +
+                '   <form action="/workout-builder-inator" method="get" >' +
+                '       <input type="text" name="reps" placeholder="Reps">Reps: </input> ' +
+                '       <input type="text" name="sets" placeholder="Sets">Sets: </input> ' +
+                '       <input class="d-none" name="exercise_Api_Id" value="'+id+'"> ' +
                 // '       <input class="d-none" th:field="*{target_muscle}" value="'+name+'">' +
                 '       <button type="submit">Save</button>' +
                 '   </form>' +
