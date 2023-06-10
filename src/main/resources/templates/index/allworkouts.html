@@ -26,40 +26,61 @@
 
 <div class="row">
 
-
-
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Intense Abs Workout</a></h5>
+            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}" th:text="${workoutTitle}"></a></h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <p class="card-text">Targeted Muscle Group: Abs</p>
             <a href="#" class="card-link">+ Calender</a>
             <a href="#" class="card-link">+ Favorites</a>
         </div>
     </div>
-    <div class="card mb-3" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Bicep Workout</a></h5>
-            <p class="card-text">Targeted Muscle Group: Arms</p>
-            <a href="#" class="card-link">+ Calender</a>
-            <a href="#" class="card-link">+ Favorites</a>
-        </div>
-    </div>
-    <div class="card mb-3" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Lower Body Workout</a></h5>
-            <p class="card-text">Targeted Muscle Group: Legs</p>
-            <a href="#" class="card-link">+ Calender</a>
-            <a href="#" class="card-link">+ Favorites</a>
-        </div>
-    </div>
-    <div class="card mb-3" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">HIIT Cardio Workout</a></h5>
-            <p class="card-text">Targeted Muscle Group: Full Body</p>
-            <a href="#" class="card-link">+ Calender</a>
-            <a href="#" class="card-link">+ Favorites</a>
-        </div>
-    </div>
+
+<!--    <div class="card mb-3" style="width: 18rem;">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Intense Abs Workout</a></h5>-->
+<!--            <p class="card-text">Targeted Muscle Group: Abs</p>-->
+<!--            <a href="#" class="card-link">+ Calender</a>-->
+<!--            <a href="#" class="card-link">+ Favorites</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card mb-3" style="width: 18rem;">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Bicep Workout</a></h5>-->
+<!--            <p class="card-text">Targeted Muscle Group: Arms</p>-->
+<!--            <a href="#" class="card-link">+ Calender</a>-->
+<!--            <a href="#" class="card-link">+ Favorites</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card mb-3" style="width: 18rem;">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">Lower Body Workout</a></h5>-->
+<!--            <p class="card-text">Targeted Muscle Group: Legs</p>-->
+<!--            <a href="#" class="card-link">+ Calender</a>-->
+<!--            <a href="#" class="card-link">+ Favorites</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card mb-3" style="width: 18rem;">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}">HIIT Cardio Workout</a></h5>-->
+<!--            <p class="card-text">Targeted Muscle Group: Full Body</p>-->
+<!--            <a href="#" class="card-link">+ Calender</a>-->
+<!--            <a href="#" class="card-link">+ Favorites</a>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 
 <div th:insert="partials/messenger-partial.html :: messenger"></div>

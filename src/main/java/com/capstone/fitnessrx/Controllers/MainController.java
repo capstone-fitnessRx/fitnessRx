@@ -581,10 +581,9 @@ public class MainController {
     @GetMapping("/workouts-wall")
     public String getWorkoutWall(Model model) {
 
+        String workoutTitle =  ();
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -601,6 +600,7 @@ public class MainController {
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
 
+        model.addAttribute("workoutTitle", workoutTitle);
 
 
         return "index/allworkouts";
