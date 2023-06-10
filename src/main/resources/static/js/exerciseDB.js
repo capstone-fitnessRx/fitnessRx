@@ -45,8 +45,8 @@ $(document).ready(function () {
             let gif = "";
             let i;
             for (i = 0; i < data.length; i++) {
-                // let bodyPart = data[i].bodyPart;
-                // let equipment = data[i].equipment;
+                let bodyPart = data[i].bodyPart;
+                let equipment = data[i].equipment;
                 let gifUrl = data[i].gifUrl;
                 let id = data[i].id;
                 let name = data[i].name;
@@ -307,7 +307,7 @@ $(document).ready(function () {
                 '   <button class="close_modal" data-close-modal>close</button>' +
                 '</dialog>'
         }
-        // $('#exercises').html(card);
+        $('#exercises').html(card);
         $('#workoutBuilder').html(workoutBuilderCard);
         let openModal = document.querySelectorAll("[data-open-modal]");
         let closeModal = document.querySelectorAll("[data-close-modal]");

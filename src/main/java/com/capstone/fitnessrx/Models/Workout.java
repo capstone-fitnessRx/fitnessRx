@@ -11,7 +11,6 @@ import java.util.List;
 public class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToOne
@@ -50,9 +49,12 @@ public class Workout {
     )
     private List<Categories> categories;
 
-
     @ManyToMany(mappedBy = "favoriteWorkouts")
     private List<User> usersFavorites;
+
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinTable(name = "exercise_and_workout",
+//            joinColumns = {@JoinColumn(name =)})
 
 
     public Workout() {

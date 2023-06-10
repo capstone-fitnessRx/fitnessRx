@@ -32,12 +32,23 @@
         <input type="text" class="form-control" name="calender" id="calender" th:field="*{notes}">
 <!--            <button type="submit" class="btn btn-secondary save-button" id="save-button-sunday">Save</button>-->
             <button type="submit" class="btn btn-secondary save-button">Save</button>
+<!--            <script>-->
+<!--                const form = document.querySelector('form');-->
+<!--                const notesInput = document.getElementById('notes');-->
+
+<!--                form.addEventListener('submit', function (event) {-->
+<!--                    event.preventDefault();-->
+<!--                    notesInput.value = '';-->
+
+<!--                });-->
+<!--            </script>-->
         </form>
             <div class="form-check">
             <input type="checkbox" class="form-check-input" id="completion-checkbox-sunday">
             <label class="form-check-label" for="completion-checkbox-sunday"> Completed Workout</label>
             <!--        <a href="#" class="card-link">+ Favorites</a>-->
         </div>
+<!--        <div id="notes-saved"></div>-->
 
     </div>
 </div>

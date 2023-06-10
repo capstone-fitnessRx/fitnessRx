@@ -4,19 +4,42 @@
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Edit Profile</h2>
-      <p>UserName: </p>
+      <form method="POST" th:action="@{/profile/update}">
+        <label>Username: </label>
+        <input type="text" name="newUsername" th:value="${username}">
+        <label>Email: </label>
+        <input type="text" name="newEmail" th:value="${email}">
+        <label>Location: </label>
+        <input type="text" name="newLocation" th:value="${location}">
+        <label>Bio: </label>
+        <input type="text" name="newBio" th:value="${bio}">
+        <label>Goals: </label>
+        <input type="text" name="newGoal" th:value="${goal}">
+        <label>Workout Preference: </label>
+        <input type="text" name="newWorkoutPreference" th:value="${workoutPreference}">
+        <button type="submit">Update</button>
+      </form>
+
       <p>Profile Image: </p>
       <p>Banner Image: </p>
-      <p>Location: </p>
-      <p>Bio: </p>
-      <p>Goals: </p>
       <p>Background Color</p>
+
     </div>
   </div>
   <div id="myModalSettings" class="modal modal-dropdown">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Settings</h2>
+      <form method="POST" th:action="@{/profile/settings}">
+        <label>Theme Color: </label>
+        <select type="text" name="newCardColor">
+          <option>green</option>
+          <option>blue</option>
+          <option>orange</option>
+          <option>red</option>
+        </select>
+        <button type="submit">Update</button>
+      </form>
       <p>privacy: </p>
       <p>change password: </p>
       <p>change email: </p>
