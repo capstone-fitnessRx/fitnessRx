@@ -28,19 +28,7 @@
 
     <div class="card mb-3" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title"><a sec:authorize="isAuthenticated()" th:href="@{/workout-plan}" th:text="${workoutTitle}"></a></h5>
-
-
-
-
-
-
-
-
-
-
-
-
+            <h5 class="card-title"><a th:href="@{/workout-plan}" th:text="${workoutTitle}"></a></h5>
 
 
             <p class="card-text">Targeted Muscle Group: Abs</p>
