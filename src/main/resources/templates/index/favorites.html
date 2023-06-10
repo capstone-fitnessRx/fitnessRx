@@ -29,14 +29,11 @@
 
     <div class="split left">
         <h3>Exercises</h3>
-
-        <button class="btn" id="btnOne">View</button>
-            <ol>
-        <li class=""  th:each="exercise : ${favoriteExercise}" th:text="${exercise.exercise_name}">
-            <a href="exerciseDisplay.html">View Exercise?</a>
-        </li>
-            </ol>
-
+        <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${favoriteExercise}">
+            <div>
+                <h3 th:text="${exercise.exerciseName}"></h3>
+            </div>
+        </a>
     </div>
 
 
@@ -44,9 +41,12 @@
 
     <div class="split right">
         <h3>Workouts</h3>
-        <a href="#" class="btn" id="btnTwo">View</a>
-        <div th:each="workout : ${favoriteWorkout}" th:text="${workout.title}"></div>
-        <div th:text="testing"></div>
+        <a th:href="@{/workout-plan/{id}(id=*{workout.getId()})}" th:each="workout : ${favoriteWorkout}">
+        <div>
+            <h3 th:text="${workout.title}"></h3>
+        </div>
+        </a>
+<!--        <div th:text="testing"></div>-->
     </div>
 </div>
 
