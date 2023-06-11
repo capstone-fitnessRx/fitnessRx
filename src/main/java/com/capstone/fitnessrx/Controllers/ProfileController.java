@@ -23,17 +23,16 @@ public class ProfileController {
     private final UserRepository userDao;
     private final FriendsRepository friendsDao;
     private final WorkoutRepository workoutDao;
-    private final MessagesRepository messagesDao;
+
 
 
 //    @Value("${filestack.api.key}")
 //    private String filestackapi;
 
-    public ProfileController(UserRepository userDao, FriendsRepository friendsDao, WorkoutRepository workoutDao, MessagesRepository messagesDao) {
+    public ProfileController(UserRepository userDao, FriendsRepository friendsDao, WorkoutRepository workoutDao) {
         this.userDao = userDao;
         this.friendsDao = friendsDao;
         this.workoutDao = workoutDao;
-        this.messagesDao = messagesDao;
     }
 
     //                          1.GETMAPPING
@@ -114,44 +113,6 @@ public class ProfileController {
         }
     }
 //
-//
-//
-//
-//@GetMapping("/message/{friendId}")
-//public String showSendMessageForm(@PathVariable("friendId") Long friendId, Model model) {
-//
-//    User friend = userDao.findById(friendId).orElse(null);
-//    if (friend != null) {
-//        model.addAttribute("friend", friend);
-//        return "index/sendMessage";
-//    } else {
-//        return "error";
-//    }
-//}
-//
-//    @PostMapping("/sendMessage")
-//    public String sendMessage(@RequestParam("friendId") Long friendId, @RequestParam("content") String content) {
-//        User friend = userDao.findById(friendId).orElse(null);
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        if (friend != null && user != null) {
-//            Messages message = new Messages();
-//            message.setSender(user);
-//            message.setRecipient(friend);
-//            message.setContent(content);
-////            message.setTimeStamp(new Date());
-//
-//            messagesDao.save(message);
-//        }
-//
-//        return "redirect:/profile/" + user.getId();
-//    }
-
-
-
-
-
-//
 //POST SETTINGS FOR PROFILE
 //
     @PostMapping("/profile/settings")
@@ -166,24 +127,6 @@ public class ProfileController {
         userDao.save(user);
 
         return "redirect:/profile/" + user.getId();
-    }
-    //
-    //POST MESSAGES
-    //
-    @PostMapping("/messages/send")
-    public String message(@ModelAttribute Messages messages, @RequestParam(name="sendmessagetoID") long senttoID) {
-
-
-        User sentfromU = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User senttoU = userDao.getOne(senttoID);
-
-//    messages.setTimeStamp(ZonedDateTime.now());
-        messages.setRecipient(senttoU);
-        messages.setSender(sentfromU);
-        messagesDao.save(messages);
-
-
-        return "redirect:/profile/" + sentfromU.getId();
     }
     //
     //POST Grab user id for messages FOR PROFILE
@@ -278,69 +221,4 @@ public class ProfileController {
 
         return "redirect:/profile/" + user.getId();
     }
-
-
-    @GetMapping("/messages/{recipientId}")
-    public String messageDisplay(@PathVariable Long recipientId, Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("urlId", recipientId);
-        User authenticatedUserId = user;
-        model.addAttribute("authenticatedUserId", authenticatedUserId);
-//        Collection<Messages> recipientId = messagesDao.findAllById(id);
-        long senderId = user.getId();
-//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
-//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
-//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
-//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
-//        System.out.println("This is the user Id");
-//        System.out.println(senderId);
-//        System.out.println("This is the recipient Id");
-//        System.out.println(recipientId);
-//        Collection<Messages> recipient = messagesDao.findMessagesByUserIdAndRecipientId(senderId, recipientId);
-//        Collection<Messages> sender = messagesDao.findMessagesBy(senderId);
-//        Collection<Messages> recipient = messagesDao.findMessagesByRecipientId(recipientId);
-//        Collection<Messages> sender = messagesDao.findMessagesBySenderId(senderId);
-//        Collection<Messages> sender = messagesDao.findAllBySender(user.getId());
-//        Collection<Messages> recipient = messagesDao.findAllByRecipient(user.getId());
-        Collection<Messages> messagesOther = messagesDao.findMessagesBySenderIdAndRecipientId(senderId, recipientId);
-        Collection<Messages> messagesTo = messagesDao.findMessagesByRecipientIdAndSenderId(senderId, recipientId);
-//        Collection<Messages> messagesBulk = findAllByIdAndId(user, recipientId);
-//        model.addAttribute("recipientMessages", recipient);
-//        model.addAttribute("userMessages", sender);
-        model.addAttribute("messagesToMe", messagesOther);
-        model.addAttribute("messagesFromMe", messagesTo);
-
-        return "index/messages";
-    }
-
-    @PostMapping("/messages/{recipientId}")
-    public String sendMessage(@PathVariable Long recipientId, @RequestParam(name = "senderId") String userIdentNum, @RequestParam(name = "receiverId") String recipientIdNum, @RequestParam(name = "content") String body, Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("userId", user);
-        model.addAttribute("urlId", recipientId);
-
-        Long userIdNum = Long.parseLong(userIdentNum);
-        User userId = userDao.getReferenceById(userIdNum);
-
-        Long recipientNum= Long.parseLong(recipientIdNum);
-        User recipient = userDao.getReferenceById(recipientNum);
-
-        Messages newMessage = new Messages();
-
-        newMessage.setTimeStamp(ZonedDateTime.now());
-        newMessage.setSender(userId);
-        newMessage.setRecipient(recipient);
-        newMessage.setContent(body);
-
-        messagesDao.save(newMessage);
-
-
-
-
-
-        return "redirect:/messages/{recipientId}";
-    }
-
-
-
 }

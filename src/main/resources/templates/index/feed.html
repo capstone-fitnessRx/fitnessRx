@@ -65,7 +65,18 @@
 
             <img class="feed-pic" src="/img/giannaimg.png">
             <h4 th:text="${post.getUser().getUsername()}"></h4>
-            <img>
+            <div class="custom-dropdown">
+                <button class="btn btn-secondary custom-dropdown-toggle" type="button">
+                    ...
+                </button>
+                <div class="custom-dropdown-content">
+                    <a class="dropdown-item" href="#">Edit</a>
+                    <form th:action="@{/feed/post/delete/{id}(id=${post.getId()})}" method="POST">
+                        <input type="hidden" name="postIdNumber" id="postIdNumber" th:value="${post.getId()}">
+                    <button class="dropdown-item" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
             <p th:text="${post.getContent()}"></p>
             <p th:text="${post.getLikes()}"></p>
             <div class="card-body comment-head">
@@ -91,7 +102,8 @@
                 <img class="comment-pic" src="/img/giannaimg.png">
 
                 <form th:method="POST" th:action="@{/feed/comment/create}">
-                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment" placeholder="Comment here...">
+                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment"
+                                                        placeholder="Comment here...">
                     <input type="hidden" th:value="${post.getId()}" name="postIdent">
                     <div class="comment-submit-div">
                         <button class="submit-comment" id="comment-submission">Send</button>
@@ -113,6 +125,7 @@
 
         </div>
         <div class="bottom-feed card bottom-card">
+
             <p>You have reached the end of the feed.</p>
             <a>Back to top?</a>
         </div>
@@ -121,14 +134,14 @@
 
 
 </div>
-</div>
 
-</div>
-<div th:insert="partials/messenger-partial.html :: messenger"></div>
+
+
+<!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/feed.js"></script>
-<script src="/js/modals.js"></script>
-<script src="/js/messenger.js"></script>
-<script src="/js/navbar.js"></script>
+<!--<script src="/js/modals.js"></script>-->
+<!--<script src="/js/messenger.js"></script>-->
+<!--<script src="/js/navbar.js"></script>-->
 </body>
 </html>
