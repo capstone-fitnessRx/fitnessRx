@@ -36,14 +36,13 @@ public class FeedController {
     public String getFeed(@PathVariable Long id, Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User authenticatedUserId = user;
+        model.addAttribute("authenticatedUserId", authenticatedUserId);
 
-        System.out.println("User" + user.getUsername());
 
         Post post = postDao.getReferenceById(id);
 
-        System.out.println("~~~~~~~~~~~~~");
-        System.out.println(post.getId());
-        System.out.println("~~~~~~~~~~~~~");
+
 
 
         String profileUrl = "/profile/" + user.getId();
@@ -180,7 +179,64 @@ public class FeedController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Post post = postDao.getReferenceById(id);
+
+        Comments comment = commentsDao.getReferenceById(id);
+
+//        commentsDao.();
         postDao.deleteById(post.getId());
+
+        return "redirect:/feed/" + user.getId();
+    }
+
+    @GetMapping("/feed/post/edit/{id}")
+    public String postEditPage(@PathVariable long id, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User authenticatedUserId = user;
+        model.addAttribute("authenticatedUserId", authenticatedUserId);
+
+
+        Post post = postDao.getReferenceById(id);
+
+
+
+
+        String profileUrl = "/profile/" + user.getId();
+        model.addAttribute("profileUrl", profileUrl);
+
+        String feedUrl = "/feed/" + user.getId();
+        model.addAttribute("feedUrl", feedUrl);
+
+        String calenderUrl = "/calender/" + user.getId();
+        model.addAttribute("calenderUrl", calenderUrl);
+
+        String myWorkoutsUrl = "/my-workouts/" + user.getId();
+        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+        String favoritesUrl = "/favorites/" + user.getId();
+        model.addAttribute("favoritesUrl", favoritesUrl);
+
+
+        List<Comments> comment = commentsDao.findAll();
+        List<Post> posts = postDao.findAll();
+        Collections.reverse(posts);
+        List<Comments> comments = commentsDao.findAll();
+        User userProfile = userDao.findById(id).orElse(null);
+
+        model.addAttribute("userProfile", userProfile);
+        model.addAttribute("userProfileId", id);
+        model.addAttribute("comments", comment);
+        model.addAttribute("posts", post);
+
+        return "index/feedPostEdit";
+    }
+
+    @PostMapping("/feed/post/edit/{id}")
+    public String postEdit(@PathVariable long id, @RequestParam(name = "contentBody") String content) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Post post = postDao.getReferenceById(id);
+        post.setContent(content);
+        postDao.save(post);
 
         return "redirect:/feed/" + user.getId();
     }

@@ -20,6 +20,15 @@
         <p th:text="*{senderMessage.getTimeStamp()}"></p>
     </div>
 
+    <h6>combined msg test below</h6>
+
+
+    <div th:each="singleMessage : ${combinedMessages}">
+        <p th:text="*{singleMessage.getSender().getUsername()}"></p>
+        <p th:text="*{singleMessage.getContent()}"></p>
+        <p th:text="*{singleMessage.getTimeStamp()}"></p>
+    </div>
+
     <form th:if="${authenticatedUserId.getId() != urlId}" th:method="post" th:action="@{/messages/{recipientId}(recipientId=${urlId})}">
 
         <label for="content"></label><input class="message-input" type="text" name="content" id="content" placeholder="Type Message Here...">

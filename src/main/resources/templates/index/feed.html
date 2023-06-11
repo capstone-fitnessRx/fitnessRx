@@ -70,11 +70,23 @@
                     ...
                 </button>
                 <div class="custom-dropdown-content">
-                    <a class="dropdown-item" href="#">Edit</a>
-                    <form th:action="@{/feed/post/delete/{id}(id=${post.getId()})}" method="POST">
-                        <input type="hidden" name="postIdNumber" id="postIdNumber" th:value="${post.getId()}">
-                    <button class="dropdown-item" type="submit">Delete</button>
-                    </form>
+                    <div th:if="${authenticatedUserId.getId() != post.getUser().getId()}">
+                        <form>
+                            <input type="hidden" name="postIdNumber" id="postIdNum" th:value="${post.getId()}">
+                            <button class="dropdown-item" type="submit">Report</button>
+                        </form>
+                    </div>
+                    <div th:if="${authenticatedUserId.getId() == post.getUser().getId()}">
+
+
+                            <a class="dropdown-item" th:href="@{/feed/post/edit/{id}(id=${post.getId()})}">Edit</a>
+
+                        <form th:action="@{/feed/post/delete/{id}(id=${post.getId()})}" method="POST">
+                            <input type="hidden" name="postIdNumber" id="postIdNumber" th:value="${post.getId()}">
+                            <button class="dropdown-item" type="submit">Delete</button>
+
+                        </form>
+                    </div>
                 </div>
             </div>
             <p th:text="${post.getContent()}"></p>
@@ -134,7 +146,6 @@
 
 
 </div>
-
 
 
 <!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
