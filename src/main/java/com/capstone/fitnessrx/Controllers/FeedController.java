@@ -39,6 +39,12 @@ public class FeedController {
 
         System.out.println("User" + user.getUsername());
 
+        Post post = postDao.getReferenceById(id);
+
+        System.out.println("~~~~~~~~~~~~~");
+        System.out.println(post.getId());
+        System.out.println("~~~~~~~~~~~~~");
+
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -171,13 +177,12 @@ public class FeedController {
 
     @PostMapping("/feed/post/delete/{id}")
     public String postDelete(@PathVariable long id, @RequestParam(name = "postIdNumber") String postIdentNum) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Long postId = Long.parseLong(postIdentNum);
-        Post post = postDao.getReferenceById(postId);
+        Post post = postDao.getReferenceById(id);
+        postDao.deleteById(post.getId());
 
-        postDao.deleteById(post);
-
-        return "redirect:/feed/" + userDao.getReferenceById(id);
+        return "redirect:/feed/" + user.getId();
     }
 
 
