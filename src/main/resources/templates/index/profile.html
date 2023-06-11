@@ -35,13 +35,25 @@
 <div class="container">
 
     <div th:insert="partials/modals.html :: modals"></div>
-
-    <form th:if="${authenticatedUserId.getId() != urlUserId}" th:method="post"
+<!---->
+<!---->
+<!---->
+<!--HELP-->
+<!---->
+<!---->
+    <form th:if="${authenticatedUserId.getId() != urlUserId} and ${authenticatedUserId.friendsAsFriendUser}" th:method="post"
           th:action="@{/profile/{id}(id=${urlUserId})}">
         <input id="contactHidden" name="contactHidden" th:value="${urlUserId}" type="hidden">
         <button type="submit">Add Friend</button>
     </form>
-
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
     <!--    banner card-->
     <div class="card banner-card">
         <!--        <img class="main-banner" src="../../static/img/bannerMain.jpeg">-->

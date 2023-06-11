@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class MessagesController {
@@ -37,10 +39,18 @@ public class MessagesController {
 
         long senderId = user.getId();
 
-        Collection<Messages> messagesOther = messagesDao.findMessagesBySenderIdAndRecipientId(senderId, recipientId);
-        Collection<Messages> messagesTo = messagesDao.findMessagesByRecipientIdAndSenderId(senderId, recipientId);
+        Collection<Messages> messagesOther = messagesDao.findMessagesBySenderIdOrRecipientId(senderId, recipientId);
+        Collection<Messages> messagesTo = messagesDao.findMessagesByRecipientIdOrSenderId(senderId, recipientId);
+
+         List<Messages> combinedMessages = new ArrayList<>();
+
+         combinedMessages.addAll(messagesOther);
+         combinedMessages.addAll(messagesTo);
+
+
         model.addAttribute("messagesToMe", messagesOther);
         model.addAttribute("messagesFromMe", messagesTo);
+        model.addAttribute("combinedMessages", combinedMessages);
 
         return "index/messages";
     }

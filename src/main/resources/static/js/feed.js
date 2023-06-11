@@ -23,7 +23,7 @@ customDropdowns.forEach(function(dropdown) {
 
 
 $(document).ready(function() {
-    var commentDropLink = $(".dropdown-toggle");
+    var commentDropLink = $(".comment-size");
     var commentDropDownDisplay = $(".dropdown-comments");
 
     commentDropLink.on("click", function() {

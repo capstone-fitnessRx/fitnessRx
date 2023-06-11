@@ -7,8 +7,10 @@
             <form method="POST" th:action="@{/profile/update}">
                 <label>Username: </label>
                 <input type="text" name="newUsername" th:value="${username}">
+
                 <label>Email: </label>
                 <input type="text" name="newEmail" th:value="${email}">
+
                 <label>Location: </label>
                 <input type="text" name="newLocation" th:value="${location}">
                 <label>Bio: </label>
