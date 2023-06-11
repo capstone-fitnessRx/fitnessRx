@@ -66,6 +66,13 @@ public class ProfileController {
 
         if (userProfile != null) {
 
+
+
+
+            //get exercise favorites
+
+
+
             String username = userProfile.getUsername();
             String location = userProfile.getLocation();
             String workoutPreference = userProfile.getWorkoutPreference();
@@ -82,6 +89,9 @@ public class ProfileController {
             List<Workout> userFavorites = userProfile.getFavoriteWorkouts();
             List<Workout> userWorkout = workoutDao.findWorkoutsByUser(userDao.getReferenceById(id));
 
+
+            List<Exercise> userFavoriteExercise = userProfile.getFavoriteExercise();
+            model.addAttribute("favoriteExercise", userFavoriteExercise);
 
             model.addAttribute("favoriteWorkouts", userFavorites);
             model.addAttribute("myWorkouts", userWorkout);
@@ -265,6 +275,38 @@ public class ProfileController {
 
 
         return "redirect:/profile/" + user.getId();
+    }
+
+
+    @GetMapping("/messages/{recipientId}")
+    public String messageDisplay(@PathVariable Long recipientId, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("urlUserId", recipientId);
+//        Collection<Messages> recipientId = messagesDao.findAllById(id);
+        long senderId = user.getId();
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
+//        System.out.println("This is the user Id");
+//        System.out.println(senderId);
+//        System.out.println("This is the recipient Id");
+//        System.out.println(recipientId);
+//        Collection<Messages> recipient = messagesDao.findMessagesByUserIdAndRecipientId(senderId, recipientId);
+//        Collection<Messages> sender = messagesDao.findMessagesBy(senderId);
+//        Collection<Messages> recipient = messagesDao.findMessagesByRecipientId(recipientId);
+//        Collection<Messages> sender = messagesDao.findMessagesBySenderId(senderId);
+//        Collection<Messages> sender = messagesDao.findAllBySender(user.getId());
+//        Collection<Messages> recipient = messagesDao.findAllByRecipient(user.getId());
+        Collection<Messages> messagesOther = messagesDao.findMessagesBySenderIdAndRecipientId(senderId, recipientId);
+        Collection<Messages> messagesTo = messagesDao.findMessagesByRecipientIdAndSenderId(senderId, recipientId);
+//        Collection<Messages> messagesBulk = findAllByIdAndId(user, recipientId);
+//        model.addAttribute("recipientMessages", recipient);
+//        model.addAttribute("userMessages", sender);
+        model.addAttribute("messagesToMe", messagesOther);
+        model.addAttribute("messagesFromMe", messagesTo);
+
+        return "index/messages";
     }
 
 

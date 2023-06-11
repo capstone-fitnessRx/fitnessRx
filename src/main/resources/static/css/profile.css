@@ -40,11 +40,30 @@ body {
     padding-right: 20px;
 }
 
-.profile-menu {
+.profile-edit {
     cursor: pointer;
     height: 40px;
     width: 40px;
     margin-left: auto;
+}
+.message-other {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    position: relative;
+    bottom: 45px;
+    left: 10px;
+
+}
+.profile-menu {
+    cursor: pointer;
+    height: 8px;
+    width: 20px;
+    margin-left: auto;
+    position: relative;
+    top: 15px;
+    left: 10px;
 }
 .main-profile-pic {
     border-radius: 50%;
@@ -57,19 +76,22 @@ body {
 }
 .main-name{
     position: relative;
-    bottom: 2em;
+    bottom: 55px;
+    margin: 0;
 }
 .addFriend-div{
     display: flex;
 
 }
 .addFriend {
+    cursor: pointer;
     height: 20px;
     width: 20px;
-    margin: 0;
+    margin-left: 0;
     position: relative;
     bottom: 45px;
     left: 10px;
+    margin-right: 10px;
 }
 .main-loc{
     position: relative;

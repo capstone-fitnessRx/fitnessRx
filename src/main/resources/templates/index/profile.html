@@ -36,7 +36,8 @@
 
     <div th:insert="partials/modals.html :: modals"></div>
 
-    <form th:if="${authenticatedUserId.getId() != urlUserId}" th:method="post" th:action="@{/profile/{id}(id=${urlUserId})}">
+    <form th:if="${authenticatedUserId.getId() != urlUserId}" th:method="post"
+          th:action="@{/profile/{id}(id=${urlUserId})}">
         <input id="contactHidden" name="contactHidden" th:value="${urlUserId}" type="hidden">
         <button type="submit">Add Friend</button>
     </form>
@@ -48,21 +49,36 @@
     </div>
 
     <div class="card main-card" th:style="'background-color:' + ${cardColor}">
-        <img th:if="${authenticatedUserId.getId() == urlUserId}" class="profile-menu" id="modalEdit" src="/img/edit.png">
-<!--        <div th:if="${authenticatedUserId.getId() == urlUserId}">-->
-<!--            this is your profile.-->
+        <img th:if="${authenticatedUserId.getId() == urlUserId}" class="profile-edit" id="modalEdit"
+             src="/img/edit.png">
+        <img th:if="${authenticatedUserId.getId() != urlUserId}" class="profile-menu" id="modalOption"
+             src="/img/dropDown.png">
+        <!--        <div th:if="${authenticatedUserId.getId() == urlUserId}">-->
+        <!--            this is your profile.-->
+        <!--        </div>-->
+        <!--        <div th:if="${authenticatedUserId.getId() != urlUserId}">-->
+        <!--            this is NOT your profile.-->
+        <!--        </div>-->
+<!--        <div th:each="messages : ${message}">-->
+<!--            &lt;!&ndash;This is the non-signed in user&ndash;&gt;-->
+<!--            <p th:text="*{messages.getRecipient()}"></p>-->
+<!--            <p th:text="*{messages.getContent()}"></p>-->
+<!--            &lt;!&ndash;This is the signed-in user&ndash;&gt;-->
+<!--            <p th:text="*{messages.getSender()}"></p>-->
+<!--            <p th:text="*{messages.getContent()}"></p>-->
 <!--        </div>-->
-<!--        <div th:if="${authenticatedUserId.getId() != urlUserId}">-->
-<!--            this is NOT your profile.-->
-<!--        </div>-->
-
         <!--  <h3 th:text="*{username}"></h3>-->
         <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
         <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
         <div class="addFriend-div">
-        <h1 class="main-name" th:text="${username}"></h1>
+            <h1 class="main-name" th:text="${username}"></h1>
             <a>
-            <img th:if="${authenticatedUserId.getId() != urlUserId}" class="addFriend" id="addFriend" src="/img/addFriend.png">
+                <img th:if="${authenticatedUserId.getId() != urlUserId}" class="addFriend" id="addFriend"
+                     src="/img/addFriend.png">
+            </a>
+            <a th:href="@{/messages/{recipientId}(recipientId=${urlUserId})}">
+                <img th:if="${authenticatedUserId.getId() != urlUserId}" id="message-others" class="message-other"
+                     src="/img/comment.png">
             </a>
         </div>
 
@@ -76,14 +92,16 @@
     <div class="card goal-card">
         <!--Make a conditional that changes 'My Goal' to the users name + goal if this isn't the owner viewing it-->
         <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="goal-header">My Goal</h4>
-        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="goal-header" th:text="${username} + 's Goal'"></h4>
+        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="goal-header"
+            th:text="${username} + 's Goal'"></h4>
         <p class="goal" th:text="${goal}"></p>
     </div>
     <!--Workout card-->
     <div class="card workout-card">
         <!--        Conditional below-->
         <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="workout-header">My Workouts</h4>
-        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="workout-header" th:text="${username} + 's Workouts'"></h4>
+        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="workout-header"
+            th:text="${username} + 's Workouts'"></h4>
 
 
         <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">
@@ -97,39 +115,46 @@
     <div class="card favorite-card">
         <!--        Conditional below-->
         <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="favorite-header">My Favorites</h4>
-        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="favorite-header" th:text="${username} + 's Favorites'"></h4>
+        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="favorite-header"
+            th:text="${username} + 's Favorites'"></h4>
 
-        <a th:href="@{/workout-plan/{id}(id=*{favoriteWorkout.getId()})}" th:each="favoriteWorkout : ${favoriteWorkouts}">
+        <h4>Workouts</h4>
+        <a th:href="@{/workout-plan/{id}(id=*{favoriteWorkout.getId()})}"
+           th:each="favoriteWorkout : ${favoriteWorkouts}">
             <div>
                 <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
             </div>
         </a>
-
-
-
+        <hr>
+        <h4>Exercise</h4>
+        <!--        <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${favoriteExercise}">-->
+        <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${favoriteExercise}">
+            <div>
+                <h3 th:text="${exercise.getExerciseName()}"></h3>
+            </div>
+        </a>
 
         <!--        for each here to list user favorite workouts-->
         <a class="view-all" th:href="@{/favorites/{id}(id=${urlUserId})}"><u>View All</u></a>
     </div>
 
-<!--    -->
-<!--    -->
-<!--    -->
-<!--  remove below later just testing function for meassage system  -->
+    <!--    -->
+    <!--    -->
+    <!--    -->
+    <!--  remove below later just testing function for meassage system  -->
 
     <div class="card">
-<!--        <form th:action="@{/messages/send}" th:method="post" th:object="${messages}" th:csrf>-->
-<!--        Message Body:-->
-<!--        <input th:field="*{content}" />-->
-<!--        <br />-->
-<!--        <input type="hidden" th:name="sendmessagetoID" th:value="${userId}" />-->
-<!--        <input type="submit" />-->
-<!--    </form>-->
+        <!--        <form th:action="@{/messages/send}" th:method="post" th:object="${messages}" th:csrf>-->
+        <!--        Message Body:-->
+        <!--        <input th:field="*{content}" />-->
+        <!--        <br />-->
+        <!--        <input type="hidden" th:name="sendmessagetoID" th:value="${userId}" />-->
+        <!--        <input type="submit" />-->
+        <!--    </form>-->
 
     </div>
     <!--    -->
     <!--    -->
-
 
 
 </div>
