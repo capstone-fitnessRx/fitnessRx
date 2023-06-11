@@ -64,7 +64,7 @@
         <div th:each="post : ${posts}" class="post-loop card">
 
             <img class="feed-pic" src="/img/giannaimg.png">
-            <h4 th:text="${post.getUser().getUsername()}"></h4>
+            <a th:href="@{/profile/{id}(id=${post.getUser().getId()})}" th:text="${post.getUser().getUsername()}"></a>
             <div class="custom-dropdown">
                 <button class="btn btn-secondary custom-dropdown-toggle" type="button">
                     ...
@@ -96,7 +96,7 @@
                 <form method="POST" th:action="@{/feed/like}">
                     <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>
                 </form>
-                <button class="dropdown-toggle" th:text="${post.getComments().size()} + ' comments'"></button>
+                <button class="dropdown-toggle comment-size" th:text="${post.getComments().size()} + ' comments'"></button>
 
             </div>
 
@@ -126,7 +126,10 @@
                 <!--comment section-->
                 <div th:each="comment : ${post.getComments()}" class="dropdown-comments card-body">
                     <p th:text="${comment.getUser().getUsername()}"></p>
+                    <form th:action="@{/feed/comment/delete/{id}(id=${comment.getId()})}" method="POST">
                     <p th:text="${comment.getContent()}"></p>
+                        <button th:if="${authenticatedUserId.getId() == comment.getUser().getId()}" type="submit">&times;</button>
+                    </form>
                     <p th:text="${comment.getCommentLikes()}"></p>
                 </div>
                 <!---->
@@ -151,8 +154,8 @@
 <!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/feed.js"></script>
-<!--<script src="/js/modals.js"></script>-->
+<script src="/js/modals.js"></script>
 <!--<script src="/js/messenger.js"></script>-->
-<!--<script src="/js/navbar.js"></script>-->
+<script src="/js/navbar.js"></script>
 </body>
 </html>

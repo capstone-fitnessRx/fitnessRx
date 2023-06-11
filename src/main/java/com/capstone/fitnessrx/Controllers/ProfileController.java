@@ -64,7 +64,7 @@ public class ProfileController {
         model.addAttribute("urlUserId", id);
 
         User userProfile = userDao.findById(id).orElse(null);
-
+//        Friends friendList = findFriendsByUserMainAndUserFriend(authenticatedUserId, userProfile);
         if (userProfile != null) {
 
 
@@ -75,6 +75,7 @@ public class ProfileController {
 
 
             String username = userProfile.getUsername();
+            String email = userProfile.getEmail();
             String location = userProfile.getLocation();
             String workoutPreference = userProfile.getWorkoutPreference();
             String bio = userProfile.getBio();
@@ -87,6 +88,8 @@ public class ProfileController {
 
 
             Collection<Friends> userFriends = friendsDao.findAllByUserMain(userProfile);
+
+
             List<Workout> userFavorites = userProfile.getFavoriteWorkouts();
             List<Workout> userWorkout = workoutDao.findWorkoutsByUser(userDao.getReferenceById(id));
 
@@ -104,7 +107,21 @@ public class ProfileController {
             model.addAttribute("workoutPreference", workoutPreference);
             model.addAttribute("bio", bio);
             model.addAttribute("goal", goal);
+            model.addAttribute("email", email);
             //            model.addAttribute("userId", userId);
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println(userProfile);
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~");
+
+
 
             return "index/profile";
         } else {

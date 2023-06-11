@@ -175,15 +175,28 @@ public class FeedController {
     }
 
     @PostMapping("/feed/post/delete/{id}")
-    public String postDelete(@PathVariable long id, @RequestParam(name = "postIdNumber") String postIdentNum) {
+    public String postDelete(@PathVariable long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Post post = postDao.getReferenceById(id);
 
-        Comments comment = commentsDao.getReferenceById(id);
+//        Comments comment = commentsDao.getReferenceById(id);
 
-//        commentsDao.();
+
+//        commentsDao.deleteCommentsByPosts_Id(post.getId());
+//        postDao.deleteAllById(post.getComments());
         postDao.deleteById(post.getId());
+
+        return "redirect:/feed/" + user.getId();
+    }
+
+    @PostMapping("/feed/comment/delete/{id}")
+    public String commentDelete(@PathVariable long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Comments comments = commentsDao.getReferenceById(id);
+
+        commentsDao.deleteById(comments.getId());
 
         return "redirect:/feed/" + user.getId();
     }
