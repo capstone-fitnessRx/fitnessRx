@@ -328,5 +328,5 @@ public class User {
 
     public void setWorkoutsList(List<Workout> workoutsList) {
         this.workoutsList = workoutsList;
-    }
+    }}
 

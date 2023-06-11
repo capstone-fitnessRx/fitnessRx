@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 //import java.util.Calender;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -573,11 +574,18 @@ public class MainController {
 
         return "index/workoutBuilderInator";
     }
+
+    public ArrayList<ExerciseDetails> exerciseDetailsList = new ArrayList<>();
+
     @PostMapping("/workout-builder-inator")
     public String postBuilderInator(Model model,@RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id) {
-        ExerciseDetails exercisedetails = new ExerciseDetails(exercise_Api_Id, reps, sets);
-        exerciseDetailsDao.save(exercisedetails);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ExerciseDetails exercisedetails = new ExerciseDetails(exercise_Api_Id, reps, sets);
+        exerciseDetailsList.add(exercisedetails);
+        for(ExerciseDetails exercise : exerciseDetailsList) {
+            System.out.println(exercise.getExercise_Api_Id());
+        }
+        exerciseDetailsDao.save(exercisedetails);
         return "redirect:/workout-builder";
     }
 
