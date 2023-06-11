@@ -5,12 +5,13 @@ import com.capstone.fitnessrx.Models.User;
 import com.capstone.fitnessrx.Repositories.ExerciseRepository;
 import com.capstone.fitnessrx.Repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-
+@Controller
 public class ExerciseController {
     private final UserRepository userDao;
     private final ExerciseRepository exerciseDao;
@@ -23,12 +24,11 @@ public class ExerciseController {
 
     @GetMapping("/exercise-page")
     public String getExercise(Model model) {
-
-//        model.addAttribute("exercise", new Exercise());
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Exercise> allExercises = exerciseDao.findAll();
         model.addAttribute("allExercises", allExercises);
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -43,6 +43,8 @@ public class ExerciseController {
 
         return "index/exercises";
     }
+
+
 
     @GetMapping("/exercise-display/{id}")
     public String getExerciseDisplay(@PathVariable Long id, Model model) {

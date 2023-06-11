@@ -168,4 +168,21 @@ public class FeedController {
 
         return "redirect:/feed/" + user.getId();
     }
+
+    @PostMapping("/feed/post/delete/{id}")
+    public String postDelete(@PathVariable long id, @RequestParam(name = "postIdNumber") String postIdentNum) {
+
+        Long postId = Long.parseLong(postIdentNum);
+        Post post = postDao.getReferenceById(postId);
+
+        postDao.deleteById(post);
+
+        return "redirect:/feed/" + userDao.getReferenceById(id);
+    }
+
+
+
+
+
+
 }

@@ -104,9 +104,7 @@ public class WorkoutController {
 
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUser = userDao.getOne((long) user.getId());
 
-        System.out.println(currentUser.getUsername());
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
