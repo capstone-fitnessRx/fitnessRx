@@ -10,8 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 //import java.util.Calender;
-import java.time.ZonedDateTime;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.jar.JarOutputStream;
@@ -185,6 +184,88 @@ public class MainController {
         return "index/favorites";
     }
 //@RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id
+
+//     @GetMapping("/workout-builder")
+//     public String getBuilder(Model model) {
+// //        model.addAttribute("exerciseDetails", new ExerciseDetails());
+
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+//         String profileUrl = "/profile/" + user.getId();
+//         model.addAttribute("profileUrl", profileUrl);
+
+//         String feedUrl = "/feed/" + user.getId();
+//         model.addAttribute("feedUrl", feedUrl);
+
+//         String calenderUrl = "/calender/" + user.getId();
+//         model.addAttribute("calenderUrl", calenderUrl);
+
+//         String myWorkoutsUrl = "/my-workouts/" + user.getId();
+//         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+//         String favoritesUrl = "/favorites/" + user.getId();
+//         model.addAttribute("favoritesUrl", favoritesUrl);
+
+
+
+//         return "index/workoutBuilder";
+//     }
+
+//     @GetMapping("/workout-builder-inator")
+//     public String getBuilderInator(Model model,@RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id) {
+//         model.addAttribute("exercisedetails", new ExerciseDetails());
+//         ExerciseDetails test = new ExerciseDetails(reps, sets, exercise_Api_Id);
+//         model.addAttribute("test", test);
+//         model.addAttribute("reps", reps);
+//         model.addAttribute("sets", sets);
+//         model.addAttribute("exercise_Api_Id", exercise_Api_Id);
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//         return "index/workoutBuilderInator";
+//     }
+
+//     public ArrayList<ExerciseDetails> exerciseDetailsList = new ArrayList<>();
+
+//     @PostMapping("/workout-builder-inator")
+//     public String postBuilderInator(Model model,@RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id) {
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//         ExerciseDetails exercisedetails = new ExerciseDetails(exercise_Api_Id, reps, sets);
+//         exerciseDetailsList.add(exercisedetails);
+//         for(ExerciseDetails exercise : exerciseDetailsList) {
+//             System.out.println(exercise.getExercise_Api_Id());
+//         }
+//         exerciseDetailsDao.save(exercisedetails);
+//         return "redirect:/workout-builder";
+//     }
+
+//     @GetMapping("/exercise-page")
+//     public String getExercise(Model model) {
+
+// //        model.addAttribute("exercise", new Exercise());
+//         List<Exercise> allExercises = exerciseDao.findAll();
+//         model.addAttribute("allExercises", allExercises);
+
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+
+
+
+//         String profileUrl = "/profile/" + user.getId();
+//         model.addAttribute("profileUrl", profileUrl);
+//         String feedUrl = "/feed/" + user.getId();
+//         model.addAttribute("feedUrl", feedUrl);
+//         String calenderUrl = "/calender/" + user.getId();
+//         model.addAttribute("calenderUrl", calenderUrl);
+//         String myWorkoutsUrl = "/my-workouts/" + user.getId();
+//         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+//         String favoritesUrl = "/favorites/" + user.getId();
+//         model.addAttribute("favoritesUrl", favoritesUrl);
+
+//         return "index/exercises";
+//     }
+
 
 
     @GetMapping("/test")
