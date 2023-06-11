@@ -90,4 +90,28 @@
         </div>
     </div>
 
+
+
+
+
+
+
+
+    <div id="ModalMessage" class="modal message-display">
+        <div class="modal-content row">
+            <span class="close">&times;</span>
+            <h2>Message Display</h2>
+            <div>
+                <div th:each="messages : ${message}">
+                    <!--This is the non-signed in user-->
+                    <p th:text="*{messages.getRecipient()}"></p>
+                    <p th:text="*{messages.getContent()}"></p>
+                    <!--This is the signed-in user-->
+                    <p th:text="*{messages.getSender()}"></p>
+                    <p th:text="*{messages.getContent()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
