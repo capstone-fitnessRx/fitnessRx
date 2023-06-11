@@ -2,9 +2,8 @@ package com.capstone.fitnessrx.Models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Comment;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @Entity
 public class Messages {
@@ -23,7 +22,7 @@ public class Messages {
     private String content;
 
     @Column()
-    private Date timeStamp;
+    private ZonedDateTime timeStamp;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +31,7 @@ public class Messages {
     public Messages() {
     }
 
-    public Messages(User sender, User recipient, String content, Date timeStamp, Long id) {
+    public Messages(User sender, User recipient, String content, ZonedDateTime timeStamp, Long id) {
         this.sender = sender;
         this.recipient = recipient;
         this.content = content;
@@ -40,7 +39,7 @@ public class Messages {
         this.id = id;
     }
 
-    public Messages(User sender, User recipient, String content, Date timeStamp) {
+    public Messages(User sender, User recipient, String content, ZonedDateTime timeStamp) {
         this.sender = sender;
         this.recipient = recipient;
         this.content = content;
@@ -72,11 +71,11 @@ public class Messages {
         this.content = content;
     }
 
-    public Date getTimeStamp() {
+    public ZonedDateTime getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(ZonedDateTime timeStamp) {
         this.timeStamp = timeStamp;
     }
 
