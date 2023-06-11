@@ -8,21 +8,6 @@
 <body>
 <div>
   <h1>Messages</h1>
-  <div th:each="recipientMessage : ${messagesToMe}">
-    <p th:text="*{recipientMessage.getSender().getUsername()}"></p>
-    <p th:text="*{recipientMessage.getContent()}"></p>
-    <p th:text="*{recipientMessage.getTimeStamp()}"></p>
-
-  </div>
-    <div th:each="senderMessage : ${messagesFromMe}">
-        <p th:text="*{senderMessage.getSender().getUsername()}"></p>
-        <p th:text="*{senderMessage.getContent()}"></p>
-        <p th:text="*{senderMessage.getTimeStamp()}"></p>
-    </div>
-
-    <h6>combined msg test below</h6>
-
-
     <div th:each="singleMessage : ${combinedMessages}">
         <p th:text="*{singleMessage.getSender().getUsername()}"></p>
         <p th:text="*{singleMessage.getContent()}"></p>
