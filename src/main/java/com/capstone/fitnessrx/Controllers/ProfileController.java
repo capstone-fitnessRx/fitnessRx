@@ -2,6 +2,7 @@ package com.capstone.fitnessrx.Controllers;
 
 import com.capstone.fitnessrx.Repositories.*;
 import com.capstone.fitnessrx.Models.*;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 //import java.util.Calender;
+import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -281,7 +283,9 @@ public class ProfileController {
     @GetMapping("/messages/{recipientId}")
     public String messageDisplay(@PathVariable Long recipientId, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("urlUserId", recipientId);
+        model.addAttribute("urlId", recipientId);
+        User authenticatedUserId = user;
+        model.addAttribute("authenticatedUserId", authenticatedUserId);
 //        Collection<Messages> recipientId = messagesDao.findAllById(id);
         long senderId = user.getId();
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
@@ -307,6 +311,34 @@ public class ProfileController {
         model.addAttribute("messagesFromMe", messagesTo);
 
         return "index/messages";
+    }
+
+    @PostMapping("/messages/{recipientId}")
+    public String sendMessage(@PathVariable Long recipientId, @RequestParam(name = "senderId") String userIdentNum, @RequestParam(name = "receiverId") String recipientIdNum, @RequestParam(name = "content") String body, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("userId", user);
+        model.addAttribute("urlId", recipientId);
+
+        Long userIdNum = Long.parseLong(userIdentNum);
+        User userId = userDao.getReferenceById(userIdNum);
+
+        Long recipientNum= Long.parseLong(recipientIdNum);
+        User recipient = userDao.getReferenceById(recipientNum);
+
+        Messages newMessage = new Messages();
+
+        newMessage.setTimeStamp(ZonedDateTime.now());
+        newMessage.setSender(userId);
+        newMessage.setRecipient(recipient);
+        newMessage.setContent(body);
+
+        messagesDao.save(newMessage);
+
+
+
+
+
+        return "redirect:/messages/{recipientId}";
     }
 
 
