@@ -1,51 +1,38 @@
 <!--messenger partial-->
 <div th:fragment="messenger">
-<div id="bottomBar">
-  <div id="content">
-    <!-- Content to be initially displayed -->
-    <!--        <img class="message-img img1" src="../../static/img/fitnessMyIMG.jpeg">-->
-    <img class="message-img img1" src="/img/fitnessMyIMG.jpeg">
-    <p class="messages">Messages</p>
-  </div>
-  <div id="hiddenContent">
-    <!-- Additional content to be revealed -->
-    <!--        <img class="message-img img2" src="../../static/img/fitnessMyIMG.jpeg">-->
-    <img class="message-img img2" src="/img/fitnessMyIMG.jpeg">
-    <p class="messages open-message">Messages</p>
-    <div class="message-wall">
-      <!--            <img class="sec-message-img" src="../../static/img/fitnessMyIMG.jpeg">-->
-      <img class="sec-message-img" src="/img/fitnessMyIMG.jpeg">
-      <p>Name</p>
-      <p>date/sent/recieved</p>
+    <div id="bottomBar">
+        <div id="content">
+            <!-- Content to be initially displayed -->
+            <!--        <img class="message-img img1" src="../../static/img/fitnessMyIMG.jpeg">-->
+
+<!--            <h2>User ID: <span th:text="${userId}"></span></h2>-->
+
+
+
+
+            <img class="message-img img1" src="/img/fitnessMyIMG.jpeg">
+            <p class="messages">Messages</p>
+        </div>
+        <div id="hiddenContent">
+            <!-- Additional content to be revealed -->
+            <!--        <img class="message-img img2" src="../../static/img/fitnessMyIMG.jpeg">-->
+            <img class="message-img img2" src="/img/fitnessMyIMG.jpeg">
+            <p class="messages open-message">Messages</p>
+            <div th:each="friend : ${userFriends}">
+                <div class="message-wall">
+                    <form th:action="@{/users}" th:method="post">
+                        <img class="sec-message-img" src="/img/fitnessMyIMG.jpeg">
+                        <p th:text="${friend.userFriend.username}"></p>
+                        <p>date/sent/received</p>
+                        <input type="hidden" name="sendmessagetoID" th:value="${friend.userFriend.id}" />
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="message-bottom">
+                <button class="send">Send</button>
+            </div>
+        </div>
     </div>
-    <div class="message-wall">
-      <!--            <img class="sec-message-img" src="../../static/img/fitnessMyIMG.jpeg">-->
-      <img class="sec-message-img" src="/img/fitnessMyIMG.jpeg">
-      <p>Name</p>
-      <p>date/sent/recieved</p>
-    </div>
-    <div class="message-wall">
-      <!--            <img class="sec-message-img" src="../../static/img/fitnessMyIMG.jpeg">-->
-      <img class="sec-message-img" src="/img/fitnessMyIMG.jpeg">
-      <p>Name</p>
-      <p>date/sent/recieved</p>
-    </div>
-    <div class="message-wall">
-      <!--            <img class="sec-message-img" src="../../static/img/fitnessMyIMG.jpeg">-->
-      <img class="sec-message-img" src="/img/fitnessMyIMG.jpeg">
-      <p>Name</p>
-      <p>date/sent/recieved</p>
-    </div>
-    <div class="message-wall">
-      <!--            <img class="sec-message-img" src="../../static/img/fitnessMyIMG.jpeg">-->
-      <img class="sec-message-img" src="/img/fitnessMyIMG.jpeg">
-      <p>Name</p>
-      <p>date/sent/recieved</p>
-    </div>
-    <div class="message-bottom">
-      <button class="new_convo">New Conversation</button>
-    </div>
-  </div>
-</div>
 </div>
 <!--<script src="../../static/js/messenger.js"></script>-->

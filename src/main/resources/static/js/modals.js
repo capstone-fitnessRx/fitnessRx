@@ -82,3 +82,8 @@ $(document).ready(function() {
         }
     });
 });
+
+// click event for API upload
+// $("#upload").click(function () {
+//     client.picker().open()
+// });

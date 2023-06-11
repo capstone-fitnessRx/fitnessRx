@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>messages</title>
+</head>
+<body>
+<div>
+  <h1>Messages</h1>
+  <div th:each="recipientMessage : ${messagesToMe}">
+    <p th:text="*{recipientMessage.getSender().getUsername()}"></p>
+    <p th:text="*{recipientMessage.getContent()}"></p>
+
+  </div>
+    <div th:each="senderMessage : ${messagesFromMe}">
+        <p th:text="*{senderMessage.getSender().getUsername()}"></p>
+        <p th:text="*{senderMessage.getContent()}"></p>
+    </div>
+
+    <form th:if="${authenticatedUserId.getId() != urlId}" th:method="post" th:action="@{/messages/{recipientId}(recipientId=${urlId})}">
+
+        <label for="content"></label><input class="message-input" type="text" name="content" id="content" placeholder="Type Message Here...">
+        <input type="hidden" name="senderId" th:value="${authenticatedUserId.getId()}">
+        <input type="hidden" name="receiverId" th:value="${recipientId}">
+
+        <button type="submit">Send</button>
+    </form>
+</div>
+</body>
+</html>

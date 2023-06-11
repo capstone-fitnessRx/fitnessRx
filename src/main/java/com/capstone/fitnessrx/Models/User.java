@@ -35,11 +35,12 @@ public class User {
     private List<Calender> calender;
     @OneToMany(mappedBy = "user")
     private List<Ratings> ratings;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
-    private List<Messages> sentMessages;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipient")
-    private List<Messages> receivedMessages;
+    @OneToMany(mappedBy = "sender")
+    @JsonBackReference
+    private Collection<Messages> sentMessages;
+    @OneToMany(mappedBy = "recipient")
+    @JsonBackReference
+    private Collection<Messages> receivedMessages;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userMain")
     @JsonBackReference
     private Collection<Friends> friendsAsMainUser;
@@ -48,12 +49,12 @@ public class User {
     @JsonBackReference
     private Collection<Friends> friendsAsFriendUser;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 //    private List<FavoriteExercise> favoriteExercises;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_exercise",
-        joinColumns = {@JoinColumn(name = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "exercise_id")})
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "exercise_id")})
     private List<Exercise> exercisesList;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -75,39 +76,39 @@ public class User {
     private List<Exercise> favoriteExercise;
 
 
-
     public User(User copy) {
-        id =copy.id;
-        username =copy.username;
-        email =copy.email;
-        password =copy.password;
-        admin =copy.admin;
+        id = copy.id;
+        username = copy.username;
+        email = copy.email;
+        password = copy.password;
+        admin = copy.admin;
         location = copy.location;
-        workoutPreference =copy.workoutPreference;
-        bio =copy.bio;
-        post =copy.post;
+        workoutPreference = copy.workoutPreference;
+        bio = copy.bio;
+        post = copy.post;
         goal = copy.goal;
         cardColor = copy.cardColor;
         calender = copy.calender;
-        ratings =copy.ratings;
-        sentMessages =copy.sentMessages;
-        receivedMessages =copy.receivedMessages;
-        friendsAsMainUser =copy.friendsAsMainUser;
-        friendsAsFriendUser =copy.friendsAsFriendUser;
+        ratings = copy.ratings;
+        sentMessages = copy.sentMessages;
+        receivedMessages = copy.receivedMessages;
+        friendsAsMainUser = copy.friendsAsMainUser;
+        friendsAsFriendUser = copy.friendsAsFriendUser;
         favoriteWorkouts = copy.favoriteWorkouts;
-        favoriteExercise =copy.favoriteExercise;
+        favoriteExercise = copy.favoriteExercise;
         exercisesList = copy.exercisesList;
         workoutsList = copy.workoutsList;
     }
 
 
-
-    public User () {
+    public User() {
 
     }
 
 
-    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Exercise> exercisesList, List<Workout> workoutsList, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, Collection<Messages> sentMessages, Collection<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+
+
         this.id = id;
         this.username = username;
         this.email = email;
@@ -131,7 +132,8 @@ public class User {
         this.favoriteExercise = favoriteExercise;
     }
 
-    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, List<Messages> sentMessages, List<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Exercise> exercisesList, List<Workout> workoutsList, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, Collection<Messages> sentMessages, Collection<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
+
         this.username = username;
         this.email = email;
         this.password = password;
@@ -258,19 +260,19 @@ public class User {
         this.ratings = ratings;
     }
 
-    public List<Messages> getSentMessages() {
+    public Collection<Messages> getSentMessages() {
         return sentMessages;
     }
 
-    public void setSentMessages(List<Messages> sentMessages) {
+    public void setSentMessages(Collection<Messages> sentMessages) {
         this.sentMessages = sentMessages;
     }
 
-    public List<Messages> getReceivedMessages() {
+    public Collection<Messages> getReceivedMessages() {
         return receivedMessages;
     }
 
-    public void setReceivedMessages(List<Messages> receivedMessages) {
+    public void setReceivedMessages(Collection<Messages> receivedMessages) {
         this.receivedMessages = receivedMessages;
     }
 
@@ -328,5 +330,7 @@ public class User {
 
     public void setWorkoutsList(List<Workout> workoutsList) {
         this.workoutsList = workoutsList;
-    }}
+
+    }
+}
 

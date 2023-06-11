@@ -1,35 +1,37 @@
 package com.capstone.fitnessrx.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Comment;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @Entity
 public class Messages {
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
+    @JsonManagedReference
     private User sender;
 
     @ManyToOne
     @JoinColumn(name = "recipient_id")
+    @JsonManagedReference
     private User recipient;
 
-    @Column(nullable = false)
+    @Column()
     private String content;
 
     @Column()
-    private Date timeStamp;
+    private ZonedDateTime timeStamp;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
     public Messages() {
     }
 
-    public Messages(User sender, User recipient, String content, Date timeStamp, Long id) {
+    public Messages(User sender, User recipient, String content, ZonedDateTime timeStamp, Long id) {
         this.sender = sender;
         this.recipient = recipient;
         this.content = content;
@@ -37,12 +39,13 @@ public class Messages {
         this.id = id;
     }
 
-    public Messages(User sender, User recipient, String content, Date timeStamp) {
+    public Messages(User sender, User recipient, String content, ZonedDateTime timeStamp) {
         this.sender = sender;
         this.recipient = recipient;
         this.content = content;
         this.timeStamp = timeStamp;
     }
+
 
     public User getSender() {
         return sender;
@@ -68,11 +71,11 @@ public class Messages {
         this.content = content;
     }
 
-    public Date getTimeStamp() {
+    public ZonedDateTime getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(ZonedDateTime timeStamp) {
         this.timeStamp = timeStamp;
     }
 

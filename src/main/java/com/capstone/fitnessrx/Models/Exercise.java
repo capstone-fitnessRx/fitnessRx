@@ -10,22 +10,22 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false, length = 100)
-    private String exercise_name;
+    private String exerciseName;
 
     @Column(nullable = false, length = 200)
-    private String exercise_bodyPart;
+    private String exerciseBodyPart;
 
     @Column(nullable = false, length = 200)
-    private String exercise_equipment;
+    private String exerciseEquipment;
 
     @Column(nullable = false, length = 200)
-    private String exercise_target;
+    private String exerciseTarget;
 
     @Column(nullable = false, length = 200)
-    private long exercise_id;
+    private long exerciseId;
 
     @Column(nullable = false, length = 200)
-    private String exercise_gif;
+    private String exerciseGif;
 
     @ManyToMany(mappedBy = "favoriteExercise")
     private List<User> users;
@@ -58,14 +58,15 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(long id, String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<ExerciseDetails> reps, List<ExerciseDetails> sets, List<Categories> categories, User user) {
+    public Exercise(long id, String exerciseName, String exerciseBodyPart, String exerciseEquipment, String exerciseTarget, long exerciseId, String exerciseGif, List<User> users, List<Categories> categories) {
+
         this.id = id;
-        this.exercise_name = exercise_name;
-        this.exercise_bodyPart = exercise_bodyPart;
-        this.exercise_equipment = exercise_equipment;
-        this.exercise_target = exercise_target;
-        this.exercise_id = exercise_id;
-        this.exercise_gif = exercise_gif;
+        this.exerciseName = exerciseName;
+        this.exerciseBodyPart = exerciseBodyPart;
+        this.exerciseEquipment = exerciseEquipment;
+        this.exerciseTarget = exerciseTarget;
+        this.exerciseId = exerciseId;
+        this.exerciseGif = exerciseGif;
         this.users = users;
         this.reps = reps;
         this.sets = sets;
@@ -73,33 +74,21 @@ public class Exercise {
         this.user = user;
     }
 
-    public Exercise(String exercise_name, String exercise_bodyPart, String exercise_equipment, String exercise_target, long exercise_id, String exercise_gif, List<User> users, List<ExerciseDetails> reps, List<ExerciseDetails> sets, List<Categories> categories, User user) {
-        this.exercise_name = exercise_name;
-        this.exercise_bodyPart = exercise_bodyPart;
-        this.exercise_equipment = exercise_equipment;
-        this.exercise_target = exercise_target;
-        this.exercise_id = exercise_id;
-        this.exercise_gif = exercise_gif;
+
+    public Exercise(String exerciseName, String exerciseBodyPart, String exerciseEquipment, String exerciseTarget, long exerciseId, String exerciseGif, List<User> users, List<Categories> categories) {
+        this.exerciseName = exerciseName;
+        this.exerciseBodyPart = exerciseBodyPart;
+        this.exerciseEquipment = exerciseEquipment;
+        this.exerciseTarget = exerciseTarget;
+        this.exerciseId = exerciseId;
+        this.exerciseGif = exerciseGif;
+
         this.users = users;
         this.reps = reps;
         this.sets = sets;
         this.categories = categories;
         this.user = user;
     }
-
-    //
-//    public Exercise(String exercise_name, List<User> users, List<Categories> categories) {
-//        this.exercise_name = exercise_name;
-//        this.users = users;
-//        this.categories = categories;
-//    }
-//
-//    public Exercise(long id, String exercise_name, List<User> users, List<Categories> categories) {
-//        this.id = id;
-//        this.exercise_name = exercise_name;
-//        this.users = users;
-//        this.categories = categories;
-//    }
 
     public long getId() {
         return id;
@@ -109,12 +98,52 @@ public class Exercise {
         this.id = id;
     }
 
-    public String getExercise_name() {
-        return exercise_name;
+    public String getExerciseName() {
+        return exerciseName;
     }
 
-    public void setExercise_name(String exercise_name) {
-        this.exercise_name = exercise_name;
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
+    }
+
+    public String getExerciseBodyPart() {
+        return exerciseBodyPart;
+    }
+
+    public void setExerciseBodyPart(String exerciseBodyPart) {
+        this.exerciseBodyPart = exerciseBodyPart;
+    }
+
+    public String getExerciseEquipment() {
+        return exerciseEquipment;
+    }
+
+    public void setExerciseEquipment(String exerciseEquipment) {
+        this.exerciseEquipment = exerciseEquipment;
+    }
+
+    public String getExerciseTarget() {
+        return exerciseTarget;
+    }
+
+    public void setExerciseTarget(String exerciseTarget) {
+        this.exerciseTarget = exerciseTarget;
+    }
+
+    public long getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(long exerciseId) {
+        this.exerciseId = exerciseId;
+    }
+
+    public String getExerciseGif() {
+        return exerciseGif;
+    }
+
+    public void setExerciseGif(String exerciseGif) {
+        this.exerciseGif = exerciseGif;
     }
 
     public List<User> getUsers() {
@@ -131,46 +160,6 @@ public class Exercise {
 
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
-    }
-
-    public String getExercise_bodyPart() {
-        return exercise_bodyPart;
-    }
-
-    public void setExercise_bodyPart(String exercise_bodyPart) {
-        this.exercise_bodyPart = exercise_bodyPart;
-    }
-
-    public String getExercise_equipment() {
-        return exercise_equipment;
-    }
-
-    public void setExercise_equipment(String exercise_equipment) {
-        this.exercise_equipment = exercise_equipment;
-    }
-
-    public String getExercise_target() {
-        return exercise_target;
-    }
-
-    public void setExercise_target(String exercise_target) {
-        this.exercise_target = exercise_target;
-    }
-
-    public long getExercise_id() {
-        return exercise_id;
-    }
-
-    public void setExercise_id(long exercise_id) {
-        this.exercise_id = exercise_id;
-    }
-
-    public String getExercise_gif() {
-        return exercise_gif;
-    }
-
-    public void setExercise_gif(String exercise_gif) {
-        this.exercise_gif = exercise_gif;
     }
 
     public User getUser() {

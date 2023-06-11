@@ -61,7 +61,8 @@ public class SecurityConfiguration {
 
 
 
-                        "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder", "/workouts-wall", "/workout-plan", "/calender/note"
+
+                        "/messages/{recipient}", "/sendMessage", "/message/{friendId}", "/messages/send", "/message", "/users", "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder", "/exercise-page", "/exercise-display/{id}", "/workouts-wall", "/workout-plan/{id}", "/calender/note", "/profile/delete"
                         // only authenticated users can edit ads
 
 

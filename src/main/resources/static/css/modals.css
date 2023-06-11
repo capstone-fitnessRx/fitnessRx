@@ -10,7 +10,10 @@
     z-index: 9999;
     width: 600px;
 }
-
+.friendList{
+    display: flex;
+    flex-direction: column-reverse;
+}
 .modal-dropdown p{
     margin-left: 2em;
 }
