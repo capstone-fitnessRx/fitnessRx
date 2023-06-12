@@ -1,8 +1,8 @@
 "use strict"
 document.addEventListener("DOMContentLoaded", function () {
-    var navdropButton = document.querySelector(".dropdown-toggle");
+    var navdropButton = document.querySelector(".profile-nav-pic");
 
-    var navdropdownMenu = document.querySelector(".dropdown-menu");
+    var navdropdownMenu = document.querySelector(".drop-nav-menu");
 
     navdropButton.addEventListener("click", function() {
         navdropdownMenu.classList.toggle("show");

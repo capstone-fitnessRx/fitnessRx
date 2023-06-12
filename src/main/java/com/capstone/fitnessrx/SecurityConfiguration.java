@@ -51,7 +51,11 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/","/workouts-wall", "/exercise-page", "/", "/home", "/register", "/css/**", "/js/**", "/img/**","/workout-builder-inator", "/exercise-display") // anyone can see home, the ads pages, and sign up
+
+
+
+                .requestMatchers("/","/workouts-wall", "/exercise-page", "/home", "/register", "/css/**", "/js/**", "/img/**") // anyone can see home, the ads pages, and sign up
+
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
@@ -60,8 +64,9 @@ public class SecurityConfiguration {
 
 
 
+                        "/feed/comment/delete/{id}", "/feed/post/edit/{id}", "/feed/post/delete/{id}", "/messages/{recipient}", "/sendMessage", "/message/{friendId}", "/messages/send", "/message", "/users", "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder", "/exercise-display/{id}", "/workout-plan/{id}", "/calender/note", "/profile/delete", "/workout-builder-inator"
 
-                        "/messages/{recipient}", "/sendMessage", "/message/{friendId}", "/messages/send", "/message", "/users", "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder",  "/exercise-display/{id}", "/workouts-wall", "/workout-plan/{id}", "/calender/note", "/profile/delete"
+
                         // only authenticated users can edit ads
 
 

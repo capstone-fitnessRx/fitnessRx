@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+</head>
+<body>
+
+<div th:if="${authenticatedUserId.getId() == posts.getUser().getId()}">
+    <h3>Edit Post</h3>
+    <form th:action="@{/feed/post/edit/{id}(id=${posts.getId()})}" method="POST" th:object="${posts}">
+        <input type="text" name="contentBody" id="contentBody" th:value="${posts.getContent()}">
+        <button type="submit">Edit</button>
+    </form>
+</div>
+<div th:unless="${authenticatedUserId.getId() == posts.getUser().getId()}">
+    <h1>You Don't Belong here!</h1>
+</div>
+</body>
+</html>

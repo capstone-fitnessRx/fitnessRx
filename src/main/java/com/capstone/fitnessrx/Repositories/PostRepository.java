@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
     // Method signature for finding a post by its ID
     Optional<Post> findById(Long id);
+
+    void deleteById(Post post);
 }

@@ -64,8 +64,31 @@
         <div th:each="post : ${posts}" class="post-loop card">
 
             <img class="feed-pic" src="/img/giannaimg.png">
-            <h4 th:text="${post.getUser().getUsername()}"></h4>
-            <img>
+            <a th:href="@{/profile/{id}(id=${post.getUser().getId()})}" th:text="${post.getUser().getUsername()}"></a>
+            <div class="custom-dropdown">
+                <button class="btn btn-secondary custom-dropdown-toggle" type="button">
+                    ...
+                </button>
+                <div class="custom-dropdown-content">
+                    <div th:if="${authenticatedUserId.getId() != post.getUser().getId()}">
+                        <form>
+                            <input type="hidden" name="postIdNumber" id="postIdNum" th:value="${post.getId()}">
+                            <button class="dropdown-item" type="submit">Report</button>
+                        </form>
+                    </div>
+                    <div th:if="${authenticatedUserId.getId() == post.getUser().getId()}">
+
+
+                            <a class="dropdown-item" th:href="@{/feed/post/edit/{id}(id=${post.getId()})}">Edit</a>
+
+                        <form th:action="@{/feed/post/delete/{id}(id=${post.getId()})}" method="POST">
+                            <input type="hidden" name="postIdNumber" id="postIdNumber" th:value="${post.getId()}">
+                            <button class="dropdown-item" type="submit">Delete</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
             <p th:text="${post.getContent()}"></p>
             <p th:text="${post.getLikes()}"></p>
             <div class="card-body comment-head">
@@ -73,7 +96,7 @@
                 <form method="POST" th:action="@{/feed/like}">
                     <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>
                 </form>
-                <button class="dropdown-toggle" th:text="${post.getComments().size()} + ' comments'"></button>
+                <button class="dropdown-toggle comment-size" th:text="${post.getComments().size()} + ' comments'"></button>
 
             </div>
 
@@ -91,7 +114,8 @@
                 <img class="comment-pic" src="/img/giannaimg.png">
 
                 <form th:method="POST" th:action="@{/feed/comment/create}">
-                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment" placeholder="Comment here...">
+                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment"
+                                                        placeholder="Comment here...">
                     <input type="hidden" th:value="${post.getId()}" name="postIdent">
                     <div class="comment-submit-div">
                         <button class="submit-comment" id="comment-submission">Send</button>
@@ -102,7 +126,10 @@
                 <!--comment section-->
                 <div th:each="comment : ${post.getComments()}" class="dropdown-comments card-body">
                     <p th:text="${comment.getUser().getUsername()}"></p>
+                    <form th:action="@{/feed/comment/delete/{id}(id=${comment.getId()})}" method="POST">
                     <p th:text="${comment.getContent()}"></p>
+                        <button th:if="${authenticatedUserId.getId() == comment.getUser().getId()}" type="submit">&times;</button>
+                    </form>
                     <p th:text="${comment.getCommentLikes()}"></p>
                 </div>
                 <!---->
@@ -113,6 +140,7 @@
 
         </div>
         <div class="bottom-feed card bottom-card">
+
             <p>You have reached the end of the feed.</p>
             <a>Back to top?</a>
         </div>
@@ -121,14 +149,13 @@
 
 
 </div>
-</div>
 
-</div>
-<div th:insert="partials/messenger-partial.html :: messenger"></div>
+
+<!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/feed.js"></script>
 <script src="/js/modals.js"></script>
-<script src="/js/messenger.js"></script>
+<!--<script src="/js/messenger.js"></script>-->
 <script src="/js/navbar.js"></script>
 </body>
 </html>
