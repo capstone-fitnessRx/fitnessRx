@@ -37,7 +37,7 @@
                         <tbody id="insertExercise" class=" text-center">
                         <!--                        exercises will be appended here-->
                         <tr th:each="exercise : ${exerciseDetailsList}">
-                            <td th:text="*{exercise.getExercise()}"></td>
+                            <td th:text="*{exercise.getId()}"></td>
                             <td th:text="*{exercise.getSets}"></td>
                             <td th:text="*{exercise.getReps}"></td>
                         </tr>
@@ -63,11 +63,9 @@
                     <input type="text"  name="reps" placeholder="Input Reps" required> </input>
                     <input type="text"  name="sets" placeholder="Input Sets" required> </input>
 <!--                    make hidden later-->
-                    <input class=""  name="exercise_Api_Id" th:value="*{exercise.getExerciseId()}">
+<!--                    <input class=""  name="exercise_Api_Id" th:value="*{exercise.getExerciseId()}">-->
                     <input class=""  name="exerciseId" th:value="*{exercise.getId()}">
-
                     <!--                    <input class="" name="" th:value="*{exercise.getId()}">-->
-
                     <!--                   <input class="d-none" th:field="*{target_muscle}" value="'+name+'">-->
                     <button type="submit">Save</button>
                 </form>

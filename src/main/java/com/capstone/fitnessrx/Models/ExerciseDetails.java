@@ -3,6 +3,7 @@ package com.capstone.fitnessrx.Models;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class ExerciseDetails {
