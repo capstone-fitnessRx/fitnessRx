@@ -199,18 +199,18 @@ public class WorkoutController {
 //        return "index/workoutBuilder";
 //    }
 //
-    @GetMapping("/workout-builder-inator")
-    public String getBuilderInator(Model model, @RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id) {
-        model.addAttribute("exercisedetails", new ExerciseDetails());
-        ExerciseDetails test = new ExerciseDetails(reps, sets, exercise_Api_Id);
-        model.addAttribute("test", test);
-        model.addAttribute("reps", reps);
-        model.addAttribute("sets", sets);
-        model.addAttribute("exercise_Api_Id", exercise_Api_Id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        return "index/workoutBuilderInator";
-    }
+//    @GetMapping("/workout-builder-inator")
+//    public String getBuilderInator(Model model, @RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id) {
+//        model.addAttribute("exercisedetails", new ExerciseDetails());
+//        ExerciseDetails test = new ExerciseDetails(reps, sets, exercise_Api_Id);
+//        model.addAttribute("test", test);
+//        model.addAttribute("reps", reps);
+//        model.addAttribute("sets", sets);
+//        model.addAttribute("exercise_Api_Id", exercise_Api_Id);
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        return "index/workoutBuilderInator";
+//    }
 //    @PostMapping("/workout-builder-inator")
 //    public String postBuilderInator(Model model,@RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id) {
 //        ExerciseDetails exercisedetails = new ExerciseDetails(exercise_Api_Id, reps, sets);
@@ -231,9 +231,9 @@ public String getBuilder(Model model) {
     public ArrayList<ExerciseDetails> exerciseDetailsList = new ArrayList<>();
 
     @PostMapping("/workout-builder-inator")
-    public String postBuilderInator(Model model, @RequestParam int reps, @RequestParam int sets, @RequestParam int exerciseId) {
+    public String postBuilderInator(Model model, @RequestParam int reps, @RequestParam int sets, @RequestParam int exerciseId, @RequestParam String exerciseName) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ExerciseDetails exerciseDetails = new ExerciseDetails( exerciseId, reps, sets,   exerciseDao.getReferenceById((long) exerciseId), workoutDao.getReferenceById(8L) );
+        ExerciseDetails exerciseDetails = new ExerciseDetails(exerciseName, exerciseId, reps, sets,   exerciseDao.getReferenceById((long) exerciseId), workoutDao.getReferenceById(8L) );
 
 //        ExerciseDetails exerciseDetails = new ExerciseDetails(exerciseId, reps, sets);
         exerciseDetailsList.add(exerciseDetails);

@@ -27,6 +27,8 @@ public class ExerciseDetails {
     @JoinColumn(name = "workout_id")
     private Workout workout;
 
+    private String exerciseName;
+
 
     public ExerciseDetails() {
     }
@@ -40,7 +42,8 @@ public class ExerciseDetails {
         this.workout = workout;
     }
 
-    public ExerciseDetails(int exercise_Api_Id, int reps, int sets, Exercise exercise, Workout workout) {
+    public ExerciseDetails(String exerciseName, int exercise_Api_Id, int reps, int sets, Exercise exercise, Workout workout) {
+        this.exerciseName = exerciseName;
         this.exercise_Api_Id = exercise_Api_Id;
         this.reps = reps;
         this.sets = sets;
@@ -54,6 +57,13 @@ public class ExerciseDetails {
         this.sets = sets;
     }
 
+    public String getExerciseName() {
+        return exerciseName;
+    }
+
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
+    }
     public int getExercise_Api_Id() {
         return exercise_Api_Id;
     }
