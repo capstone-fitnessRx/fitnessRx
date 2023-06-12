@@ -1,0 +1,212 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th: frament="search">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <nav>
+  <label>
+    <input id="userSearchInput" type="text"  placeholder="Search for exercise...">
+    <button id="searchByName" type="submit">Search</button>
+  </label>
+    <span><button id="back" class="workoutNameBtn" value="back" type="submit">Back</button></span>
+    <span><button id="cardio" class="workoutNameBtn" value="cardio" type="submit">Cardio</button></span>
+    <span><button id="chest" class="workoutNameBtn" value="chest" type="submit">Chest</button></span>
+    <span><button id="lowerarms" class="workoutNameBtn" value="lower arms" type="submit">Lower Arms</button></span>
+    <span><button id="lowerlegs" class="workoutNameBtn" value="lower legs" type="submit">Lower Legs</button></span>
+    <span><button id="neck" class="workoutNameBtn" value="neck" type="submit">Neck</button></span>
+    <span><button id="shoulders" class="workoutNameBtn" value="shoulders" type="submit">Shoulders</button></span>
+    <span><button id="upperlegs" class="workoutNameBtn" value="upper legs" type="submit">Upper Legs</button></span>
+    <span><button id="upperarms" class="workoutNameBtn" value="upper arms" type="submit">Upper Arms</button></span>
+    <span><button id="waist" class="workoutNameBtn" value="waist" type="submit">Waist</button></span>
+
+    <label for="filter-select">Select Target</label>
+    <select id="filter-select">
+      <optgroup label="Upper Body"></optgroup>
+        <option class="targetMuscle" value="biceps">biceps</option>
+        <option class="targetMuscle" value="delts">delts</option>
+        <option class="targetMuscle" value="forearms">forearms</option>
+        <option class="targetMuscle" value="upperback">upperback</option>
+        <option class="targetMuscle" value="lats">lats</option>
+        <option class="targetMuscle" value="neck">neck</option>
+        <option class="targetMuscle" value="pectorals">pectorals</option>
+        <option class="targetMuscle" value="spine">spine</option>
+        <option class="targetMuscle" value="traps">traps</option>
+        <option class="targetMuscle" value="triceps">triceps</option>
+      <optgroup label="Lower Body"></optgroup>
+        <option class="targetMuscle" value="calves">calves</option>
+        <option class="targetMuscle" value="glutes">glutes</option>
+        <option class="targetMuscle" value="hamstrings">hamstrings</option>
+        <option class="targetMuscle" value="quads">quads</option>
+      <optgroup label="Core"></optgroup>
+        <option class="targetMuscle" value="abductors">abductors</option>
+        <option class="targetMuscle" value="adductors">adductors</option>
+        <option class="targetMuscle" value="obliques">obliques</option>
+    </select>
+  </nav>
+
+</div>
+<body>
+<div class="exercise"></div>
+<!--<a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${allExercises}" class="card">-->
+<!--  <div>-->
+<!--    <h3 th:text="*{exercise.getExerciseName()}"></h3>-->
+<!--    <h3 th:text="*{exercise.getExerciseBodyPart()}"></h3>-->
+<!--  </div>-->
+<!--</a>-->
+</body>
+<script>
+
+  //Fetch exercise by name
+  //Required Parameters: String -> name (the name of the workout)
+  $(document).ready(function () {
+    $('#searchByName').click(() => {
+      $.ajax({
+        async: true,
+        crossDomain: true,
+        url: `https://exercisedb.p.rapidapi.com/exercises/name/${$('#userSearchInput').val()}`,
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': '3b5ab618f4msh9fcd7bdc598e72ap123ca5jsn756b704ae812',
+          'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+        }
+      }).done(function (data) {
+        let card = "";
+        let i;
+        console.log(data);
+        for (i = 0; i < data.length; i++) {
+          let bodyPart = data[i].bodyPart;
+          let equipment = data[i].equipment;
+          let gifUrl = data[i].gifUrl;
+          let id = data[i].id;
+          let name = data[i].name;
+          let target = data[i].target;
+          card += '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
+                  '        <button class="btn " type="submit">\n' +
+                  '            <div class="card text-center" style="width: 180px">\n' +
+                  '                <div class="card-header " style="height: 130px">\n' +
+                  '                    <h5 class="card-title my-auto">'+name+'</h5>\n' +
+                  '                </div>\n' +
+                  '                <div class="card-body" id=>\n' +
+                  '                    <img src="'+gifUrl+'" style="" class="img-fluid" alt="">\n' +
+                  '                </div>\n' +
+                  '            </div>\n' +
+                  <!--            sends the name of the exercise-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseName" value="'+name+'">\n' +
+                  <!--             sends the muscles targeted-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseTarget" value="'+target+'">\n' +
+                  <!--            sends the equipment-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseEquipment" value="'+equipment+'">\n' +
+                  <!--            sends the gif-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseGif" value="'+gifUrl+'">\n' +
+                  '        </button>\n' +
+                  '    </form>';
+        }
+        $('.exercise').html(card)
+      })
+    })
+  })
+
+  //Fetch exercises by body part
+  //Required Parameters: String -> bodyPart (body part that user wishes to workout)
+  $(document).ready(function () {
+    $('.workoutNameBtn').click((e) => {
+      let btnValue = e.target.value
+      $.ajax({
+        async: true,
+        crossDomain: true,
+        url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${btnValue}`,
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': '3b5ab618f4msh9fcd7bdc598e72ap123ca5jsn756b704ae812',
+          'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+        }
+      }).done(function (data) {
+        let card = "";
+        let i;
+        console.log(data);
+        //Lists every exercise of the selected body part
+        for (i = 0; i < data.length; i++) {
+          let bodyPart = data[i].bodyPart;
+          let equipment = data[i].equipment;
+          let gifUrl = data[i].gifUrl;
+          let id = data[i].id;
+          let name = data[i].name;
+          let target = data[i].target;
+          card += '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
+                  '        <button class="btn " type="submit">\n' +
+                  '            <div class="card text-center" style="width: 180px">\n' +
+                  '                <div class="card-header " style="height: 130px">\n' +
+                  '                    <h5 class="card-title my-auto">'+name+'</h5>\n' +
+                  '                </div>\n' +
+                  '                <div class="card-body" id=>\n' +
+                  '                    <img src="'+gifUrl+'" style="" class="img-fluid" alt="">\n' +
+                  '                </div>\n' +
+                  '            </div>\n' +
+                  <!--            sends the name of the exercise-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseName" value="'+name+'">\n' +
+                  <!--             sends the muscles targeted-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseTarget" value="'+target+'">\n' +
+                  <!--            sends the equipment-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseEquipment" value="'+equipment+'">\n' +
+                  <!--            sends the gif-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseGif" value="'+gifUrl+'">\n' +
+                  '        </button>\n' +
+                  '    </form>';
+        }
+        $('.exercise').html(card)
+      })
+    })
+  })
+
+  //Fetch exercises by target primary muscle
+  //Required Parameter: String -> target (the muscle that user wishes to work)
+  $(document).ready(function () {
+    $('#filter-select').change((e) => {
+      let optionValue = e.target.value;
+      console.log(optionValue);
+      $.ajax({
+        async: true,
+        crossDomain: true,
+        url: `https://exercisedb.p.rapidapi.com/exercises/target/${optionValue}`,
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': '3b5ab618f4msh9fcd7bdc598e72ap123ca5jsn756b704ae812',
+          'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+        }
+      }).done(function (data) {
+        console.log(data);
+        let card = "";
+        let i;
+        console.log(data);
+        for (i = 0; i < data.length; i++) {
+          let bodyPart = data[i].bodyPart;
+          let equipment = data[i].equipment;
+          let gifUrl = data[i].gifUrl;
+          let id = data[i].id;
+          let name = data[i].name;
+          let target = data[i].target;
+          card += '<form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get"> \n' +
+                  '        <button class="btn " type="submit">\n' +
+                  '            <div class="card text-center" style="width: 180px">\n' +
+                  '                <div class="card-header " style="height: 130px">\n' +
+                  '                    <h5 class="card-title my-auto">'+name+'</h5>\n' +
+                  '                </div>\n' +
+                  '                <div class="card-body" id=>\n' +
+                  '                    <img src="'+gifUrl+'" style="" class="img-fluid" alt="">\n' +
+                  '                </div>\n' +
+                  '            </div>\n' +
+                  <!--            sends the name of the exercise-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseName" value="'+name+'">\n' +
+                  <!--             sends the muscles targeted-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseTarget" value="'+target+'">\n' +
+                  <!--            sends the equipment-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseEquipment" value="'+equipment+'">\n' +
+                  <!--            sends the gif-->
+                  '            <input class="d-none form-control" type="text"  name="exerciseGif" value="'+gifUrl+'">\n' +
+                  '        </button>\n' +
+                  '    </form>';
+        }
+        $('.exercise').html(card)
+      })
+    })
+  })
+
+</script>

@@ -31,35 +31,15 @@ public class Exercise {
     private List<User> users;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "exercise_details_reps",
-            joinColumns = {@JoinColumn(name = "exercise_details_reps")},
-            inverseJoinColumns = {@JoinColumn(name = "reps")})
-    private List<ExerciseDetails> reps;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-            @JoinTable(name = "exercise_details_sets",
-        joinColumns = {@JoinColumn(name = "exercise_details_sets")},
-        inverseJoinColumns = {@JoinColumn(name = "sets")})
-    private List<ExerciseDetails> sets;
-
-
-    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "exercise_categories",
             joinColumns = {@JoinColumn(name = "exercise_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private List<Categories> categories;
 
-    @ManyToOne
-    @JoinColumn(name = "user_exercise")
-    private User user;
-
-
-
     public Exercise() {
     }
 
     public Exercise(long id, String exerciseName, String exerciseBodyPart, String exerciseEquipment, String exerciseTarget, long exerciseId, String exerciseGif, List<User> users, List<Categories> categories) {
-
         this.id = id;
         this.exerciseName = exerciseName;
         this.exerciseBodyPart = exerciseBodyPart;
@@ -68,12 +48,8 @@ public class Exercise {
         this.exerciseId = exerciseId;
         this.exerciseGif = exerciseGif;
         this.users = users;
-        this.reps = reps;
-        this.sets = sets;
         this.categories = categories;
-        this.user = user;
     }
-
 
     public Exercise(String exerciseName, String exerciseBodyPart, String exerciseEquipment, String exerciseTarget, long exerciseId, String exerciseGif, List<User> users, List<Categories> categories) {
         this.exerciseName = exerciseName;
@@ -82,12 +58,8 @@ public class Exercise {
         this.exerciseTarget = exerciseTarget;
         this.exerciseId = exerciseId;
         this.exerciseGif = exerciseGif;
-
         this.users = users;
-        this.reps = reps;
-        this.sets = sets;
         this.categories = categories;
-        this.user = user;
     }
 
     public long getId() {
@@ -162,27 +134,4 @@ public class Exercise {
         this.categories = categories;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<ExerciseDetails> getReps() {
-        return reps;
-    }
-
-    public void setReps(List<ExerciseDetails> reps) {
-        this.reps = reps;
-    }
-
-    public List<ExerciseDetails> getSets() {
-        return sets;
-    }
-
-    public void setSets(List<ExerciseDetails> sets) {
-        this.sets = sets;
-    }
 }
