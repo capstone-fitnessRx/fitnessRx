@@ -281,6 +281,20 @@ model.addAttribute("workoutNum", workoutNum);
 
 //         return "redirect:/favorite/{id}"  + user.getId();
 
+//    working on Mon AM
+//    @PostMapping("/workout/favorite")
+//    public String setFavoriteWorkout(@RequestParam(name = "addtofavorites")
+////                                                    ^^ need to put: hidden input that has the th:value = workout id
+//
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//
+//
+//
+//        return "redirect:/favorite/{id}" + user.getId();
+//    }
+
 
 
 //<form th:action="@{workout/favorite}" method="post">
@@ -297,6 +311,5 @@ model.addAttribute("workoutNum", workoutNum);
 
         return "redirect:/workout-builder?workoutNum=" + workout.getId();
     }
-
 
 }

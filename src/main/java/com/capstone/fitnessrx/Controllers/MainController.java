@@ -117,8 +117,8 @@ public class MainController {
 //    public String saveNotes(@ModelAttribute("calender") Calender newCalender){
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        user = userDao.getReferenceById((long) user.getId());
-
-//        added Sunday night
+//
+////        added Sunday night
 //        if (existingCalender !=null) {
 //            existingCalendar.setNotes(newCalender.getNotes());
 //            calenderDao.save(existingCalender);
