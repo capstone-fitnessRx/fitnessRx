@@ -81,7 +81,27 @@
 <!--        </div>-->
         <!--  <h3 th:text="*{username}"></h3>-->
         <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
-        <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">
+
+
+
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+        <div th:object="${userProfile}">
+        <img class="main-profile-pic" th:src="*{profilePic}">
+        </div>
+        <label for="upload"></label>
+        <button type="button" id="upload" name="upload">Upload an image</button>
+        <form th:action="@{/profile/upload}" th:method="POST" id="submitMePls">
+            <input id="stashFilestackURL" name="stashFilestackURL" type="hidden" value="">
+        </form>
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
         <div class="addFriend-div">
             <h1 class="main-name" th:text="${username}"></h1>
             <a>
@@ -171,10 +191,69 @@
 
 </div>
 
-<div th:insert="partials/messenger-partial.html :: messenger"></div>
 
+
+<div id="myModalEdit" class="modal modal-dropdown">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Profile</h2>
+        <form method="POST" th:action="@{/profile/update}">
+            <label>Username: </label>
+            <input type="text" name="newUsername" th:value="${username}">
+
+            <label>Email: </label>
+            <input type="text" name="newEmail" th:value="${email}">
+
+            <label>Location: </label>
+            <input type="text" name="newLocation" th:value="${location}">
+            <label>Bio: </label>
+            <input type="text" name="newBio" th:value="${bio}">
+            <label>Goals: </label>
+            <input type="text" name="newGoal" th:value="${goal}">
+            <label>Workout Preference: </label>
+            <input type="text" name="newWorkoutPreference" th:value="${workoutPreference}">
+            <button type="submit">Update</button>
+        </form>
+        <!--                  API FILESTACK UPLOAD-->
+
+
+
+        <p>Profile Image: </p>
+        <p>Banner Image: </p>
+        <p>Background Color</p>
+
+    </div>
+</div>
+
+
+<div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var filestackapi = [[${filestackapi}]];
+    console.log(filestackapi);
+    /*]]>*/
+
+const client = filestack.init(filestackapi);
+// client.picker().open();
+
+    $("#upload").click(function () {
+        client.picker(options).open()
+    });
+    const options = {
+        onUploadDone:
+            function(res) {
+                $("#stashFilestackURL").val(res.filesUploaded[0].url);
+                document.getElementById("submitMePls").submit();
+            }
+
+    }
+    // document.getElementById("submitMePls").submit();
+
+</script>
+
+
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
 <script src="/js/modals.js"></script>
