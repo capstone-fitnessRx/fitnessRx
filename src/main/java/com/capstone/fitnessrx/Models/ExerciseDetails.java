@@ -39,7 +39,7 @@ public class ExerciseDetails {
         this.workout = workout;
     }
 
-    public ExerciseDetails(int reps,int exercise_Api_Id, int sets, Exercise exercise, Workout workout) {
+    public ExerciseDetails(int exercise_Api_Id, int reps, int sets, Exercise exercise, Workout workout) {
         this.exercise_Api_Id = exercise_Api_Id;
         this.reps = reps;
         this.sets = sets;

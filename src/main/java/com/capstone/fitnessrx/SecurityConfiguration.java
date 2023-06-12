@@ -51,7 +51,6 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-
                 .requestMatchers("/","/workouts-wall", "/exercise-page", "/", "/home", "/register", "/css/**", "/js/**", "/img/**","/workout-builder-inator", "/exercise-display") // anyone can see home, the ads pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
@@ -62,7 +61,7 @@ public class SecurityConfiguration {
 
 
 
-                        "/messages/{recipient}", "/sendMessage", "/message/{friendId}", "/messages/send", "/message", "/users", "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder", "/exercise-page", "/exercise-display/{id}", "/workouts-wall", "/workout-plan/{id}", "/calender/note", "/profile/delete"
+                        "/messages/{recipient}", "/sendMessage", "/message/{friendId}", "/messages/send", "/message", "/users", "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder",  "/exercise-display/{id}", "/workouts-wall", "/workout-plan/{id}", "/calender/note", "/profile/delete"
                         // only authenticated users can edit ads
 
 
