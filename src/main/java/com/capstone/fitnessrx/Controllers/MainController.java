@@ -21,9 +21,13 @@ public class MainController {
 
     private final UserRepository userDao;
     private final CalenderRepository calenderDao;
+//     private final WorkoutRepository workoutDao;
+    //    private final FavoriteWorkoutRepository favworkDao;
+
     private final ExerciseRepository exerciseDao;
 
 
+//     public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, ExerciseRepository exerciseDao, ExerciseDetailsRepository exerciseDetailsDao) {
 
 
     public MainController(UserRepository userDao, CalenderRepository calenderDao, ExerciseRepository exerciseDao) {
@@ -73,9 +77,6 @@ public class MainController {
     }
 
 
-
-
-
     @GetMapping("/calender/{id}")
     public String getCalender(@PathVariable Long id, Model model) {
 
@@ -103,7 +104,7 @@ public class MainController {
     }
 
     @PostMapping("/calender/note")
-    public String saveNotes(@ModelAttribute Calender newCalender){
+    public String saveNotes(@ModelAttribute Calender newCalender) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById((long) user.getId());
 
@@ -117,6 +118,39 @@ public class MainController {
         return "redirect:/calender/" + user.getId();
 
     }
+
+
+//     @GetMapping("/my-workouts/{id}")
+
+//     public String getMyWorkouts(@PathVariable Long id, Model model) {
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//         List<Workout> userWorkout = workoutDao.findWorkoutsByUser(userDao.getReferenceById(id));
+
+// //        Workout userWorkouts = workoutDao.getReferenceById(id);
+//         model.addAttribute("myWorkouts", userWorkout);
+
+//         Workout workout = workoutDao.findById(id).orElse(null);
+
+
+//         User userProfile = userDao.findById(id).orElse(null);
+//         String profileUrl = "/profile/" + user.getId();
+//         model.addAttribute("profileUrl", profileUrl);
+//         String feedUrl = "/feed/" + user.getId();
+//         model.addAttribute("feedUrl", feedUrl);
+//         String calenderUrl = "/calender/" + user.getId();
+//         model.addAttribute("calenderUrl", calenderUrl);
+//         String myWorkoutsUrl = "/my-workouts/" + user.getId();
+//         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+//         String favoritesUrl = "/favorites/" + user.getId();
+//         model.addAttribute("favoritesUrl", favoritesUrl);
+// //        String workoutPlanUrl = "/workout-plan/" + workout.getId();
+// //        model.addAttribute("workoutPlanUrl", workoutPlanUrl);
+
+
+//         return "index/myworkouts";
+//     }
+
 
     @GetMapping("/map/{location}")
     public String getMap(@PathVariable String location, Model model) {
@@ -183,7 +217,14 @@ public class MainController {
 
         return "index/favorites";
     }
-//@RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id
+
+//     @GetMapping("/workout-builder")
+//     public String getBuilder(Model model) {
+//         model.addAttribute("exerciseDetails", new ExerciseDetails());
+//         model.addAttribute("exerciseDetailsList", exerciseDetailsList);
+//         List<Exercise> allWorkoutExercises = exerciseDao.findAll();
+//         model.addAttribute("allExercises", allWorkoutExercises);
+
 
 //     @GetMapping("/workout-builder")
 //     public String getBuilder(Model model) {
@@ -207,6 +248,50 @@ public class MainController {
 //         String favoritesUrl = "/favorites/" + user.getId();
 //         model.addAttribute("favoritesUrl", favoritesUrl);
 
+//         return "index/workoutBuilder";
+//     }
+
+// //    @GetMapping("/workout-builder-inator")
+// //    public String getBuilderInator(Model model,@RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id) {
+// //        model.addAttribute("exercisedetails", new ExerciseDetails());
+// //        ExerciseDetails test = new ExerciseDetails(reps, sets, exercise_Api_Id);
+// //        model.addAttribute("test", test);
+// //        model.addAttribute("reps", reps);
+// //        model.addAttribute("sets", sets);
+// //        model.addAttribute("exercise_Api_Id", exercise_Api_Id);
+// //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+// //
+// //        return "index/workoutBuilderInator";
+// //    }
+
+//     public ArrayList<ExerciseDetails> exerciseDetailsList = new ArrayList<>();
+
+//     @PostMapping("/workout-builder-inator")
+//     public String postBuilderInator(Model model, @RequestParam int reps, @RequestParam int sets, @RequestParam int exercise_Api_Id, @RequestParam long exerciseId) {
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//         ExerciseDetails exercisedetails = new ExerciseDetails(exercise_Api_Id, reps, sets, exerciseDao.getReferenceById(exerciseId), workoutDao.getReferenceById(8L));
+//         exerciseDetailsList.add(exercisedetails);
+// //        for (ExerciseDetails exercise : exerciseDetailsList) {
+// ////            System.out.println(exercise.getExercise_Api_Id());
+// //        }
+// //        exerciseDetailsDao.save(exercisedetails);
+//         return "redirect:/workout-builder";
+//     }
+
+//     @PostMapping("/workout-builder")
+//     public String finalizeWorkout(Model model, @RequestParam String title, @RequestParam String description) {
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//         Workout workout = new Workout(title, description);
+//         workout.setUser(user);
+//         workoutDao.save(workout);
+//         for (ExerciseDetails exercise : exerciseDetailsList) {
+//             System.out.println(exercise.getExercise_Api_Id());
+//             exerciseDetailsDao.save(exercise);
+//         }
+//         exerciseDetailsList.removeAll(exerciseDetailsList);
+
+//         return "redirect:/workout-builder";
+//     }
 
 
 //         return "index/workoutBuilder";
@@ -222,8 +307,23 @@ public class MainController {
 //         model.addAttribute("exercise_Api_Id", exercise_Api_Id);
 //         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+//         String profileUrl = "/profile/" + user.getId();
+//         model.addAttribute("profileUrl", profileUrl);
+//         String feedUrl = "/feed/" + user.getId();
+//         model.addAttribute("feedUrl", feedUrl);
+//         String calenderUrl = "/calender/" + user.getId();
+//         model.addAttribute("calenderUrl", calenderUrl);
+//         String myWorkoutsUrl = "/my-workouts/" + user.getId();
+//         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+//         String favoritesUrl = "/favorites/" + user.getId();
+//         model.addAttribute("favoritesUrl", favoritesUrl);
+
 //         return "index/workoutBuilderInator";
 //     }
+
 
 //     public ArrayList<ExerciseDetails> exerciseDetailsList = new ArrayList<>();
 
@@ -250,6 +350,8 @@ public class MainController {
 
 
 
+//         Exercise ExerciseId = exerciseDao.getReferenceById(id);
+//         model.addAttribute("displayExercise", ExerciseId);
 
 
 //         String profileUrl = "/profile/" + user.getId();
@@ -266,7 +368,118 @@ public class MainController {
 //         return "index/exercises";
 //     }
 
+//
+//
+//
+//
 
+
+//         return "index/exerciseDisplay";
+//     }
+
+
+//     @GetMapping("/workouts-wall")
+
+//     public String getWorkoutWall(Model model) {
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//         List<Workout> allWorkout = workoutDao.findAll();
+//         model.addAttribute("allWorkouts", allWorkout);
+
+
+// //        Workout allWorkouts = workoutDao.getReferenceById(id);
+
+
+// //        Workout workout = workoutDao.findById(id).orElse(null);
+
+
+// //        User userProfile = userDao.findById(id).orElse(null);
+
+//         String profileUrl = "/profile/" + user.getId();
+//         model.addAttribute("profileUrl", profileUrl);
+//         String feedUrl = "/feed/" + user.getId();
+//         model.addAttribute("feedUrl", feedUrl);
+//         String calenderUrl = "/calender/" + user.getId();
+//         model.addAttribute("calenderUrl", calenderUrl);
+//         String myWorkoutsUrl = "/my-workouts/" + user.getId();
+//         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+//         String favoritesUrl = "/favorites/" + user.getId();
+//         model.addAttribute("favoritesUrl", favoritesUrl);
+// //        String workoutPlanUrl = "/workout-plan/" + workout.getId();
+// //        model.addAttribute("workoutPlanUrl", workoutPlanUrl);
+
+// //        model.addAttribute("workoutTitle", workoutTitle);
+
+
+//         return "index/allworkouts";
+//     }
+
+
+//     @GetMapping("/workout-plan/{id}")
+//     public String getWorkoutPlan(@PathVariable Long id, Model model) {
+
+
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//         User currentUser = userDao.getOne((long) user.getId());
+
+//         System.out.println(currentUser.getUsername());
+
+//         String profileUrl = "/profile/" + user.getId();
+//         model.addAttribute("profileUrl", profileUrl);
+
+//         String feedUrl = "/feed/" + user.getId();
+//         model.addAttribute("feedUrl", feedUrl);
+
+//         String calenderUrl = "/calender/" + user.getId();
+//         model.addAttribute("calenderUrl", calenderUrl);
+
+//         String myWorkoutsUrl = "/my-workouts/" + user.getId();
+//         model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+
+//         String favoritesUrl = "/favorites/" + user.getId();
+//         model.addAttribute("favoritesUrl", favoritesUrl);
+
+//         Workout userWorkout = workoutDao.getReferenceById(id);
+//         model.addAttribute("myWorkouts", userWorkout);
+//         String workoutPlanUrl = "/workout-plan/" + userWorkout.getId();
+//         model.addAttribute("workoutPlanUrl", workoutPlanUrl);
+
+// //    List<ExerciseDetails> exerciseDetails = exerciseDetailsDao.findAll();
+// //    ExerciseDetails exerciseDetails = e
+// //        String exerciseName = exerciseDetailsDao.findBy(user.getId());
+// //    model.addAttribute("exerciseName", exerciseName);
+// // Exercise exercise = (Exercise) currentUser.getExercisesList();
+
+// // List<Exercise> currentExercise = currentUser.getExercisesList();
+// // List<Workout> currentWorkout = currentUser.getWorkoutsList();
+// // Exercise exercise1 = (Exercise) exercise.getReps();
+
+
+// //Exercise exercise = new Exercise();
+// // model.addAttribute("exercises", currentExercise);
+// // model.addAttribute("workouts", currentWorkout);
+
+
+// //String exerciseName = exercise.getExercise_name();
+// //model.addAttribute("exerciseName", exerciseName);
+// //
+// //String workoutPlanName = workout.getTitle();
+// //model.addAttribute("workoutPlanName", workoutPlanName);
+// //
+// //int exerciseReps = exerciseDetails.getReps();
+// //model.addAttribute("exerciseReps", exerciseReps);
+// //
+// //int exerciseSets = exerciseDetails.getSets();
+// //model.addAttribute("exerciseSets", exerciseSets);
+// //
+// //String exerciseEqupment = exercise.getExercise_equipment();
+// //model.addAttribute("exerciseEquipment", exerciseEqupment);
+
+
+// //        model.addAttribute("workout", new Workout());
+// //        model.addAttribute("exercise", new Exercise());
+//         return "index/workoutplan";
+//     }
 
     @GetMapping("/test")
     public String loading(Model model) {
@@ -275,7 +488,7 @@ public class MainController {
     }
 
     @PostMapping("/test")
-    public String saveExercise(@ModelAttribute Exercise exercise){
+    public String saveExercise(@ModelAttribute Exercise exercise) {
 
         System.out.println(exercise.getExerciseBodyPart());
         String name = exercise.getExerciseName();
