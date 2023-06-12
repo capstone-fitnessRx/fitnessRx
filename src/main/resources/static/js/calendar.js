@@ -1,4 +1,12 @@
 // "use strict"
+//
+// document.querySelector('form').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Prevent the form from submitting
+//
+//     const userInput = document.getElementById('calender').value; // Get the user's input
+//     document.getElementById('user-input').textContent = userInput; // Update the text in the card
+// });
+//
 
 // document.addEventListener('DOMContentLoaded', function (){
 //     const notesInputSunday = document.getElementById('notes-input-sunday');

@@ -26,6 +26,8 @@ public class MainController {
 
     private final ExerciseRepository exerciseDao;
 
+//    added Sunday night
+//    private Calender existingCalender;
 
 //     public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, ExerciseRepository exerciseDao, ExerciseDetailsRepository exerciseDetailsDao) {
 
@@ -82,8 +84,11 @@ public class MainController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+//        added Sunday night
+//        Calender existingCalender = calenderDao.findByUserID(user.getId());
+//        model.addAttribute("calender", existingCalender !=null ? existingCalender : new Calender());
 
-        model.addAttribute("calender", new Calender());
+//        model.addAttribute("calender", new Calender());
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -108,6 +113,23 @@ public class MainController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById((long) user.getId());
 
+//    added Sunday night
+//    public String saveNotes(@ModelAttribute("calender") Calender newCalender){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user = userDao.getReferenceById((long) user.getId());
+
+//        added Sunday night
+//        if (existingCalender !=null) {
+//            existingCalendar.setNotes(newCalender.getNotes());
+//            calenderDao.save(existingCalender);
+//        } else {
+//            Calender calender = new Calender();
+//            calender.setNotes(newCalender.getNotes());
+//            calender.setUser(user);
+//            calenderDao.save(calender);
+//        }
+
+//        originally had this...
         Calender calender = new Calender();
 
         calender.setNotes(newCalender.getNotes());

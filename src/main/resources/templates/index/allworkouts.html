@@ -12,7 +12,7 @@
     <!--    Stylesheet-->
 
     <!--    test on my side-->
-    <!--    <link rel="stylesheet" href="../../static/css/allworkouts.css">-->
+<!--        <link rel="stylesheet" href="../../static/css/allworkouts.css">-->
 
 
     <!-- for web app running-->
@@ -22,10 +22,10 @@
     <link rel="stylesheet" href="/css/messenger.css">
     <link rel="stylesheet" href="/css/navbar1.css">
 </head>
-<body>
+<body id="cards">
 <nav th:replace="partials/navbar.html :: navbar"/>
 
-
+<h2>All Workouts</h2>
 
     <div class="row" th:each="allWorkouts : ${allWorkouts}">
         <div class="card mb-3" style="width: 18rem;">
@@ -33,6 +33,7 @@
                 <h5 class="card-title"><a th:href="@{/workout-plan/{id}(id=*{allWorkouts.getId()})}" th:text="*{allWorkouts.getTitle()}"></a></h5>
                 <p class="card-text" th:text="*{allWorkouts.getCategories()}"></p>
                 <p class="card-text" th:text="*{allWorkouts.getAvgRating()}"></p>
+<!--                <p class="card-text" th:text="*{allWorkouts.getWorkoutImage()}"></p>-->
                 <a href="#" class="card-link">+ Calender</a>
                 <a href="#" class="card-link">+ Favorites</a>
             </div>
