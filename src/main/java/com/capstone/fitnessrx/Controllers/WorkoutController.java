@@ -214,11 +214,18 @@ public class WorkoutController {
     }
 
 
-
-
-
-
-
-
+//    working on Mon AM
+//    @PostMapping("/workout/favorite")
+//    public String setFavoriteWorkout(@RequestParam(name = "addtofavorites")
+////                                                    ^^ need to put: hidden input that has the th:value = workout id
+//
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//
+//
+//
+//        return "redirect:/favorite/{id}" + user.getId();
+//    }
 
 }
