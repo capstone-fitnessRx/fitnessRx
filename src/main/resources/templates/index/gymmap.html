@@ -22,11 +22,17 @@
   <div id='map' data-location="${location}." style='width: 700px; height: 400px;z-index:5;display:block'></div>
 <div th:insert="partials/modals.html :: modals"></div>
 
+<div class="cards" id="card1"style="width: 18rem;">
+    <div class="card-body">
+        <p class="card-text" id="gymName">This will display the name of the gym.</p>
+        <p id="gymAddress">This will display the address of the gym.</p>
+    </div>
+</div>
 
   <div class="cards" id="card2"style="width: 18rem;">
       <div class="card-body">
-          <p class="card-text">This will display the name of the gym.</p>
-          <p id="address2">This will display the address of the gym.</p>
+          <p class="card-text" id="gymName2">This will display the name of the gym.</p>
+          <p id="gymAddress2">This will display the address of the gym.</p>
       </div>
   </div>
 
