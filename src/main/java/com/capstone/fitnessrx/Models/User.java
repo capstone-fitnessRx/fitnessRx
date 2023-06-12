@@ -26,6 +26,10 @@ public class User {
     @Column()
     private String bio;
     @Column()
+    private String profilePic;
+    @Column()
+    private String bannerPic;
+    @Column()
     private String goal;
     @Column()
     private String cardColor;
@@ -98,6 +102,8 @@ public class User {
         favoriteExercise = copy.favoriteExercise;
         exercisesList = copy.exercisesList;
         workoutsList = copy.workoutsList;
+        profilePic = copy.profilePic;
+        bannerPic = copy.bannerPic;
     }
 
 
@@ -106,9 +112,7 @@ public class User {
     }
 
 
-    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, Collection<Messages> sentMessages, Collection<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
-
-
+    public User(int id, String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String profilePic, String bannerPic, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, Collection<Messages> sentMessages, Collection<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Exercise> exercisesList, List<Workout> workoutsList, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -117,6 +121,8 @@ public class User {
         this.location = location;
         this.workoutPreference = workoutPreference;
         this.bio = bio;
+        this.profilePic = profilePic;
+        this.bannerPic = bannerPic;
         this.goal = goal;
         this.cardColor = cardColor;
         this.post = post;
@@ -132,8 +138,7 @@ public class User {
         this.favoriteExercise = favoriteExercise;
     }
 
-    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, Collection<Messages> sentMessages, Collection<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
-
+    public User(String username, String email, String password, boolean admin, String location, String workoutPreference, String bio, String profilePic, String bannerPic, String goal, String cardColor, List<Post> post, List<Calender> calender, List<Ratings> ratings, Collection<Messages> sentMessages, Collection<Messages> receivedMessages, Collection<Friends> friendsAsMainUser, Collection<Friends> friendsAsFriendUser, List<Exercise> exercisesList, List<Workout> workoutsList, List<Workout> favoriteWorkouts, List<Exercise> favoriteExercise) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -141,6 +146,8 @@ public class User {
         this.location = location;
         this.workoutPreference = workoutPreference;
         this.bio = bio;
+        this.profilePic = profilePic;
+        this.bannerPic = bannerPic;
         this.goal = goal;
         this.cardColor = cardColor;
         this.post = post;
@@ -220,6 +227,22 @@ public class User {
         this.bio = bio;
     }
 
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public String getBannerPic() {
+        return bannerPic;
+    }
+
+    public void setBannerPic(String bannerPic) {
+        this.bannerPic = bannerPic;
+    }
+
     public String getGoal() {
         return goal;
     }
@@ -244,11 +267,11 @@ public class User {
         this.post = post;
     }
 
-    public List<Calender> getcalender() {
+    public List<Calender> getCalender() {
         return calender;
     }
 
-    public void setcalender(List<Calender> calender) {
+    public void setCalender(List<Calender> calender) {
         this.calender = calender;
     }
 
@@ -292,30 +315,6 @@ public class User {
         this.friendsAsFriendUser = friendsAsFriendUser;
     }
 
-    public List<Workout> getFavoriteWorkouts() {
-        return favoriteWorkouts;
-    }
-
-    public void setFavoriteWorkouts(List<Workout> favoriteWorkouts) {
-        this.favoriteWorkouts = favoriteWorkouts;
-    }
-
-    public List<Exercise> getFavoriteExercise() {
-        return favoriteExercise;
-    }
-
-    public void setFavoriteExercise(List<Exercise> favoriteExercise) {
-        this.favoriteExercise = favoriteExercise;
-    }
-
-    public List<Calender> getCalender() {
-        return calender;
-    }
-
-    public void setCalender(List<Calender> calender) {
-        this.calender = calender;
-    }
-
     public List<Exercise> getExercisesList() {
         return exercisesList;
     }
@@ -330,7 +329,22 @@ public class User {
 
     public void setWorkoutsList(List<Workout> workoutsList) {
         this.workoutsList = workoutsList;
+    }
 
+    public List<Workout> getFavoriteWorkouts() {
+        return favoriteWorkouts;
+    }
+
+    public void setFavoriteWorkouts(List<Workout> favoriteWorkouts) {
+        this.favoriteWorkouts = favoriteWorkouts;
+    }
+
+    public List<Exercise> getFavoriteExercise() {
+        return favoriteExercise;
+    }
+
+    public void setFavoriteExercise(List<Exercise> favoriteExercise) {
+        this.favoriteExercise = favoriteExercise;
     }
 }
 
