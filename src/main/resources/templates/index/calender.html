@@ -136,6 +136,15 @@
         </div>
     </div>
 
+<!--    Notes Cards-->
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">User Input</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
+                <p th:text="${notes}"></p>
+        </div>
+    </div>
 <!--    workout cards-->
 
     <div class="col-md-8">
@@ -177,7 +186,7 @@
         </div>
 </div>
 </div>
-<!--</div>-->
+</div>
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/calender.js"></script>

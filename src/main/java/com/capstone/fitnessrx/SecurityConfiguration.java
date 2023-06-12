@@ -53,6 +53,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
 
 
+
                 .requestMatchers("/","/workouts-wall", "/exercise-page", "/home", "/register", "/css/**", "/js/**", "/img/**") // anyone can see home, the ads pages, and sign up
 
                 .permitAll()
@@ -63,7 +64,9 @@ public class SecurityConfiguration {
 
 
 
-                "/profile/upload", "/feed/comment/delete/{id}", "/feed/post/edit/{id}", "/feed/post/delete/{id}", "/messages/{recipient}", "/sendMessage", "/message/{friendId}", "/messages/send", "/message", "/users", "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder", "/exercise-display/{id}", "/workout-plan/{id}", "/calender/note", "/profile/delete", "/workout-builder-inator"
+
+                        "/profile/upload", "/feed/comment/delete/{id}", "/feed/post/edit/{id}", "/feed/post/delete/{id}", "/messages/{recipient}", "/sendMessage", "/message/{friendId}", "/messages/send", "/message", "/users", "/profile/{id}","feed/comment/create", "/feed/{id}", "/calender/{id}", "/my-workouts/{id}", "/map/{location}", "/favorites/{id}", "/workout-builder", "/exercise-display/{id}", "/workout-plan/{id}", "/calender/note", "/profile/delete", "/workout-builder-inator","/initialize-workout"
+
 
                         // only authenticated users can edit ads
 

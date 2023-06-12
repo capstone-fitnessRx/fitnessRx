@@ -23,7 +23,7 @@ public class Workout {
     @Column(nullable = false, length = 500)
     private String description;
 
-    @Column(nullable = false)
+    @Column()
     private Date created;
 
     @OneToMany(mappedBy = "workout")
@@ -85,6 +85,11 @@ public class Workout {
         this.ratings = ratings;
         this.categories = categories;
         this.usersFavorites = usersFavorites;
+    }
+
+    public Workout(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public Long getId() {

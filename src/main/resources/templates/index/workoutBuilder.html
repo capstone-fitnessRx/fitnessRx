@@ -16,9 +16,9 @@
 
 <div th:insert="partials/modals.html :: modals"></div>
 
-<main class="container d-flex justify-content-evenly flex-wrap" >
+<main class="container d-flex justify-content-evenly flex-wrap">
     <section class="container">
-        <form method="post">
+        <form th:action="@{/workout-builder}" th:method="post">
             <div class="container card text-center">
                 <div class="card-header">
                     <h5 class="card-title">Your Workout</h5>
@@ -34,36 +34,68 @@
                         </thead>
                         <tbody id="insertExercise" class=" text-center">
                         <!--                        exercises will be appended here-->
+                        <tr th:each="exercise : ${exerciseDetailsList}">
+                            <td th:text="*{exercise.getExerciseName()}"></td>
+                            <td th:text="*{exercise.getSets}"></td>
+                            <td th:text="*{exercise.getReps}"></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            <button type="submit">Finalize Workout</button>
         </form>
-        <button class="">Finalize Workout</button>
     </section>
-    <section class="container d-flex justify-content-evenly flex-wrap" id="workoutBuilder">
-<!--        <form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get">-->
-<!--                <button class="btn " type="submit">-->
-<!--                    <div class="card text-center" style="width: 180px">-->
-<!--                        <div class="card-header" style="height: 130px">>-->
-<!--                            <h5 class="card-title" id=>Exercise Name</h5>-->
-<!--                        </div>-->
-<!--                        <div class="card-body" id=>-->
-<!--                            <img class="card-text">image will go here</img>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;            sends the name of the exercise&ndash;&gt;-->
-<!--                    <input class="d-none form-control" type="text" name="" value="">-->
-<!--                    &lt;!&ndash;             sends the muscles targeted&ndash;&gt;-->
-<!--                    <input class="d-none form-control" type="text" name="" value="">-->
-<!--                    &lt;!&ndash;            sends the equipment&ndash;&gt;-->
-<!--                    <input class="d-none form-control" type="text" name="" value="">-->
-<!--                    &lt;!&ndash;            sends the gif&ndash;&gt;-->
-<!--                    <input class="d-none form-control" type="text" name="" value="">-->
-<!--                </button>-->
-<!--            </form>-->
-<!--            <button id="openModel" class="">Add to Workout</button>-->
-<!--        </div>-->
+    <section id="cards">
+        <div th:each="exercise : ${allExercises}">
+
+            <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" class="card">
+                <div>
+                    <h3 th:text="*{exercise.getExerciseName()}"></h3>
+                    <h3 th:text="*{exercise.getExerciseBodyPart()}"></h3>
+                </div>
+            </a>
+            <button class="text-center open_modal" data-open-modal>Add to Workout</button>
+            <dialog class="data_modal" data-modal>
+                <form th:action="@{/workout-builder-inator}" th:method="post">
+                    <input type="text" name="reps" placeholder="Input Reps" required> </input>
+                    <input type="text" name="sets" placeholder="Input Sets" required> </input>
+                    <!--                    make hidden later-->
+                    <!--                    <input class=""  name="exercise_Api_Id" th:value="*{exercise.getExerciseId()}">-->
+                    <input class="" name="exerciseId" th:value="*{exercise.getId()}">
+                    <input class="" name="exerciseName" th:value="*{exercise.getExerciseName()}">
+                    <input class="" name="workoutNum" th:value="*{workoutNum}">
+
+                    <!--                   <input class="d-none" th:field="*{target_muscle}" value="'+name+'">-->
+                    <button type="submit">Save</button>
+                </form>
+                <button class="close_modal" data-close-modal>close</button>
+            </dialog>
+        </div>
+
+        <!--    <section class="container d-flex justify-content-evenly flex-wrap" id="workoutBuilder">-->
+        <!--        <form class="col-md-4 col-lg-3 col-xl-2" action="/exercise-display" th:object="exercise" th:method="get">-->
+        <!--                <button class="btn " type="submit">-->
+        <!--                    <div class="card text-center" style="width: 180px">-->
+        <!--                        <div class="card-header" style="height: 130px">>-->
+        <!--                            <h5 class="card-title" id=>Exercise Name</h5>-->
+        <!--                        </div>-->
+        <!--                        <div class="card-body" id=>-->
+        <!--                            <img class="card-text">image will go here</img>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                    &lt;!&ndash;            sends the name of the exercise&ndash;&gt;-->
+        <!--                    <input class="d-none form-control" type="text" name="" value="">-->
+        <!--                    &lt;!&ndash;             sends the muscles targeted&ndash;&gt;-->
+        <!--                    <input class="d-none form-control" type="text" name="" value="">-->
+        <!--                    &lt;!&ndash;            sends the equipment&ndash;&gt;-->
+        <!--                    <input class="d-none form-control" type="text" name="" value="">-->
+        <!--                    &lt;!&ndash;            sends the gif&ndash;&gt;-->
+        <!--                    <input class="d-none form-control" type="text" name="" value="">-->
+        <!--                </button>-->
+        <!--            </form>-->
+        <!--            <button id="openModel" class="">Add to Workout</button>-->
+        <!--        </div>-->
 
     </section>
 </main>
@@ -73,20 +105,19 @@
 <script src="/js/modals.js"></script>
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
-<script src="/js/exerciseDB.js"></script>
+<!--<script src="/js/exerciseDB.js"></script>-->
 <script>
-    // let openModal = document.getElementsByClassName("open_modal");
-    // let closeModal = document.getElementsByClassName("close_modal");
-    // let modal = document.getElementsByClassName("data_modal");
-    // console.log(openModal.length);
-    // for (let i = 0 ; i < openModal.length; i++) {
-    //     openModal[i].addEventListener('click' , () => {
-    //         modal.showModal();
-    //     },true ) ;
-    //     closeModal[i].addEventListener('click' , () => {
-    //         modal.close();
-    //     },true ) ;
-    // }
+    let openModal = document.querySelectorAll("[data-open-modal]");
+    let closeModal = document.querySelectorAll("[data-close-modal]");
+    let modal = document.querySelectorAll("[data-modal]");
+    for (let i = 0; i < openModal.length; i++) {
+        openModal[i].addEventListener('click', () => {
+            modal[i].showModal();
+        });
+        closeModal[i].addEventListener('click', () => {
+            modal[i].close();
+        });
+    }
 </script>
 
 </body>

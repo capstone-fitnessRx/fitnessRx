@@ -32,6 +32,8 @@
         <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${favoriteExercise}">
             <div>
                 <h3 th:text="${exercise.exerciseName}"></h3>
+                <h6 th:text="${exercise.exerciseTarget}">Target Muscle Group</h6>
+                <h6 th:text="${exercise.exerciseEquipment}">Equipment</h6>
             </div>
         </a>
     </div>
@@ -43,7 +45,9 @@
         <h3>Workouts</h3>
         <a th:href="@{/workout-plan/{id}(id=*{workout.getId()})}" th:each="workout : ${favoriteWorkout}">
         <div>
-            <h3 th:text="${workout.title}"></h3>
+            <h3 th:text="${workout.title}">Title</h3>
+            <h6 th:text="${workout.description}">Description</h6>
+
         </div>
         </a>
 <!--        <div th:text="testing"></div>-->

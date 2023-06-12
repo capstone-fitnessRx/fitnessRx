@@ -1,4 +1,4 @@
-USE fitnessRx_test_db;
+USE fitnessRx_db;
 
 
 
