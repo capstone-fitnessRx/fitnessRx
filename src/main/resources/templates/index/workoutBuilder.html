@@ -24,8 +24,6 @@
                     <h5 class="card-title">Your Workout</h5>
                 </div>
                 <div class="card-body">
-                    <input type="text"  name="title" placeholder="Input Title" required> </input>
-                    <input type="text"  name="description" placeholder="Input Description" required> </input>
                     <table id="workoutExercises" class="">
                         <thead class="text-center">
                         <tr class=" text-center">
@@ -37,7 +35,7 @@
                         <tbody id="insertExercise" class=" text-center">
                         <!--                        exercises will be appended here-->
                         <tr th:each="exercise : ${exerciseDetailsList}">
-                            <td th:text="*{exercise.getExercise()}"></td>
+                            <td th:text="*{exercise.getExerciseName()}"></td>
                             <td th:text="*{exercise.getSets}"></td>
                             <td th:text="*{exercise.getReps}"></td>
                         </tr>
@@ -45,7 +43,7 @@
                     </table>
                 </div>
             </div>
-        <button type="submit">Finalize Workout</button>
+            <button type="submit">Finalize Workout</button>
         </form>
     </section>
     <section id="cards">
@@ -59,14 +57,14 @@
             </a>
             <button class="text-center open_modal" data-open-modal>Add to Workout</button>
             <dialog class="data_modal" data-modal>
-                <form th:action="@{/workout-builder-inator}" th:method="post" >
-                    <input type="text"  name="reps" placeholder="Input Reps" required> </input>
-                    <input type="text"  name="sets" placeholder="Input Sets" required> </input>
-<!--                    make hidden later-->
-                    <input class=""  name="exercise_Api_Id" th:value="*{exercise.getExerciseId()}">
-                    <input class=""  name="exerciseId" th:value="*{exercise.getId()}">
-
-                    <!--                    <input class="" name="" th:value="*{exercise.getId()}">-->
+                <form th:action="@{/workout-builder-inator}" th:method="post">
+                    <input type="text" name="reps" placeholder="Input Reps" required> </input>
+                    <input type="text" name="sets" placeholder="Input Sets" required> </input>
+                    <!--                    make hidden later-->
+                    <!--                    <input class=""  name="exercise_Api_Id" th:value="*{exercise.getExerciseId()}">-->
+                    <input class="" name="exerciseId" th:value="*{exercise.getId()}">
+                    <input class="" name="exerciseName" th:value="*{exercise.getExerciseName()}">
+                    <input class="" name="workoutNum" th:value="*{workoutNum}">
 
                     <!--                   <input class="d-none" th:field="*{target_muscle}" value="'+name+'">-->
                     <button type="submit">Save</button>

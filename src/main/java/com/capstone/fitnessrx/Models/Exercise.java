@@ -39,6 +39,7 @@ public class Exercise {
     public Exercise() {
     }
 
+
     public Exercise(long id, String exerciseName, String exerciseBodyPart, String exerciseEquipment, String exerciseTarget, long exerciseId, String exerciseGif, List<User> users, List<Categories> categories) {
         this.id = id;
         this.exerciseName = exerciseName;
@@ -50,6 +51,7 @@ public class Exercise {
         this.users = users;
         this.categories = categories;
     }
+
 
     public Exercise(String exerciseName, String exerciseBodyPart, String exerciseEquipment, String exerciseTarget, long exerciseId, String exerciseGif, List<User> users, List<Categories> categories) {
         this.exerciseName = exerciseName;
