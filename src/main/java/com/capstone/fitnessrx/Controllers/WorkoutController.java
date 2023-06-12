@@ -280,7 +280,7 @@ model.addAttribute("workoutNum", workoutNum);
 
 
 //         return "redirect:/favorite/{id}"  + user.getId();
-    }
+
 
 
 //<form th:action="@{workout/favorite}" method="post">
@@ -294,7 +294,6 @@ model.addAttribute("workoutNum", workoutNum);
 
         System.out.println("workout.getId() = " + workout.getId());
         model.addAttribute("workoutNum", workout.getId());
- main
 
         return "redirect:/workout-builder?workoutNum=" + workout.getId();
     }
