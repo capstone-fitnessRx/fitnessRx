@@ -19,8 +19,12 @@
     float: left;
 }
 
+.col-md-4:nth-child(2) {
+    margin-left: 2%;
+}
+
 .col-md-8 {
-    width: 66.66%;
+    width: 33.33%;
     float: left;
 }
 
