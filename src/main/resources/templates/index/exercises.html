@@ -13,36 +13,21 @@
 <body>
 
 <nav th:replace="partials/navbar.html :: navbar"/>
+<!--<nav th:include="partials/exercise-search.html :: search"/>-->
 <h1>Exercise Page</h1>
-<!--<div th:insert="partials/modals.html :: modals"></div>-->
-<!--<section class="container d-flex justify-content-evenly flex-wrap" id="exercises">-->
-<!--    <form class="col-md-4 col-lg-3 col-xl-2" method="post" action="exercise-display">-->
-<!--        <button class="btn " type="submit">-->
-<!--            <div class="card text-center">-->
-<!--                <div class="card-header">-->
-<!--                    <h5 class="card-title" id=>Exercise Name</h5>-->
-<!--                </div>-->
-<!--                <div class="card-body" id=>-->
-<!--                    <img class="card-text">image will go here</img>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash;            sends the name of the exercise&ndash;&gt;-->
-<!--            <input class="d-none form-control" type="text" name="" value="">-->
-<!--            &lt;!&ndash;             sends the muscles targeted&ndash;&gt;-->
-<!--            <input class="d-none form-control" type="text" name="" value="">-->
-<!--            &lt;!&ndash;            sends the equipment&ndash;&gt;-->
-<!--            <input class="d-none form-control" type="text" name="" value="">-->
-<!--            &lt;!&ndash;            sends the gif&ndash;&gt;-->
-<!--            <input class="d-none form-control" type="text" name="" value="">-->
-<!--        </button>-->
-<!--    </form>-->
+
+<div class="exercises"><span class="gifOne"></span> </div>
 
     <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${allExercises}" class="card">
-        <div>
-            <h3 th:text="*{exercise.getExerciseName()}"></h3>
-            <h3 th:text="*{exercise.getExerciseBodyPart()}"></h3>
-        </div>
+        <h5 th:text="*{exercise.exerciseName}"></h5>
+        <img th:s="${exercise.getExerciseGif()}" alt="gif"> <!--WHY WONT GIF LOAD-->
+        <label>
+            <input th:value="*{exercise.getExerciseGif()}">
+        </label>
+        <h6 th:text="*{exercise.exerciseTarget}"></h6>
+        <h6 th:text="*{exercise.exerciseEquipment}"></h6>
     </a>
+
 
 
 
