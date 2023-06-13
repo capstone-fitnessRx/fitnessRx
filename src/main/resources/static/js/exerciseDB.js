@@ -246,6 +246,7 @@ $(document).ready(function () {
         let workoutBuilderCard =""
         // let exercises = "";
         // let gif = "";
+        var hello;
         let i;
         for (i = 0; i < data.length; i++) {
             let bodyPart = data[i].bodyPart;
