@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+//added Mon PM
+import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -281,19 +283,21 @@ model.addAttribute("workoutNum", workoutNum);
 
 //         return "redirect:/favorite/{id}"  + user.getId();
 
-//    working on Mon AM
-//    @PostMapping("/workout/favorite")
-//    public String setFavoriteWorkout(@RequestParam(name = "addtofavorites")
-////                                                    ^^ need to put: hidden input that has the th:value = workout id
-//
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//
-//
-//
-//
-//        return "redirect:/favorite/{id}" + user.getId();
-//    }
+//    working on Mon
+    @PostMapping("/workout/favorite")
+    public String setFavoriteWorkout(@RequestParam Long addtofavorites) {
+//                                     ^^ need to put: hidden input that has the th:value = workout id
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        FavoriteWorkout favoriteWorkout = new FavoriteWorkout();
+        favoriteWorkout.setWorkoutId(workoutId);
+        favoriteWorkout.setUserId(user.getId());
+
+        WorkoutRepository.save(favoriteWorkout);
+
+        return "redirect:/favorite/" + user.getId();
+    }
 
 
 
