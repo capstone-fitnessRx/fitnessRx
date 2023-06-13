@@ -254,7 +254,7 @@ model.addAttribute("workoutNum", workoutNum);
             exerciseDetailsDao.save(exercise);
         }
         exerciseDetailsList.removeAll(exerciseDetailsList);
-        return "redirect:/initialize-workout";
+        return "redirect:/workouts-wall";
     }
 
     @GetMapping("/initialize-workout")
