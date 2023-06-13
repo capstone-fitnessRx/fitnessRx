@@ -7,13 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/modals.css">
-<!--    <link rel="stylesheet" href="/css/messenger.css">-->
+    <!--    <link rel="stylesheet" href="/css/messenger.css">-->
     <link rel="stylesheet" href="/css/navbar1.css">
 </head>
 <body>
 
 <nav th:replace="partials/navbar.html :: navbar"/>
-<h1>Exercise Page</h1>
+<h1 class="text-center">Exercise Page</h1>
 <!--<div th:insert="partials/modals.html :: modals"></div>-->
 <!--<section class="container d-flex justify-content-evenly flex-wrap" id="exercises">-->
 <!--    <form class="col-md-4 col-lg-3 col-xl-2" method="post" action="exercise-display">-->
@@ -36,15 +36,20 @@
 <!--            <input class="d-none form-control" type="text" name="" value="">-->
 <!--        </button>-->
 <!--    </form>-->
-
+<section class="container d-flex justify-content-evenly flex-wrap" id="exercises">
     <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${allExercises}" class="card">
-        <div>
-            <h3 th:text="*{exercise.getExerciseName()}"></h3>
-            <h3 th:text="*{exercise.getExerciseBodyPart()}"></h3>
+        <div class="col-md-4 col-lg-3 col-xl-2">
+            <div class="card text-center" style="width: 180px">
+                <div class="card-header" style="height: 130px">
+                    <h5 class="card-title my-auto" th:text="*{exercise.getExerciseName()}"></h5>
+                </div>
+                <div class="card-body" id=>
+                    <img class="img-fluid" th:src="*{exercise.getExerciseGif()}"></img>
+                </div>
+            </div>
         </div>
     </a>
-
-
+</section>
 
 
 <!--</section>-->
