@@ -36,8 +36,7 @@ public class WorkoutController {
     }
 
 
-    @GetMapping("/my-workouts/{id}")
-
+    @GetMapping("/my-workouts")
     public String getMyWorkouts(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -311,5 +310,18 @@ model.addAttribute("workoutNum", workoutNum);
 
         return "redirect:/workout-builder?workoutNum=" + workout.getId();
     }
+
+    @PostMapping("/workouts-wall/{workoutId}/delete")
+    public String deleteWorkout(Model model, @PathVariable long workoutId) {
+        workoutDao.deleteById(workoutId);
+        return "redirect:/workouts-wall";
+    }
+
+    @PostMapping("/workouts-wall/{workoutId}/edit")
+    public String editWorkout(Model model) {
+        return "redirect:/workouts-wall";
+    }
+
+
 
 }
