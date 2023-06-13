@@ -36,7 +36,7 @@ public class WorkoutController {
     }
 
 
-    @GetMapping("/my-workouts")
+    @GetMapping("/my-workouts/{id}")
     public String getMyWorkouts(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
