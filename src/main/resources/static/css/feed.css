@@ -1,23 +1,28 @@
+body {
+    background-color: #C9D6DF;
+}
+
 .container-box{
     margin-left: 7em;
     margin-right: 7em;
 }
 .post-card {
-    background-color: #8a8acb;
+    background-color: #F0F5F9;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding-left: 20px;
+    padding-left: 4px;
     padding-right: 20px;
     margin-top: 2em;
 }
 
 .side-card {
-    background-color: #8a8acb;
+    background-color: #F0F5F9;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding: 0;
     margin-top: 2em;
 }
+
 .side-banner {
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -28,22 +33,26 @@
     height: 90px;
     width: 90px;
     border: white 2px solid;
-    position: relative;
+    position: inherit;
     bottom: 30px;
+    margin-top: 4px;
 }
 .post-pic{
     border-radius: 50%;
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     border: white 2px solid;
     display: inline-block;
+    margin-bottom: 6px;
+    margin-top: 4px;
 }
 .post-input {
     border-radius: 2em;
     display: inline-block;
+    margin-top: 8px;
 }
 .submit-post {
-    background-color: grey;
+    background-color: #F0F5F9;
     width: 60px;
     border-radius: 40px;
     text-align: center;
@@ -69,9 +78,11 @@
     border-radius: 50%;
     height: 45px;
     width: 45px;
+    margin-top: 4px;
+    margin-left: 4px;
 }
 .post-loop {
-    background-color: #8a8acb;
+    background-color: #F0F5F9;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-top: 2em;
@@ -107,7 +118,7 @@
     display: none;
     position: absolute;
     top: 26em;
-    background-color: grey;
+    background-color: #F0F5F9;
     width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -155,4 +166,39 @@
 
 .show {
     display: block;
+}
+
+#reportBtn {
+    height: 4px;
+    width: 32px;
+    float: right;
+}
+
+.card-body {
+    background-color: #F0F5F9;
+}
+
+div.input-div {
+    background-color: #F0F5F9;
+}
+
+p {
+    margin: 0 8px;
+    background-color: whitesmoke;
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    box-shadow: black;
+}
+
+a:hover {
+    text-shadow: #F0F5F9;
+}
+
+button {
+
+    background-color: whitesmoke;
 }
