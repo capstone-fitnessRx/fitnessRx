@@ -5,23 +5,31 @@
   <title>Register</title>
 </head>
 <body>
+
 <h1>Create an account</h1>
 <form th:action="@{/register}" method="POST" th:object="${user}">
 
   <label for="username">Username: </label>
-  <input id="username" th:field="*{username}" />
+  <input id="username" th:field="*{username}" required pattern=".{5,}"
+         title="Username must have at least 5 characters" />
 
-  <label for="email">Email: </label>
-  <input id="email" th:field="*{email}" />
+  <label for="email">Email:</label>
+  <input id="email" th:field="*{email}" type="email"
+         title="Please enter a valid email address" required />
 
-  <label for="password">Password: </label>
-  <input id="password" type="password" th:field="*{password}" />
+  <label for="password">Password:</label>
+  <input id="password" type="password" th:field="*{password}"
+         pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$"
+         title="Password must contain at least 8 characters, including a capital letter, a number, and a special symbol" required />
 
   <label for="location">Location: </label>
   <input id="location" th:field="*{location}" />
 
 
   <input value="Sign me up!" type="submit" />
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<!--  js file-->
+  <script src="/js/register.js"></script>
 </form>
 </body>
 </html>
