@@ -55,7 +55,9 @@ public class SecurityConfiguration {
 
 
 
+
                 .requestMatchers("/","/workouts-wall", "/exercise-page", "/home", "/register", "/css/**", "/js/**","/workout-generator", "/img/**") // anyone can see home, the ads pages, and sign up
+
 
                 .permitAll()
                 /* Pages that require authentication */
