@@ -51,7 +51,12 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/","/workouts-wall", "/exercise-page", "/home", "/register", "/css/**", "/js/**", "/img/**") // anyone can see home, the ads pages, and sign up
+
+
+
+
+                .requestMatchers("/","/workouts-wall", "/exercise-page", "/home", "/register", "/css/**", "/js/**","/workout-generator", "/img/**") // anyone can see home, the ads pages, and sign up
+
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
