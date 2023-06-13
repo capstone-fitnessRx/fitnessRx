@@ -55,16 +55,21 @@
 <!---->
 <!---->
     <!--    banner card-->
-    <div class="card banner-card">
+    <div class="card banner-card" th:object="${userProfile}">
         <!--        <img class="main-banner" src="../../static/img/bannerMain.jpeg">-->
-        <img class="main-banner" src="/img/bannerMain.jpeg">
+        <img class="main-banner" th:src="*{bannerPic}">
     </div>
+    <label for="uploadBanner"></label>
+    <button type="button" id="uploadBanner" name="uploadBanner">Edit Banner</button>
+    <form th:action="@{/profile/uploadBanner}" th:method="POST" id="submitBanner">
+        <input id="stashFilestackURLBanner" name="stashFilestackURLBanner" type="hidden" value="">
+    </form>
 
     <div class="card main-card" th:style="'background-color:' + ${cardColor}">
         <img th:if="${authenticatedUserId.getId() == urlUserId}" class="profile-edit" id="modalEdit"
              src="/img/edit.png">
-        <img th:if="${authenticatedUserId.getId() != urlUserId}" class="profile-menu" id="modalOption"
-             src="/img/dropDown.png">
+<!--        <img th:if="${authenticatedUserId.getId() != urlUserId}" class="profile-menu" id="modalOption"-->
+<!--             src="/img/dropDown.png">-->
         <!--        <div th:if="${authenticatedUserId.getId() == urlUserId}">-->
         <!--            this is your profile.-->
         <!--        </div>-->
@@ -100,6 +105,7 @@
 <!--        -->
 <!--        -->
 <!--        -->
+
 <!--        -->
 <!--        -->
         <div class="addFriend-div">
@@ -247,10 +253,18 @@ const client = filestack.init(filestackapi);
                 $("#stashFilestackURL").val(res.filesUploaded[0].url);
                 document.getElementById("submitMePls").submit();
             }
-
     }
     // document.getElementById("submitMePls").submit();
-
+    $("#uploadBanner").click(function () {
+        client.picker(optionsBanner).open()
+    });
+    const optionsBanner = {
+        onUploadDone:
+            function(res) {
+                $("#stashFilestackURLBanner").val(res.filesUploaded[0].url);
+                document.getElementById("submitBanner").submit();
+            }
+    }
 </script>
 
 

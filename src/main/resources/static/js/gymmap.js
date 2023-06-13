@@ -9,39 +9,6 @@ const map = new mapboxgl.Map({
     center: [-74.5, 40], // starting position [lng, lat]
     zoom: 9, // starting zoom
 });
-//
-// let marker = new mapboxgl.Marker({
-//     draggable:true
-// })
-//     .setLngLat([0,0])
-//     .addTo(map);
-
-
-
-// async function populateMapInput(location) {
-//     const encodedLocation = encodeURIComponent(location).replaceAll('%20', '+');
-//     const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedLocation}.json?access_token=${mapboxgl.accessToken}`;
-//     let gymLocatorUrl =""
-//     let coordinates =[]
-//     await fetch(geocodeUrl)
-//         .then(response => response.json())
-//         .then(data => {
-//             coordinates = data.features[0].center;
-//             const lng = coordinates[0];
-//             const lat = coordinates[1];
-//             map.setCenter([lng, lat]);
-//             gymLocatorUrl =`https://api.tomtom.com/search/2/poiSearch/gym.json?lat=${lat}&lon=${lng}&categorySet=7320&view=Unified&key=GGCftL4ynajz16FGIFxh6FwizgE0HkYP`
-//         })
-//         .catch(error => {
-//             console.log('Error:', error);
-//         });
-//
-//     await fetch(gymLocatorUrl)
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data)
-//         })
-// }
 async function populateMapInput(location) {
     const encodedLocation = encodeURIComponent(location).replaceAll('%20', '+');
     const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedLocation}.json?access_token=${mapboxgl.accessToken}`;
@@ -57,7 +24,6 @@ async function populateMapInput(location) {
     card1AddressElement.textContent = '';
     card2TitleElement.textContent = '';
     card2AddressElement.textContent = '';
-
     try {
         const geocodeResponse = await fetch(geocodeUrl);
         const geocodeData = await geocodeResponse.json();
@@ -94,7 +60,6 @@ async function populateMapInput(location) {
                     card2TitleElement.textContent = gym.poi.name;
                     card2AddressElement.textContent = gym.address.freeformAddress;
                 }
-
                 cardIndex++;
             }
         });
@@ -103,25 +68,6 @@ async function populateMapInput(location) {
         console.log('Error:', error);
     }
 }
-
-// function getGyms(location) {
-//     let html=""
-//     fetch()
-//         .then(response => response.json())
-//         .then(data => {
-//             const coordinates = data.features[0].center;
-//             const lng = coordinates[0];
-//             const lat = coordinates[1];
-//             map.setCenter([lng, lat]);
-//             let newMarker = new mapboxgl.Marker();
-//             newMarker.setLngLat([lng,lat])
-//             newMarker.addTo(map);
-//         })
-//         .catch(error => {
-//             console.log('Error:', error);
-//         });
-//
-// }
 
 let myToken = 'GGCftL4ynajz16FGIFxh6FwizgE0HkYP'
 
