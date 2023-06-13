@@ -203,6 +203,21 @@ public class ProfileController {
 
         return "redirect:/profile/" + user.getId();
     }
+
+
+    @PostMapping("profile/uploadBanner")
+    public String uploadProfileBanner(@RequestParam(name = "stashFilestackURLBanner") String uploadedBannerPic) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user = userDao.getReferenceById((long) user.getId());
+
+
+        user = userDao.getReferenceById((long) user.getId());
+        user.setBannerPic(uploadedBannerPic);
+        userDao.save(user);
+
+
+        return "redirect:/profile/" + user.getId();
+    }
     @PostMapping("/profile/update")
     public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal,Model model) {
 
