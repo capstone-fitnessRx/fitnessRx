@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-//added Mon PM
-import org.springframework.security.core.userdetails.User;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -280,24 +279,27 @@ model.addAttribute("workoutNum", workoutNum);
         workout.setUser(user);
         workoutDao.save(workout);
 
+        System.out.println("workout.getId() = " + workout.getId());
+        model.addAttribute("workoutNum", workout.getId());
+
+        return "redirect:/workout-builder?workoutNum=" + workout.getId();
+    }
 
 //         return "redirect:/favorite/{id}"  + user.getId();
 
-//    working on Mon
-    @PostMapping("/workout/favorite")
-    public String setFavoriteWorkout(@RequestParam Long addtofavorites) {
-//                                     ^^ need to put: hidden input that has the th:value = workout id
-
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        FavoriteWorkout favoriteWorkout = new FavoriteWorkout();
-        favoriteWorkout.setWorkoutId(workoutId);
-        favoriteWorkout.setUserId(user.getId());
-
-        WorkoutRepository.save(favoriteWorkout);
-
-        return "redirect:/favorite/" + user.getId();
-    }
+//    @PostMapping("/workout/favorites")
+//    public String setFavoriteWorkout(@RequestParam Long addtofavorites) {
+//
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user1 = new User(user);
+//        List<Workout> newFavoriteWorkouts = user.getFavoriteWorkouts();
+//        newFavoriteWorkouts.add(workoutDao.getReferenceById(addtofavorites));
+//        user1.setFavoriteWorkouts(newFavoriteWorkouts);
+//
+//        userDao.save(user1);
+//
+//        return "redirect:/favorites/" + user.getId();
+//    }
 
 
 
@@ -310,10 +312,6 @@ model.addAttribute("workoutNum", workoutNum);
 //    </form
 
 
-        System.out.println("workout.getId() = " + workout.getId());
-        model.addAttribute("workoutNum", workout.getId());
 
-        return "redirect:/workout-builder?workoutNum=" + workout.getId();
-    }
 
 }
