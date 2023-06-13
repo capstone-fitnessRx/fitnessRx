@@ -256,10 +256,18 @@ model.addAttribute("workoutNum", workoutNum);
         return "redirect:/workouts-wall";
     }
 
+//     @PostMapping("/workout/favorite")
+//     public String setFavoriteWorkout() {// request param with a hidden input that has a th:value= workout id
+//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//         //connect request param to workouts
+// }  //make the connection user to workout
+
     @GetMapping("/initialize-workout")
     public String getInitializeWorkout(Model model) {
         return "index/initializeWorkout";
     }
+
 
 
     @PostMapping("/initialize-workout")
@@ -268,6 +276,34 @@ model.addAttribute("workoutNum", workoutNum);
         Workout workout = new Workout(title, description);
         workout.setUser(user);
         workoutDao.save(workout);
+
+
+//         return "redirect:/favorite/{id}"  + user.getId();
+
+//    working on Mon AM
+//    @PostMapping("/workout/favorite")
+//    public String setFavoriteWorkout(@RequestParam(name = "addtofavorites")
+////                                                    ^^ need to put: hidden input that has the th:value = workout id
+//
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//
+//
+//
+//        return "redirect:/favorite/{id}" + user.getId();
+//    }
+
+
+
+//<form th:action="@{workout/favorite}" method="post">
+//    <div>
+//    <input type="hidden" name>
+//    <button type="submit">+ Favorites</button>
+//    </div>
+//
+//    </form
+
 
         System.out.println("workout.getId() = " + workout.getId());
         model.addAttribute("workoutNum", workout.getId());
@@ -285,6 +321,7 @@ model.addAttribute("workoutNum", workoutNum);
     public String editWorkout(Model model) {
         return "redirect:/workouts-wall";
     }
+
 
 
 }

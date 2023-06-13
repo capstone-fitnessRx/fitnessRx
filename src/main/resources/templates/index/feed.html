@@ -25,8 +25,8 @@
 <div class="container-box row">
 
     <div class="card side-card col-md-3">
-        <img class="side-banner" src="/img/bannerMain.jpeg">
-        <img class="side-pic" src="/img/fitnessMyIMG.jpeg">
+        <img class="side-banner" th:src="${userProfile.bannerPic}">
+        <img class="side-pic" th:src="${userProfile.profilePic}">
 
         <!--    <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
 
@@ -43,7 +43,7 @@
     <div class="col-md-9">
         <div class="card post-card">
 
-            <img class="post-pic" src="/img/fitnessMyIMG.jpeg">
+            <img class="post-pic" th:src="${userProfile.profilePic}">
             <!--            <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
             <form method="POST" th:action="@{{feedUrl}(feedUrl=${feedUrl})}" th:object="${post}">
                 <input class="post-input" type="text" id="post" th:field="*{content}"
@@ -63,7 +63,7 @@
 
         <div th:each="post : ${posts}" class="post-loop card">
 
-            <img class="feed-pic" src="/img/giannaimg.png">
+            <img class="feed-pic" th:src="${post.getUser().profilePic}">
             <a th:href="@{/profile/{id}(id=${post.getUser().getId()})}" th:text="${post.getUser().getUsername()}"></a>
             <div class="custom-dropdown">
                 <button class="btn btn-secondary custom-dropdown-toggle" type="button">
@@ -111,7 +111,7 @@
             </div>
 
             <div class="input-div">
-                <img class="comment-pic" src="/img/giannaimg.png">
+                <img class="comment-pic" th:src="${userProfile.profilePic}">
 
                 <form th:method="POST" th:action="@{/feed/comment/create}">
                     <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment"

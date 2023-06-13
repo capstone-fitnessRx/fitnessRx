@@ -1,42 +1,6 @@
 <div th:fragment="modals">
 
-    <div id="myModalEdit" class="modal modal-dropdown">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Edit Profile</h2>
-            <form method="POST" th:action="@{/profile/update}">
-                <label>Username: </label>
-                <input type="text" name="newUsername" th:value="${username}">
 
-                <label>Email: </label>
-                <input type="text" name="newEmail" th:value="${email}">
-
-                <label>Location: </label>
-                <input type="text" name="newLocation" th:value="${location}">
-                <label>Bio: </label>
-                <input type="text" name="newBio" th:value="${bio}">
-                <label>Goals: </label>
-                <input type="text" name="newGoal" th:value="${goal}">
-                <label>Workout Preference: </label>
-                <input type="text" name="newWorkoutPreference" th:value="${workoutPreference}">
-                <button type="submit">Update</button>
-            </form>
-            <!--      -->
-            <!--      -->
-            <!--      API FILESTACK UPLOAD-->
-<!--            <form>-->
-<!--&lt;!&ndash;                <input id="stashFilestackURL" name="stashFilestackURL" value="replaceme" th:field="*{img}" type="hidden">&ndash;&gt;-->
-<!--                <label for="upload"></label>-->
-<!--                <button type="button" id="upload" name="upload">Upload an image</button>-->
-<!--            </form>-->
-            <!--      -->
-            <!--      -->
-            <p>Profile Image: </p>
-            <p>Banner Image: </p>
-            <p>Background Color</p>
-
-        </div>
-    </div>
     <div id="myModalSettings" class="modal modal-dropdown">
         <div class="modal-content">
             <span class="close">&times;</span>

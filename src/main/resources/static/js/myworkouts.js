@@ -20,24 +20,5 @@ customDropdowns.forEach(function(dropdown) {
     };
 });
 
-// // Get the custom dropdown toggle button
-// var dropdownToggle = document.querySelector('.custom-dropdown-toggle');
-//
-// // Get the custom dropdown content
-// var dropdownContent = document.querySelector('.custom-dropdown-content');
-//
-// // Add click event listener to toggle the dropdown
-// dropdownToggle.addEventListener('click', function() {
-//     dropdownContent.classList.toggle('show');
-// });
-//
-// // Close the dropdown when user clicks outside of it
-// window.onclick = function(event) {
-//     if (!event.target.matches('.custom-dropdown-toggle')) {
-//         if (dropdownContent.classList.contains('show')) {
-//             dropdownContent.classList.remove('show');
-//         }
-//     }
-// };
 
 
