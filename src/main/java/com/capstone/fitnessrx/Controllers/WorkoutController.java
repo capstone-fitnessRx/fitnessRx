@@ -1,9 +1,6 @@
 package com.capstone.fitnessrx.Controllers;
 
-import com.capstone.fitnessrx.Models.Exercise;
-import com.capstone.fitnessrx.Models.ExerciseDetails;
-import com.capstone.fitnessrx.Models.User;
-import com.capstone.fitnessrx.Models.Workout;
+import com.capstone.fitnessrx.Models.*;
 import com.capstone.fitnessrx.Repositories.ExerciseDetailsRepository;
 import com.capstone.fitnessrx.Repositories.ExerciseRepository;
 import com.capstone.fitnessrx.Repositories.UserRepository;
@@ -322,7 +319,10 @@ model.addAttribute("workoutNum", workoutNum);
     @PostMapping("/workouts-wall/{workoutId}/edit")
     public String editWorkout(Model model) {
         return "redirect:/workouts-wall";
+
     }
+
+
 
 
 

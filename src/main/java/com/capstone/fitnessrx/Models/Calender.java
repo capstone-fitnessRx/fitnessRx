@@ -13,23 +13,49 @@ public class Calender {
     private User user;
 
     @Column(nullable = false)
-    private int day_id;
+    private int dayId;
     @Column()
     private String notes;
+
+    @OneToOne
+    private Workout workout;
+
+    public Calender(Long id, User user, int dayId, String notes, Workout workout) {
+        this.id = id;
+        this.user = user;
+        this.dayId = dayId;
+        this.notes = notes;
+        this.workout = workout;
+    }
+
+    public Calender(User user, int dayId, String notes, Workout workout) {
+        this.user = user;
+        this.dayId = dayId;
+        this.notes = notes;
+        this.workout = workout;
+    }
+
+    public Workout getWorkout() {
+        return workout;
+    }
+
+    public void setWorkout(Workout workout) {
+        this.workout = workout;
+    }
 
     public Calender() {
     }
 
-    public Calender(Long id, User user, int day_id, String notes) {
+    public Calender(Long id, User user, int dayId, String notes) {
         this.id = id;
         this.user = user;
-        this.day_id = day_id;
+        this.dayId = dayId;
         this.notes = notes;
     }
 
-    public Calender(User user, int day_id, String notes) {
+    public Calender(User user, int dayId, String notes) {
         this.user = user;
-        this.day_id = day_id;
+        this.dayId = dayId;
         this.notes = notes;
     }
 
@@ -49,12 +75,12 @@ public class Calender {
         this.user = user;
     }
 
-    public int getDay_id() {
-        return day_id;
+    public int getDayId() {
+        return dayId;
     }
 
-    public void setDay_id(int day_id) {
-        this.day_id = day_id;
+    public void setDayId(int dayId) {
+        this.dayId = dayId;
     }
 
     public String getNotes() {

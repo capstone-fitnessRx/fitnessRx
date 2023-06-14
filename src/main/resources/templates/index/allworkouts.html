@@ -35,8 +35,35 @@
                 <p class="card-text" th:text="*{allWorkouts.getAvgRating()}"></p>
 
 <!--                <p class="card-text" th:text="*{allWorkouts.getWorkoutImage()}"></p>-->
-                <a href="#" class="card-link">+ Calender</a>
-<!--                <a href="#" class="card-link">+ Favorites</a>-->
+
+<!--                    <a th:href="@{/workouts/{workoutId}/calender(workoutId=${allWorkouts.getId()})}" class="card-link">+ Calender</a>-->
+
+                <dialog class="data_modal" data-modal>
+                    <form th:action="/calender/{id}" th:method="post">
+                        <input class="" name="workout" th:value="*{allWorkouts.getId()}">
+                        <select class="form-select" aria-label="chooseday" name="weekday">
+                            <option selected>Choose day:</option>
+                            <option value="1">Sunday</option>
+                            <option value="2">Monday</option>
+                            <option value="3">Tuesday</option>
+                            <option value="4">Wednesday</option>
+                            <option value="5">Thursday</option>
+                            <option value="6">Friday</option>
+                            <option value="7">Saturday</option>
+                        </select>
+                    </form>
+                </dialog>
+
+
+<!--                <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">-->
+<!--                    <form th:action="@{/workout/favorites}" method="post">&ndash;&gt;-->
+                        <!--                    <div>-->
+                        <!--                        <input type="hidden" th:value="${allWorkouts.getId()}" name="addtofavorites">-->
+                        <!--                        <button type="submit">+ Add to Favorites</button>-->
+                        <!--                    </div>-->
+                        <!--                </form>-->
+
+<!--               <a href="#" class="card-link">+ Favorites</a>-->
 
 <!--                <form th:action="@{/workout/favorites}" method="post">-->
 <!--                    <div>-->
