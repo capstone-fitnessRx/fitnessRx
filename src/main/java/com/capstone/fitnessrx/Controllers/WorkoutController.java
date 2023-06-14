@@ -69,7 +69,7 @@ public class WorkoutController {
 
     public String getWorkoutWall(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        model.addAttribute("user", user);
         List<Workout> allWorkout = workoutDao.findAll();
         model.addAttribute("allWorkouts", allWorkout);
 
