@@ -16,7 +16,7 @@
 <main class="container d-flex justify-content-evenly flex-wrap">
     <section class="container">
         <form th:action="@{/workout-builder}" th:method="post">
-            <div class="container card text-center">
+            <div class="container card text-center mb-3">
                 <div class="card-header">
                     <h5 class="card-title">Your Workout</h5>
                 </div>
@@ -39,17 +39,17 @@
                         </tbody>
                     </table>
                 </div>
+            <button class="btn btn-primary w-25 mb-2 mx-auto" type="submit">Finalize Workout</button>
             </div>
-            <button type="submit">Finalize Workout</button>
         </form>
     </section>
-    <section id="cards" class="container d-flex justify-content-evenly flex-wrap">
+    <section id="cards" class="container text-center d-flex justify-content-evenly flex-wrap">
         <div th:each="exercise : ${allExercises}">
-            <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" class="card">
+            <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" class="card mb-1">
                 <div class="col-md-4 col-lg-3 col-xl-2">
-                    <div class="card text-center" style="width: 180px">
-                        <div class="card-header" style="height: 130px">
-                            <h5 class="card-title my-auto" th:text="*{exercise.getExerciseName()}"></h5>
+                    <div class="card " style="width: 180px">
+                        <div class="card-header d-flex justify-content-center" style="height: 130px">
+                            <h5 class="card-title" th:text="*{exercise.getExerciseName()}"></h5>
                         </div>
                         <div class="card-body" id=>
                             <h5 class="" th:text="*{exercise.getExerciseBodyPart()}"></h5>
@@ -63,7 +63,7 @@
 <!--                    <h3 th:text="*{exercise.getExerciseBodyPart()}"></h3>-->
 <!--                </div>-->
 <!--            </a>-->
-            <button class="text-center open_modal" data-open-modal>Add to Workout</button>
+            <button class="text-center open_modal btn btn-primary mb-2" data-open-modal>Add to Workout</button>
             <dialog class="data_modal" data-modal>
                 <form th:action="@{/workout-builder-inator}" th:method="post">
                     <input type="text" name="reps" placeholder="Input Reps" required> </input>
