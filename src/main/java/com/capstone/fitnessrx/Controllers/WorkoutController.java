@@ -242,7 +242,7 @@ model.addAttribute("workoutNum", workoutNum);
 
     @PostMapping("/workout-builder")
     public String finalizeWorkout(Model model) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        Workout workout = new Workout(title, description);
 //        workout.setUser(user);
 //        workoutDao.save(workout);
@@ -251,7 +251,7 @@ model.addAttribute("workoutNum", workoutNum);
             exerciseDetailsDao.save(exercise);
         }
         exerciseDetailsList.removeAll(exerciseDetailsList);
-        return "redirect:/workouts-wall";
+        return "redirect:/my-workouts/" + user.getId();
     }
 
 //     @PostMapping("/workout/favorite")
@@ -310,10 +310,10 @@ model.addAttribute("workoutNum", workoutNum);
 
 
 
-    @PostMapping("/workouts-wall/{workoutId}/delete")
-    public String deleteWorkout(Model model, @PathVariable long workoutId) {
-        workoutDao.deleteById(workoutId);
-        return "redirect:/workouts-wall";
+    @PostMapping("/my-workouts/{id}/delete")
+    public String deleteWorkout(Model model, @PathVariable long id) {
+        workoutDao.deleteById(id);
+        return "redirect:/my-workouts/{id}";
     }
 
     @PostMapping("/workouts-wall/{workoutId}/edit")
