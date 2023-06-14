@@ -36,7 +36,7 @@ public class UserController {
         user.setPassword(hash);
         userDao.save(user);
 
-        for (int i = 0; i<7 ; i++) {
+        for (int i = 1; i<=7 ; i++) {
             Calender calender = new Calender();
             calender.setUser(user);
             calender.setDayId(i);
