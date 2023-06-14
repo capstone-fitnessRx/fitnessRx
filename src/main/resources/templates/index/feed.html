@@ -25,18 +25,23 @@
 <div class="container-box row">
 
     <div class="card side-card col-md-3">
-        <img class="side-banner" th:src="${userProfile.bannerPic}">
-        <img class="side-pic" th:src="${userProfile.profilePic}">
+        <div class="userProfileBanner">
+            <img class="side-banner" th:src="${userProfile.bannerPic}">
+            <img class="side-pic" th:src="${userProfile.profilePic}">
 
-        <!--    <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
+            <!--    <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
 
-        <h3 class="side-name" th:text="${username}"></h3>
-        <a class="sided-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>
-        <a class="main-friend" id="modalFriends" href="#"
-           th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
-        <p class="side-workout" th:text="${workoutPreference}">Workout Preference</p>
-        <p class="side-goal" th:text="${goal}">Goals</p>
-        <a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a>
+            <h3 class="side-name" th:text="${username}"></h3>
+            <ul>
+                <li><label for="location">Location: </label>
+            <a class="sided-loc" id="location" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a></li>
+            <li><a class="main-friend" id="modalFriends" href="#"
+               th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a></li>
+            <li><p class="side-workout" th:text="${workoutPreference}">Workout Preference</p></li>
+            <li><p class="side-goal" th:text="${goal}">Goals</p></li>
+            <li><a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a></li>
+            </ul>
+        </div>
     </div>
 
 
@@ -49,9 +54,6 @@
                 <input class="post-input" type="text" id="post" th:field="*{content}"
                        placeholder="Post Something Here.">
 
-                <div class="image-import-div">
-                    <p class="img-link">images</p>
-                </div>
                 <div class="submit-div">
                     <button class="submit-post" id="post-submission">Post</button>
                 </div>
@@ -66,7 +68,21 @@
             <img class="feed-pic" th:src="${post.getUser().profilePic}">
             <a th:href="@{/profile/{id}(id=${post.getUser().getId()})}" th:text="${post.getUser().getUsername()}"></a>
             <div class="custom-dropdown">
-                <button th:if="${authenticatedUserId.getId() == post.getUser().getId()}" class="btn btn-secondary custom-dropdown-toggle" type="button">
+
+                <button class="btn btn-secondary custom-dropdown-toggle" id="reportBtn" type="button">
+                    <i class="fa-thin fa-heart-crack"></i>
+                </button>
+                <div class="custom-dropdown-content">
+                    <div th:if="${authenticatedUserId.getId() != post.getUser().getId()}">
+                        <form>
+
+                            <input type="hidden" name="postIdNumber" id="postIdNum" th:value="${post.getId()}">
+                            <button class="dropdown-item" type="submit"></button>
+                        </form>
+                    </div>
+                    <div th:if="${authenticatedUserId.getId() == post.getUser().getId()}">
+  
+            <button th:if="${authenticatedUserId.getId() == post.getUser().getId()}" class="btn btn-secondary custom-dropdown-toggle" type="button">
                     ...
                 </button>
                 <div class="custom-dropdown-content">
@@ -98,11 +114,11 @@
 
             <div class="card-body comment-body">
                 <img>
-                <p>Like</p>
+                <button type="button">Like</button>
                 <img>
-                <p>Comment</p>
+                <button type="button">Comment</button>
                 <img>
-                <p>Share</p>
+                <button type="button">Share</button>
             </div>
 
             <div class="input-div">
@@ -145,7 +161,8 @@
 
 </div>
 
-
+<!--font awesome-->
+<script src="https://kit.fontawesome.com/60b822ab43.js" crossorigin="anonymous"></script>
 <!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/feed.js"></script>
