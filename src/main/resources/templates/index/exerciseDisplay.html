@@ -18,7 +18,7 @@
 <nav th:replace="partials/navbar.html :: navbar"/>
 <div th:insert="partials/modals.html :: modals"></div>
 
-<h1>exercise Display</h1>
+<!--<h1>exercise Display</h1>-->
 <div class="card text-center" th:object="${displayExercise}">
     <h2 th:text="*{getExerciseName()}"></h2>
     <p th:text="'Bodypart worked: ' + *{getExerciseBodyPart()}"></p>
