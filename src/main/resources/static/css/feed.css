@@ -1,7 +1,6 @@
 body {
     background-color: #C9D6DF;
 }
-
 .container-box{
     margin-left: 7em;
     margin-right: 7em;
@@ -28,6 +27,11 @@ body {
     border-top-left-radius: 20px;
     width: 100%;
 }
+
+.side-name {
+    margin-left: 14px;
+}
+
 .side-pic{
     border-radius: 50%;
     height: 90px;
@@ -50,12 +54,16 @@ body {
     border-radius: 2em;
     display: inline-block;
     margin-top: 8px;
+    margin-bottom: 4px;
 }
 .submit-post {
     background-color: #F0F5F9;
+    color: black;
     width: 60px;
     border-radius: 40px;
     text-align: center;
+    margin-top: 8px;
+    margin-bottom: 4px;
 }
 .submit-div {
     display: flex;
@@ -72,6 +80,9 @@ body {
 }
 .bottom-card {
     margin-top: 5em;
+    background-color: #F0F5F9;
+    width: 50%;
+    margin-left: 25%;
 }
 
 .feed-pic{
@@ -106,6 +117,7 @@ body {
     border-radius: 50%;
     height: 30px;
     width: 30px;
+    margin-left: 6px;
 }
 .input-div {
     display: flex;
@@ -172,6 +184,7 @@ body {
     height: 4px;
     width: 32px;
     float: right;
+
 }
 
 .card-body {
@@ -184,8 +197,12 @@ div.input-div {
 
 p {
     margin: 0 8px;
-    background-color: whitesmoke;
+    background-color: white;
+    border: black;
+}
 
+.custom-dropdown-content p {
+    margin-left: 8px;
 }
 
 a {
@@ -199,6 +216,37 @@ a:hover {
 }
 
 button {
+    color: #ffffff;
+    background-color: #52616B;
+}
 
-    background-color: whitesmoke;
+#nameHeader {
+    margin-left: 8px;
+    margin-top: 2px;
+}
+
+#commentBtn {
+    background-color: #F0F5F9;
+}
+
+#optionsUnderPost {
+    padding-top: 8px;
+    padding-bottom: 4px;
+}
+
+#comment {
+    margin-left: 12px;
+    margin-bottom: 4px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-left: 2px;
+}
+
+#bottomAnchor {
+    text-align: center;
 }
