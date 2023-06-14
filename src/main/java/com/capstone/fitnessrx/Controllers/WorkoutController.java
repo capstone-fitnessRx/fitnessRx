@@ -1,9 +1,6 @@
 package com.capstone.fitnessrx.Controllers;
 
-import com.capstone.fitnessrx.Models.Exercise;
-import com.capstone.fitnessrx.Models.ExerciseDetails;
-import com.capstone.fitnessrx.Models.User;
-import com.capstone.fitnessrx.Models.Workout;
+import com.capstone.fitnessrx.Models.*;
 import com.capstone.fitnessrx.Repositories.ExerciseDetailsRepository;
 import com.capstone.fitnessrx.Repositories.ExerciseRepository;
 import com.capstone.fitnessrx.Repositories.UserRepository;
@@ -322,6 +319,37 @@ model.addAttribute("workoutNum", workoutNum);
     @PostMapping("/workouts-wall/{workoutId}/edit")
     public String editWorkout(Model model) {
         return "redirect:/workouts-wall";
+
+    }
+
+    @PostMapping("/workouts-wall/{workoutId}/calender")
+    public String addToCalender(@PathVariable("workoutId") Long workoutId) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Calender calender = new Calender();
+        int day_id = calender.getDay_id();
+        calender.setUser(user);
+        calender.setDay_id(day_id);
+        calender.setWorkout(workoutDao.getReferenceById(workoutId));
+
+        calenderDao.save(calender);
+
+        return "redirect:/calender";
+    }
+
+    @GetMapping("/workouts/{workoutId}/calender")
+    public String showCalenderForm(@PathVariable("workoutID") Long workoutId, Model model) {
+        Workout workout = workoutDao.findById(workoutId);
+        model.addAttribute("workoutId", workoutId);
+
+//                Workout workout = workoutDao.findById(workoutId).orElse(null);
+//                model.addAttribute("workout", workout);
+
+
+
+        return "/calender/";
+
     }
 
 

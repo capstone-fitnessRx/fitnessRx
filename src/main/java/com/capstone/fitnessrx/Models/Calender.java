@@ -17,6 +17,32 @@ public class Calender {
     @Column()
     private String notes;
 
+    @OneToOne
+    private Workout workout;
+
+    public Calender(Long id, User user, int day_id, String notes, Workout workout) {
+        this.id = id;
+        this.user = user;
+        this.day_id = day_id;
+        this.notes = notes;
+        this.workout = workout;
+    }
+
+    public Calender(User user, int day_id, String notes, Workout workout) {
+        this.user = user;
+        this.day_id = day_id;
+        this.notes = notes;
+        this.workout = workout;
+    }
+
+    public Workout getWorkout() {
+        return workout;
+    }
+
+    public void setWorkout(Workout workout) {
+        this.workout = workout;
+    }
+
     public Calender() {
     }
 

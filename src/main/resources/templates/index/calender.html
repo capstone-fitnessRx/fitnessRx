@@ -27,29 +27,28 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Sunday</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
+<!--                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>-->
                 <!--        <form id="notes-form-sunday">-->
                 <!--        <form action="/calender/{id}/save-notes" method="post">-->
-                <form th:action="@{/calender/note}" method="post" th:object="${calender}">
+<!--                <form th:action="@{/calender/note}" method="post" th:object="${calender}">-->
 
-<!--                    <input type="text" class="form-control" name="calender" id="calender" th:field="*{notes}">-->
-                    <!--            <button type="submit" class="btn btn-secondary save-button" id="save-button-sunday">Save</button>-->
-                    <button type="submit" class="btn btn-secondary save-button">Save</button>
-                    <!--            <script>-->
-                    <!--                const form = document.querySelector('form');-->
-                    <!--                const notesInput = document.getElementById('notes');-->
+<!--&lt;!&ndash;                    <input type="text" class="form-control" name="calender" id="calender" th:field="*{notes}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <button type="submit" class="btn btn-secondary save-button" id="save-button-sunday">Save</button>&ndash;&gt;-->
+<!--                    <button type="submit" class="btn btn-secondary save-button">Save</button>-->
+<!--                    &lt;!&ndash;            <script>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                const form = document.querySelector('form');&ndash;&gt;-->
+<!--                    &lt;!&ndash;                const notesInput = document.getElementById('notes');&ndash;&gt;-->
 
-                    <!--                form.addEventListener('submit', function (event) {-->
-                    <!--                    event.preventDefault();-->
-                    <!--                    notesInput.value = '';-->
+<!--                    &lt;!&ndash;                form.addEventListener('submit', function (event) {&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    event.preventDefault();&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    notesInput.value = '';&ndash;&gt;-->
 
-                    <!--                });-->
-                    <!--            </script>-->
-                </form>
+<!--                    &lt;!&ndash;                });&ndash;&gt;-->
+<!--                    &lt;!&ndash;            </script>&ndash;&gt;-->
+<!--                </form>-->
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="completion-checkbox-sunday">
                     <label class="form-check-label" for="completion-checkbox-sunday"> Completed Workout</label>
-                    <!--        <a href="#" class="card-link">+ Favorites</a>-->
                 </div>
                 <!--        <div id="notes-saved"></div>-->
 
@@ -59,9 +58,9 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Monday</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
-                <input type="text" class="form-control" id="notes-input-monday">
-                <button type="button" class="btn btn-secondary save-button" id="save-button-monday">Save</button>
+<!--                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>-->
+<!--                <input type="text" class="form-control" id="notes-input-monday">-->
+<!--                <button type="button" class="btn btn-secondary save-button" id="save-button-monday">Save</button>-->
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="completion-checkbox-monday">
                     <label class="form-check-label" for="completion-checkbox-sunday"> Completed Workout</label>
@@ -72,85 +71,65 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Tuesday</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
-                <input type="text" class="form-control" id="notes-input-tuesday">
-                <button type="button" class="btn btn-secondary save-button" id="save-button-tuesday">Save</button>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="completion-checkbox-tuesday">
                     <label class="form-check-label" for="completion-checkbox-sunday"> Completed Workout</label>
                 </div>
-                <!--        <a href="#" class="card-link">+ Favorites</a>-->
+
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Wednesday</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
-                <input type="text" class="form-control" id="notes-input-wednesday">
-                <button type="button" class="btn btn-secondary save-button" id="save-button-wednesday">Save</button>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="completion-checkbox-wednesday">
                     <label class="form-check-label" for="completion-checkbox-sunday"> Completed Workout</label>
                 </div>
-                <!--        <a href="#" class="card-link">+ Favorites</a>-->
+
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Thursday</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
-                <input type="text" class="form-control" id="notes-input-thursday">
-                <button type="button" class="btn btn-secondary save-button" id="save-button-thursday">Save</button>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="completion-checkbox-thursday">
                     <label class="form-check-label" for="completion-checkbox-sunday"> Completed Workout</label>
                 </div>
-                <!--        <a href="#" class="card-link">+ Favorites</a>-->
+
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Friday</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
-                <input type="text" class="form-control" id="notes-input-friday">
-                <button type="button" class="btn btn-secondary save-button" id="save-button-friday">Save</button>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="completion-checkbox-friday">
                     <label class="form-check-label" for="completion-checkbox-sunday"> Completed Workout</label>
                 </div>
-                <!--        <a href="#" class="card-link">+ Favorites</a>-->
+
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Saturday</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
-                <input type="text" class="form-control" id="notes-input-saturday">
-                <button type="button" class="btn btn-secondary save-button" id="save-button-saturday">Save</button>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="completion-checkbox-saturday">
                     <label class="form-check-label" for="completion-checkbox-sunday"> Completed Workout</label>
                 </div>
-                <!--        <a href="#" class="card-link">+ Favorites</a>-->
             </div>
         </div>
     </div>
 
-<!--    Notes Cards-->
-    <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">User Input</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Notes</h6>
-                <p th:text="${notes}"></p>
-        </div>
-    </div>
 <!--    workout cards-->
 
     <div class="col-md-8">
         <div class="card" style="width: 36rem;">
             <div class="card-body">
+
                 <h5 class="card-title">Workout:</h5>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${workout.title}"></h6>
+                <p class="card-text" th:text="${workout.categories}"></p>
+<!--                <p class="card-text" th:text="${workout.}"></p>-->
+
             </div>
         </div>
         <!--</div>-->
