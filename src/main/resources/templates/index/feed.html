@@ -68,6 +68,7 @@
             <img class="feed-pic" th:src="${post.getUser().profilePic}">
             <a th:href="@{/profile/{id}(id=${post.getUser().getId()})}" th:text="${post.getUser().getUsername()}"></a>
             <div class="custom-dropdown">
+
                 <button class="btn btn-secondary custom-dropdown-toggle" id="reportBtn" type="button">
                     <i class="fa-thin fa-heart-crack"></i>
                 </button>
@@ -80,6 +81,13 @@
                         </form>
                     </div>
                     <div th:if="${authenticatedUserId.getId() == post.getUser().getId()}">
+  
+            <button th:if="${authenticatedUserId.getId() == post.getUser().getId()}" class="btn btn-secondary custom-dropdown-toggle" type="button">
+                    ...
+                </button>
+                <div class="custom-dropdown-content">
+
+                    <div>
 
 
                             <a class="dropdown-item" th:href="@{/feed/post/edit/{id}(id=${post.getId()})}">Edit</a>

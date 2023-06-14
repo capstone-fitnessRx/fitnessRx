@@ -19,10 +19,11 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"/>
   <h1>Gym locations near you!</h1>
-  <div id='map' data-location="${location}." style='width: 700px; height: 400px;z-index:5;display:block'></div>
+  <div id='map' data-location="${location}." style='width: 600px; height: 400px;z-index:5;display:block'></div>
 <div th:insert="partials/modals.html :: modals"></div>
 
 <div class="cards" id="card1"style="width: 18rem;">
+    <img class="card-img-top" src="/img/fitnesspic.png" alt="Card image cap">
     <div class="card-body">
         <p class="card-text" id="gymName">This will display the name of the gym.</p>
         <p id="gymAddress">This will display the address of the gym.</p>
@@ -30,12 +31,12 @@
 </div>
 
   <div class="cards" id="card2"style="width: 18rem;">
+      <img class="card-img-top" src="/img/fitnesspic.png" alt="Card image cap">
       <div class="card-body">
           <p class="card-text" id="gymName2">This will display the name of the gym.</p>
           <p id="gymAddress2">This will display the address of the gym.</p>
       </div>
   </div>
-
 
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
   <!--    jquery cdn-->

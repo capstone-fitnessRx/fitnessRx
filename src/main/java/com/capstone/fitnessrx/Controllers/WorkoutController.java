@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,6 @@ public class WorkoutController {
 
 
     @GetMapping("/my-workouts/{id}")
-
     public String getMyWorkouts(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -278,21 +278,26 @@ model.addAttribute("workoutNum", workoutNum);
         workout.setUser(user);
         workoutDao.save(workout);
 
+        System.out.println("workout.getId() = " + workout.getId());
+        model.addAttribute("workoutNum", workout.getId());
+
+        return "redirect:/workout-builder?workoutNum=" + workout.getId();
+    }
 
 //         return "redirect:/favorite/{id}"  + user.getId();
 
-//    working on Mon AM
-//    @PostMapping("/workout/favorite")
-//    public String setFavoriteWorkout(@RequestParam(name = "addtofavorites")
-////                                                    ^^ need to put: hidden input that has the th:value = workout id
+//    @PostMapping("/workout/favorites")
+//    public String setFavoriteWorkout(@RequestParam Long addtofavorites) {
 //
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user1 = new User(user);
+//        List<Workout> newFavoriteWorkouts = user.getFavoriteWorkouts();
+//        newFavoriteWorkouts.add(workoutDao.getReferenceById(addtofavorites));
+//        user1.setFavoriteWorkouts(newFavoriteWorkouts);
 //
+//        userDao.save(user1);
 //
-//
-//
-//
-//        return "redirect:/favorite/{id}" + user.getId();
+//        return "redirect:/favorites/" + user.getId();
 //    }
 
 
@@ -306,10 +311,19 @@ model.addAttribute("workoutNum", workoutNum);
 //    </form
 
 
-        System.out.println("workout.getId() = " + workout.getId());
-        model.addAttribute("workoutNum", workout.getId());
 
-        return "redirect:/workout-builder?workoutNum=" + workout.getId();
+
+    @PostMapping("/workouts-wall/{workoutId}/delete")
+    public String deleteWorkout(Model model, @PathVariable long workoutId) {
+        workoutDao.deleteById(workoutId);
+        return "redirect:/workouts-wall";
     }
+
+    @PostMapping("/workouts-wall/{workoutId}/edit")
+    public String editWorkout(Model model) {
+        return "redirect:/workouts-wall";
+    }
+
+
 
 }

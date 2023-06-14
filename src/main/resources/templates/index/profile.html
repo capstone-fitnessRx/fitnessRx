@@ -22,101 +22,40 @@
 <nav th:replace="partials/navbar.html :: navbar"/>
 
 
-<div sec:authorize="isAuthenticated()">
-    This content is only shown to authenticated users.
-    User ID: <span th:text="${#authentication.principal.id}"/>
-    Username: <span th:text="${#authentication.principal.username}"/>
-    Email: <span th:text="${#authentication.principal.email}"/>
-    Color: <span th:text="${#authentication.principal.cardColor}"/>
-    Profile User ID: <span th:text="${urlUserId}"/>
-</div>
-
-
 <div class="container">
-
     <div th:insert="partials/modals.html :: modals"></div>
-<!---->
-<!---->
-<!---->
-<!--HELP-->
-<!---->
-<!---->
-    <form th:if="${authenticatedUserId.getId() != urlUserId} and ${authenticatedUserId.friendsAsFriendUser}" th:method="post"
-          th:action="@{/profile/{id}(id=${urlUserId})}">
-        <input id="contactHidden" name="contactHidden" th:value="${urlUserId}" type="hidden">
-        <button type="submit">Add Friend</button>
-    </form>
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
+
     <!--    banner card-->
     <div class="card banner-card" th:object="${userProfile}">
-        <!--        <img class="main-banner" src="../../static/img/bannerMain.jpeg">-->
         <img class="main-banner" th:src="*{bannerPic}">
     </div>
-    <label for="uploadBanner"></label>
-    <button type="button" id="uploadBanner" name="uploadBanner">Edit Banner</button>
     <form th:action="@{/profile/uploadBanner}" th:method="POST" id="submitBanner">
         <input id="stashFilestackURLBanner" name="stashFilestackURLBanner" type="hidden" value="">
     </form>
-
     <div class="card main-card" th:style="'background-color:' + ${cardColor}">
         <img th:if="${authenticatedUserId.getId() == urlUserId}" class="profile-edit" id="modalEdit"
              src="/img/edit.png">
-<!--        <img th:if="${authenticatedUserId.getId() != urlUserId}" class="profile-menu" id="modalOption"-->
-<!--             src="/img/dropDown.png">-->
-        <!--        <div th:if="${authenticatedUserId.getId() == urlUserId}">-->
-        <!--            this is your profile.-->
-        <!--        </div>-->
-        <!--        <div th:if="${authenticatedUserId.getId() != urlUserId}">-->
-        <!--            this is NOT your profile.-->
-        <!--        </div>-->
-<!--        <div th:each="messages : ${message}">-->
-<!--            &lt;!&ndash;This is the non-signed in user&ndash;&gt;-->
-<!--            <p th:text="*{messages.getRecipient()}"></p>-->
-<!--            <p th:text="*{messages.getContent()}"></p>-->
-<!--            &lt;!&ndash;This is the signed-in user&ndash;&gt;-->
-<!--            <p th:text="*{messages.getSender()}"></p>-->
-<!--            <p th:text="*{messages.getContent()}"></p>-->
-<!--        </div>-->
-        <!--  <h3 th:text="*{username}"></h3>-->
-        <!--        <img class="main-profile-pic" src="../../static/img/fitnessMyIMG.jpeg">-->
+        <label for="uploadBanner"></label>
+        <button th:if="${authenticatedUserId.getId() == urlUserId}" type="button" id="uploadBanner" class="picture-btn" name="uploadBanner">Edit Banner</button>
+        <label for="upload"></label>
+        <button th:if="${authenticatedUserId.getId() == urlUserId}" type="button" id="upload" class="picture-btn" name="upload">Profile Picture</button>
 
-
-
-<!--        -->
-<!--        -->
-<!--        -->
-<!--        -->
-<!--        -->
         <div th:object="${userProfile}">
         <img class="main-profile-pic" th:src="*{profilePic}">
         </div>
-        <label for="upload"></label>
-        <button type="button" id="upload" name="upload">Upload an image</button>
+
         <form th:action="@{/profile/upload}" th:method="POST" id="submitMePls">
             <input id="stashFilestackURL" name="stashFilestackURL" type="hidden" value="">
         </form>
 <!--        -->
-<!--        -->
-<!--        -->
-
-<!--        -->
-<!--        -->
         <div class="addFriend-div">
             <h1 class="main-name" th:text="${username}"></h1>
-            <a>
-                <img th:if="${authenticatedUserId.getId() != urlUserId}" class="addFriend" id="addFriend"
-                     src="/img/addFriend.png">
-            </a>
-            <a th:href="@{/messages/{recipientId}(recipientId=${urlUserId})}">
-                <img th:if="${authenticatedUserId.getId() != urlUserId}" id="message-others" class="message-other"
-                     src="/img/comment.png">
+            <a><form th:if="${authenticatedUserId.getId() != urlUserId} and ${authenticatedUserId.friendsAsFriendUser}" th:method="post"
+                     th:action="@{/profile/{id}(id=${urlUserId})}">
+                <input id="contactHidden" name="contactHidden" th:value="${urlUserId}" type="hidden">
+                <button type="submit"><img id="message-others" class="message-other"
+                                           src="/img/comment.png"></button>
+            </form>
             </a>
         </div>
 
@@ -150,31 +89,31 @@
         <a class="view-all" th:href="@{/my-workouts/{id}(id=${urlUserId})}"><u>View All</u></a>
     </div>
     <!--Favorites card-->
-    <div class="card favorite-card">
-        <!--        Conditional below-->
-        <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="favorite-header">My Favorites</h4>
-        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="favorite-header"
-            th:text="${username} + 's Favorites'"></h4>
+<!--    <div class="card favorite-card">-->
+<!--        &lt;!&ndash;        Conditional below&ndash;&gt;-->
+<!--        <h4 th:if="${authenticatedUserId.getId() == urlUserId}" class="favorite-header">My Favorites</h4>-->
+<!--        <h4 th:if="${authenticatedUserId.getId() != urlUserId}" class="favorite-header"-->
+<!--            th:text="${username} + 's Favorites'"></h4>-->
 
-        <h4>Workouts</h4>
-        <a th:href="@{/workout-plan/{id}(id=*{favoriteWorkout.getId()})}"
-           th:each="favoriteWorkout : ${favoriteWorkouts}">
-            <div>
-                <h4 th:text="${favoriteWorkout.getTitle()}"></h4>
-            </div>
-        </a>
-        <hr>
-        <h4>Exercise</h4>
-        <!--        <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${favoriteExercise}">-->
-        <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${favoriteExercise}">
-            <div>
-                <h3 th:text="${exercise.getExerciseName()}"></h3>
-            </div>
-        </a>
+<!--        <h4>Workouts</h4>-->
+<!--        <a th:href="@{/workout-plan/{id}(id=*{favoriteWorkout.getId()})}"-->
+<!--           th:each="favoriteWorkout : ${favoriteWorkouts}">-->
+<!--            <div>-->
+<!--                <h4 th:text="${favoriteWorkout.getTitle()}"></h4>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--        <hr>-->
+<!--        <h4>Exercise</h4>-->
+<!--        &lt;!&ndash;        <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${favoriteExercise}">&ndash;&gt;-->
+<!--        <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" th:each="exercise : ${favoriteExercise}">-->
+<!--            <div>-->
+<!--                <h3 th:text="${exercise.getExerciseName()}"></h3>-->
+<!--            </div>-->
+<!--        </a>-->
 
-        <!--        for each here to list user favorite workouts-->
-        <a class="view-all" th:href="@{/favorites/{id}(id=${urlUserId})}"><u>View All</u></a>
-    </div>
+<!--        &lt;!&ndash;        for each here to list user favorite workouts&ndash;&gt;-->
+<!--        <a class="view-all" th:href="@{/favorites/{id}(id=${urlUserId})}"><u>View All</u></a>-->
+<!--    </div>-->
 
     <!--    -->
     <!--    -->

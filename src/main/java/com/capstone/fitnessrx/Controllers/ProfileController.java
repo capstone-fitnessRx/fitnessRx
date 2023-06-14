@@ -26,8 +26,8 @@ public class ProfileController {
 
 
 
-    @Value("${filestack.api.key}")
-    private String filestackapi;
+//    @Value("${filestack.api.key}")
+//    private String filestackapi;
 
     public ProfileController(UserRepository userDao, FriendsRepository friendsDao, WorkoutRepository workoutDao) {
         this.userDao = userDao;
@@ -68,7 +68,7 @@ public class ProfileController {
         if (userProfile != null) {
 
 
-            model.addAttribute("filestackapi", filestackapi);
+//            model.addAttribute("filestackapi", filestackapi);
 
             //get exercise favorites
 
