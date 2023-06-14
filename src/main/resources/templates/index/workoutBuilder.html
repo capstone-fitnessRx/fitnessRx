@@ -70,9 +70,9 @@
                     <input type="text" name="sets" placeholder="Input Sets" required> </input>
                     <!--                    make hidden later-->
                     <!--                    <input class=""  name="exercise_Api_Id" th:value="*{exercise.getExerciseId()}">-->
-                    <input class="" name="exerciseId" th:value="*{exercise.getId()}">
-                    <input class="" name="exerciseName" th:value="*{exercise.getExerciseName()}">
-                    <input class="" name="workoutNum" th:value="*{workoutNum}">
+                    <input class="" type="hidden" name="exerciseId" th:value="*{exercise.getId()}">
+                    <input class="" type="hidden" name="exerciseName" th:value="*{exercise.getExerciseName()}">
+                    <input class="" type="hidden" name="workoutNum" th:value="*{workoutNum}">
                     <!--                   <input class="d-none" th:field="*{target_muscle}" value="'+name+'">-->
                     <button type="submit">Save</button>
                 </form>
