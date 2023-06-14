@@ -72,6 +72,11 @@ public class ExerciseController {
         Exercise ExerciseId = exerciseDao.getReferenceById(id);
         model.addAttribute("displayExercise", ExerciseId);
 
+        String exerciseName = ExerciseId.getExerciseName();
+        model.addAttribute("exerciseName", exerciseName);
+        String exerciseGif = ExerciseId.getExerciseGif();
+        model.addAttribute("exerciseGif", exerciseGif);
+
 //        Exercise exercise = exerciseDao.findById(id).orElse(null);
 //        model.addAttribute("favoritesUrl", favoritesUrl);
 

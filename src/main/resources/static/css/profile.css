@@ -39,7 +39,10 @@ body {
     padding-left: 20px;
     padding-right: 20px;
 }
-
+.picture-btn{
+    margin-left: auto;
+    width: 8em;
+}
 .profile-edit {
     cursor: pointer;
     height: 40px;

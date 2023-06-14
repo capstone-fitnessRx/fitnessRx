@@ -1,4 +1,4 @@
-<nav th:fragment="navbar" class="navbar navbar-default" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<nav th:fragment="navbar" class="navbar navbar-default" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="container-fluid backdrop">
         <div class="navbar-header">
             <img src="" alt="Logo">
@@ -23,7 +23,7 @@
                     <!--            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
                     <img type="button" class="profile-nav-pic btn dropdown-toggle"
                          data-bs-toggle="dropdown"
-                         aria-expanded="false" src="/img/fitnessMyIMG.jpeg">
+                         aria-expanded="false" src="">
                 </div>
 
                 <div sec:authorize="isAnonymous()">

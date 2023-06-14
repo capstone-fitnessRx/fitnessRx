@@ -68,7 +68,7 @@ public class ProfileController {
         if (userProfile != null) {
 
 
-
+//            model.addAttribute("filestackapi", filestackapi);
 
             //get exercise favorites
 
@@ -190,16 +190,34 @@ public class ProfileController {
     //
     //POST Update Profile FOR PROFILE
     //
-//    @PostMapping("profile/upload")
-//    public String uploadProfile(Model model) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    @PostMapping("profile/upload")
+    public String uploadProfile(@RequestParam(name = "stashFilestackURL") String uploadedProfilePic, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        user = userDao.getReferenceById((long) user.getId());
-//
-//        model.addAttribute("filestackapi", filestackapi);
-//
-//
-//        return "redirect:/profile/" + user.getId();
-//    }
+
+
+        user = userDao.getReferenceById((long) user.getId());
+        user.setProfilePic(uploadedProfilePic);
+        userDao.save(user);
+
+
+        return "redirect:/profile/" + user.getId();
+    }
+
+
+    @PostMapping("profile/uploadBanner")
+    public String uploadProfileBanner(@RequestParam(name = "stashFilestackURLBanner") String uploadedBannerPic) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user = userDao.getReferenceById((long) user.getId());
+
+
+        user = userDao.getReferenceById((long) user.getId());
+        user.setBannerPic(uploadedBannerPic);
+        userDao.save(user);
+
+
+        return "redirect:/profile/" + user.getId();
+    }
     @PostMapping("/profile/update")
     public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal,Model model) {
 
