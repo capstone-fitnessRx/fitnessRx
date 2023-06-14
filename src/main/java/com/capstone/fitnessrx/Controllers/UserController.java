@@ -35,10 +35,10 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
-        Calender calender = new Calender();
-        calender.setUser(user);
 
         for (int i = 0; i<7 ; i++) {
+            Calender calender = new Calender();
+            calender.setUser(user);
             calender.setDayId(i);
             calenderDao.save(calender);
         }
