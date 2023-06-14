@@ -26,16 +26,19 @@ public class MainController {
 
     private final ExerciseRepository exerciseDao;
 
+    private final WorkoutRepository workoutDao;
+
 //    added Sunday night
 //    private Calender existingCalender;
 
 //     public MainController(UserRepository userDao, PostRepository postDao, CommentsRepository commentsDao, FriendsRepository friendsDao, MessagesRepository messagesDao, RatingsRepository ratingsDao, CalenderRepository calenderDao, WorkoutRepository workoutDao, ExerciseRepository exerciseDao, ExerciseDetailsRepository exerciseDetailsDao) {
 
 
-    public MainController(UserRepository userDao, CalenderRepository calenderDao, ExerciseRepository exerciseDao) {
+    public MainController(UserRepository userDao, CalenderRepository calenderDao, ExerciseRepository exerciseDao, WorkoutRepository workoutDao) {
         this.userDao = userDao;
         this.calenderDao = calenderDao;
         this.exerciseDao = exerciseDao;
+        this.workoutDao = workoutDao;
 
 
     }
@@ -536,6 +539,34 @@ public class MainController {
         exerciseDao.save(exercise);
         return "redirect:/test";
     }
+
+    @PostMapping("/calender/{id}")
+    public String addToCalender(@PathVariable("id") Long id, @RequestParam Long workoutId, @RequestParam int weekday) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.getReferenceById((long) user.getId());
+
+        Calender day = calenderDao.findByUserAndDayId(user, weekday);
+        day.setWorkout(workoutDao.getReferenceById(workoutId));
+
+        calenderDao.save(day);
+
+        return "redirect:/calender/" + id;
+    }
+
+//    @GetMapping("/workouts/{workoutId}/calender")
+//    public String showCalenderForm(@PathVariable("workoutID") Long workoutId, Model model) {
+//        Workout workout = workoutDao.findById(workoutId);
+//        model.addAttribute("workoutId", workoutId);
+
+//                Workout workout = workoutDao.findById(workoutId).orElse(null);
+//                model.addAttribute("workout", workout);
+
+
+
+//        return "/calender/";
+//
+//    }
 }
 
 

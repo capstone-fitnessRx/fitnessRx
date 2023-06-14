@@ -322,35 +322,7 @@ model.addAttribute("workoutNum", workoutNum);
 
     }
 
-    @PostMapping("/workouts-wall/{workoutId}/calender")
-    public String addToCalender(@PathVariable("workoutId") Long workoutId) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        Calender calender = new Calender();
-        int day_id = calender.getDay_id();
-        calender.setUser(user);
-        calender.setDay_id(day_id);
-        calender.setWorkout(workoutDao.getReferenceById(workoutId));
-
-        calenderDao.save(calender);
-
-        return "redirect:/calender";
-    }
-
-    @GetMapping("/workouts/{workoutId}/calender")
-    public String showCalenderForm(@PathVariable("workoutID") Long workoutId, Model model) {
-        Workout workout = workoutDao.findById(workoutId);
-        model.addAttribute("workoutId", workoutId);
-
-//                Workout workout = workoutDao.findById(workoutId).orElse(null);
-//                model.addAttribute("workout", workout);
-
-
-
-        return "/calender/";
-
-    }
 
 
 

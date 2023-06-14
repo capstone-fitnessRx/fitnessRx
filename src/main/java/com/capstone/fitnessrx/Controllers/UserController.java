@@ -1,6 +1,8 @@
 package com.capstone.fitnessrx.Controllers;
 
+import com.capstone.fitnessrx.Models.Calender;
 import com.capstone.fitnessrx.Models.User;
+import com.capstone.fitnessrx.Repositories.CalenderRepository;
 import com.capstone.fitnessrx.Repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,9 +16,12 @@ public class UserController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    private final CalenderRepository calenderDao;
+
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, CalenderRepository calenderDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.calenderDao = calenderDao;
     }
 
     @GetMapping("/register")
@@ -30,6 +35,13 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
+        Calender calender = new Calender();
+        calender.setUser(user);
+
+        for (int i = 0; i<7 ; i++) {
+            calender.setDayId(i);
+            calenderDao.save(calender);
+        }
         return "redirect:/login";
     }
 }
