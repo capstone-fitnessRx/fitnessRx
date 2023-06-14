@@ -313,10 +313,10 @@ model.addAttribute("workoutNum", workoutNum);
 
 
 
-    @PostMapping("/workouts-wall/{workoutId}/delete")
-    public String deleteWorkout(Model model, @PathVariable long workoutId) {
-        workoutDao.deleteById(workoutId);
-        return "redirect:/workouts-wall";
+    @PostMapping("/my-workouts/{id}/delete")
+    public String deleteWorkout(Model model, @PathVariable long id) {
+        workoutDao.deleteById(id);
+        return "redirect:/my-workouts/{id}";
     }
 
     @PostMapping("/workouts-wall/{workoutId}/edit")
