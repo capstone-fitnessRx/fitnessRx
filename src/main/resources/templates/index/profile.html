@@ -53,9 +53,10 @@
             <a><form th:if="${authenticatedUserId.getId() != urlUserId} and ${authenticatedUserId.friendsAsFriendUser}" th:method="post"
                      th:action="@{/profile/{id}(id=${urlUserId})}">
                 <input id="contactHidden" name="contactHidden" th:value="${urlUserId}" type="hidden">
-                <button type="submit"><img id="message-others" class="message-other"
-                                           src="/img/comment.png"></button>
             </form>
+            </a>
+            <a th:if="${authenticatedUserId.getId() != urlUserId}" th:href="@{/messages/{recipientId}(recipientId=${urlUserId})}">
+                <img class="message-other" src="/img/comment.png">
             </a>
         </div>
 
@@ -171,7 +172,7 @@
 </div>
 
 
-<div th:insert="partials/messenger-partial.html :: messenger"></div>
+<!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:inline="javascript">
