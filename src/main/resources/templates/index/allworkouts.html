@@ -35,8 +35,19 @@
                 <p class="card-text" th:text="*{allWorkouts.getAvgRating()}"></p>
 
 <!--                <p class="card-text" th:text="*{allWorkouts.getWorkoutImage()}"></p>-->
-                <a href="#" class="card-link">+ Calender</a>
-<!--                <a href="#" class="card-link">+ Favorites</a>-->
+
+                    <a th:href="@{/workouts/{workoutId}/calender(workoutId=${allWorkouts.getId()})}" class="card-link">+ Calender</a>
+
+
+<!--                <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">-->
+<!--                    <form th:action="@{/workout/favorites}" method="post">&ndash;&gt;-->
+                        <!--                    <div>-->
+                        <!--                        <input type="hidden" th:value="${allWorkouts.getId()}" name="addtofavorites">-->
+                        <!--                        <button type="submit">+ Add to Favorites</button>-->
+                        <!--                    </div>-->
+                        <!--                </form>-->
+
+<!--               <a href="#" class="card-link">+ Favorites</a>-->
 
 <!--                <form th:action="@{/workout/favorites}" method="post">-->
 <!--                    <div>-->
