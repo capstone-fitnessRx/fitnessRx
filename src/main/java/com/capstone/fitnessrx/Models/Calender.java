@@ -46,11 +46,10 @@ public class Calender {
     public Calender() {
     }
 
-    public Calender(Long id, User user, int dayId, String notes) {
-        this.id = id;
+    public Calender( User user, int dayId, Workout workout) {
         this.user = user;
         this.dayId = dayId;
-        this.notes = notes;
+        this.workout = workout;
     }
 
     public Calender(User user, int dayId, String notes) {
