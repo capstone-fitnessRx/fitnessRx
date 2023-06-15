@@ -119,7 +119,7 @@ public class MainController {
                 newDay.add(day);
             }
         }
-        model.addAttribute("day", newDay);
+        model.addAttribute("newDay", newDay);
 
         model.addAttribute("calender", calender);
 
