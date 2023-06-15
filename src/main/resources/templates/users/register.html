@@ -3,33 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <title>Register</title>
+  <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
+<div class="accountCreation">
+  <h1>Create an account</h1>
+  <form th:action="@{/register}" method="POST" th:object="${user}">
 
-<h1>Create an account</h1>
-<form th:action="@{/register}" method="POST" th:object="${user}">
+    <label for="username">Username: </label>
+    <input id="username" th:field="*{username}" required pattern=".{5,}"
+           title="Username must have at least 5 characters" /><br><br>
 
-  <label for="username">Username: </label>
-  <input id="username" th:field="*{username}" required pattern=".{5,}"
-         title="Username must have at least 5 characters" />
+    <label for="email">Email:</label>
+    <input id="email" th:field="*{email}" type="email"
+           title="Please enter a valid email address" required /><br><br>
 
-  <label for="email">Email:</label>
-  <input id="email" th:field="*{email}" type="email"
-         title="Please enter a valid email address" required />
+    <label for="password">Password:</label>
+    <input id="password" type="password" th:field="*{password}"
+           pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$"
+           title="Password must contain at least 8 characters, including a capital letter, a number, and a special symbol" required /><br><br>
 
-  <label for="password">Password:</label>
-  <input id="password" type="password" th:field="*{password}"
-         pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$"
-         title="Password must contain at least 8 characters, including a capital letter, a number, and a special symbol" required />
-
-  <label for="location">Location: </label>
-  <input id="location" th:field="*{location}" />
+    <label for="location">Location: </label>
+    <input id="location" th:field="*{location}" /><br><br>
 
 
-  <input value="Sign me up!" type="submit" />
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <input value="Sign me up!" type="submit" /><br><br>
+
+  </form>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <!--  js file-->
-  <script src="/js/register.js"></script>
-</form>
+<script src="/js/register.js"></script>
 </body>
 </html>
