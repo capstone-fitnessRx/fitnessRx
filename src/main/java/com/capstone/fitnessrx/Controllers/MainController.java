@@ -87,12 +87,6 @@ public class MainController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-//        added Sunday night
-//        Calender existingCalender = calenderDao.findByUserID(user.getId());
-//        model.addAttribute("calender", existingCalender !=null ? existingCalender : new Calender());
-
-//        model.addAttribute("calender", new Calender());
-
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
 
@@ -107,6 +101,12 @@ public class MainController {
 
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
+
+        List <Calender> calender = calenderDao.findAllByUser(user);
+
+        model.addAttribute("calender", calender);
+
+        System.out.println(calender);
 
         return "index/calender";
     }
@@ -563,16 +563,12 @@ public class MainController {
 //    @GetMapping("/workouts/{workoutId}/calender")
 //    public String showCalenderForm(@PathVariable("workoutID") Long workoutId, Model model) {
 //
-//        Workout workout = workoutDao.findById(workoutId);
-//        model.addAttribute("workoutId", workoutId);
-
-//                Workout workout = workoutDao.findById(workoutId).orElse(null);
-//                model.addAttribute("workout", workout);
-
+//
+//
 //
 //
 //        return "/calender/";
-//
+
 //    }
 }
 
