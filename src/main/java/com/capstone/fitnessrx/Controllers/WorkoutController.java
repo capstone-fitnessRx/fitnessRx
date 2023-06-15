@@ -339,11 +339,11 @@ model.addAttribute("workoutNum", workoutNum);
         return "redirect:/my-workouts/" + id;
     }
 
-    @PostMapping("/workouts-wall/{workoutId}/edit")
-    public String editWorkout(Model model) {
 
-
-        return "redirect:/workouts-wall";
+//    @PostMapping("/workouts-wall/{workoutId}/edit")
+//    public String editWorkout(Model model) {
+//        return "redirect:/workouts-wall";
+//
 
     }
 

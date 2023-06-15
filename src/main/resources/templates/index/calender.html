@@ -104,50 +104,47 @@
         <div class="card" style="width: 36rem;">
             <div class="card-body-workout">
 
+                <div th:each="calender : ${calender}">
+                    <div class="card" style="width: 36rem;">
+                        <div class="card-body-workout">
+                            <h2 class="card-title">Workout:</h2>
+                            <p class="card-text" th:text="*{calender.getWorkout().getTitle()}"></p>
+                            <p class="card-text" th:text="*{calender.getWorkout().getDescription()}"></p>
+                        </div>
+                    </div>
+<!--                <h6 class="card-subtitle mb-2 text-muted" ></h6>-->
 
-                <h5 class="card-title">Workout:</h5>
-
-
-<!--                <h5 class="card-title">Workout:</h5>-->
-
-
-<!--                <h6 class="card-subtitle mb-2 text-muted" th:text="${workout.title}"></h6>-->
-<!--                <p class="card-text" th:text="${workout.categories}"></p>-->
 <!--                <p class="card-text" th:text="${workout.}"></p>-->
-
+                </div>
             </div>
         </div>
         <!--</div>-->
-        <div class="card" style="width: 36rem;">
-            <div class="card-body-workout">
-                <h5 class="card-title">Workout:</h5>
-            </div>
-        </div>
-        <div class="card" style="width: 36rem;">
-            <div class="card-body-workout">
-                <h5 class="card-title">Workout:</h5>
-            </div>
-        </div>
-        <div class="card" style="width: 36rem;">
-            <div class="card-body-workout">
-                <h5 class="card-title">Workout:</h5>
-            </div>
-        </div>
-        <div class="card" style="width: 36rem;">
-            <div class="card-body-workout">
-                <h5 class="card-title">Workout:</h5>
-            </div>
-        </div>
-        <div class="card" style="width: 36rem;">
-            <div class="card-body-workout">
-                <h5 class="card-title">Workout:</h5>
-            </div>
-        </div>
-        <div class="card" style="width: 36rem;">
-            <div class="card-body-workout">
-                <h5 class="card-title">Workout:</h5>
-            </div>
-        </div>
+
+<!--        <div class="card" style="width: 36rem;">-->
+<!--            <div class="card-body-workout">-->
+<!--                <h5 class="card-title">Workout:</h5>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card" style="width: 36rem;">-->
+<!--            <div class="card-body-workout">-->
+<!--                <h5 class="card-title">Workout:</h5>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card" style="width: 36rem;">-->
+<!--            <div class="card-body-workout">-->
+<!--                <h5 class="card-title">Workout:</h5>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card" style="width: 36rem;">-->
+<!--            <div class="card-body-workout">-->
+<!--                <h5 class="card-title">Workout:</h5>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card" style="width: 36rem;">-->
+<!--            <div class="card-body-workout">-->
+<!--                <h5 class="card-title">Workout:</h5>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 </div>
