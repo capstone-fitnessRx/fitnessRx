@@ -1,10 +1,7 @@
 package com.capstone.fitnessrx.Controllers;
 
 import com.capstone.fitnessrx.Models.*;
-import com.capstone.fitnessrx.Repositories.ExerciseDetailsRepository;
-import com.capstone.fitnessrx.Repositories.ExerciseRepository;
-import com.capstone.fitnessrx.Repositories.UserRepository;
-import com.capstone.fitnessrx.Repositories.WorkoutRepository;
+import com.capstone.fitnessrx.Repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,22 +22,29 @@ public class WorkoutController {
     private final UserRepository userDao;
     private final ExerciseDetailsRepository exerciseDetailsDao;
     private final ExerciseRepository exerciseDao;
+    private final CalenderRepository calenderDao;
 
 
-    public WorkoutController(WorkoutRepository workoutDao, UserRepository userDao, ExerciseDetailsRepository exerciseDetailsDao, ExerciseRepository exerciseDao) {
+
+    public WorkoutController(WorkoutRepository workoutDao, UserRepository userDao, ExerciseDetailsRepository exerciseDetailsDao, ExerciseRepository exerciseDao, CalenderRepository calenderDao) {
         this.workoutDao = workoutDao;
         this.userDao = userDao;
         this.exerciseDetailsDao = exerciseDetailsDao;
         this.exerciseDao = exerciseDao;
+        this.calenderDao = calenderDao;
     }
 
 
     @GetMapping("/my-workouts/{id}")
     public String getMyWorkouts(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
 //        this gives navbar the profile pic
         String navbarProfilePic = user.getProfilePic();
         model.addAttribute("profilePicUrl", navbarProfilePic);
+
+model.addAttribute("user", user);
+
         List<Workout> userWorkout = workoutDao.findWorkoutsByUser(userDao.getReferenceById(id));
 
 //        Workout userWorkouts = workoutDao.getReferenceById(id);
@@ -312,11 +316,28 @@ model.addAttribute("workoutNum", workoutNum);
 //        return "redirect:/favorites/" + user.getId();
 //    }
 
-    @PostMapping("/my-workouts/{id}/delete")
-    public String deleteWorkout(Model model, @PathVariable long id) {
-        workoutDao.deleteById(id);
-        return "redirect:/my-workouts/{id}";
-    }
+
+
+//<form th:action="@{workout/favorite}" method="post">
+//    <div>
+//    <input type="hidden" name>
+//    <button type="submit">+ Favorites</button>
+//    </div>
+//
+//    </form
+
+
+
+
+    @PostMapping("/my-workouts/delete")
+    public String deleteWorkout(@RequestParam long workoutId, @RequestParam long id) {
+        Calender day = calenderDao.findByWorkout(workoutDao.getReferenceById(workoutId));
+        exerciseDetailsDao.deleteByWorkout(workoutDao.getReferenceById(workoutId));
+//        calenderDao.delete(day);
+        day.setWorkout(null);
+        workoutDao.delete(workoutDao.getReferenceById(workoutId));
+        return "redirect:/my-workouts/" + id;
+
 
     @PostMapping("/workouts-wall/{workoutId}/edit")
     public String editWorkout(Model model) {
