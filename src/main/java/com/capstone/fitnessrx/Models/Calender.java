@@ -17,7 +17,8 @@ public class Calender {
     @Column()
     private String notes;
 
-    @OneToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
+    @JoinColumn(name = "workoutId")
     private Workout workout;
 
     public Calender(Long id, User user, int dayId, String notes, Workout workout) {

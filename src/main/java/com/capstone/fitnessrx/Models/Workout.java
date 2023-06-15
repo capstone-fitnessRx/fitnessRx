@@ -40,6 +40,9 @@ public class Workout {
     @OneToMany(mappedBy = "workout")
     private List<Ratings> ratings;
 
+    @OneToMany(mappedBy = "workout")
+    private List<Calender> calender;
+
 
     @ManyToMany
     @JoinTable(
