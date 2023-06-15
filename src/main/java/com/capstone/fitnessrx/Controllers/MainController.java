@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 //import java.util.Calender;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,11 +58,17 @@ public class MainController {
 
 
     @GetMapping("/home")
-    public String getHome(Model model) {
-
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String getHome(Model model, Principal principal) {
+        User user = null;
+        if(principal != null) {
+             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
 
         if (user != null) {
+            //        this gives navbar the profile pic
+            String navbarProfilePic = user.getProfilePic();
+            model.addAttribute("profilePicUrl", navbarProfilePic);
+
             String profileUrl = "/profile/" + user.getId();
             model.addAttribute("profileUrl", profileUrl);
 
@@ -92,6 +99,9 @@ public class MainController {
 //        model.addAttribute("calender", existingCalender !=null ? existingCalender : new Calender());
 
 //        model.addAttribute("calender", new Calender());
+//        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -182,6 +192,9 @@ public class MainController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+//        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);

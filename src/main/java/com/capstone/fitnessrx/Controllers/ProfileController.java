@@ -26,8 +26,8 @@ public class ProfileController {
 
 
 
-//    @Value("${filestack.api.key}")
-//    private String filestackapi;
+    @Value("${filestack.api.key}")
+    private String filestackapi;
 
     public ProfileController(UserRepository userDao, FriendsRepository friendsDao, WorkoutRepository workoutDao) {
         this.userDao = userDao;
@@ -45,7 +45,10 @@ public class ProfileController {
     public String getProfile(@PathVariable Long id, Model model) {
         //Authenticates LOGGED IN USER
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //        this gives us the endpoint and id for html pages to reference
+//        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
+//        this gives us the endpoint and id for html pages to reference
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
         String feedUrl = "/feed/" + user.getId();
@@ -68,7 +71,7 @@ public class ProfileController {
         if (userProfile != null) {
 
 
-//            model.addAttribute("filestackapi", filestackapi);
+            model.addAttribute("filestackapi", filestackapi);
 
             //get exercise favorites
 

@@ -32,7 +32,9 @@ public class MessagesController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("urlId", recipientId);
         User authenticatedUserId = user;
-
+//        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
         model.addAttribute("authenticatedUserId", authenticatedUserId);
 
         long senderId = user.getId();
