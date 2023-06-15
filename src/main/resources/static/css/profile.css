@@ -1,5 +1,5 @@
 body {
-    background-color: #C9D6DF;
+    background-image: linear-gradient(#C9D6DF, #1E2022);
 }
 /*banner card*/
 .banner-card {
@@ -146,6 +146,7 @@ body {
 }
 .view-all {
     text-align: end;
+    margin-bottom: -1%;
 }
 /*my favorites*/
 .favorite-card {
@@ -176,6 +177,14 @@ ul {
     margin-top: 2%;
     margin-right: 4%;
     margin-left: 91%;
+}
+
+#weights {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    z-index:  -1;
+    position: absolute;
 }
 
 /**/
