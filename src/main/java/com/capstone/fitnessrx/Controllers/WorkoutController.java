@@ -337,10 +337,12 @@ model.addAttribute("workoutNum", workoutNum);
         day.setWorkout(null);
         workoutDao.delete(workoutDao.getReferenceById(workoutId));
         return "redirect:/my-workouts/" + id;
-
+    }
 
     @PostMapping("/workouts-wall/{workoutId}/edit")
     public String editWorkout(Model model) {
+
+
         return "redirect:/workouts-wall";
 
     }

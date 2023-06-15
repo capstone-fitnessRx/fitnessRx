@@ -45,9 +45,9 @@
                         <li><a class="dropdown-item p-drop" th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a></li>
                         <li><a class="dropdown-item" th:href="@{{myWorkoutsUrl}(myWorkoutsUrl=${myWorkoutsUrl})}">My
                             Workouts</a></li>
-                        <li><a class="dropdown-item"
-                               th:href="@{{favoritesUrl}(favoritesUrl=${favoritesUrl})}">Favorites</a></li>
-                        <li><a class="dropdown-item p-drop" href='#' id="modalSettings">Settings</a></li>
+<!--                        <li><a class="dropdown-item"-->
+<!--                               th:href="@{{favoritesUrl}(favoritesUrl=${favoritesUrl})}">Favorites</a></li>-->
+<!--                        <li><a class="dropdown-item p-drop" href='#' id="modalSettings">Settings</a></li>-->
                         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
                             <button class="btn-link btn dropdown-item" style="margin-top: 8px">Logout</button>
                         </form>
