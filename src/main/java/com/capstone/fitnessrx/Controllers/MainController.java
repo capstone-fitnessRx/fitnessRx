@@ -113,6 +113,13 @@ public class MainController {
         model.addAttribute("favoritesUrl", favoritesUrl);
 
         List <Calender> calender = calenderDao.findAllByUser(user);
+        List<Calender> newDay = new ArrayList<Calender>();
+        for(Calender day : calender) {
+            if(day.getWorkout() != null) {
+                newDay.add(day);
+            }
+        }
+        model.addAttribute("day", newDay);
 
         model.addAttribute("calender", calender);
 
