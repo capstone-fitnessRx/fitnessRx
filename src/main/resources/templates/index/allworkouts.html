@@ -46,7 +46,7 @@
                 <button class="text-center open_modal btn btn-primary mb-2" data-open-modal>+ Add to Calendar</button>
                 <dialog class="data_modal" data-modal>
                     <form th:action="@{/calender/{id}(id=*{user.getId})}" th:method="post">
-                        <input class="" name="workout" th:value="*{allWorkouts.getId()}">
+                        <input class="" name="workoutId" th:value="*{allWorkouts.getId()}">
                         <select class="form-select" aria-label="chooseday" name="weekday">
                             <option selected>Choose day:</option>
                             <option value="1">Sunday</option>
