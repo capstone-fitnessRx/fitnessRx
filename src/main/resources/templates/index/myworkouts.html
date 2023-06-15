@@ -70,8 +70,8 @@
 <div th:each="myWorkout : ${myWorkouts}">
     <h5 th:text="${myWorkout.getTitle()}"></h5>
     <form th:action="@{/my-workouts/delete}" th:method="post">
-        <input name="workoutId" th:value="${myWorkout.getId()}">
-        <input name="id" th:value="${user.getId()}">
+        <input type="hidden" name="workoutId" th:value="${myWorkout.getId()}">
+        <input name="id" type="hidden" th:value="${user.getId()}">
         <button type="submit">Delete Workout</button>
     </form>
 <!--    <p class="" th:text="''+ *{myWorkout.get()}"></p>-->
