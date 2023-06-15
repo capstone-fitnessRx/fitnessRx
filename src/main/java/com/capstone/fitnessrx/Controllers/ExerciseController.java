@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.security.Principal;
 import java.util.List;
 @Controller
 public class ExerciseController {
@@ -23,24 +24,33 @@ public class ExerciseController {
 
 
     @GetMapping("/exercise-page")
-    public String getExercise(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String getExercise(Model model, Principal principal) {
+        User user = null;
+        if(principal != null) {
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         List<Exercise> allExercises = exerciseDao.findAll();
         model.addAttribute("allExercises", allExercises);
 
 
+        if (user != null) {
+//        this gives navbar the profile pic
+            String navbarProfilePic = user.getProfilePic();
+            model.addAttribute("profilePicUrl", navbarProfilePic);
 
-        String profileUrl = "/profile/" + user.getId();
-        model.addAttribute("profileUrl", profileUrl);
-        String feedUrl = "/feed/" + user.getId();
-        model.addAttribute("feedUrl", feedUrl);
-        String calenderUrl = "/calender/" + user.getId();
-        model.addAttribute("calenderUrl", calenderUrl);
-        String myWorkoutsUrl = "/my-workouts/" + user.getId();
-        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
-        String favoritesUrl = "/favorites/" + user.getId();
-        model.addAttribute("favoritesUrl", favoritesUrl);
-
+            String profileUrl = "/profile/" + user.getId();
+            model.addAttribute("profileUrl", profileUrl);
+            String feedUrl = "/feed/" + user.getId();
+            model.addAttribute("feedUrl", feedUrl);
+            String calenderUrl = "/calender/" + user.getId();
+            model.addAttribute("calenderUrl", calenderUrl);
+            String myWorkoutsUrl = "/my-workouts/" + user.getId();
+            model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+            String favoritesUrl = "/favorites/" + user.getId();
+            model.addAttribute("favoritesUrl", favoritesUrl);
+        }
         return "index/exercises";
     }
 
@@ -55,6 +65,9 @@ public class ExerciseController {
 //        model.addAttribute("exerciseEquipment", exerciseEquipment);
 //        model.addAttribute("exerciseGif", exerciseGif);
 
+//        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);

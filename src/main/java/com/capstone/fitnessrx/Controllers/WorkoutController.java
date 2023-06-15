@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,9 @@ public class WorkoutController {
     @GetMapping("/my-workouts/{id}")
     public String getMyWorkouts(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+//        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
         List<Workout> userWorkout = workoutDao.findWorkoutsByUser(userDao.getReferenceById(id));
 
 //        Workout userWorkouts = workoutDao.getReferenceById(id);
@@ -67,9 +70,13 @@ public class WorkoutController {
 
     @GetMapping("/workouts-wall")
 
-    public String getWorkoutWall(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", user);
+    public String getWorkoutWall(Model model, Principal principal) {
+        User user = null;
+        if(principal != null) {
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
+        //        this gives navbar the profile pic
+
         List<Workout> allWorkout = workoutDao.findAll();
         model.addAttribute("allWorkouts", allWorkout);
 
@@ -79,22 +86,25 @@ public class WorkoutController {
 
 
 //        User userProfile = userDao.findById(id).orElse(null);
-
-        String profileUrl = "/profile/" + user.getId();
-        model.addAttribute("profileUrl", profileUrl);
-        String feedUrl = "/feed/" + user.getId();
-        model.addAttribute("feedUrl", feedUrl);
-        String calenderUrl = "/calender/" + user.getId();
-        model.addAttribute("calenderUrl", calenderUrl);
-        String myWorkoutsUrl = "/my-workouts/" + user.getId();
-        model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
-        String favoritesUrl = "/favorites/" + user.getId();
-        model.addAttribute("favoritesUrl", favoritesUrl);
+        if (user != null) {
+            String navbarProfilePic = user.getProfilePic();
+            model.addAttribute("profilePicUrl", navbarProfilePic);
+            model.addAttribute("user", user);
+            String profileUrl = "/profile/" + user.getId();
+            model.addAttribute("profileUrl", profileUrl);
+            String feedUrl = "/feed/" + user.getId();
+            model.addAttribute("feedUrl", feedUrl);
+            String calenderUrl = "/calender/" + user.getId();
+            model.addAttribute("calenderUrl", calenderUrl);
+            String myWorkoutsUrl = "/my-workouts/" + user.getId();
+            model.addAttribute("myWorkoutsUrl", myWorkoutsUrl);
+            String favoritesUrl = "/favorites/" + user.getId();
+            model.addAttribute("favoritesUrl", favoritesUrl);
 //        String workoutPlanUrl = "/workout-plan/" + workout.getId();
 //        model.addAttribute("workoutPlanUrl", workoutPlanUrl);
 
 //        model.addAttribute("workoutTitle", workoutTitle);
-
+        }
 
         return "index/allworkouts";
     }
@@ -105,7 +115,9 @@ public class WorkoutController {
 
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+//        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
@@ -216,6 +228,9 @@ public class WorkoutController {
 model.addAttribute("workoutNum", workoutNum);
         System.out.println("workoutNum = " + workoutNum);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
         model.addAttribute("exerciseDetails", new ExerciseDetails());
         model.addAttribute("exerciseDetailsList", exerciseDetailsList);
         List<Exercise> allWorkoutExercises = exerciseDao.findAll();
