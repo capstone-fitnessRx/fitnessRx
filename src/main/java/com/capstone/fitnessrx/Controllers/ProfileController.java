@@ -229,18 +229,11 @@ public class ProfileController {
         userDao.delete(user);
     }
     @PostMapping("/profile/update")
-    public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal,Model model, @RequestParam("clearAccount") String clearAccount) {
+    public String updateProfile(@RequestParam("newCardColor") String newCardColor, @RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById((long) user.getId());
 
-
-        //checking to see if user wants to delete account in profile
-        model.addAttribute("clearAccount", clearAccount);
-        if(clearAccount != null) {
-            deleteUser(user);
-            return "redirect:/login";
-        }
 
 
         user.setUsername(newUsername);
@@ -249,7 +242,7 @@ public class ProfileController {
         user.setBio(newBio);
         user.setGoal(newGoal);
         user.setWorkoutPreference(newWorkoutPreference);
-
+        user.setCardColor(newCardColor);
 
         // Save the updated user to the database or perform any desired actions
         userDao.save(user);

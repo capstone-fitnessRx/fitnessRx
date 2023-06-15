@@ -111,7 +111,7 @@
 <!--                <form method="POST" th:action="@{/feed/like}">-->
 <!--                    <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>-->
 <!--                </form>-->
-                <a id="commentBtn" class="dropdown-toggle comment-size" type="button" th:text="${post.getComments().size()}"><i class="fa-regular fa-comment"></i></a>
+                <button id="commentBtn" class="dropdown-toggle comment-size" type="button" th:text="${post.getComments().size()}"></button>
 
             </div>
 
