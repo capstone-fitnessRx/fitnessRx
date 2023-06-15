@@ -541,12 +541,18 @@ public class MainController {
     }
 
     @PostMapping("/calender/{id}")
-    public String addToCalender(@PathVariable("id") Long id, @RequestParam Long workoutId, @RequestParam int weekday) {
+    public String addToCalender(@PathVariable Long id, @RequestParam Long workoutId, @RequestParam int weekday) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user = userDao.getReferenceById((long) user.getId());
+//        user = userDao.getReferenceById((long) user.getId());
 
-        Calender day = calenderDao.findByUserAndDayId(user, weekday);
+        Calender day = calenderDao.findByUserAndDayId(userDao.getReferenceById((long) user.getId()), weekday);
+        System.out.println(day.getId());
+        System.out.println(day.getDayId());
+        System.out.println(day.getWorkout());
+        System.out.println(day.getId());
+
+
         day.setWorkout(workoutDao.getReferenceById(workoutId));
 
         calenderDao.save(day);
