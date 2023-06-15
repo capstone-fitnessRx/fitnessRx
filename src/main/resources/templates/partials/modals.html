@@ -6,12 +6,13 @@
             <span class="close">&times;</span>
             <h2>Settings</h2>
             <form method="POST" th:action="@{/profile/settings}">
-                <label>Theme Color: </label>
-                <select type="text" name="newCardColor">
+                <label for="colorSelect">Theme Color: </label>
+                <select type="text" name="newCardColor" id="colorSelect">
                     <option>green</option>
                     <option>blue</option>
                     <option>orange</option>
                     <option>red</option>
+                    <option>clear</option>
                 </select>
                 <button type="submit">Update</button>
             </form>
