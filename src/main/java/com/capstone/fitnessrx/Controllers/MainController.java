@@ -111,10 +111,10 @@ public class MainController {
         return "index/calender";
     }
 
-    @PostMapping("/calender/note")
-    public String saveNotes(@ModelAttribute Calender newCalender) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user = userDao.getReferenceById((long) user.getId());
+//    @PostMapping("/calender/note")
+//    public String saveNotes(@ModelAttribute Calender newCalender) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user = userDao.getReferenceById((long) user.getId());
 
 //    added Sunday night
 //    public String saveNotes(@ModelAttribute("calender") Calender newCalender){
@@ -133,16 +133,16 @@ public class MainController {
 //        }
 
 //        originally had this...
-        Calender calender = new Calender();
+//        Calender calender = new Calender();
+//
+//        calender.setNotes(newCalender.getNotes());
+//        calender.setUser(user);
+//        calenderDao.save(calender);
+//
+//
+//        return "redirect:/calender/" + user.getId();
 
-        calender.setNotes(newCalender.getNotes());
-        calender.setUser(user);
-        calenderDao.save(calender);
-
-
-        return "redirect:/calender/" + user.getId();
-
-    }
+//    }
 
 
 //     @GetMapping("/my-workouts/{id}")
@@ -562,14 +562,15 @@ public class MainController {
 
 //    @GetMapping("/workouts/{workoutId}/calender")
 //    public String showCalenderForm(@PathVariable("workoutID") Long workoutId, Model model) {
+//
 //        Workout workout = workoutDao.findById(workoutId);
 //        model.addAttribute("workoutId", workoutId);
 
 //                Workout workout = workoutDao.findById(workoutId).orElse(null);
 //                model.addAttribute("workout", workout);
 
-
-
+//
+//
 //        return "/calender/";
 //
 //    }

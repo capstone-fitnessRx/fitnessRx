@@ -297,19 +297,6 @@ model.addAttribute("workoutNum", workoutNum);
 //        return "redirect:/favorites/" + user.getId();
 //    }
 
-
-
-//<form th:action="@{workout/favorite}" method="post">
-//    <div>
-//    <input type="hidden" name>
-//    <button type="submit">+ Favorites</button>
-//    </div>
-//
-//    </form
-
-
-
-
     @PostMapping("/my-workouts/{id}/delete")
     public String deleteWorkout(Model model, @PathVariable long id) {
         workoutDao.deleteById(id);
