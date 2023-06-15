@@ -44,16 +44,16 @@ public class MainController {
 
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
-    public String getHello(Model model) {
-        return "Hello partners";
-    }
 
     @RequestMapping(value = "/bye", method = RequestMethod.GET)
     @ResponseBody
     public String getBye(Model model) {
         return "Bye partners";
+    }
+
+    @GetMapping("/")
+    public String goHome() {
+        return "index/landingpage";
     }
 
 
