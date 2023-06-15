@@ -140,7 +140,7 @@ body {
     position: absolute;
     top: 4em;
     background-color: #F0F5F9;
-    width: 100%;
+    width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
@@ -234,19 +234,19 @@ button {
     margin-top: 2px;
 }
 
-#commentBtn {
-    background-color: #F0F5F9;
-}
+/*#commentBtn {*/
+/*    background-color: #F0F5F9;*/
+/*}*/
 
 #optionsUnderPost {
     padding-top: 8px;
     padding-bottom: 4px;
 }
 
-#comment {
-    margin-left: 12px;
-    margin-bottom: 4px;
-}
+/*#comment {*/
+/*    margin-left: 12px;*/
+/*    margin-bottom: 4px;*/
+/*}*/
 
 ul {
     list-style-type: none;
