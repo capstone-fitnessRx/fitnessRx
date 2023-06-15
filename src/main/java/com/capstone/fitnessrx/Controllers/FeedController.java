@@ -43,7 +43,9 @@ public class FeedController {
         Post post = postDao.getReferenceById(id);
 
 
-
+//        this gives navbar the profile pic
+        String navbarProfilePic = user.getProfilePic();
+        model.addAttribute("profilePicUrl", navbarProfilePic);
 
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
