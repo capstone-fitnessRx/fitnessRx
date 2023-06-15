@@ -21,66 +21,88 @@
     <!--    <link rel="stylesheet" href="/css/modals.css">-->
     <link rel="stylesheet" href="/css/messenger.css">
     <link rel="stylesheet" href="/css/navbar1.css">
+    <link rel="stylesheet" href="/css/allworkouts.css">
+
+<!--    <div class="col-md-4 col-lg-3 col-xl-2">-->
+<!--        <div class="card text-center" style="width: 180px">-->
+<!--            <div class="card-header" style="height: 130px">-->
+<!--                <h5 class="card-title my-auto" th:text="*{exercise.getExerciseName()}"></h5>-->
+<!--            </div>-->
+<!--            <div class="card-body" id=>-->
+<!--                <h5 class="" th:text="*{exercise.getExerciseBodyPart()}"></h5>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+
 </head>
 <body id="cards">
 <nav th:replace="partials/navbar.html :: navbar"/>
 <main>
-    <section class="container">
-        <h2>All Workouts</h2>
-        <div th:each="allWorkouts : ${allWorkouts}">
-            <div class="card mb-3" style="width: 18rem;">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        <a th:href="@{/workout-plan/{id}(id=*{allWorkouts.getId()})}"
+
+        <h2 class="text-center">All Workouts</h2>
+
+    <section class="container d-flex justify-content-evenly flex-wrap" id="workouts">
+            <div th:each="allWorkouts : ${allWorkouts}">
+                <div class="card mb-3" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5 class="card-title my-auto">
+                            <a class="link" th:href="@{/workout-plan/{id}(id=*{allWorkouts.getId()})}"
                            th:text="*{allWorkouts.getTitle()}"></a>
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text" th:text="*{allWorkouts.getCategories()}"></p>
-                    <p class="card-text" th:text="*{allWorkouts.getAvgRating()}"></p>
-                </div>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+<!--                        <p class="card-text" th:text="*{allWorkouts.getCategories()}"></p>-->
+                        <p class="card-text" th:text="*{allWorkouts.getDescription()}"></p>
+<!--                        <p class="card-text" th:text="*{allWorkouts.getAvgRating()}"></p>-->
+                    </div>
 
                 <!--                <p class="card-text" th:text="*{allWorkouts.getWorkoutImage()}"></p>-->
 
                 <!--                    <a th:href="@{/workouts/{workoutId}/calender(workoutId=${allWorkouts.getId()})}" class="card-link">+ Calender</a>-->
-                <button class="text-center open_modal btn btn-primary mb-2" data-open-modal>+ Add to Calendar</button>
-                <dialog class="data_modal" data-modal>
-                    <form th:action="@{/calender/{id}(id=*{user.getId})}" th:method="post">
-                        <input class="" name="workoutId" th:value="*{allWorkouts.getId()}">
-                        <select class="form-select" aria-label="chooseday" name="weekday">
-                            <option selected>Choose day:</option>
-                            <option value="1">Sunday</option>
-                            <option value="2">Monday</option>
-                            <option value="3">Tuesday</option>
-                            <option value="4">Wednesday</option>
-                            <option value="5">Thursday</option>
-                            <option value="6">Friday</option>
-                            <option value="7">Saturday</option>
-                        </select>
-                        <button type="submit">Save</button>
-                    </form>
-                    <button class="close_modal" data-close-modal>close</button>
-                </dialog>
+                    <button class="text-center open_modal btn btn-secondary mb-2" data-open-modal>+ Add to Calendar</button>
+                    <dialog class="data_modal" data-modal>
+
+                        <form th:action="@{/calender/{id}(id=*{user.getId})}" th:method="post">
+                            <input class="" name="workoutId" th:value="*{allWorkouts.getId()}">
+
+                            <select class="form-select" aria-label="chooseday" name="weekday">
+                                <option selected>Choose day:</option>
+                                <option value="1">Sunday</option>
+                                <option value="2">Monday</option>
+                                <option value="3">Tuesday</option>
+                                <option value="4">Wednesday</option>
+                                <option value="5">Thursday</option>
+                                <option value="6">Friday</option>
+                                <option value="7">Saturday</option>
+                            </select>
+                            <button type="submit">Save</button>
+                        </form>
+                        <button class="close_modal" data-close-modal>close</button>
+                    </dialog>
+                </div>
             </div>
         </div>
+    </section>
 
 
-        <!--                <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">-->
-        <!--                    <form th:action="@{/workout/favorites}" method="post">&ndash;&gt;-->
-        <!--                    <div>-->
-        <!--                        <input type="hidden" th:value="${allWorkouts.getId()}" name="addtofavorites">-->
-        <!--                        <button type="submit">+ Add to Favorites</button>-->
-        <!--                    </div>-->
-        <!--                </form>-->
+<!--                        <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">-->
+<!--                            <form th:action="@{/workout/favorites}" method="post">&ndash;&gt;-->
+<!--                            <div>-->
+<!--                                <input type="hidden" th:value="${allWorkouts.getId()}" name="addtofavorites">-->
+<!--                                <button type="submit">+ Add to Favorites</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
 
-        <!--               <a href="#" class="card-link">+ Favorites</a>-->
+<!--                       <a href="#" class="card-link">+ Favorites</a>-->
 
-        <!--                <form th:action="@{/workout/favorites}" method="post">-->
-        <!--                    <div>-->
-        <!--                        <input type="hidden" th:value="${allWorkouts.getId()}" name="addtofavorites">-->
-        <!--                        <button type="submit">+ Add to Favorites</button>-->
-        <!--                    </div>-->
-        <!--                </form>-->
+<!--                        <form th:action="@{/workout/favorites}" method="post">-->
+<!--                            <div>-->
+<!--                                <input type="hidden" th:value="${allWorkouts.getId()}" name="addtofavorites">-->
+<!--                                <button type="submit">+ Add to Favorites</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
     </section>
 </main>
 <!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->

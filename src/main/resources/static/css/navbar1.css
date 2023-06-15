@@ -1,3 +1,9 @@
+
+.logo {
+    height: 80px;
+    width: 80px;
+}
+
 .navbar {
     justify-content: flex-end;
     background-color: dimgrey;

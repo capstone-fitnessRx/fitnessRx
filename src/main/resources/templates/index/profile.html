@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/css/messenger.css">
     <link rel="stylesheet" href="/css/navbar1.css">
     <link rel="stylesheet" href="/css/modals.css">
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/60b822ab43.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"/>
@@ -33,10 +35,11 @@
         <input id="stashFilestackURLBanner" name="stashFilestackURLBanner" type="hidden" value="">
     </form>
     <div class="card main-card" th:style="'background-color:' + ${cardColor}">
-        <img th:if="${authenticatedUserId.getId() == urlUserId}" class="profile-edit" id="modalEdit"
-             src="/img/edit.png">
+        <i class="fa-solid fa-ranking-star profile-edit" th:if="${authenticatedUserId.getId() == urlUserId}" id="modalEdit"></i>
+
         <label for="uploadBanner"></label>
         <button th:if="${authenticatedUserId.getId() == urlUserId}" type="button" id="uploadBanner" class="picture-btn" name="uploadBanner">Edit Banner</button>
+
         <label for="upload"></label>
         <button th:if="${authenticatedUserId.getId() == urlUserId}" type="button" id="upload" class="picture-btn" name="upload">Profile Picture</button>
 
@@ -60,11 +63,18 @@
             </a>
         </div>
 
-        <a class="main-loc" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>
-        <a class="main-friend" id="modalFriends" href="#"
-           th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
-        <p class="main-workout" th:text="${workoutPreference}"></p>
-        <p class="main-bio" th:text="${bio}"></p>
+        <div class="userDetails">
+            <ul>
+                <li><a id="mainLocation" class="main-loc" th:href="@{/map/{location}(location=${location})}" th:text="'- Location: ' + ${location}"></a></li>
+
+                <li><a class="main-friend" id="modalFriends" href="#"
+                   th:text="'- Friends: ' + ${userProfile.getFriendsAsMainUser().size()}"></a></li>
+
+                <li><a class="main-workout" th:text="'- Workout Preference: ' + ${workoutPreference}"></a></li>
+
+                <li><a class="main-bio" th:text="'- Bio: ' + ${bio}"></a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="card goal-card">
@@ -87,8 +97,10 @@
         </a>
 
 
-        <a class="view-all" th:href="@{/my-workouts/{id}(id=${urlUserId})}"><u>View All</u></a>
+        <a class="view-all" th:href="@{/my-workouts/{id}(id=${urlUserId})}">View All</a>
+        <br>
     </div>
+<!--    <u>View All</u>-->
     <!--Favorites card-->
 <!--    <div class="card favorite-card">-->
 <!--        &lt;!&ndash;        Conditional below&ndash;&gt;-->
@@ -144,21 +156,29 @@
         <span class="close">&times;</span>
         <h2>Edit Profile</h2>
         <form method="POST" th:action="@{/profile/update}">
-            <label>Username: </label>
-            <input type="text" name="newUsername" th:value="${username}">
+            <article>
+                <p><label for="newUsername">Username: </label>
+                <input id="newUsername" type="text" name="newUsername" th:value="${username}"></p>
 
-            <label>Email: </label>
-            <input type="text" name="newEmail" th:value="${email}">
+                <p><label for="newEmail">Email: </label>
+                <input id="newEmail" type="text" name="newEmail" th:value="${email}"></p>
 
-            <label>Location: </label>
-            <input type="text" name="newLocation" th:value="${location}">
-            <label>Bio: </label>
-            <input type="text" name="newBio" th:value="${bio}">
-            <label>Goals: </label>
-            <input type="text" name="newGoal" th:value="${goal}">
-            <label>Workout Preference: </label>
-            <input type="text" name="newWorkoutPreference" th:value="${workoutPreference}">
-            <button type="submit">Update</button>
+                <p><label for="newLocation">Location: </label>
+                <input id="newLocation" type="text" name="newLocation" th:value="${location}"></p>
+
+                <p><label for="newBio">Bio: </label>
+                <input id="newBio" type="text" name="newBio" th:value="${bio}"></p>
+
+                <p><label for="newGoal">Goals: </label>
+                <input id="newGoal" type="text" name="newGoal" th:value="${goal}"></p>
+
+                <p><label for="newWorkoutPreference">Workout Preference: </label>
+                <input id="newWorkoutPreference" type="text" name="newWorkoutPreference" th:value="${workoutPreference}"></p>
+
+                <p><label for="clearAccount">Clear Profile: <input type="checkbox" id="clearAccount" name="clearAccount" th:value="${clearAccount}"></label> </p>
+
+                <p><button type="submit">Update</button></p>
+            </article>
         </form>
         <!--                  API FILESTACK UPLOAD-->
 
@@ -211,6 +231,8 @@ const client = filestack.init(filestackapi);
 <script src="/js/messenger.js"></script>
 <script src="/js/navbar.js"></script>
 <script src="/js/modals.js"></script>
+
+
 
 </body>
 </html>

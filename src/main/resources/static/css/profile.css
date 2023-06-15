@@ -1,10 +1,10 @@
 body {
-    background-color: #7e7c7c;
+    background-image: linear-gradient(#C9D6DF, #1E2022);
 }
 /*banner card*/
 .banner-card {
     height: 150px;
-    background-color: #8a8acb;
+    background-color: #F0F5F9;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 0;
@@ -14,7 +14,7 @@ body {
     padding-right: 20px;
     margin-bottom: 0;
     margin-top: 3em;
-    border: #8a8acb solid 2px;
+    border: #F0F5F9 solid 2px;
 }
 .main-banner {
     width: 100%;
@@ -30,7 +30,7 @@ body {
 /*main card*/
 .main-card {
     margin-top: 0;
-    background-color: #8a8acb;
+    background-color: #F0F5F9;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 0;
@@ -47,7 +47,6 @@ body {
     cursor: pointer;
     height: 40px;
     width: 40px;
-    margin-left: auto;
 }
 .message-other {
     cursor: pointer;
@@ -76,11 +75,12 @@ body {
     position: relative;
     bottom: 4em;
     margin-bottom: 0;
+    margin-left: 6%;
 }
 .main-name{
     position: relative;
     bottom: 55px;
-    margin: 0;
+    margin-left: 9%;
 }
 .addFriend-div{
     display: flex;
@@ -109,7 +109,7 @@ body {
 .main-workout{
     position: relative;
     bottom: 1em;
-margin-bottom: 0;
+    margin-bottom: 0;
 }
 .main-bio{
     position: relative;
@@ -118,7 +118,7 @@ margin-bottom: 0;
 
 /*goal card*/
 .goal-card {
-    background-color: #8a8acb;
+    background-color: #F0F5F9;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding-left: 20px;
@@ -132,7 +132,7 @@ margin-bottom: 0;
 }
 /*my workouts*/
 .workout-card {
-    background-color: #8a8acb;
+    background-color: #F0F5F9;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding-left: 20px;
@@ -146,10 +146,11 @@ margin-bottom: 0;
 }
 .view-all {
     text-align: end;
+    margin-bottom: -1%;
 }
 /*my favorites*/
 .favorite-card {
-    background-color: #8a8acb;
+    background-color: #F0F5F9;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding-left: 20px;
@@ -162,6 +163,30 @@ margin-bottom: 0;
     margin-bottom: 30px;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style-type: none
+
+}
+
+#modalEdit {
+    margin-top: 2%;
+    margin-right: 4%;
+    margin-left: 91%;
+}
+
+#weights {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    z-index:  -1;
+    position: absolute;
+}
+
 /**/
 /**/
 /**/
@@ -169,3 +194,4 @@ margin-bottom: 0;
 /**/
 /**/
 /**/
+

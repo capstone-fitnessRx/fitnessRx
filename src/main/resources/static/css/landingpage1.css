@@ -1,17 +1,18 @@
 body {
-    background-color: #7e7c7c;
+    background-color: #C9D6DF;
 }
 
 .jumbotron {
     background-image: url('../img/banner.png');
-    height: 400px;
+    height: 350px;
     background-position: center;
     background-size: cover;
+    margin-top: 2em;
 }
 
 h1 {
     text-align: center;
-    font-size: 100px;
+    font-size: 80px;
 }
 .view-div{
     display: flex;
@@ -22,7 +23,7 @@ h1 {
     justify-content: center;
 }
 .start {
-    background-color: #4f4fdc;
+    background-color: #52616B;
     border-radius: 10px;
     height: 3em;
     font-weight: bold;
@@ -88,7 +89,7 @@ h1 {
 }
 .contact-cards {
     height: 300px;
-    width: 200px;
+    width: 210px;
     margin-bottom: 20px;
 }
 .contact-img {

@@ -137,6 +137,8 @@ public class ProfileController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById((long) user.getId());
 
+
+
         user.setCardColor(newCardColor);
 
 
@@ -218,14 +220,24 @@ public class ProfileController {
 
         return "redirect:/profile/" + user.getId();
     }
+
+    //void method to delete user
+    private void deleteUser (User user){
+        userDao.delete(user);
+    }
     @PostMapping("/profile/update")
-    public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal,Model model) {
+    public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal,Model model, @RequestParam("clearAccount") String clearAccount) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById((long) user.getId());
 
 
-
+        //checking to see if user wants to delete account in profile
+        model.addAttribute("clearAccount", clearAccount);
+        if(clearAccount != null) {
+            deleteUser(user);
+            return "redirect:/login";
+        }
 
 
         user.setUsername(newUsername);
@@ -240,7 +252,7 @@ public class ProfileController {
         userDao.save(user);
 
         // Add a success message or any other necessary information to the model
-        model.addAttribute("message", "Profile updated successfully!");
+//        model.addAttribute("message", "Profile updated successfully!");
 
         // Redirect to the profile page or return a view
         return "redirect:/profile/" + user.getId();
