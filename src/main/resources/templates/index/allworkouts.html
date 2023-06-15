@@ -39,7 +39,7 @@
 <!--                    <a th:href="@{/workouts/{workoutId}/calender(workoutId=${allWorkouts.getId()})}" class="card-link">+ Calender</a>-->
 
                 <dialog class="data_modal" data-modal>
-                    <form th:action="@/calender/{id}(id=*{user.getId()})" th:method="post">
+                    <form th:action="@{/calender/{id}(id=*{user.getId()})}" th:method="post">
                         <input class="" name="workout" th:value="*{allWorkouts.getId()}">
                         <select class="form-select" aria-label="chooseday" name="weekday">
                             <option selected>Choose day:</option>
