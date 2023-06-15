@@ -66,8 +66,8 @@
             <button class="text-center open_modal btn btn-primary mb-3" data-open-modal>Add to Workout</button>
             <dialog class="data_modal" data-modal>
                 <form th:action="@{/workout-builder-inator}" th:method="post">
-                    <input type="text" name="reps" placeholder="Input Reps" required> </input>
-                    <input type="text" name="sets" placeholder="Input Sets" required> </input>
+                    <input type="number" name="reps" placeholder="Input Reps" required> </input>
+                    <input type="number" name="sets" placeholder="Input Sets" required> </input>
                     <!--                    make hidden later-->
                     <!--                    <input class=""  name="exercise_Api_Id" th:value="*{exercise.getExerciseId()}">-->
                     <input class="" type="hidden" name="exerciseId" th:value="*{exercise.getId()}">
@@ -106,11 +106,11 @@
 
     </section>
 </main>
-<div th:insert="partials/messenger-partial.html :: messenger"></div>
+<!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/feed.js"></script>
 <script src="/js/modals.js"></script>
-<script src="/js/messenger.js"></script>
+<!--<script src="/js/messenger.js"></script>-->
 <script src="/js/navbar.js"></script>
 <!--<script src="/js/exerciseDB.js"></script>-->
 <script>
