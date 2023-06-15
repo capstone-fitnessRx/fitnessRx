@@ -96,7 +96,7 @@
 
                         <form th:action="@{/feed/post/delete/{id}(id=${post.getId()})}" method="POST">
                             <input type="hidden" name="postIdNumber" id="postIdNumber" th:value="${post.getId()}">
-                            <a class="dropdown-item" type="submit">Delete</a>
+                            <button class="dropdown-item" type="submit">Delete</button>
 
                         </form>
                     </div>
@@ -111,7 +111,7 @@
 <!--                <form method="POST" th:action="@{/feed/like}">-->
 <!--                    <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>-->
 <!--                </form>-->
-                <button id="commentBtn" class="dropdown-toggle comment-size" type="button" th:text="${post.getComments().size()}"></button>
+                <button id="commentBtn" class="dropdown-toggle comment-size" type="button" th:text="'Comments' + ${post.getComments().size()}"></button>
 
             </div>
 
