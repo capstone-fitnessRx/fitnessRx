@@ -44,16 +44,16 @@ public class MainController {
 
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
-    public String getHello(Model model) {
-        return "Hello partners";
-    }
 
     @RequestMapping(value = "/bye", method = RequestMethod.GET)
     @ResponseBody
     public String getBye(Model model) {
         return "Bye partners";
+    }
+
+    @GetMapping("/")
+    public String goHome() {
+        return "index/landingpage";
     }
 
 
@@ -113,6 +113,13 @@ public class MainController {
         model.addAttribute("favoritesUrl", favoritesUrl);
 
         List <Calender> calender = calenderDao.findAllByUser(user);
+        List<Calender> newDay = new ArrayList<Calender>();
+        for(Calender day : calender) {
+            if(day.getWorkout() != null) {
+                newDay.add(day);
+            }
+        }
+        model.addAttribute("newDay", newDay);
 
         model.addAttribute("calender", calender);
 

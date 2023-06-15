@@ -332,18 +332,26 @@ model.addAttribute("workoutNum", workoutNum);
     @PostMapping("/my-workouts/delete")
     public String deleteWorkout(@RequestParam long workoutId, @RequestParam long id) {
         Calender day = calenderDao.findByWorkout(workoutDao.getReferenceById(workoutId));
+        if(day == null) {
+            exerciseDetailsDao.deleteByWorkout(workoutDao.getReferenceById(workoutId));
+            workoutDao.delete(workoutDao.getReferenceById(workoutId));
+        } else {
         exerciseDetailsDao.deleteByWorkout(workoutDao.getReferenceById(workoutId));
-//        calenderDao.delete(day);
         day.setWorkout(null);
         workoutDao.delete(workoutDao.getReferenceById(workoutId));
+
+        }
+//        calenderDao.delete(day);
         return "redirect:/my-workouts/" + id;
+    }
 
 
 //    @PostMapping("/workouts-wall/{workoutId}/edit")
 //    public String editWorkout(Model model) {
 //        return "redirect:/workouts-wall";
 //
-    }
+
+
 
 
 

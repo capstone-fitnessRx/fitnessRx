@@ -9,9 +9,11 @@
 <div>
   <h1>Messages</h1>
     <div th:each="singleMessage : ${combinedMessages}">
+        <div>
         <p th:text="*{singleMessage.getSender().getUsername()}"></p>
         <p th:text="*{singleMessage.getContent()}"></p>
         <p th:text="*{singleMessage.getTimeStamp()}"></p>
+        </div>
     </div>
 
     <form th:if="${authenticatedUserId.getId() != urlId}" th:method="post" th:action="@{/messages/{recipientId}(recipientId=${urlId})}">
