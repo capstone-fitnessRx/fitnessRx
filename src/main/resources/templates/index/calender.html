@@ -24,9 +24,11 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"/>
+<h2 class="text-center">Calendar</h2>
 <div class="row">
+<!--    calendar cards-->
     <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-body-sunday">
                 <h5 class="card-title-days">Sunday</h5>
                 <div class="form-check">
@@ -36,7 +38,7 @@
             </div>
         </div>
         <!--</div>-->
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-body-monday">
                 <h5 class="card-title-days">Monday</h5>
                 <div class="form-check">
@@ -45,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-body-tuesday">
                 <h5 class="card-title-days">Tuesday</h5>
                 <div class="form-check">
@@ -55,7 +57,7 @@
 
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-body-wednesday">
                 <h5 class="card-title-days">Wednesday</h5>
                 <div class="form-check">
@@ -65,7 +67,7 @@
 
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-body-thursday">
                 <h5 class="card-title-days">Thursday</h5>
                 <div class="form-check">
@@ -75,7 +77,7 @@
 
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-body-friday">
                 <h5 class="card-title-days">Friday</h5>
                 <div class="form-check">
@@ -85,7 +87,7 @@
 
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-body-saturday">
                 <h5 class="card-title-days">Saturday</h5>
                 <div class="form-check">
@@ -100,7 +102,7 @@
 
     <div class="col-md-8">
         <div class="card" style="width: 36rem;">
-            <div class="card-body">
+            <div class="card-body-workout">
 
 
                 <h5 class="card-title">Workout:</h5>
@@ -146,9 +148,9 @@
                 <h5 class="card-title">Workout:</h5>
             </div>
         </div>
+    </div>
 </div>
-</div>
-</div>
+<!--</div>-->
 <div th:insert="partials/messenger-partial.html :: messenger"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/calender.js"></script>
