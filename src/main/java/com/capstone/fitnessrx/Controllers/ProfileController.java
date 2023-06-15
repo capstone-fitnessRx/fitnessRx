@@ -129,7 +129,7 @@ public class ProfileController {
             return "index/profile";
         } else {
 
-            return "error";
+            return "index/error";
         }
     }
 //
@@ -253,6 +253,7 @@ public class ProfileController {
         // Redirect to the profile page or return a view
         return "redirect:/profile/" + user.getId();
     }
+
 
     @PostMapping("/profile/delete")
     public String deleteProfile() {

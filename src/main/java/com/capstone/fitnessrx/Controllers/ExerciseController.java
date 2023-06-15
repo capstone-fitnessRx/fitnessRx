@@ -52,6 +52,7 @@ public class ExerciseController {
             model.addAttribute("favoritesUrl", favoritesUrl);
         }
         return "index/exercises";
+
     }
 
 
