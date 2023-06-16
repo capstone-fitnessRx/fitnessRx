@@ -32,7 +32,7 @@
 
 #tab1:hover, #tab2:hover, #tab3:hover, #tab4:hover, #tab5:hover{
     font-weight: bolder;
-    color: white;
+    color: blue;
 }
 
 .p-drop {

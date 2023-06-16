@@ -42,12 +42,8 @@
             </div>
             <div class="card" style="">
                 <div class="card-body-workout">
-<!--                    <h5 th:text="'Workout Title: ' + *{sundayT}" class="card-title"></h5>-->
-<!--                    <h5 th:text="'Workout Description: ' + ${sundayD}" class="card-title"></h5>-->
-<!--                        <h5 th:if="${sundayT != null and sundayT != ''}" th:text="'Workout Title: ' + ${sundayT}" class="card-title"></h5>-->
-<!--                        <h5 th:if="${sundayD != null and sundayD != ''}" th:text="'Workout Description: ' + ${sundayD}" class="card-title"></h5>-->
-                    <h5 th:if="${!sundayT.isEmpty()}" th:text="'Workout Title: ' + ${sundayT}" class="card-title"></h5>
-                    <h5 th:if="${!sundayD.isEmpty()}" th:text="'Workout Description: ' + ${sundayD}" class="card-title"></h5>
+                    <h5 th:if="${!sundayT.isEmpty()}" th:text="'Workout Title: ' + *{sundayT}" class="card-title"></h5>
+                    <h5  th:if="${!sundayD.isEmpty()}" th:text="'Workout Description: ' + ${sundayD}" class="card-title"></h5>
                 </div>
             </div>
         </div>
@@ -66,7 +62,6 @@
                 <div class="card-body-workout">
                     <h5 th:if="${!mondayT.isEmpty()}" th:text="'Workout Title: ' + ${mondayT}" class="card-title"></h5>
                     <h5 th:if="${!mondayD.isEmpty()}" th:text="'Workout Description: ' + ${mondayD}" class="card-title"></h5>
-
                 </div>
             </div>
         </div>
