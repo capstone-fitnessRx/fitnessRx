@@ -74,8 +74,8 @@
 <!------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 <div class="row d-flex justify-content-center">
     <div id="workoutTemplate" class="col-md-3" th:each="myWorkout : ${myWorkouts}">
-
-        <h5 id="workoutTitle" th:text="${myWorkout.getTitle()}"></h5>
+        <a class="link" th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}">
+        <h5 id="workoutTitle" th:text="${myWorkout.getTitle()}"></h5></a>
 
         <form class="text-center" th:action="@{/my-workouts/delete}" th:method="post">
 
