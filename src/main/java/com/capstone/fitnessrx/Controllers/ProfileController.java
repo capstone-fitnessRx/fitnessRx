@@ -136,13 +136,12 @@ public class ProfileController {
 //POST SETTINGS FOR PROFILE
 //
     @PostMapping("/profile/settings")
-    public String settingsProfile(@RequestParam("newCardColor") String newCardColor) {
+    public String settingsProfile() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById((long) user.getId());
 
 
 
-        user.setCardColor(newCardColor);
 
 
 
@@ -229,7 +228,7 @@ public class ProfileController {
         userDao.delete(user);
     }
     @PostMapping("/profile/update")
-    public String updateProfile(@RequestParam("newCardColor") String newCardColor, @RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal) {
+    public String updateProfile(@RequestParam("newUsername") String newUsername, @RequestParam("newEmail") String newEmail, @RequestParam("newLocation") String newLocation, @RequestParam("newBio") String newBio, @RequestParam("newWorkoutPreference") String newWorkoutPreference, @RequestParam("newGoal") String newGoal) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userDao.getReferenceById((long) user.getId());
@@ -242,7 +241,6 @@ public class ProfileController {
         user.setBio(newBio);
         user.setGoal(newGoal);
         user.setWorkoutPreference(newWorkoutPreference);
-        user.setCardColor(newCardColor);
 
         // Save the updated user to the database or perform any desired actions
         userDao.save(user);

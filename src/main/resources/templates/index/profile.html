@@ -34,7 +34,7 @@
     <form th:action="@{/profile/uploadBanner}" th:method="POST" id="submitBanner">
         <input id="stashFilestackURLBanner" name="stashFilestackURLBanner" type="hidden" value="">
     </form>
-    <div class="card main-card" th:style="'background-color:' + ${cardColor}">
+    <div class="card main-card">
         <i class="fa-solid fa-ranking-star profile-edit" th:if="${authenticatedUserId.getId() == urlUserId}" id="modalEdit"></i>
 
         <label for="uploadBanner"></label>
@@ -44,7 +44,9 @@
         <button th:if="${authenticatedUserId.getId() == urlUserId}" type="button" id="upload" class="picture-btn" name="upload">Profile Picture</button>
 
         <div th:object="${userProfile}">
+
         <img class="main-profile-pic" th:src="*{profilePic}">
+
         </div>
 
         <form th:action="@{/profile/upload}" th:method="POST" id="submitMePls">
@@ -70,9 +72,9 @@
                 <li><a class="main-friend" id="modalFriends" href="#"
                    th:text="'- Friends: ' + ${userProfile.getFriendsAsMainUser().size()}"></a></li>
 
-                <li><a class="main-workout" th:text="'- Workout Preference: ' + ${workoutPreference}"></a></li>
+                <li><p class="main-workout" th:text="'- Workout Preference: ' + ${workoutPreference}"></p></li>
 
-                <li><a class="main-bio" th:text="'- Bio: ' + ${bio}"></a></li>
+                <li><p class="main-bio" th:text="'- Bio: ' + ${bio}"></p></li>
             </ul>
         </div>
     </div>
@@ -158,33 +160,24 @@
         <form th:method="POST" th:action="@{/profile/update}">
 
                 <label for="newUsername">Username: </label>
-                <input id="newUsername" type="text" name="newUsername" th:value="${username}">
+                <input id="newUsername" type="text" name="newUsername" th:value="${username}"><br>
 
                 <label for="newEmail">Email: </label>
-                <input id="newEmail" type="text" name="newEmail" th:value="${email}">
+                <input id="newEmail" type="text" name="newEmail" th:value="${email}"><br>
 
                 <label for="newLocation">Location: </label>
-                <input id="newLocation" type="text" name="newLocation" th:value="${location}">
+                <input id="newLocation" type="text" name="newLocation" th:value="${location}"><br>
 
                 <label for="newBio">Bio: </label>
-                <input id="newBio" type="text" name="newBio" th:value="${bio}">
+                <input id="newBio" type="text" name="newBio" th:value="${bio}"><br>
 
                 <label for="newGoal">Goals: </label>
-                <input id="newGoal" type="text" name="newGoal" th:value="${goal}">
+                <input id="newGoal" type="text" name="newGoal" th:value="${goal}"><br>
 
                 <label for="newWorkoutPreference">Workout Preference: </label>
-                <input id="newWorkoutPreference" type="text" name="newWorkoutPreference" th:value="${workoutPreference}">
+                <input id="newWorkoutPreference" type="text" name="newWorkoutPreference" th:value="${workoutPreference}"><br>
 
 <!--                <p><label for="clearAccount">Clear Profile: <input type="checkbox" id="clearAccount" name="clearAccount" th:value="${clearAccount}"></label> </p>-->
-
-                <label for="colorSelect">Theme Color: </label>
-                <select type="text" name="newCardColor" id="colorSelect">
-                    <option>Default</option>
-                    <option>Blue</option>
-                    <option>Orange</option>
-                    <option>Red</option>
-                    <option>Green</option>
-                </select>
 
                 <button type="submit">Update</button>
         </form>
