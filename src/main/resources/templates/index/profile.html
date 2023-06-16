@@ -183,31 +183,34 @@
 <div id="myModalEdit" class="modal modal-dropdown">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Edit Profile</h2>
+        <h2 class="">Edit Profile</h2>
         <form th:method="POST" th:action="@{/profile/update}">
+            <div class="container">
 
-            <label for="newUsername">Username: </label>
-            <input id="newUsername" type="text" name="newUsername" th:value="${username}"><br>
+                <label for="newUsername">Username: </label><br>
+                <input class="w-50" id="newUsername" type="text" name="newUsername" th:value="${username}"><br>
 
-            <label for="newEmail">Email: </label>
-            <input id="newEmail" type="text" name="newEmail" th:value="${email}"><br>
+                <label for="newEmail">Email: </label><br>
+                <input class="w-50" id="newEmail" type="text" name="newEmail" th:value="${email}"><br>
 
-            <label for="newLocation">Location: </label>
-            <input id="newLocation" type="text" name="newLocation" th:value="${location}"><br>
+                <label for="newLocation">Location: </label><br>
+                <input class="w-50" id="newLocation" type="text" name="newLocation" th:value="${location}"><br>
 
-            <label for="newBio">Bio: </label>
-            <input id="newBio" type="text" name="newBio" th:value="${bio}"><br>
+                <label for="newBio">Bio: </label><br>
+                <input class="w-50" id="newBio" type="text" name="newBio" th:value="${bio}"><br>
 
-            <label for="newGoal">Goals: </label>
-            <input id="newGoal" type="text" name="newGoal" th:value="${goal}"><br>
+                <label for="newGoal">Goals: </label><br>
+                <input class="w-50" id="newGoal" type="text" name="newGoal" th:value="${goal}"><br>
 
-            <label for="newWorkoutPreference">Workout Preference: </label>
-            <input id="newWorkoutPreference" type="text" name="newWorkoutPreference"
-                   th:value="${workoutPreference}"><br>
+                <label for="newWorkoutPreference">Workout Preference: </label><br>
+                <input class="w-50" id="newWorkoutPreference" type="text" name="newWorkoutPreference"
+                       th:value="${workoutPreference}"><br>
+            </div>
 
             <!--                <p><label for="clearAccount">Clear Profile: <input type="checkbox" id="clearAccount" name="clearAccount" th:value="${clearAccount}"></label> </p>-->
-
-            <button type="submit">Update</button>
+            <div class="text-center">
+                <button class="btn btn-secondary my-2" type="submit">Update</button>
+            </div>
         </form>
         <!--                  API FILESTACK UPLOAD-->
 
