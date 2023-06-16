@@ -81,13 +81,12 @@ video {
     opacity: 80%;
     padding: 8px;
     border-radius: 2%;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin: 2%;
 }
 
 #workoutTitle {
     color: black;
-    margin-left: 40%;
+    text-align: center;
 }
 
 #deleteWorkout {
