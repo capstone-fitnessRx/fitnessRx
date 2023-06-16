@@ -94,6 +94,9 @@ public class ExerciseController {
 //        Exercise exercise = exerciseDao.findById(id).orElse(null);
 //        model.addAttribute("favoritesUrl", favoritesUrl);
 
+
+
+
         return "index/exerciseDisplay";
     }
 }
