@@ -34,37 +34,37 @@
 
 </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6">
-            <!--workout card 1-->
-<!--            <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">-->
-<!--                <div class="card" style="width: 18em;">-->
-<!--                    <div class="card-body">-->
-<!--                        <div class="card-title-with-dropdown">-->
-<!--                            <h5 th:text="*{myWorkout.getTitle()}" class="card-title"></h5>-->
-<!--                            &lt;!&ndash; drop down goes here&ndash;&gt;-->
-<!--                            <div class="custom-dropdown">-->
-<!--                                <button class="btn btn-secondary custom-dropdown-toggle" type="button">-->
-<!--                                    ...-->
-<!--                                </button>-->
-<!--                                <div class="custom-dropdown-content">-->
-<!--                                    <a class="dropdown-item" href="#">Edit</a>-->
-<!--                                    <a class="dropdown-item" href="#">Delete</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
+<!--<div class="container row">-->
+<!--    <div class="justify-content-center">-->
+<!--        <div class="col-lg-4 col-md-6">-->
+<!--            &lt;!&ndash;workout card 1&ndash;&gt;-->
+<!--&lt;!&ndash;            <a th:href="@{/workout-plan/{id}(id=*{myWorkout.getId()})}" th:each="myWorkout : ${myWorkouts}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card" style="width: 18em;">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="card-title-with-dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <h5 th:text="*{myWorkout.getTitle()}" class="card-title"></h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash; drop down goes here&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="custom-dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <button class="btn btn-secondary custom-dropdown-toggle" type="button">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    ...&ndash;&gt;-->
+<!--&lt;!&ndash;                                </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="custom-dropdown-content">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" href="#">Edit</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item" href="#">Delete</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
 
-<!--                        </div>-->
-<!--                        &lt;!&ndash;need to insert workout imagine&ndash;&gt;-->
-<!--                        <img class="card-img-top" src="..." alt="Card image cap">-->
-<!--                        <p class="card-text" th:text="'Rating: '+ *{myWorkout.getAvgRating()}"></p>-->
-<!--                        <p class="card-text" th:text="'Created: '+ *{myWorkout.getCreated()}"></p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-        </div>
-    </div>
-</div>
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash;need to insert workout imagine&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        <img class="card-img-top" src="..." alt="Card image cap">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="card-text" th:text="'Rating: '+ *{myWorkout.getAvgRating()}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="card-text" th:text="'Created: '+ *{myWorkout.getCreated()}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 
@@ -73,7 +73,7 @@
 
 <!------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 <div class="row">
-    <div id="workoutTemplate" class="col-md-4" th:each="myWorkout : ${myWorkouts}">
+    <div id="workoutTemplate" class="col-md-3" th:each="myWorkout : ${myWorkouts}">
 
         <h5 id="workoutTitle" th:text="${myWorkout.getTitle()}"></h5>
 
