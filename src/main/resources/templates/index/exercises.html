@@ -9,40 +9,41 @@
     <link rel="stylesheet" href="/css/modals.css">
     <!--    <link rel="stylesheet" href="/css/messenger.css">-->
     <link rel="stylesheet" href="/css/navbar1.css">
+
+    <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/exercises.css">
+
 </head>
 <body>
 
 <nav th:replace="partials/navbar.html :: navbar"/>
-<h1 class="text-center">Exercise List</h1>
-<!--<div th:insert="partials/modals.html :: modals"></div>-->
-<!--<section class="container d-flex justify-content-evenly flex-wrap" id="exercises">-->
-<!--    <form class="col-md-4 col-lg-3 col-xl-2" method="post" action="exercise-display">-->
-<!--        <button class="btn " type="submit">-->
-<!--            <div class="card text-center">-->
-<!--                <div class="card-header">-->
-<!--                    <h5 class="card-title" id=>Exercise Name</h5>-->
-<!--                </div>-->
-<!--                <div class="card-body" id=>-->
-<!--                    <img class="card-text">image will go here</img>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash;            sends the name of the exercise&ndash;&gt;-->
-<!--            <input class="d-none form-control" type="text" name="" value="">-->
-<!--            &lt;!&ndash;             sends the muscles targeted&ndash;&gt;-->
-<!--            <input class="d-none form-control" type="text" name="" value="">-->
-<!--            &lt;!&ndash;            sends the equipment&ndash;&gt;-->
-<!--            <input class="d-none form-control" type="text" name="" value="">-->
-<!--            &lt;!&ndash;            sends the gif&ndash;&gt;-->
-<!--            <input class="d-none form-control" type="text" name="" value="">-->
-<!--        </button>-->
-<!--    </form>-->
+<nav>
+    <label>
+        <input id="userSearchInput" type="text"  placeholder="Search for exercise...">
+        <button id="searchByName" type="submit" value="exerciseName">Search</button>
+    </label>
+
+    <span><button id="back" class="workoutNameBtn" value="back" type="submit">Back</button></span>
+    <span><button id="cardio" class="workoutNameBtn" value="cardio" type="submit">Cardio</button></span>
+    <span><button id="chest" class="workoutNameBtn" value="chest" type="submit">Chest</button></span>
+    <span><button id="lowerarms" class="workoutNameBtn" value="lower arms" type="submit">Lower Arms</button></span>
+    <span><button id="lowerlegs" class="workoutNameBtn" value="lower legs" type="submit">Lower Legs</button></span>
+    <span><button id="neck" class="workoutNameBtn" value="neck" type="submit">Neck</button></span>
+    <span><button id="shoulders" class="workoutNameBtn" value="shoulders" type="submit">Shoulders</button></span>
+    <span><button id="upperlegs" class="workoutNameBtn" value="upper legs" type="submit">Upper Legs</button></span>
+    <span><button id="upperarms" class="workoutNameBtn" value="upper arms" type="submit">Upper Arms</button></span>
+    <span><button id="waist" class="workoutNameBtn" value="waist" type="submit">Waist</button></span>
+</nav>
+
 <section class="container d-flex justify-content-evenly flex-wrap" id="exercises">
 <div th:each="exercise : ${allExercises}">
     <a th:href="@{/exercise-display/{id}(id=*{exercise.getId()})}" class="card mb-1">
         <div class="col-md-4 col-lg-3 col-xl-2">
             <div class="card text-center" style="width: 180px">
-                <div class="card-header" style="height: 130px">
+                <div class="card-header" style="height: 150px">
                     <h5 class="card-title my-auto" th:text="*{exercise.getExerciseName()}"></h5>
+                    <h6 th:text="*{exercise.getExerciseTarget()}"></h6>
                 </div>
                 <div class="card-body">
                     <h5 class="" th:text="*{exercise.getExerciseBodyPart()}"></h5>
@@ -54,7 +55,8 @@
 </section>
 
 
-
+<!--search bar js-->
+<script src="/js/exerciseDisplay.js"></script>
 <!--</section>-->
 <!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

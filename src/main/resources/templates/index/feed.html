@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/navbar1.css">
     <!--font awesome-->
     <script src="https://kit.fontawesome.com/60b822ab43.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon">
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"/>
@@ -24,8 +25,8 @@
 
     <div class="container card side-card col-md-3">
         <div class="userProfileBanner">
-            <img class="side-banner" th:src="${userProfile.bannerPic}" alt="profilePic">
-            <img class="side-pic" th:src="${userProfile.profilePic}" alt="profilePic">
+            <img class="side-banner" th:src="${userProfile.bannerPic}">
+            <img class="side-pic" th:src="${userProfile.profilePic}">
 
             <!--    <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
 
@@ -40,13 +41,19 @@
                                                            th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
                 </li>
 
+
                 <li><i class="fa-solid fa-dumbbell"></i><a class="side-workout" th:text="${workoutPreference}">Workout
                     Preference</a></li>
 
-                <li><i class="fa-solid fa-dumbbell"></i><a class="side-goal" th:text="${goal}">Goals</a></li>
+
+                <li><i class="fa-solid fa-trophy"></i><a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile </a><i class="fa-solid fa-trophy"></i></li>
+
+                <li><article class="side-goal" th:text="'Goals: ' + ${goal}"></article></li>
+
 
                 <li><i class="fa-solid fa-dumbbell"></i><a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View
                     Profile</a></li>
+
 
             </ul>
         </div>

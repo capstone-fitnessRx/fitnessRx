@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Post</title>
+    <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon">
 </head>
+<!--font awesome-->
+<script src="https://kit.fontawesome.com/60b822ab43.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/feedPostEdit.css">
 <body>
 
-<div th:if="${authenticatedUserId.getId() == posts.getUser().getId()}">
-    <h3>Edit Post</h3>
-    <form th:action="@{/feed/post/edit/{id}(id=${posts.getId()})}" method="POST" th:object="${posts}">
-        <input type="text" name="contentBody" id="contentBody" th:value="${posts.getContent()}">
-        <button type="submit">Edit</button>
-    </form>
-</div>
-<div th:unless="${authenticatedUserId.getId() == posts.getUser().getId()}">
-    <h1>You Don't Belong here!</h1>
-</div>
+    <div id="editMessageTemp" th:if="${authenticatedUserId.getId() == posts.getUser().getId()}">
+
+        <h3>Edit Post</h3>
+
+        <form th:action="@{/feed/post/edit/{id}(id=${posts.getId()})}" method="POST" th:object="${posts}">
+
+            <input type="text" name="contentBody" id="contentBody" th:value="${posts.getContent()}">
+
+            <button type="submit">Edit</button>
+
+        </form>
+
+    </div>
+
+    <div th:unless="${authenticatedUserId.getId() == posts.getUser().getId()}">
+
+        <h1><i class="fa-solid fa-xmark fa-spin" style="color: #ff051e">You Don't Belong here!</i></h1>
+
+    </div>
+
 </body>
 </html>

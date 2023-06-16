@@ -60,8 +60,8 @@ public class MainController {
     @GetMapping("/home")
     public String getHome(Model model, Principal principal) {
         User user = null;
-        if(principal != null) {
-             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal != null) {
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         }
 
         if (user != null) {
@@ -112,18 +112,81 @@ public class MainController {
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
 
-        List <Calender> calender = calenderDao.findAllByUser(user);
+
+        String empty = "";
+        if(calenderDao.findByUserAndDayId(user, 1).getWorkout() != null) {
+            model.addAttribute("sundayT", calenderDao.findByUserAndDayId(user, 1).getWorkout().getTitle());
+            model.addAttribute("sundayD", calenderDao.findByUserAndDayId(user, 1).getWorkout().getDescription());
+
+        } else {
+            model.addAttribute("sundayT", empty);
+            model.addAttribute("sundayD", empty);
+
+        }
+        if(calenderDao.findByUserAndDayId(user, 2).getWorkout() != null) {
+            model.addAttribute("mondayT", calenderDao.findByUserAndDayId(user, 2).getWorkout().getTitle());
+            model.addAttribute("mondayD", calenderDao.findByUserAndDayId(user, 2).getWorkout().getDescription());
+
+        } else {
+            model.addAttribute("mondayT", empty);
+            model.addAttribute("mondayD", empty);
+
+        }
+        if(calenderDao.findByUserAndDayId(user, 3).getWorkout() != null) {
+            model.addAttribute("tuesdayT", calenderDao.findByUserAndDayId(user, 3).getWorkout().getTitle());
+            model.addAttribute("tuesdayD", calenderDao.findByUserAndDayId(user, 3).getWorkout().getDescription());
+        } else {
+            model.addAttribute("tuesdayT", empty);
+            model.addAttribute("tuesdayD", empty);
+
+        }
+        if(calenderDao.findByUserAndDayId(user, 4).getWorkout() != null) {
+            model.addAttribute("wednesdayT", calenderDao.findByUserAndDayId(user, 4).getWorkout().getTitle());
+            model.addAttribute("wednesdayD", calenderDao.findByUserAndDayId(user, 4).getWorkout().getDescription());
+        } else {
+            model.addAttribute("wednesdayT", empty);
+            model.addAttribute("wednesdayD", empty);
+        }
+        if(calenderDao.findByUserAndDayId(user, 5).getWorkout() != null) {
+            model.addAttribute("thursdayT", calenderDao.findByUserAndDayId(user, 5).getWorkout().getTitle());
+            model.addAttribute("thursdayD", calenderDao.findByUserAndDayId(user, 5).getWorkout().getDescription());
+
+        } else {
+            model.addAttribute("thursdayT", empty);
+            model.addAttribute("thursdayD", empty);
+
+        }
+        if(calenderDao.findByUserAndDayId(user, 6).getWorkout() != null) {
+            model.addAttribute("fridayT", calenderDao.findByUserAndDayId(user, 6).getWorkout().getTitle());
+            model.addAttribute("fridayD", calenderDao.findByUserAndDayId(user, 6).getWorkout().getDescription());
+
+        } else {
+            model.addAttribute("fridayT", empty);
+            model.addAttribute("fridayD", empty);
+        }
+        if(calenderDao.findByUserAndDayId(user, 7).getWorkout() != null) {
+            model.addAttribute("saturdayT", calenderDao.findByUserAndDayId(user, 7).getWorkout().getTitle());
+            model.addAttribute("saturdayD", calenderDao.findByUserAndDayId(user, 7).getWorkout().getDescription());
+
+        } else {
+            model.addAttribute("saturdayT", empty);
+            model.addAttribute("saturdayD", empty);
+
+        }
+        List<Calender> calender = calenderDao.findAllByUser(user);
         List<Calender> newDay = new ArrayList<Calender>();
-        for(Calender day : calender) {
-            if(day.getWorkout() != null) {
+        for (Calender day : calender) {
+            if (day.getWorkout() != null) {
                 newDay.add(day);
             }
         }
-        model.addAttribute("newDay", newDay);
 
+
+        System.out.println(newDay.size());
+
+        model.addAttribute("newDay", newDay);
         model.addAttribute("calender", calender);
 
-        System.out.println(calender);
 
         return "index/calender";
     }
@@ -394,7 +457,6 @@ public class MainController {
 //         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 
-
 //         Exercise ExerciseId = exerciseDao.getReferenceById(id);
 //         model.addAttribute("displayExercise", ExerciseId);
 
@@ -590,6 +652,8 @@ public class MainController {
 //        return "/calender/";
 
 //    }
+
+
 }
 
 
