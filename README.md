@@ -34,7 +34,18 @@ By combining these technologies and APIs, FitnessRX offers fitness enthusiasts a
 
 Feel free to explore, create workouts, and connect with fellow fitness enthusiasts on FitnessRX!
 
-Enjoy your fitness journey with FitnessRX!
+## **Contact**
+
+If you have any questions or need further assistance, feel free to contact the project creators at:<br> 
+<br> [David Banker](https://github.com/GetToHubing) <br> 
+[Zakeria Daniels](https://github.com/ZakeriaDaniels) <br> 
+[Gianna Garces](https://github.com/Gianna-Garces) <br> 
+[Austin Joiner](https://github.com/Austin-Joiner) <br>
+[Thomas Mescall](https://github.com/thomas-mescall) <br>
+
+## **Enjoy your fitness journey with FitnessRX!**
+
+
 
 
 
