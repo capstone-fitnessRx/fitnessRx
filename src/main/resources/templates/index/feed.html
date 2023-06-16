@@ -120,61 +120,61 @@
 
             <!--            <p th:text="${post.getLikes()}"></p>-->
 
-            <div class="card-body comment-head">
+<!--            <div class="card-body comment-head">-->
 
-                <!--                <form method="POST" th:action="@{/feed/like}">-->
-                <!--                    <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>-->
-                <!--                </form>-->
-                <button th:id="'commentBtn-' + ${post.getId()}" class="dropdown-toggle comment-size" type="button"
-                        th:text="'Comments' + ${post.getComments().size()}"></button>
+<!--                &lt;!&ndash;                <form method="POST" th:action="@{/feed/like}">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </form>&ndash;&gt;-->
+<!--                <button th:id="'commentBtn-' + ${post.getId()}" class="dropdown-toggle comment-size" type="button"-->
+<!--                        th:text="'Comments' + ${post.getComments().size()}"></button>-->
 
-            </div>
-
-
-            <div class="card-body comment-body">
-
-                <a type="button"><i class="fa-regular fa-thumbs-up"></i>Like</a>
-
-                <a type="button"><i class="fa-solid fa-share-from-square"></i>Share</a>
-            </div>
-
-            <div class="input-div">
-                <img class="comment-pic" th:src="${userProfile.profilePic}" alt="profilePic">
-
-                <form th:method="POST" th:action="@{/feed/comment/create}">
-
-                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment">
-
-                    <input type="hidden" th:value="${post.getId()}" name="postIdent">
+<!--            </div>-->
 
 
-                    <button class="submit-comment" id="comment-submission">Send</button>
+<!--            <div class="card-body comment-body">-->
 
-                </form>
+<!--                <a type="button"><i class="fa-regular fa-thumbs-up"></i>Like</a>-->
+
+<!--                <a type="button"><i class="fa-solid fa-share-from-square"></i>Share</a>-->
+<!--            </div>-->
+
+<!--            <div class="input-div">-->
+<!--                <img class="comment-pic" th:src="${userProfile.profilePic}" alt="profilePic">-->
+
+<!--                <form th:method="POST" th:action="@{/feed/comment/create}">-->
+
+<!--                    <label for="comment"></label><input class="comment-input" type="text" id="comment" name="comment">-->
+
+<!--                    <input type="hidden" th:value="${post.getId()}" name="postIdent">-->
 
 
-                <!--comment section-->
+<!--                    <button class="submit-comment" id="comment-submission">Send</button>-->
 
-                <div th:each="comment, commentIndex : ${post.getComments()}"
-                     class="dropdown-comments card-body" th:id="'commentsDropdown-' + ${post.getId()}">
-                    <p th:text="${comment.getUser().getUsername()}"></p>
-                    <form th:action="@{/feed/comment/delete/{id}(id=${comment.getId()})}" method="POST">
-                        <p th:text="${comment.getContent()}"></p>
-                        <button th:if="${authenticatedUserId.getId() == comment.getUser().getId()}" type="submit">
-                            &times;
-                        </button>
-                    </form>
-                    <p th:text="${comment.getCommentLikes()}"></p>
-                </div>
+<!--                </form>-->
 
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-            </div>
 
+<!--                &lt;!&ndash;comment section&ndash;&gt;-->
+
+<!--                <div th:each="comment, commentIndex : ${post.getComments()}"-->
+<!--                     class="dropdown-comments card-body" th:id="'commentsDropdown-' + ${post.getId()}">-->
+<!--                    <p th:text="${comment.getUser().getUsername()}"></p>-->
+<!--                    <form th:action="@{/feed/comment/delete/{id}(id=${comment.getId()})}" method="POST">-->
+<!--                        <p th:text="${comment.getContent()}"></p>-->
+<!--                        <button th:if="${authenticatedUserId.getId() == comment.getUser().getId()}" type="submit">-->
+<!--                            &times;-->
+<!--                        </button>-->
+<!--                    </form>-->
+<!--                    <p th:text="${comment.getCommentLikes()}"></p>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash;&ndash;&gt;-->
+<!--                &lt;!&ndash;&ndash;&gt;-->
+<!--                &lt;!&ndash;&ndash;&gt;-->
+<!--                &lt;!&ndash;&ndash;&gt;-->
+<!--            </div>-->
+
+<!--        </div>-->
         </div>
-
         <div class="bottom-feed card bottom-card">
             <p>You have reached the end of the feed</p>
             <a href="#" type="button">Back to top?</a>
