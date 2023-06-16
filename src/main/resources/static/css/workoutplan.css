@@ -8,3 +8,7 @@
     margin-bottom: 20px;
     /*border: 2px solid black;*/
 }
+
+body {
+    background-image: linear-gradient(#C9D6DF, #52616B, #F0F5F9);
+}
