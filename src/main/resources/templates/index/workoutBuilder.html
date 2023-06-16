@@ -17,23 +17,24 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"/>
-<nav class="text-center my-2">
-    <label>
-        <input id="userSearchInput" type="text"  placeholder="Search for exercise...">
-        <button id="searchByName" type="submit" value="exerciseName">Search</button>
-    </label>
+<!--<nav class="text-center my-2">-->
+<!--    <label>-->
+<!--        <input id="userSearchInput" type="text"  placeholder="Search for exercise...">-->
+<!--        <button id="searchByName" type="submit" value="exerciseName">Search</button>-->
+<!--    </label>-->
 
-    <span><button id="back" class="workoutNameBtn" value="back" type="submit">Back</button></span>
-    <span><button id="cardio" class="workoutNameBtn" value="cardio" type="submit">Cardio</button></span>
-    <span><button id="chest" class="workoutNameBtn" value="chest" type="submit">Chest</button></span>
-    <span><button id="lowerarms" class="workoutNameBtn" value="lower arms" type="submit">Lower Arms</button></span>
-    <span><button id="lowerlegs" class="workoutNameBtn" value="lower legs" type="submit">Lower Legs</button></span>
-    <span><button id="neck" class="workoutNameBtn" value="neck" type="submit">Neck</button></span>
-    <span><button id="shoulders" class="workoutNameBtn" value="shoulders" type="submit">Shoulders</button></span>
-    <span><button id="upperlegs" class="workoutNameBtn" value="upper legs" type="submit">Upper Legs</button></span>
-    <span><button id="upperarms" class="workoutNameBtn" value="upper arms" type="submit">Upper Arms</button></span>
-    <span><button id="waist" class="workoutNameBtn" value="waist" type="submit">Waist</button></span>
-</nav>
+<!--    <span><button id="back" class="workoutNameBtn" value="back" type="submit">Back</button></span>-->
+<!--    <span><button id="cardio" class="workoutNameBtn" value="cardio" type="submit">Cardio</button></span>-->
+<!--    <span><button id="chest" class="workoutNameBtn" value="chest" type="submit">Chest</button></span>-->
+<!--    <span><button id="lowerarms" class="workoutNameBtn" value="lower arms" type="submit">Lower Arms</button></span>-->
+<!--    <span><button id="lowerlegs" class="workoutNameBtn" value="lower legs" type="submit">Lower Legs</button></span>-->
+<!--    <span><button id="neck" class="workoutNameBtn" value="neck" type="submit">Neck</button></span>-->
+<!--    <span><button id="shoulders" class="workoutNameBtn" value="shoulders" type="submit">Shoulders</button></span>-->
+<!--    <span><button id="upperlegs" class="workoutNameBtn" value="upper legs" type="submit">Upper Legs</button></span>-->
+<!--    <span><button id="upperarms" class="workoutNameBtn" value="upper arms" type="submit">Upper Arms</button></span>-->
+<!--    <span><button id="waist" class="workoutNameBtn" value="waist" type="submit">Waist</button></span>-->
+<!--</nav>-->
+
 <div th:insert="partials/modals.html :: modals"></div>
 <main class="container d-flex justify-content-evenly flex-wrap">
     <section class="container">
@@ -148,6 +149,8 @@
         });
     }
 </script>
+
+<!--<script src="/js/workoutBuilder.js"></script>-->
 
 </body>
 </html>
