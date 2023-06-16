@@ -72,16 +72,16 @@
 
 
 <!------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<div class="row">
+<div class="row d-flex justify-content-center">
     <div id="workoutTemplate" class="col-md-3" th:each="myWorkout : ${myWorkouts}">
 
         <h5 id="workoutTitle" th:text="${myWorkout.getTitle()}"></h5>
 
-        <form th:action="@{/my-workouts/delete}" th:method="post">
+        <form class="text-center" th:action="@{/my-workouts/delete}" th:method="post">
 
             <input type="hidden" name="workoutId" th:value="${myWorkout.getId()}">
             <input name="id" type="hidden" th:value="${user.getId()}">
-            <button id="deleteWorkout" type="submit">Delete Workout</button>
+            <button  id="deleteWorkout" type="submit">Delete Workout</button>
 
         </form>
     <!--    <p class="" th:text="''+ *{myWorkout.get()}"></p>-->
