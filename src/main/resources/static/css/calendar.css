@@ -1,54 +1,55 @@
 body {
-    background-color: #C9D6DF;
+    background-image: linear-gradient(#52616B, #C9D6DF, #F0F5F9);
 }
 
 .card-body-workout{
     background-color: #F0F5F9;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     height: 125px;
+    width: 450px;
 }
 
 .card-body-sunday{
 
     background-color: #7ae582;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
     height: 125px;
 }
 .card-body-monday{
     background-color: #48cae4;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     height: 125px;
 }
 .card-body-tuesday{
     background-color: #ffd000;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     height: 125px;
 }
 .card-body-wednesday{
     background-color: #ff9500;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     height: 125px;
 }
 .card-body-thursday{
     background-color: #ef233c;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     height: 125px;
 }
 .card-body-friday{
     background-color: #b333e9;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     height: 125px;
 }
 .card-body-saturday{
     background-color: #ff47da;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     height: 125px;
 }

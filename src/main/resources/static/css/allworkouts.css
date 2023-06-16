@@ -1,3 +1,7 @@
 .link {
     color: black;
 }
+
+body {
+    background-image: linear-gradient(#52616B, #C9D6DF, #F0F5F9);
+}
