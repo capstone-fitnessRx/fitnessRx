@@ -138,11 +138,15 @@ model.addAttribute("user", user);
         String favoritesUrl = "/favorites/" + user.getId();
         model.addAttribute("favoritesUrl", favoritesUrl);
 
+        ArrayList<ExerciseDetails> exercises = (ArrayList<ExerciseDetails>) exerciseDetailsDao.findByWorkoutId(id);
+        model.addAttribute("exercises", exercises);
         Workout userWorkout = workoutDao.getReferenceById(id);
         model.addAttribute("myWorkouts", userWorkout);
         String workoutPlanUrl = "/workout-plan/" + userWorkout.getId();
         model.addAttribute("workoutPlanUrl", workoutPlanUrl);
 
+        return "index/workoutplan";
+    }
 //    List<ExerciseDetails> exerciseDetails = exerciseDetailsDao.findAll();
 //    ExerciseDetails exerciseDetails = e
 //        String exerciseName = exerciseDetailsDao.findBy(user.getId());
@@ -176,8 +180,7 @@ model.addAttribute("user", user);
 
 //        model.addAttribute("workout", new Workout());
 //        model.addAttribute("exercise", new Exercise());
-        return "index/workoutplan";
-    }
+
 
 
     //    @GetMapping("/workout-builder")
