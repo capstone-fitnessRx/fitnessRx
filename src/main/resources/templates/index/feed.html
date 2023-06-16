@@ -24,8 +24,8 @@
 
     <div class="container card side-card col-md-3">
         <div class="userProfileBanner">
-            <img class="side-banner" th:src="${userProfile.bannerPic}" alt="profilePic">
-            <img class="side-pic" th:src="${userProfile.profilePic}" alt="profilePic">
+            <img class="side-banner" th:src="${userProfile.bannerPic}">
+            <img class="side-pic" th:src="${userProfile.profilePic}">
 
             <!--    <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
 
@@ -38,11 +38,12 @@
                 <li><i class="fa-solid fa-dumbbell"></i><a class="main-friend" id="modalFriends" href="#"
                                                            th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a></li>
 
-                <li><i class="fa-solid fa-dumbbell"></i><a class="side-workout" th:text="${workoutPreference}">Workout Preference</a></li>
+                <li id="workoutPreference"><i class="fa-solid fa-dumbbell"></i><a class="side-workout" th:text="${workoutPreference}">Workout Preference</a></li>
 
-                <li><i class="fa-solid fa-dumbbell"></i><a class="side-goal" th:text="${goal}">Goals</a></li>
+                <li><i class="fa-solid fa-trophy"></i><a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile </a><i class="fa-solid fa-trophy"></i></li>
 
-                <li><i class="fa-solid fa-dumbbell"></i><a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a></li>
+                <li><article class="side-goal" th:text="'Goals: ' + ${goal}"></article></li>
+
 
             </ul>
         </div>
