@@ -30,7 +30,7 @@
 <div class="">
     <!--    calendar cards-->
     <div class="container">
-        <div class="d-flex w-100">
+        <div class="d-flex">
             <div class="card">
                 <div class="card-body-sunday">
                     <h5 class="card-title-days">Sunday</h5>
@@ -154,22 +154,22 @@
 
     <!--    workout cards-->
 
-    <div class="col-md-8">
-        <div class="card" style="width: 36rem;">
-            <div class="card-body-workout">
-                <div th:each="day : ${newDay}">
-                    <div class="card" style="width: 36rem;">
-                        <div class="card-body-workout">
-                            <h2 class="card-title">Workout:</h2>
-                            <p class="card-text" th:text="*{day.getWorkout().getTitle()}"></p>
-                            <p class="card-text" th:text="*{day.getWorkout().getDescription()}"></p>
-                        </div>
-                    </div>
-                    <!--                <h6 class="card-subtitle mb-2 text-muted" ></h6>-->
-                    <!--                <p class="card-text" th:text="${workout.}"></p>-->
-                </div>
-            </div>
-        </div>
+<!--    <div class="col-md-8">-->
+<!--        <div class="card" style="width: 36rem;">-->
+<!--            <div class="card-body-workout">-->
+<!--                <div th:each="day : ${newDay}">-->
+<!--                    <div class="card" style="width: 36rem;">-->
+<!--                        <div class="card-body-workout">-->
+<!--                            <h2 class="card-title">Workout:</h2>-->
+<!--                            <p class="card-text" th:text="*{day.getWorkout().getTitle()}"></p>-->
+<!--                            <p class="card-text" th:text="*{day.getWorkout().getDescription()}"></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                <h6 class="card-subtitle mb-2 text-muted" ></h6>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <p class="card-text" th:text="${workout.}"></p>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <!--</div>-->
 
 
