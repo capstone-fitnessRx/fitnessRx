@@ -2,18 +2,14 @@ package com.capstone.fitnessrx.Controllers;
 
 import com.capstone.fitnessrx.Repositories.*;
 import com.capstone.fitnessrx.Models.*;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 //import java.util.Calender;
-import java.time.ZonedDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 
