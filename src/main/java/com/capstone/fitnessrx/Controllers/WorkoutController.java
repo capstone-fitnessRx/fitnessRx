@@ -286,7 +286,6 @@ model.addAttribute("workoutNum", workoutNum);
     }
 
 
-
     @PostMapping("/initialize-workout")
     public String initializeWorkout(Model model, @RequestParam String title, @RequestParam String description) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
