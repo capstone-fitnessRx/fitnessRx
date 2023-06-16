@@ -162,7 +162,7 @@ public class MainController {
 
         } else {
             model.addAttribute("fridayT", empty);
-            model.addAttribute("fridayT", empty);
+            model.addAttribute("fridayD", empty);
         }
         if(calenderDao.findByUserAndDayId(user, 7).getWorkout() != null) {
             model.addAttribute("saturdayT", calenderDao.findByUserAndDayId(user, 7).getWorkout().getTitle());
