@@ -17,6 +17,8 @@
                     <a th:href="@{/exercise-page}" id="tab3" class="btn">Exercises</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/workouts-wall}" id="tab4" class="btn">Workouts</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{{calenderUrl}(calenderUrl=${calenderUrl})}" id="tab5" class="btn">Calender</a>
+                    <a sec:authorize="isAnonymous()" class=" btn" th:href="@{/login}">Login</a>
+                    <a sec:authorize="isAnonymous()" class=" btn" th:href="@{/register}">Register</a>
                 </div>
 
                 <div sec:authorize="isAuthenticated()" class="" role="group">
@@ -27,16 +29,20 @@
                          aria-expanded="false" th:src="${profilePicUrl}">
                 </div>
 
-                <div sec:authorize="isAnonymous()">
+<!--                <div sec:authorize="isAnonymous()">-->
 
-                        <!-- More links here... -->
+<!--                        &lt;!&ndash; More links here... &ndash;&gt;-->
 
-                            <button class="btn-link btn" style="margin-top: 8px"><a class="link-no-auth" th:href="@{/login}">Login</a></button>
+<!--                            <button class="btn-link btn" style="margin-top: 8px"><a class="link-no-auth" th:href="@{/login}">Login</a></button>-->
 
 
-                            <button class="btn-link btn" style="margin-top: 8px"><a class="link-no-auth" th:href="@{/register}">Register</a></button>
+<!--                            <button class="btn-link btn" style="margin-top: 8px"><a class="link-no-auth" th:href="@{/register}">Register</a></button>-->
+<!--                            <button class="btn-link btn" style="margin-top: 8px; text-decoration: none"><a class="link-no-auth" th:href="@{/login}">Login</a></button>-->
 
-                </div>
+
+<!--                            <button class="btn-link btn" style="margin-top: 8px; text-decoration: none"><a class="link-no-auth" th:href="@{/register}">Register</a></button>-->
+
+<!--                </div>-->
 <!--                <div>-->
 <!--                    <span sec:authorize="Authenticated()">yes</span>-->
 <!--                </div>-->

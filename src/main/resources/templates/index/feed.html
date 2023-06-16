@@ -51,9 +51,6 @@
                 <li><article class="side-goal" th:text="'Goals: ' + ${goal}"></article></li>
 
 
-                <li><i class="fa-solid fa-dumbbell"></i><a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View
-                    Profile</a></li>
-
 
             </ul>
         </div>
@@ -99,7 +96,7 @@
                 <button th:if="${authenticatedUserId.getId() == post.getUser().getId()}"
                         class="btn btn-secondary custom-dropdown-toggle" type="button">
                     <!--                    <i class="fa-solid fa-pen-to-square"></i>-->
-                    ...
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </button>
                 <div class="custom-dropdown-content">
 
