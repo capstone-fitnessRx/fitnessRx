@@ -22,13 +22,15 @@
   <div id='map' data-location="${location}." style='width: 600px; height: 400px;z-index:5;display:block'></div>
 <div th:insert="partials/modals.html :: modals"></div>
 
-<div class="cards" id="card1"style="width: 18rem;">
-    <img class="card-img-top" src="/img/fitnesspic.png" alt="Card image cap">
-    <div class="card-body">
-        <p class="card-text" id="gymName">This will display the name of the gym.</p>
-        <p id="gymAddress">This will display the address of the gym.</p>
+
+<div class="cards-container">
+    <div class="cards" id="card1"style="width: 18rem;">
+        <img class="card-img-top" src="/img/fitnesspic.png" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text" id="gymName">This will display the name of the gym.</p>
+            <p id="gymAddress">This will display the address of the gym.</p>
+        </div>
     </div>
-</div>
 
   <div class="cards" id="card2"style="width: 18rem;">
       <img class="card-img-top" src="/img/fitnesspic.png" alt="Card image cap">
@@ -37,7 +39,7 @@
           <p id="gymAddress2">This will display the address of the gym.</p>
       </div>
   </div>
-
+</div>
 <!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
   <!--    jquery cdn-->
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
