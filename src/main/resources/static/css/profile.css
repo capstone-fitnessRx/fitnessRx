@@ -77,6 +77,16 @@ body {
     margin-bottom: 0;
     margin-left: 6%;
 }
+.button-Pro{
+    border-radius: 15px;
+    background-color: #1E2022;
+    color: white;
+}
+.friend{
+    position: relative;
+    bottom: 45px;
+    left: 10px;
+}
 .main-name{
     position: relative;
     bottom: 55px;

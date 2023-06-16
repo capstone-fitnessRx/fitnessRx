@@ -34,16 +34,25 @@
             <ul>
 
                 <li><i class="fa-solid fa-dumbbell"></i><label for="location">Location: </label>
-                    <a class="sided-loc" id="location" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a></li>
+                    <a class="sided-loc" id="location" th:href="@{/map/{location}(location=${location})}"
+                       th:text="${location}"></a></li>
 
                 <li><i class="fa-solid fa-dumbbell"></i><a class="main-friend" id="modalFriends" href="#"
-                                                           th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a></li>
+                                                           th:text="${userProfile.getFriendsAsMainUser().size()} + ' Friends'"></a>
+                </li>
 
-                <li id="workoutPreference"><i class="fa-solid fa-dumbbell"></i><a class="side-workout" th:text="${workoutPreference}">Workout Preference</a></li>
+
+                <li><i class="fa-solid fa-dumbbell"></i><a class="side-workout" th:text="${workoutPreference}">Workout
+                    Preference</a></li>
+
 
                 <li><i class="fa-solid fa-trophy"></i><a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile </a><i class="fa-solid fa-trophy"></i></li>
 
                 <li><article class="side-goal" th:text="'Goals: ' + ${goal}"></article></li>
+
+
+                <li><i class="fa-solid fa-dumbbell"></i><a th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View
+                    Profile</a></li>
 
 
             </ul>
@@ -55,7 +64,7 @@
         <div class="card post-card">
 
             <img class="post-pic" th:src="${userProfile.profilePic}" alt="profilePic">
-<!--                        <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg" alt="fitpic">-->
+            <!--                        <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg" alt="fitpic">-->
             <form method="POST" th:action="@{{feedUrl}(feedUrl=${feedUrl})}" th:object="${post}">
                 <label for="post"></label>
                 <input class="post-input" type="text" id="post" th:field="*{content}"
@@ -76,19 +85,22 @@
                 <img class="feed-pic" th:src="${post.getUser().profilePic}" alt="profilePic">
 
                 <span>
-                    <a id="userFeed" th:href="@{/profile/{id}(id=${post.getUser().getId()})}" th:text="${post.getUser().getUsername()}"></a>
+                    <a id="userFeed" th:href="@{/profile/{id}(id=${post.getUser().getId()})}"
+                       th:text="${post.getUser().getUsername()}"></a>
                 </span>
 
 
-<!--                <a class="sided-loc" id="locationFeed" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>-->
+                <!--                <a class="sided-loc" id="locationFeed" th:href="@{/map/{location}(location=${location})}" th:text="${location}"></a>-->
 
 
             </div>
 
             <div class="custom-dropdown">
-                <a th:if="${authenticatedUserId.getId() == post.getUser().getId()}" class="btn btn-secondary custom-dropdown-toggle" type="button">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </a>
+                <button th:if="${authenticatedUserId.getId() == post.getUser().getId()}"
+                        class="btn btn-secondary custom-dropdown-toggle" type="button">
+                    <!--                    <i class="fa-solid fa-pen-to-square"></i>-->
+                    ...
+                </button>
                 <div class="custom-dropdown-content">
 
                     <div>
@@ -106,14 +118,15 @@
             </div>
             <p class="feedPostText" th:text="${post.getContent()}"></p>
 
-<!--            <p th:text="${post.getLikes()}"></p>-->
+            <!--            <p th:text="${post.getLikes()}"></p>-->
 
             <div class="card-body comment-head">
 
-<!--                <form method="POST" th:action="@{/feed/like}">-->
-<!--                    <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>-->
-<!--                </form>-->
-                <button id="commentBtn" class="dropdown-toggle comment-size" type="button" th:text="'Comments' + ${post.getComments().size()}"></button>
+                <!--                <form method="POST" th:action="@{/feed/like}">-->
+                <!--                    <button id="like" type="submit" th:text="${post.getLikes()} + ' Likes'"></button>-->
+                <!--                </form>-->
+                <button th:id="'commentBtn-' + ${post.getId()}" class="dropdown-toggle comment-size" type="button"
+                        th:text="'Comments' + ${post.getComments().size()}"></button>
 
             </div>
 
@@ -135,20 +148,25 @@
                     <input type="hidden" th:value="${post.getId()}" name="postIdent">
 
 
-                        <button class="submit-comment" id="comment-submission">Send</button>
+                    <button class="submit-comment" id="comment-submission">Send</button>
 
                 </form>
 
 
                 <!--comment section-->
-                <div th:each="comment : ${post.getComments()}" class="dropdown-comments card-body">
+
+                <div th:each="comment, commentIndex : ${post.getComments()}"
+                     class="dropdown-comments card-body" th:id="'commentsDropdown-' + ${post.getId()}">
                     <p th:text="${comment.getUser().getUsername()}"></p>
                     <form th:action="@{/feed/comment/delete/{id}(id=${comment.getId()})}" method="POST">
                         <p th:text="${comment.getContent()}"></p>
-                        <button th:if="${authenticatedUserId.getId() == comment.getUser().getId()}" type="submit">&times;</button>
+                        <button th:if="${authenticatedUserId.getId() == comment.getUser().getId()}" type="submit">
+                            &times;
+                        </button>
                     </form>
                     <p th:text="${comment.getCommentLikes()}"></p>
                 </div>
+
                 <!---->
                 <!---->
                 <!---->
@@ -166,9 +184,32 @@
 
 
 </div>
-
-<!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".comment-size").on("click", function () {
+            var postId = $(this).attr("id").split("-")[1];
+            var commentDropDownDisplay = $("#commentsDropdown-" + postId);
+            commentDropDownDisplay.toggleClass("show");
+
+            var parentPostDiv = $(this).closest(".post-loop");
+            parentPostDiv.toggleClass("expanded");
+        });
+
+        $(document).on("click", function (event) {
+            var commentDropLink = $(".comment-size");
+            var commentDropDownDisplay = $(".dropdown-comments");
+
+            if (!commentDropLink.is(event.target) && !commentDropDownDisplay.has(event.target).length) {
+                commentDropDownDisplay.removeClass("show");
+            }
+        });
+    });
+
+
+</script>
+<!--<div th:insert="partials/messenger-partial.html :: messenger"></div>-->
+
 <script src="/js/feed.js"></script>
 <script src="/js/modals.js"></script>
 <!--<script src="/js/messenger.js"></script>-->
