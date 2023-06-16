@@ -149,7 +149,7 @@
                 <!--comment section-->
 
                 <div th:each="comment, commentIndex : ${post.getComments()}"
-                     class="dropdown-comments card-body" th:id="'commentDropdown-' + ${post.getId()} + '-' + ${commentIndex.index}">
+                     class="dropdown-comments card-body" th:id="'commentsDropdown-' + ${post.getId()}">
                     <p th:text="${comment.getUser().getUsername()}"></p>
                     <form th:action="@{/feed/comment/delete/{id}(id=${comment.getId()})}" method="POST">
                         <p th:text="${comment.getContent()}"></p>
@@ -182,7 +182,7 @@
     $(document).ready(function () {
         $(".comment-size").on("click", function () {
             var postId = $(this).attr("id").split("-")[1];
-            var commentDropDownDisplay = $("#commentDropdown-" + postId);
+            var commentDropDownDisplay = $("#commentsDropdown-" + postId);
             commentDropDownDisplay.toggleClass("show");
 
             var parentPostDiv = $(this).closest(".post-loop");
