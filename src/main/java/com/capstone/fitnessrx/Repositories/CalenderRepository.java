@@ -16,6 +16,7 @@ public interface CalenderRepository extends JpaRepository<Calender, Long> {
     Calender findByWorkout(Workout workout);
 
     List<Calender> findAllByUser(User user);
+    List<Calender> findAllByUserAndDayId(User user, int id);
 
 
 
