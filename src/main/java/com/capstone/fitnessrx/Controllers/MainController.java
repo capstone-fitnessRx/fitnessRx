@@ -62,10 +62,14 @@ public class MainController {
         User user = null;
         if (principal != null) {
             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            long id = user.getId();
+            User userProfile = userDao.findById(id).orElse(null);
+            model.addAttribute("userProfile", userProfile);
         }
 
         if (user != null) {
             //        this gives navbar the profile pic
+
             String navbarProfilePic = user.getProfilePic();
             model.addAttribute("profilePicUrl", navbarProfilePic);
 
@@ -93,7 +97,10 @@ public class MainController {
     public String getCalender(@PathVariable Long id, Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+//        long id = user.getId();
+        User userProfile = userDao.findById(id).orElse(null);
+        model.addAttribute("userProfile", userProfile);
+        model.addAttribute("user", user);
         String navbarProfilePic = user.getProfilePic();
         model.addAttribute("profilePicUrl", navbarProfilePic);
 
@@ -251,6 +258,9 @@ public class MainController {
     public String getMap(@PathVariable String location, Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        User userProfile = userDao.findById(id).orElse(null);
+        model.addAttribute("userProfile", userProfile);
 
 //        this gives navbar the profile pic
         String navbarProfilePic = user.getProfilePic();
@@ -613,7 +623,7 @@ public class MainController {
     }
 
     @PostMapping("/calender/{id}")
-    public String addToCalender(@PathVariable Long id, @RequestParam Long workoutId, @RequestParam int weekday) {
+    public String addToCalender(@PathVariable Long id, @RequestParam Long workoutId, @RequestParam int weekday, Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        user = userDao.getReferenceById((long) user.getId());

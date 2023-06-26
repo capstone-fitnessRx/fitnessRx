@@ -28,6 +28,10 @@ public class ExerciseController {
         User user = null;
         if(principal != null) {
             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", user);
+            long id = user.getId();
+            User userProfile = userDao.findById(id).orElse(null);
+            model.addAttribute("userProfile", userProfile);
         }
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -60,7 +64,9 @@ public class ExerciseController {
     @GetMapping("/exercise-display/{id}")
     public String getExerciseDisplay(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        model.addAttribute("user", user);
+        User userProfile = userDao.findById(id).orElse(null);
+        model.addAttribute("userProfile", userProfile);
 //        model.addAttribute("exerciseName", exerciseName);
 //        model.addAttribute("exerciseTarget", exerciseTarget);
 //        model.addAttribute("exerciseEquipment", exerciseEquipment);
