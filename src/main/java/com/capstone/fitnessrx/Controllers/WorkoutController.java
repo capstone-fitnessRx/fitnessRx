@@ -38,6 +38,9 @@ public class WorkoutController {
     @GetMapping("/my-workouts/{id}")
     public String getMyWorkouts(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        long id = user.getId();
+        User userProfile = userDao.findById(id).orElse(null);
+        model.addAttribute("userProfile", userProfile);
 
 //        this gives navbar the profile pic
         String navbarProfilePic = user.getProfilePic();
@@ -53,7 +56,7 @@ model.addAttribute("user", user);
         Workout workout = workoutDao.findById(id).orElse(null);
 
 
-        User userProfile = userDao.findById(id).orElse(null);
+//        User userProfile = userDao.findById(id).orElse(null);
         String profileUrl = "/profile/" + user.getId();
         model.addAttribute("profileUrl", profileUrl);
         String feedUrl = "/feed/" + user.getId();
@@ -78,6 +81,9 @@ model.addAttribute("user", user);
         User user = null;
         if(principal != null) {
             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            long id = user.getId();
+            User userProfile = userDao.findById(id).orElse(null);
+            model.addAttribute("userProfile", userProfile);
         }
         //        this gives navbar the profile pic
 
@@ -120,6 +126,9 @@ model.addAttribute("user", user);
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        this gives navbar the profile pic
+//        long id = user.getId();
+        User userProfile = userDao.findById(id).orElse(null);
+        model.addAttribute("userProfile", userProfile);
         String navbarProfilePic = user.getProfilePic();
         model.addAttribute("profilePicUrl", navbarProfilePic);
 
@@ -232,9 +241,12 @@ model.addAttribute("user", user);
 //    }
     @GetMapping("/workout-builder")
     public String getBuilder(Model model, @RequestParam String workoutNum) {
-model.addAttribute("workoutNum", workoutNum);
+        model.addAttribute("workoutNum", workoutNum);
         System.out.println("workoutNum = " + workoutNum);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        User userProfile = userDao.findById(id).orElse(null);
+        model.addAttribute("userProfile", userProfile);
         //        this gives navbar the profile pic
         String navbarProfilePic = user.getProfilePic();
         model.addAttribute("profilePicUrl", navbarProfilePic);
@@ -285,6 +297,10 @@ model.addAttribute("workoutNum", workoutNum);
 
     @GetMapping("/initialize-workout")
     public String getInitializeWorkout(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        User userProfile = userDao.findById(id).orElse(null);
+        model.addAttribute("userProfile", userProfile);
         return "index/initializeWorkout";
     }
 

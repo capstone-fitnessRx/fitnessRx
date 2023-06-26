@@ -88,6 +88,7 @@ public class FeedController {
 
 
             model.addAttribute("userFriends", userFriends);
+
             model.addAttribute("userProfile", userProfile);
             model.addAttribute("userProfileId", id);
             model.addAttribute("username", username);

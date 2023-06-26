@@ -20,7 +20,73 @@
     <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon">
 </head>
 <body>
-<nav th:replace="partials/navbar.html :: navbar"/>
+<nav style="background-color: #F0F5F9" class="navbar navbar-default">
+    <div class="container-fluid backdrop">
+        <div class="navbar-header">
+            <img class="logo" src="/img/ourlogo.PNG">
+        </div>
+
+
+
+
+
+
+        <div>
+            <div class="menu">
+                <div class="tab-menu" role="group" aria-label="Button group with nested dropdown">
+                    <a th:href="@{/home}" id="tab1" class="btn">Home</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{{feedUrl}(feedUrl=${feedUrl})}" id="tab2" class="btn">Feed</a>
+                    <a th:href="@{/exercise-page}" id="tab3" class="btn">Exercises</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/workouts-wall}" id="tab4" class="btn">Workouts</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{{calenderUrl}(calenderUrl=${calenderUrl})}" id="tab5" class="btn">Calender</a>
+                    <a sec:authorize="isAnonymous()" class=" btn" th:href="@{/login}">Login</a>
+                    <a sec:authorize="isAnonymous()" class=" btn" th:href="@{/register}">Register</a>
+                </div>
+
+                <div sec:authorize="isAuthenticated()" class="" role="group">
+
+                    <!--            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
+                    <img type="button" class="profile-nav-pic btn dropdown-toggle"
+                         data-bs-toggle="dropdown"
+                         aria-expanded="false" th:src="${userProfile.profilePic}">
+                </div>
+
+                <!--                <div sec:authorize="isAnonymous()">-->
+
+                <!--                        &lt;!&ndash; More links here... &ndash;&gt;-->
+
+                <!--                            <button class="btn-link btn" style="margin-top: 8px"><a class="link-no-auth" th:href="@{/login}">Login</a></button>-->
+
+
+                <!--                            <button class="btn-link btn" style="margin-top: 8px"><a class="link-no-auth" th:href="@{/register}">Register</a></button>-->
+                <!--                            <button class="btn-link btn" style="margin-top: 8px; text-decoration: none"><a class="link-no-auth" th:href="@{/login}">Login</a></button>-->
+
+
+                <!--                            <button class="btn-link btn" style="margin-top: 8px; text-decoration: none"><a class="link-no-auth" th:href="@{/register}">Register</a></button>-->
+
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                    <span sec:authorize="Authenticated()">yes</span>-->
+                <!--                </div>-->
+                <div>
+                    <!--            </button>-->
+                    <ul class="dropdown-menu drop-nav-menu ">
+                        <li><a class="dropdown-item p-drop" th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a></li>
+                        <li><a class="dropdown-item" th:href="@{{myWorkoutsUrl}(myWorkoutsUrl=${myWorkoutsUrl})}">My
+                            Workouts</a></li>
+                        <!--                        <li><a class="dropdown-item"-->
+                        <!--                               th:href="@{{favoritesUrl}(favoritesUrl=${favoritesUrl})}">Favorites</a></li>-->
+                        <!--                        <li><a class="dropdown-item p-drop" href='#' id="modalSettings">Settings</a></li>-->
+                        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+                            <button class="btn-link btn dropdown-item" style="margin-top: 8px">Logout</button>
+                        </form>
+                        <!--                        <li><a class="dropdown-item p-drop" href='#' id="modalEdit">Edit Profile</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
 <h1>My Workouts</h1>
 <!--    button for building workout -->
 
