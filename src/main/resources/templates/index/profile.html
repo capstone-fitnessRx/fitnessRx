@@ -29,18 +29,16 @@
         </div>
 
 
-
-
-
-
         <div>
             <div class="menu">
                 <div class="tab-menu" role="group" aria-label="Button group with nested dropdown">
                     <a th:href="@{/home}" id="tab1" class="btn">Home</a>
-                    <a sec:authorize="isAuthenticated()" th:href="@{{feedUrl}(feedUrl=${feedUrl})}" id="tab2" class="btn">Feed</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{{feedUrl}(feedUrl=${feedUrl})}" id="tab2"
+                       class="btn">Feed</a>
                     <a th:href="@{/exercise-page}" id="tab3" class="btn">Exercises</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/workouts-wall}" id="tab4" class="btn">Workouts</a>
-                    <a sec:authorize="isAuthenticated()" th:href="@{{calenderUrl}(calenderUrl=${calenderUrl})}" id="tab5" class="btn">Calender</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{{calenderUrl}(calenderUrl=${calenderUrl})}"
+                       id="tab5" class="btn">Calender</a>
                     <a sec:authorize="isAnonymous()" class=" btn" th:href="@{/login}">Login</a>
                     <a sec:authorize="isAnonymous()" class=" btn" th:href="@{/register}">Register</a>
                 </div>
@@ -48,9 +46,16 @@
                 <div sec:authorize="isAuthenticated()" class="" role="group">
 
                     <!--            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
-                    <img type="button" class="profile-nav-pic btn dropdown-toggle"
-                         data-bs-toggle="dropdown"
-                         aria-expanded="false" th:src="${userProfile.profilePic}">
+                    <div>
+                        <img th:if="${userProfile.profilePic} == null" type="button"
+                             class="profile-nav-pic btn dropdown-toggle"
+                             data-bs-toggle="dropdown"
+                             aria-expanded="false" src="/img/default_profile_pic.png">
+                        <img th:if="${userProfile.profilePic} != null" type="button"
+                             class="profile-nav-pic btn dropdown-toggle"
+                             data-bs-toggle="dropdown"
+                             aria-expanded="false" th:src="${userProfile.profilePic}">
+                    </div>
                 </div>
 
                 <!--                <div sec:authorize="isAnonymous()">-->
@@ -73,7 +78,8 @@
                 <div>
                     <!--            </button>-->
                     <ul class="dropdown-menu drop-nav-menu ">
-                        <li><a class="dropdown-item p-drop" th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View Profile</a></li>
+                        <li><a class="dropdown-item p-drop" th:href="@{{profileUrl}(profileUrl=${profileUrl})}">View
+                            Profile</a></li>
                         <li><a class="dropdown-item" th:href="@{{myWorkoutsUrl}(myWorkoutsUrl=${myWorkoutsUrl})}">My
                             Workouts</a></li>
                         <!--                        <li><a class="dropdown-item"-->
@@ -115,11 +121,18 @@
                 class="button-Pro picture-btn" name="upload">Profile Picture
         </button>
 
-        <div th:object="${userProfile}">
+<!--        <div th:if="${userProfile.profilePic == null}">-->
+<!--            <img class="main-profile-pic" src="/img/default_profile_pic.png">-->
+<!--        </div>-->
+<!--        <div th:unless="${userProfile.profilePic} != null">-->
+<!--            <img class="main-profile-pic" th:src="${userProfile.profilePic}">-->
+<!--        </div>-->
 
-            <img class="main-profile-pic" th:src="*{profilePic}">
-
+        <div>
+            <img th:if="${userProfile.profilePic == null}" class="main-profile-pic" src="/img/default_profile_pic.png">
+            <img th:unless="${userProfile.profilePic} != null" class="main-profile-pic" th:src="${userProfile.profilePic}">
         </div>
+
 
         <form th:action="@{/profile/upload}" th:method="POST" id="submitMePls">
             <input id="stashFilestackURL" name="stashFilestackURL" type="hidden" value="">
@@ -142,7 +155,8 @@
 
         <div class="userDetails">
             <ul>
-                <li><a style="color: #6f6fc4" id="mainLocation" class="main-loc" th:href="@{/map/{location}(location=${location})}"
+                <li><a style="color: #6f6fc4" id="mainLocation" class="main-loc"
+                       th:href="@{/map/{location}(location=${location})}"
                        th:text="'- Location: ' + ${location}"></a></li>
 
                 <li><a class="main-friend" id="modalFriends" href="#"

@@ -20,13 +20,21 @@ video {
 }
 
 .accountCreation {
+
     color: black;
     background-color: #F0F5F9;
-    margin: 8% 35% 0 35%;
+    margin: 5% 10% 0 10%;
     opacity: 75%;
+    width: 60%;
     border-radius: 2%;
 }
 
 label input {
     margin-left: 3%;
+}
+
+.inputs {
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
 }
