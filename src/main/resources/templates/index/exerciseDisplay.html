@@ -42,9 +42,14 @@
                 <div sec:authorize="isAuthenticated()" class="" role="group">
 
                     <!--            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
-                    <img type="button" class="profile-nav-pic btn dropdown-toggle"
-                         data-bs-toggle="dropdown"
-                         aria-expanded="false" th:src="${userProfile.profilePic}">
+                    <div>
+                        <img th:if="${userProfile.profilePic} == null" type="button" class="profile-nav-pic btn dropdown-toggle"
+                             data-bs-toggle="dropdown"
+                             aria-expanded="false" src="/img/default_profile_pic.png">
+                        <img th:if="${userProfile.profilePic} != null" type="button" class="profile-nav-pic btn dropdown-toggle"
+                             data-bs-toggle="dropdown"
+                             aria-expanded="false" th:src="${userProfile.profilePic}">
+                    </div>
                 </div>
 
                 <!--                <div sec:authorize="isAnonymous()">-->

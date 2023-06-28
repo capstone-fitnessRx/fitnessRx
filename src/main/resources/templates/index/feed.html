@@ -45,9 +45,14 @@
                 <div sec:authorize="isAuthenticated()" class="" role="group">
 
                     <!--            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
-                    <img type="button" class="profile-nav-pic btn dropdown-toggle"
-                         data-bs-toggle="dropdown"
-                         aria-expanded="false" th:src="${userProfile.profilePic}">
+                    <div>
+                        <img th:if="${userProfile.profilePic} == null" type="button" class="profile-nav-pic btn dropdown-toggle"
+                             data-bs-toggle="dropdown"
+                             aria-expanded="false" src="/img/default_profile_pic.png">
+                        <img th:if="${userProfile.profilePic} != null" type="button" class="profile-nav-pic btn dropdown-toggle"
+                             data-bs-toggle="dropdown"
+                             aria-expanded="false" th:src="${userProfile.profilePic}">
+                    </div>
                 </div>
 
                 <!--                <div sec:authorize="isAnonymous()">-->
@@ -93,8 +98,15 @@
     <div class="container card side-card col-md-3">
         <div class="userProfileBanner">
             <img class="side-banner" th:src="${userProfile.bannerPic}">
-            <img class="side-pic" th:src="${userProfile.profilePic}">
+<!--            <img class="side-pic" th:src="${userProfile.profilePic}">-->
 
+
+            <div class="side-pic">
+                <img th:if="${userProfile.profilePic} == null" src="/img/default_profile_pic.png">
+
+
+                <img th:unless="${userProfile.profilePic} != null" th:src="${userProfile.profilePic}">
+            </div>
             <!--    <img class="main-profile-pic" src="/img/fitnessMyIMG.jpeg">-->
 
             <h3 class="side-name" th:text="${username}"></h3>
